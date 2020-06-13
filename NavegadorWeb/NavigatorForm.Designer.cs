@@ -1,6 +1,6 @@
 ﻿namespace NavegadorWeb
 {
-    partial class Form1
+    partial class NavigatorForm
     {
         /// <summary>
         /// Variable del diseñador necesaria.
