@@ -35,6 +35,7 @@
             this.goButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
+            this.whoAreButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -87,8 +88,7 @@
             // 
             // panel1
             // 
-            this.panel1.AutoSize = true;
-            this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel1.Controls.Add(this.whoAreButton);
             this.panel1.Controls.Add(this.backButton);
             this.panel1.Controls.Add(this.goButton);
             this.panel1.Controls.Add(this.forwardButton);
@@ -97,7 +97,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(961, 38);
+            this.panel1.Size = new System.Drawing.Size(962, 44);
             this.panel1.TabIndex = 6;
             // 
             // webBrowser
@@ -110,12 +110,22 @@
             this.webBrowser.TabIndex = 7;
             this.webBrowser.Url = new System.Uri("http://www.google.com.ar", System.UriKind.Absolute);
             // 
+            // whoAreButton
+            // 
+            this.whoAreButton.Location = new System.Drawing.Point(850, 11);
+            this.whoAreButton.Name = "whoAreButton";
+            this.whoAreButton.Size = new System.Drawing.Size(100, 23);
+            this.whoAreButton.TabIndex = 6;
+            this.whoAreButton.Text = "Quienes somos?";
+            this.whoAreButton.UseVisualStyleBackColor = true;
+            this.whoAreButton.Click += new System.EventHandler(this.whoAreButton_Click);
+            // 
             // NavigatorForm
             // 
             this.AcceptButton = this.goButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(961, 530);
+            this.ClientSize = new System.Drawing.Size(962, 530);
             this.Controls.Add(this.webBrowser);
             this.Controls.Add(this.panel1);
             this.Name = "NavigatorForm";
@@ -127,7 +137,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -139,6 +148,7 @@
         private System.Windows.Forms.Button goButton;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.WebBrowser webBrowser;
+        private System.Windows.Forms.Button whoAreButton;
     }
 }
 

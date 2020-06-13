@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NavegadorWeb.Controller;
+using System;
 using System.Windows.Forms;
 
 namespace NavegadorWeb
@@ -34,6 +35,13 @@ namespace NavegadorWeb
         {
             webBrowser.Width = this.Width - 20;
             webBrowser.Height = this.Height;
+        }
+
+        private void whoAreButton_Click(object sender, EventArgs e)
+        {
+            var a = new TutorialController();
+            var request = a.Get("https://proyecto-final-navegador-web.herokuapp.com/api/people");
+            MessageBox.Show(request);
         }
     }
 }
