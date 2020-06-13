@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NavegadorWeb
@@ -37,5 +30,10 @@ namespace NavegadorWeb
             webBrowser.Navigate(directionBox.Text);
         }
 
+        private void NavigatorForm_Resize(object sender, EventArgs e)
+        {
+            webBrowser.Width = this.Width - 20;
+            webBrowser.Height = this.Height;
+        }
     }
 }
