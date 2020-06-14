@@ -28,26 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.backButton = new System.Windows.Forms.Button();
             this.forwardButton = new System.Windows.Forms.Button();
             this.updateButton = new System.Windows.Forms.Button();
             this.directionBox = new System.Windows.Forms.TextBox();
             this.goButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.webBrowser = new System.Windows.Forms.WebBrowser();
+            this.backButton = new System.Windows.Forms.Button();
             this.whoAreButton = new System.Windows.Forms.Button();
+            this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // backButton
-            // 
-            this.backButton.Location = new System.Drawing.Point(11, 12);
-            this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(75, 23);
-            this.backButton.TabIndex = 1;
-            this.backButton.Text = "Atrás";
-            this.backButton.UseVisualStyleBackColor = true;
-            this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
             // forwardButton
             // 
@@ -75,6 +65,7 @@
             this.directionBox.Name = "directionBox";
             this.directionBox.Size = new System.Drawing.Size(462, 20);
             this.directionBox.TabIndex = 4;
+            this.directionBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.directionBox_KeyDown);
             // 
             // goButton
             // 
@@ -88,8 +79,8 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.whoAreButton);
             this.panel1.Controls.Add(this.backButton);
+            this.panel1.Controls.Add(this.whoAreButton);
             this.panel1.Controls.Add(this.goButton);
             this.panel1.Controls.Add(this.forwardButton);
             this.panel1.Controls.Add(this.directionBox);
@@ -97,18 +88,18 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(962, 44);
+            this.panel1.Size = new System.Drawing.Size(962, 46);
             this.panel1.TabIndex = 6;
             // 
-            // webBrowser
+            // backButton
             // 
-            this.webBrowser.Location = new System.Drawing.Point(0, 44);
-            this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser.Name = "webBrowser";
-            this.webBrowser.ScriptErrorsSuppressed = true;
-            this.webBrowser.Size = new System.Drawing.Size(957, 485);
-            this.webBrowser.TabIndex = 7;
-            this.webBrowser.Url = new System.Uri("http://www.google.com.ar", System.UriKind.Absolute);
+            this.backButton.Location = new System.Drawing.Point(12, 12);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(74, 23);
+            this.backButton.TabIndex = 1;
+            this.backButton.Text = "Atrás";
+            this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
             // whoAreButton
             // 
@@ -119,6 +110,17 @@
             this.whoAreButton.Text = "Quienes somos?";
             this.whoAreButton.UseVisualStyleBackColor = true;
             this.whoAreButton.Click += new System.EventHandler(this.whoAreButton_Click);
+            // 
+            // webBrowser
+            // 
+            this.webBrowser.Location = new System.Drawing.Point(0, 52);
+            this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser.Name = "webBrowser";
+            this.webBrowser.ScriptErrorsSuppressed = true;
+            this.webBrowser.Size = new System.Drawing.Size(957, 483);
+            this.webBrowser.TabIndex = 7;
+            this.webBrowser.Url = new System.Uri("http://www.google.com.ar", System.UriKind.Absolute);
+            this.webBrowser.Navigated += new System.Windows.Forms.WebBrowserNavigatedEventHandler(this.webBrowser_Navigated);
             // 
             // NavigatorForm
             // 
@@ -132,7 +134,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Navegador Web";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Enter += new System.EventHandler(this.goButton_Click);
             this.Resize += new System.EventHandler(this.NavigatorForm_Resize);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -141,7 +142,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.Button forwardButton;
         private System.Windows.Forms.Button updateButton;
         private System.Windows.Forms.TextBox directionBox;
@@ -149,6 +149,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.WebBrowser webBrowser;
         private System.Windows.Forms.Button whoAreButton;
+        private System.Windows.Forms.Button backButton;
     }
 }
 
