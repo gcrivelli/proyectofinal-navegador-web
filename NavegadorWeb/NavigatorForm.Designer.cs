@@ -134,6 +134,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Navegador Web";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.NavigatorForm_Load);
             this.Resize += new System.EventHandler(this.NavigatorForm_Resize);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
