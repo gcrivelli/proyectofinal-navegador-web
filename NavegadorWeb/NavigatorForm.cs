@@ -3,6 +3,7 @@ using NavegadorWeb.Controller;
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace NavegadorWeb
 {
@@ -98,6 +99,23 @@ namespace NavegadorWeb
             WebBrowserHelper.FixBrowserVersion();
             WebBrowserHelper.FixBrowserVersion(appName);
             WebBrowserHelper.FixBrowserVersion(appName, 11001);
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string pattern = @"(<(input|button|a) [^>]+ id=.(\w+). [^>]*)";
+            string replacement = "$1 style='background-color:red;' onmouseover=\"alert('$3')\"";
+            webBrowser.DocumentText = Regex.Replace(webBrowser.DocumentText, pattern, replacement);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            webBrowser.DocumentText = webBrowser.DocumentText;
         }
     }
 }
