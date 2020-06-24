@@ -84,6 +84,7 @@ namespace NavegadorWeb
         // Resolve error "not load images" 
         private void NavigatorForm_Load(object sender, EventArgs e)
         {
+            int[] browserEmulationVersion = { 0, 7000, 8000, 8888, 9000, 9999, 10000, 10001, 11000, 11001 };
             var appName = Process.GetCurrentProcess().ProcessName + ".exe";
 
             // You may find messagebox.show, just for testing.
@@ -91,7 +92,9 @@ namespace NavegadorWeb
 
             WebBrowserHelper.FixBrowserVersion();
             WebBrowserHelper.FixBrowserVersion(appName);
-            WebBrowserHelper.FixBrowserVersion(appName, 11001);
+
+            foreach(int i in browserEmulationVersion)
+                WebBrowserHelper.FixBrowserVersion(appName, i);
         }
     }
 }
