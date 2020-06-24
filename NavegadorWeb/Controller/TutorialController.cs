@@ -76,5 +76,13 @@ namespace NavegadorWeb.Controller
                 return await reader.ReadToEndAsync();
             }
         }
+
+        //Get from the API
+        //private void getFromController()
+        //{
+        //    var a = new tutorialcontroller();
+        //    var request = a.get("https://proyecto-final-navegador-web.herokuapp.com/api/people");
+        //    messagebox.show(request);
+        //}
     }
 }

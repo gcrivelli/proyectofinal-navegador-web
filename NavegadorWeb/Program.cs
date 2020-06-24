@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using NavegadorWeb.GeneralDisplay;
+using System;
 using System.Windows.Forms;
 
 namespace NavegadorWeb
@@ -16,7 +14,7 @@ namespace NavegadorWeb
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new NavigatorForm());
+            Application.Run(new Login());
         }
     }
 }
