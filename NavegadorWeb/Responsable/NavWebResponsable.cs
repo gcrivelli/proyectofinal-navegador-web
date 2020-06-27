@@ -76,7 +76,7 @@ namespace NavegadorWeb.Responsable
             HtmlElement head = doc.GetElementsByTagName("head")[0];
 
             HtmlElement script = doc.CreateElement("script");
-            var path = Path.Combine(System.Environment.CurrentDirectory, "script.js");
+            var path = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "/Responsable/CreateCanvas.js";
             var js = File.ReadAllText(path);
             script.SetAttribute("type", "text/javascript");
             script.InnerText = js;
