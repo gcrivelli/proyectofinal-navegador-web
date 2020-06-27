@@ -39,6 +39,7 @@
             this.viewTutorialBtn.TabIndex = 7;
             this.viewTutorialBtn.Text = "Ver Tutorial";
             this.viewTutorialBtn.UseVisualStyleBackColor = true;
+            this.viewTutorialBtn.Click += new System.EventHandler(this.viewTutorialBtn_Click);
             // 
             // NavWebAdult
             // 

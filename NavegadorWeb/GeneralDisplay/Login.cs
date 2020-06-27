@@ -26,6 +26,11 @@ namespace NavegadorWeb.GeneralDisplay
 
         private void adminBnt_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Not implemented view");
+        }
+
+        private void exitBtn_Click(object sender, EventArgs e)
+        {
             Application.Exit();
         }
     }

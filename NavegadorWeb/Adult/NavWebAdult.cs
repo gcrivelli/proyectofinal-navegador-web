@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NavegadorWeb.Adult
@@ -15,6 +8,11 @@ namespace NavegadorWeb.Adult
         public NavWebAdult()
         {
             InitializeComponent();
+        }
+
+        private void viewTutorialBtn_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Not implemented view");
         }
     }
 }

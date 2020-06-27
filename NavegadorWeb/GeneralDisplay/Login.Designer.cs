@@ -31,6 +31,7 @@
             this.responsableBnt = new System.Windows.Forms.Button();
             this.adultBtn = new System.Windows.Forms.Button();
             this.adminBnt = new System.Windows.Forms.Button();
+            this.exitBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // responsableBnt
@@ -63,16 +64,27 @@
             this.adminBnt.UseVisualStyleBackColor = true;
             this.adminBnt.Click += new System.EventHandler(this.adminBnt_Click);
             // 
+            // exitBtn
+            // 
+            this.exitBtn.Location = new System.Drawing.Point(114, 289);
+            this.exitBtn.Name = "exitBtn";
+            this.exitBtn.Size = new System.Drawing.Size(102, 33);
+            this.exitBtn.TabIndex = 3;
+            this.exitBtn.Text = "Salir";
+            this.exitBtn.UseVisualStyleBackColor = true;
+            this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(319, 300);
+            this.ClientSize = new System.Drawing.Size(320, 356);
+            this.Controls.Add(this.exitBtn);
             this.Controls.Add(this.adminBnt);
             this.Controls.Add(this.adultBtn);
             this.Controls.Add(this.responsableBnt);
             this.Name = "Login";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.ResumeLayout(false);
 
@@ -83,5 +95,6 @@
         private System.Windows.Forms.Button responsableBnt;
         private System.Windows.Forms.Button adultBtn;
         private System.Windows.Forms.Button adminBnt;
+        private System.Windows.Forms.Button exitBtn;
     }
 }
