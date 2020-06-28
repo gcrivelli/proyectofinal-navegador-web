@@ -6,19 +6,19 @@ namespace NavegadorWeb.Responsable
     public partial class CreateStep : Form
     {
         public static HtmlDocument doc;
-        private System.Windows.Forms.WebBrowser webBrowser;
+        public NavWebResponsable navWebResponsable;
 
-        public CreateStep(HtmlDocument _doc, System.Windows.Forms.WebBrowser _webBrowser)
+        public CreateStep(HtmlDocument _doc, NavWebResponsable _navWebResponsable)
         {
             InitializeComponent();
             doc = _doc;
-            webBrowser = _webBrowser;
+            navWebResponsable = _navWebResponsable;
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
             doc.InvokeScript("finishStep");
-            webBrowser.Refresh();
+            navWebResponsable.webBrowser.Refresh();
             this.Close();
         }
 
@@ -85,7 +85,9 @@ namespace NavegadorWeb.Responsable
         private void saveBtn_Click(object sender, EventArgs e)
         {
             //Aca va el comportamiento para guardar el paso
-            webBrowser.Refresh();
+            var count = navWebResponsable.countStep;
+            navWebResponsable.countTxt.Text = count.ToString();
+            navWebResponsable.webBrowser.Refresh();
             doc.InvokeScript("finishStep");
             this.Close();
         }

@@ -7,6 +7,7 @@ namespace NavegadorWeb.Responsable
     public partial class NavWebResponsable : NavigatorForm
     {
         private CreateStep createStepView;
+        public int countStep;
         public NavWebResponsable()
         {
             InitializeComponent();
@@ -38,11 +39,8 @@ namespace NavegadorWeb.Responsable
         private void addStep()
         {
             var doc = initJsFile();
-            createStepView = new CreateStep(doc, webBrowser);
-            addStepBntt.Visible = false;
-            endTutorialBtn.Visible = true;
-            addStepBtn.Visible = true;
-
+            countStep++;
+            createStepView = new CreateStep(doc, this);
             createStepView.TopMost = true;
             createStepView.Show();
         }
@@ -50,7 +48,19 @@ namespace NavegadorWeb.Responsable
         {
             if (webBrowser.ReadyState == WebBrowserReadyState.Complete)
             {
-                addStep();
+                var model = new CreateTutorial();
+                model.ShowDialog();
+                if(model.DialogResult == DialogResult.OK)
+                {
+                    addStep();
+                    countStep = 1;
+                    addStepBntt.Visible = false;
+                    endTutorialBtn.Visible = true;
+                    addStepBtn.Visible = true;
+                    countTxt.Visible = true;
+                    countTxt.Text = countStep.ToString();
+                    MessageBox.Show("Comenza la grabación del tutorial", "Comienza el Tutorial", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             else
                 MessageBox.Show("Cargando, espere.");
@@ -61,9 +71,11 @@ namespace NavegadorWeb.Responsable
             addStepBntt.Visible = true;
             endTutorialBtn.Visible = false;
             addStepBtn.Visible = false;
+            countTxt.Visible = false;
             createStepView.Close();
             webBrowser.Refresh();
-            MessageBox.Show("Tutorial Terminado!");
+
+            MessageBox.Show("Tutorial Terminado! Se guardaron "+ countStep.ToString() +" pasos", "Fin del Tutorial", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void addStepBtn_Click(object sender, EventArgs e)

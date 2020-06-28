@@ -31,11 +31,12 @@
             this.addStepBntt = new System.Windows.Forms.Button();
             this.endTutorialBtn = new System.Windows.Forms.Button();
             this.addStepBtn = new System.Windows.Forms.Button();
+            this.countTxt = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // addStepBntt
             // 
-            this.addStepBntt.Location = new System.Drawing.Point(990, 18);
+            this.addStepBntt.Location = new System.Drawing.Point(804, 18);
             this.addStepBntt.Name = "addStepBntt";
             this.addStepBntt.Size = new System.Drawing.Size(88, 22);
             this.addStepBntt.TabIndex = 8;
@@ -65,11 +66,27 @@
             this.addStepBtn.Visible = false;
             this.addStepBtn.Click += new System.EventHandler(this.addStepBtn_Click);
             // 
+            // countTxt
+            // 
+            this.countTxt.BackColor = System.Drawing.Color.PaleGreen;
+            this.countTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.countTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.countTxt.ForeColor = System.Drawing.Color.DarkGreen;
+            this.countTxt.Location = new System.Drawing.Point(1044, 18);
+            this.countTxt.Name = "countTxt";
+            this.countTxt.ReadOnly = true;
+            this.countTxt.Size = new System.Drawing.Size(34, 22);
+            this.countTxt.TabIndex = 11;
+            this.countTxt.Text = "0";
+            this.countTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.countTxt.Visible = false;
+            // 
             // NavWebResponsable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1242, 681);
+            this.Controls.Add(this.countTxt);
             this.Controls.Add(this.addStepBtn);
             this.Controls.Add(this.endTutorialBtn);
             this.Controls.Add(this.addStepBntt);
@@ -79,6 +96,7 @@
             this.Controls.SetChildIndex(this.addStepBntt, 0);
             this.Controls.SetChildIndex(this.endTutorialBtn, 0);
             this.Controls.SetChildIndex(this.addStepBtn, 0);
+            this.Controls.SetChildIndex(this.countTxt, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -89,5 +107,6 @@
         private System.Windows.Forms.Button addStepBntt;
         private System.Windows.Forms.Button endTutorialBtn;
         public System.Windows.Forms.Button addStepBtn;
+        public System.Windows.Forms.TextBox countTxt;
     }
 }

@@ -32,7 +32,6 @@ function desplazarCanvas() {
 
 function init() {
   document.body.style["pointer-events"]="none";
-  alert("Comenzo la creación de tutorial.");  
 }
 
 function finishStep() {
