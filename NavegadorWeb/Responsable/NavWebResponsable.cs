@@ -6,93 +6,69 @@ namespace NavegadorWeb.Responsable
 {
     public partial class NavWebResponsable : NavigatorForm
     {
-        public static HtmlDocument doc;
-
+        private CreateStep createStepView;
         public NavWebResponsable()
         {
             InitializeComponent();
         }
 
-        public void InitializeStep()
+        private HtmlDocument initJsFile()
         {
-            HtmlElement head = doc.GetElementsByTagName("head")[0];
+            try
+            {
+                HtmlDocument doc = webBrowser.Document;
+                HtmlElement head = doc.GetElementsByTagName("head")[0];
+                HtmlElement script = doc.CreateElement("script");
 
-            HtmlElement script = doc.CreateElement("script");
-            var path = Path.Combine(System.Environment.CurrentDirectory, "script.js");
-            var js = File.ReadAllText(path);
-            script.SetAttribute("type", "text/javascript");
-            script.InnerText = js;
-            head.AppendChild(script);
+                var path = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "/Responsable/CreateCanvas.js";
+                var js = File.ReadAllText(path);
+                script.SetAttribute("type", "text/javascript");
+                script.InnerText = js;
+                head.AppendChild(script);
+                doc.InvokeScript("init");
 
-            doc.InvokeScript("init");
+                return doc;
+            }
+            catch
+            {
+                throw new Exception("No se pudo crear el documento.");
+            }
         }
 
-        public void InitializeRectangle()
+        private void addStep()
         {
-            doc.InvokeScript("initCanvas");
-            doc.InvokeScript("initCuadrado");
+            var doc = initJsFile();
+            createStepView = new CreateStep(doc, webBrowser);
+            addStepBntt.Visible = false;
+            endTutorialBtn.Visible = true;
+            addStepBtn.Visible = true;
+
+            createStepView.TopMost = true;
+            createStepView.Show();
         }
-
-        public void InitializeDialog()
-        {
-            doc.InvokeScript("initCanvas");
-            doc.InvokeScript("initEmoji");
-        }
-
-        public void InitializeText()
-        {
-            doc.InvokeScript("initCanvas");
-            doc.InvokeScript("initTexto");
-        }
-
-        public void InitializeCircle()
-        {
-            doc.InvokeScript("initCanvas");
-            doc.InvokeScript("initCirculo");
-        }
-
-        public void reduceLineShape()
-        {
-            doc.InvokeScript("achicarLine");
-        }
-
-        public void increaseLineShape()
-        {
-            doc.InvokeScript("agrandarLine");
-        }
-
-        public void reduceShape()
-        {
-            doc.InvokeScript("achicarCanvas");
-        }
-
-        public void increaseShape()
-        {
-            doc.InvokeScript("agrandarCanvas");
-        }
-
-        private void initStep()
-        {
-            HtmlElement head = doc.GetElementsByTagName("head")[0];
-
-            HtmlElement script = doc.CreateElement("script");
-            var path = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "/Responsable/CreateCanvas.js";
-            var js = File.ReadAllText(path);
-            script.SetAttribute("type", "text/javascript");
-            script.InnerText = js;
-            head.AppendChild(script);
-
-            doc.InvokeScript("init");
-        }
-
         private void addStepBntt_Click(object sender, EventArgs e)
         {
-            doc = webBrowser.Document;
-            initStep();
+            if (webBrowser.ReadyState == WebBrowserReadyState.Complete)
+            {
+                addStep();
+            }
+            else
+                MessageBox.Show("Cargando, espere.");
+        }
 
-            CreateStep model = new CreateStep(doc);
-            model.TopMost = true;
-            model.Show();
+        private void endTutorialBtn_Click(object sender, EventArgs e)
+        {
+            addStepBntt.Visible = true;
+            endTutorialBtn.Visible = false;
+            addStepBtn.Visible = false;
+            createStepView.Close();
+            webBrowser.Refresh();
+            MessageBox.Show("Tutorial Terminado!");
+        }
+
+        private void addStepBtn_Click(object sender, EventArgs e)
+        {
+            addStep();
         }
     }
 }

@@ -35,6 +35,10 @@ function init() {
   alert("Comenzo la creación de tutorial.");  
 }
 
+function finishStep() {
+    document.body.style["pointer-events"] = "auto";
+}
+
 function initCuadrado() { 
   var canvas=document.getElementById("canvas"+i);
   var context=canvas.getContext("2d");
