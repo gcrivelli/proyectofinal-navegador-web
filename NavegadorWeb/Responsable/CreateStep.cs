@@ -114,7 +114,7 @@ namespace NavegadorWeb.Responsable
         {
             SaveFileDialog DialogoGuardar = new SaveFileDialog();
             DialogoGuardar.AddExtension = true;
-            DialogoGuardar.FileName = "Audio.wav";
+            DialogoGuardar.FileName = "Audio"+ navWebResponsable.countStep + ".wav";
             DialogoGuardar.Filter = "Sonido (*.wav)|*.wav";
             DialogoGuardar.ShowDialog();
             if (!string.IsNullOrEmpty(DialogoGuardar.FileName))
