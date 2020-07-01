@@ -39,7 +39,6 @@ namespace NavegadorWeb.Responsable
         private void addStep()
         {
             var doc = initJsFile();
-            countStep++;
             createStepView = new CreateStep(doc, this);
             createStepView.TopMost = true;
             createStepView.Show();
@@ -52,8 +51,8 @@ namespace NavegadorWeb.Responsable
                 model.ShowDialog();
                 if(model.DialogResult == DialogResult.OK)
                 {
+                    countStep = 0;
                     addStep();
-                    countStep = 1;
                     addStepBntt.Visible = false;
                     endTutorialBtn.Visible = true;
                     addStepBtn.Visible = true;

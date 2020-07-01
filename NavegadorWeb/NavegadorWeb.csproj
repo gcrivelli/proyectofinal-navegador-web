@@ -94,6 +94,10 @@
     <Compile Include="GeneralDisplay\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Element.model.cs" />
+    <Compile Include="Models\Step.model.cs" />
+    <Compile Include="Models\Tour.model.cs" />
+    <Compile Include="Models\User.model.cs" />
     <Compile Include="NavigatorForm.cs">
       <SubType>Form</SubType>
     </Compile>

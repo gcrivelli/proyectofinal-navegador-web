@@ -85,6 +85,7 @@ namespace NavegadorWeb.Responsable
         private void saveBtn_Click(object sender, EventArgs e)
         {
             //Aca va el comportamiento para guardar el paso
+            navWebResponsable.countStep++;
             var count = navWebResponsable.countStep;
             navWebResponsable.countTxt.Text = count.ToString();
             navWebResponsable.webBrowser.Refresh();
