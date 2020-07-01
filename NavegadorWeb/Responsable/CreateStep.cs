@@ -20,8 +20,8 @@ namespace NavegadorWeb.Responsable
             doc = _doc;
             navWebResponsable = _navWebResponsable;
             ReproductorWav = new SoundPlayer();
-            btnStop.Enabled = true;
-            btnPlay.Enabled = true;
+            btnStop.Enabled = false;
+            btnPlay.Enabled = false;
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -125,6 +125,11 @@ namespace NavegadorWeb.Responsable
                 Grabar("close recsound", "", 0, 0);
                 MessageBox.Show("Archivo de audio guardado en: " + DialogoGuardar.FileName);
             }
+            else
+            {
+                MessageBox.Show("No se encontró ningún archivo de audio");
+            }
+            btnPlay.Enabled = true;
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
