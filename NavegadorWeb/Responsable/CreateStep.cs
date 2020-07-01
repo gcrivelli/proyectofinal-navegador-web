@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
+using System.Media;
 
 namespace NavegadorWeb.Responsable
 {
@@ -7,12 +9,19 @@ namespace NavegadorWeb.Responsable
     {
         public static HtmlDocument doc;
         public NavWebResponsable navWebResponsable;
+        String UrlReproductor = null;
+        SoundPlayer ReproductorWav;
+        [DllImport("winmm.dll", EntryPoint = "mciSendStringA", ExactSpelling = true, CharSet = CharSet.Ansi, SetLastError = true)]
+        private static extern int Grabar(string Comando, string StringRetorno, int Longitud, int hwndCallback);
 
         public CreateStep(HtmlDocument _doc, NavWebResponsable _navWebResponsable)
         {
             InitializeComponent();
             doc = _doc;
             navWebResponsable = _navWebResponsable;
+            ReproductorWav = new SoundPlayer();
+            btnStop.Enabled = true;
+            btnPlay.Enabled = true;
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -91,6 +100,37 @@ namespace NavegadorWeb.Responsable
             navWebResponsable.webBrowser.Refresh();
             doc.InvokeScript("finishStep");
             this.Close();
+        }
+
+        private void btnRecord_Click(object sender, EventArgs e)
+        {
+            Grabar("open new Type waveaudio Alias recsound", "", 0, 0);
+            Grabar("record recsound", "", 0, 0);
+            btnRecord.Enabled = false;
+            btnStop.Enabled = true;
+        }
+
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog DialogoGuardar = new SaveFileDialog();
+            DialogoGuardar.AddExtension = true;
+            DialogoGuardar.FileName = "Audio.wav";
+            DialogoGuardar.Filter = "Sonido (*.wav)|*.wav";
+            DialogoGuardar.ShowDialog();
+            if (!string.IsNullOrEmpty(DialogoGuardar.FileName))
+            {
+                UrlReproductor = DialogoGuardar.FileName;
+
+                Grabar("save recsound " + DialogoGuardar.FileName, "", 0, 0);
+                Grabar("close recsound", "", 0, 0);
+                MessageBox.Show("Archivo de audio guardado en: " + DialogoGuardar.FileName);
+            }
+        }
+
+        private void btnPlay_Click(object sender, EventArgs e)
+        {
+            ReproductorWav.SoundLocation = UrlReproductor;
+            ReproductorWav.Play();
         }
     }
 }
