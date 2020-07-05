@@ -17,7 +17,7 @@ namespace NavegadorWeb.Responsable
 
         private void createBtn_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text != string.Empty)
+            if (nameTxt.Text != string.Empty)
             {
                 DialogResult = DialogResult.OK;
                 Close();

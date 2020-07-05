@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NavegadorWeb.Models
+﻿namespace NavegadorWeb.Models
 {
     public class Element
     {
-        public int Id { get; set; }
-        public int X { get; set; }
-        public int Y { get; set; }
-        public string Color { get; set; }
-        public int Height { get; set; }
-        public int Width { get; set; }
-        public int StepId { get; set; }
+        public int id { get; set; }
+        public int x { get; set; }
+        public int y { get; set; }
+        public string color { get; set; }
+        public int height { get; set; }
+        public int width { get; set; }
+        public int step_id { get; set; }
     }
 }

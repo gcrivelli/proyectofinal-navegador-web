@@ -97,10 +97,9 @@ namespace NavegadorWeb.Responsable
         private void saveBtn_Click(object sender, EventArgs e)
         {
             //Aca va el comportamiento para guardar el paso
+            navWebResponsable.incrementStepCount();
+            navWebResponsable.addStepToTour();
 
-            navWebResponsable.countStep++;
-            var count = navWebResponsable.countStep;
-            navWebResponsable.countTxt.Text = count.ToString();
             navWebResponsable.webBrowser.Refresh();
             doc.InvokeScript("finishStep");
             this.Close();
@@ -144,13 +143,16 @@ namespace NavegadorWeb.Responsable
 
         private void addElementToStep(int x, int y, int height, int width, string color)
         {
+            if (navWebResponsable.tour.steps.Count == 0) //En el caso del primer paso
+                navWebResponsable.addStepToTour();
+
             var element = new Element()
             {
-                X = x,
-                Y = y,
-                Height = height,
-                Width = width,
-                Color = color
+                x = x,
+                y = y,
+                height = height,
+                width = width,
+                color = color
             };
 
             navWebResponsable.tour.steps.Find(

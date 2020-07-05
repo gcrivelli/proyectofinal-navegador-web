@@ -29,6 +29,8 @@ namespace NavegadorWeb.Controller
                 var response = await client.PostAsync(APIurl,
                      new StringContent(JSONresult, Encoding.UTF8, "application/json"));
 
+                response.EnsureSuccessStatusCode();
+                var a = await response.Content.ReadAsStringAsync();
                 return await response.Content.ReadAsStringAsync();
             }
         }

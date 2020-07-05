@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.IO;
 using NavegadorWeb.Models;
 using System.Collections.Generic;
+using NavegadorWeb.Controller;
 
 namespace NavegadorWeb.Responsable
 {
@@ -59,18 +60,22 @@ namespace NavegadorWeb.Responsable
                     //Init all the tour components
                     tour = new Tour()
                     {
-                        steps = new List<Step>()
+                        steps = new List<Step>(),
+                        name = model.nameTxt.Text,
+                        description = model.descTxt.Text,
+                        active = true
                     };
 
                     countStep = 0;
+                    countTxt.Text = countStep.ToString();
+
                     initStep();
+
                     addStepBntt.Visible = false;
                     endTutorialBtn.Visible = true;
                     addStepBtn.Visible = true;
                     countTxt.Visible = true;
-                    countTxt.Text = countStep.ToString();
 
-                    addStepToTour();
                     MessageBox.Show("Comenza la grabación del tutorial", "Comienza el Tutorial", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -80,7 +85,10 @@ namespace NavegadorWeb.Responsable
 
         private void endTutorialBtn_Click(object sender, EventArgs e)
         {
-            
+            // post del tour
+            var tourController = new TourController();
+            var response = tourController.PostAsync(tour);
+
             addStepBntt.Visible = true;
             endTutorialBtn.Visible = false;
             addStepBtn.Visible = false;
@@ -93,21 +101,29 @@ namespace NavegadorWeb.Responsable
 
         private void addStepBtn_Click(object sender, EventArgs e)
         {
-            addStepToTour();
             initStep();
         }
 
-        private void addStepToTour()
+        public void addStepToTour()
         {
+            //cargar audio --> URL 
+
             var step = new Step()
             {
                 order = countStep,
                 elements = new List<Element>(),
                 url = webBrowser.Url.ToString(),
+                audio_url = webBrowser.Url.ToString(),
                 tour_id = tour.id
             };
 
             tour.steps.Add(step);
+        }
+
+        public void incrementStepCount()
+        {
+            countStep++;
+            countTxt.Text = countStep.ToString();
         }
     }
 }
