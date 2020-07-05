@@ -21,8 +21,8 @@ namespace NavegadorWeb.Responsable
             doc = _doc;
             navWebResponsable = _navWebResponsable;
             ReproductorWav = new SoundPlayer();
-            btnStop.Enabled = true;
-            btnPlay.Enabled = true;
+            btnStop.Enabled = false;
+            btnPlay.Enabled = false;
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -118,7 +118,7 @@ namespace NavegadorWeb.Responsable
         {
             SaveFileDialog DialogoGuardar = new SaveFileDialog();
             DialogoGuardar.AddExtension = true;
-            DialogoGuardar.FileName = "Audio.wav";
+            DialogoGuardar.FileName = "Audio"+ navWebResponsable.countStep + ".wav";
             DialogoGuardar.Filter = "Sonido (*.wav)|*.wav";
             DialogoGuardar.ShowDialog();
             if (!string.IsNullOrEmpty(DialogoGuardar.FileName))
@@ -129,6 +129,11 @@ namespace NavegadorWeb.Responsable
                 Grabar("close recsound", "", 0, 0);
                 MessageBox.Show("Archivo de audio guardado en: " + DialogoGuardar.FileName);
             }
+            else
+            {
+                MessageBox.Show("No se encontró ningún archivo de audio");
+            }
+            btnPlay.Enabled = true;
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
