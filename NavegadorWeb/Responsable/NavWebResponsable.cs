@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.IO;
+using NavegadorWeb.Models;
+using System.Collections.Generic;
 
 namespace NavegadorWeb.Responsable
 {
@@ -8,6 +10,8 @@ namespace NavegadorWeb.Responsable
     {
         private CreateStep createStepView;
         public int countStep;
+        public Tour tour;
+
         public NavWebResponsable()
         {
             InitializeComponent();
@@ -36,13 +40,14 @@ namespace NavegadorWeb.Responsable
             }
         }
 
-        private void addStep()
+        private void initStep()
         {
             var doc = initJsFile();
             createStepView = new CreateStep(doc, this);
             createStepView.TopMost = true;
             createStepView.Show();
         }
+
         private void addStepBntt_Click(object sender, EventArgs e)
         {
             if (webBrowser.ReadyState == WebBrowserReadyState.Complete)
@@ -51,13 +56,21 @@ namespace NavegadorWeb.Responsable
                 model.ShowDialog();
                 if(model.DialogResult == DialogResult.OK)
                 {
+                    //Init all the tour components
+                    tour = new Tour()
+                    {
+                        steps = new List<Step>()
+                    };
+
                     countStep = 0;
-                    addStep();
+                    initStep();
                     addStepBntt.Visible = false;
                     endTutorialBtn.Visible = true;
                     addStepBtn.Visible = true;
                     countTxt.Visible = true;
                     countTxt.Text = countStep.ToString();
+
+                    addStepToTour();
                     MessageBox.Show("Comenza la grabación del tutorial", "Comienza el Tutorial", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -67,6 +80,7 @@ namespace NavegadorWeb.Responsable
 
         private void endTutorialBtn_Click(object sender, EventArgs e)
         {
+            
             addStepBntt.Visible = true;
             endTutorialBtn.Visible = false;
             addStepBtn.Visible = false;
@@ -79,7 +93,21 @@ namespace NavegadorWeb.Responsable
 
         private void addStepBtn_Click(object sender, EventArgs e)
         {
-            addStep();
+            addStepToTour();
+            initStep();
+        }
+
+        private void addStepToTour()
+        {
+            var step = new Step()
+            {
+                order = countStep,
+                elements = new List<Element>(),
+                url = webBrowser.Url.ToString(),
+                tour_id = tour.id
+            };
+
+            tour.steps.Add(step);
         }
     }
 }

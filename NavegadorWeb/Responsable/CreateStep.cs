@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Media;
+using NavegadorWeb.Models;
 
 namespace NavegadorWeb.Responsable
 {
@@ -35,19 +36,21 @@ namespace NavegadorWeb.Responsable
         {
             doc.InvokeScript("initCanvas");
             doc.InvokeScript("initCirculo");
+            addElementToStep(2, 3, 4, 5, "red");
         }
 
         private void rectangleBtn_Click(object sender, EventArgs e)
         {
             doc.InvokeScript("initCanvas");
             doc.InvokeScript("initCuadrado");
-
+            addElementToStep(2, 3, 4, 5, "red");
         }
 
         private void dialogBtn_Click(object sender, EventArgs e)
         {
             doc.InvokeScript("initCanvas");
             doc.InvokeScript("initEmoji");
+            addElementToStep(2, 3, 4, 5, "red");
         }
 
         private void textBtn_Click(object sender, EventArgs e)
@@ -94,6 +97,7 @@ namespace NavegadorWeb.Responsable
         private void saveBtn_Click(object sender, EventArgs e)
         {
             //Aca va el comportamiento para guardar el paso
+
             navWebResponsable.countStep++;
             var count = navWebResponsable.countStep;
             navWebResponsable.countTxt.Text = count.ToString();
@@ -131,6 +135,21 @@ namespace NavegadorWeb.Responsable
         {
             ReproductorWav.SoundLocation = UrlReproductor;
             ReproductorWav.Play();
+        }
+
+        private void addElementToStep(int x, int y, int height, int width, string color)
+        {
+            var element = new Element()
+            {
+                X = x,
+                Y = y,
+                Height = height,
+                Width = width,
+                Color = color
+            };
+
+            navWebResponsable.tour.steps.Find(
+                step => step.order == navWebResponsable.countStep).elements.Add(element);
         }
     }
 }

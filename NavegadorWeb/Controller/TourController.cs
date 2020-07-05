@@ -1,0 +1,37 @@
+﻿using NavegadorWeb.Models;
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NavegadorWeb.Controller
+{
+    public class TourController
+    {
+        private static string APIurl = "https://proyecto-final-navegador-web.herokuapp.com/api/tour";
+        public async Task<Tour> GetAsync(int id)
+        {
+            using (var client = new HttpClient())
+            {
+                var response = await client.GetAsync(APIurl + id.ToString());
+                response.EnsureSuccessStatusCode();
+                string responseBody = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<Tour>(responseBody);
+            }
+        }
+
+        public async Task<string> PostAsync(Tour tour)
+        {
+            string JSONresult = JsonConvert.SerializeObject(tour);
+
+            using (var client = new HttpClient())
+            {
+                var response = await client.PostAsync(APIurl,
+                     new StringContent(JSONresult, Encoding.UTF8, "application/json"));
+
+                return await response.Content.ReadAsStringAsync();
+            }
+        }
+    }
+}
+
