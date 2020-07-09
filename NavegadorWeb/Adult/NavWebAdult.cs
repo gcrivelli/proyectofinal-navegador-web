@@ -1,5 +1,7 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using NavegadorWeb.Controller;
+using NavegadorWeb.Models;
+using System;
+using System.Windows;
 
 namespace NavegadorWeb.Adult
 {
@@ -12,7 +14,9 @@ namespace NavegadorWeb.Adult
 
         private void viewTutorialBtn_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Not implemented view");
+            var tourController = new TourController();
+            var tour = tourController.GetAsync(textBox1.Text).Result;
+            MessageBox.Show(tour.name + ", " + tour.description);
         }
     }
 }

@@ -67,11 +67,15 @@
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bunifu_UI_v1.52">
+      <HintPath>..\Bunifu_UI_v1.52.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.Activities" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -89,6 +93,12 @@
     </Compile>
     <Compile Include="Adult\NavWebAdult.Designer.cs">
       <DependentUpon>NavWebAdult.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Adult\TestStyles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Adult\TestStyles.Designer.cs">
+      <DependentUpon>TestStyles.cs</DependentUpon>
     </Compile>
     <Compile Include="Controller\TourController.cs" />
     <Compile Include="GeneralDisplay\Login.cs">
@@ -130,6 +140,9 @@
     </Compile>
     <EmbeddedResource Include="Adult\NavWebAdult.resx">
       <DependentUpon>NavWebAdult.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Adult\TestStyles.resx">
+      <DependentUpon>TestStyles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GeneralDisplay\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

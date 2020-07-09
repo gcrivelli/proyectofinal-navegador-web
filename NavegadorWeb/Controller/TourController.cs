@@ -9,11 +9,12 @@ namespace NavegadorWeb.Controller
     public class TourController
     {
         private static string APIurl = "https://proyecto-final-navegador-web.herokuapp.com/api/tour";
-        public async Task<Tour> GetAsync(int id)
+        public async Task<Tour> GetAsync(string id)
         {
             using (var client = new HttpClient())
             {
-                var response = await client.GetAsync(APIurl + id.ToString());
+                //change url
+                var response = await client.GetAsync("https://proyecto-final-navegador-web.herokuapp.com/api/tour/1");
                 response.EnsureSuccessStatusCode();
                 string responseBody = await response.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<Tour>(responseBody);
