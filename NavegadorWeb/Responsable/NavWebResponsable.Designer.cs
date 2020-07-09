@@ -57,6 +57,7 @@
             // 
             // addStepBtn
             // 
+            this.addStepBtn.Enabled = false;
             this.addStepBtn.Location = new System.Drawing.Point(1084, 17);
             this.addStepBtn.Name = "addStepBtn";
             this.addStepBtn.Size = new System.Drawing.Size(83, 23);

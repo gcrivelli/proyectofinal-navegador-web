@@ -102,6 +102,7 @@ namespace NavegadorWeb.Responsable
         private void addStepBtn_Click(object sender, EventArgs e)
         {
             initStep();
+            addStepBtn.Enabled = false;
         }
 
         public void addStepToTour()

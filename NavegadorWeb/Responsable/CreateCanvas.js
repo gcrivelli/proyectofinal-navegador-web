@@ -94,9 +94,12 @@ function initCanvas() {
     i++;
     var canvas=document.createElement("canvas");
     canvas.id="canvas"+i;
+    canvas.className="canvas";
     canvas.style.cssText="position: absolute; z-index: 9999;";
     canvas.width=width;
-    canvas.height=width;
+    canvas.height=width;    
+    canvas.dataset.color=color;
+    canvas.dataset.weight=line;
     document.body.appendChild(canvas);    
     desplazarCanvas();
   }

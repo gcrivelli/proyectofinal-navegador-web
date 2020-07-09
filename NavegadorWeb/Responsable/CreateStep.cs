@@ -3,6 +3,9 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Media;
 using NavegadorWeb.Models;
+using System.Windows;
+using System.Text.RegularExpressions;
+using MessageBox = System.Windows.MessageBox;
 
 namespace NavegadorWeb.Responsable
 {
@@ -29,6 +32,7 @@ namespace NavegadorWeb.Responsable
         {
             doc.InvokeScript("finishStep");
             navWebResponsable.webBrowser.Refresh();
+            navWebResponsable.addStepBtn.Enabled = true;
             this.Close();
         }
 
@@ -36,21 +40,18 @@ namespace NavegadorWeb.Responsable
         {
             doc.InvokeScript("initCanvas");
             doc.InvokeScript("initCirculo");
-            addElementToStep(2, 3, 4, 5, "red");
         }
 
         private void rectangleBtn_Click(object sender, EventArgs e)
         {
             doc.InvokeScript("initCanvas");
             doc.InvokeScript("initCuadrado");
-            addElementToStep(2, 3, 4, 5, "red");
         }
 
         private void dialogBtn_Click(object sender, EventArgs e)
         {
             doc.InvokeScript("initCanvas");
             doc.InvokeScript("initEmoji");
-            addElementToStep(2, 3, 4, 5, "red");
         }
 
         private void textBtn_Click(object sender, EventArgs e)
@@ -95,12 +96,66 @@ namespace NavegadorWeb.Responsable
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
-        {
+        {           
+            for (int i = 1; i < 10; i++)
+            {
+                HtmlElement canvas = doc.GetElementById("canvas" + i);
+                if (canvas!=null)
+                {
+                    String style = canvas.Style;
+                    String[] styles = style.Split(";".ToCharArray());
+                    foreach (var item in styles)
+                    {
+                        Int16 x = 0;
+                        Int16 y = 0;
+                        Int16 width = 0;
+                        Int16 height = 0;
+
+                        String[] attr = item.Split(":".ToCharArray());
+
+                        if (attr[0]=="left")
+                        {
+                            Match m;
+                            m = Regex.Match(attr[1], " ?([0-9]+)px",RegexOptions.IgnoreCase);
+                            x = Int16.Parse(m.Groups[1].ToString());
+                        }
+                        if (attr[0] == "top")
+                        {
+                            Match m;
+                            m = Regex.Match(attr[1], " ?([0-9]+)px", RegexOptions.IgnoreCase);
+                            y = Int16.Parse(m.Groups[1].ToString());
+                        }
+                        if (attr[0] == "width")
+                        {
+                            Match m;
+                            m = Regex.Match(attr[1], " ?([0-9]+)px", RegexOptions.IgnoreCase);
+                            width = Int16.Parse(m.Groups[1].ToString());
+                        }
+                        if (attr[0] == "height")
+                        {
+                            Match m;
+                            m = Regex.Match(attr[1], " ?([0-9]+)px", RegexOptions.IgnoreCase);
+                            height = Int16.Parse(m.Groups[1].ToString());
+                        }
+                        String color = canvas.GetAttribute("data-color");
+                        if (color == null)
+                        {
+                            color = "000000";
+                        }
+                        // faltan enviar estos dos
+                        Int16 tipo = Int16.Parse(canvas.GetAttribute("data-tipo")); 
+                        Int16 weight = Int16.Parse(canvas.GetAttribute("data-weight"));
+                        addElementToStep(x, y, height, width, color);
+                    }
+                }
+            }            
+
             //Aca va el comportamiento para guardar el paso
             navWebResponsable.incrementStepCount();
             navWebResponsable.addStepToTour();
 
             navWebResponsable.webBrowser.Refresh();
+            navWebResponsable.addStepBtn.Enabled = true;
             doc.InvokeScript("finishStep");
             this.Close();
         }
