@@ -1,5 +1,6 @@
 ﻿using NavegadorWeb.Controller;
 using NavegadorWeb.Models;
+using NavegadorWeb.UI;
 using System;
 using System.Windows;
 
@@ -17,6 +18,12 @@ namespace NavegadorWeb.Adult
             var tourController = new TourController();
             var tour = tourController.GetAsync(textBox1.Text).Result;
             MessageBox.Show(tour.name + ", " + tour.description);
+        }
+
+        private void profile_Click(object sender, EventArgs e)
+        {
+            Controles2 mod = new Controles2();
+            mod.Show();
         }
     }
 }
