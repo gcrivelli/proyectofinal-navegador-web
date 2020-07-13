@@ -88,6 +88,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adult\DinamicCards.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Adult\DinamicCards.Designer.cs">
+      <DependentUpon>DinamicCards.cs</DependentUpon>
+    </Compile>
     <Compile Include="Adult\NavWebAdult.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,6 +144,9 @@
     <Compile Include="Responsable\NavWebResponsable.Designer.cs">
       <DependentUpon>NavWebResponsable.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Adult\DinamicCards.resx">
+      <DependentUpon>DinamicCards.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Adult\NavWebAdult.resx">
       <DependentUpon>NavWebAdult.cs</DependentUpon>
     </EmbeddedResource>
