@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Windows;
 using MessageBox = System.Windows.MessageBox;
+using NavegadorWeb.UI;
 
 namespace NavegadorWeb.Adult
 {
