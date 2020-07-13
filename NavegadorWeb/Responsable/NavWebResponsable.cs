@@ -87,6 +87,7 @@ namespace NavegadorWeb.Responsable
         {
             // post del tour
             var tourController = new TourController();
+            tour.user_id = "5f0907dd5d988f31d515dc72";
             var response = tourController.PostAsync(tour);
 
             addStepBntt.Visible = true;

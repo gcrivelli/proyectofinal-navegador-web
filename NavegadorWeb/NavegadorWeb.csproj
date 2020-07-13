@@ -144,6 +144,28 @@
     <Compile Include="Responsable\NavWebResponsable.Designer.cs">
       <DependentUpon>NavWebResponsable.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\AsistimeCardContainer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\AsistimeMenuButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\AsistimeMenuPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Constants.cs" />
+    <Compile Include="UI\Controles2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Controles2.Designer.cs">
+      <DependentUpon>Controles2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AsistimeMenuContentDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <EmbeddedResource Include="Adult\DinamicCards.resx">
       <DependentUpon>DinamicCards.cs</DependentUpon>
     </EmbeddedResource>
@@ -176,6 +198,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Responsable\NavWebResponsable.resx">
       <DependentUpon>NavWebResponsable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AsistimeMenuButton.resx">
+      <DependentUpon>AsistimeMenuButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controles2.resx">
+      <DependentUpon>Controles2.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="NavegadorWeb_TemporaryKey.pfx" />
