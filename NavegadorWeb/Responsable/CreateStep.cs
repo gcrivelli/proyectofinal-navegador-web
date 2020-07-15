@@ -143,9 +143,9 @@ namespace NavegadorWeb.Responsable
                             color = "000000";
                         }
                         // faltan enviar estos dos
-                        Int16 tipo = Int16.Parse(canvas.GetAttribute("data-tipo")); 
+                        Int16 type = Int16.Parse(canvas.GetAttribute("data-tipo")); 
                         Int16 weight = Int16.Parse(canvas.GetAttribute("data-weight"));
-                        addElementToStep(x, y, height, width, color);
+                        addElementToStep(x, y, height, width, color, type, weight);
                     }
                 }
             }            
@@ -196,7 +196,7 @@ namespace NavegadorWeb.Responsable
             ReproductorWav.Play();
         }
 
-        private void addElementToStep(int x, int y, int height, int width, string color)
+        private void addElementToStep(int x, int y, int height, int width, string color, int type, int weight)
         {
             if (navWebResponsable.tour.steps.Count == 0) //En el caso del primer paso
                 navWebResponsable.addStepToTour();
@@ -207,7 +207,9 @@ namespace NavegadorWeb.Responsable
                 y = y,
                 height = height,
                 width = width,
-                color = color
+                color = color,
+                weight = weight,
+                type = type
             };
 
             navWebResponsable.tour.steps.Find(

@@ -115,8 +115,7 @@ namespace NavegadorWeb.Responsable
                 order = countStep,
                 elements = new List<Element>(),
                 url = webBrowser.Url.ToString(),
-                audio_url = webBrowser.Url.ToString(),
-                tour_id = tour.id
+                audio_url = webBrowser.Url.ToString()
             };
 
             tour.steps.Add(step);

@@ -19,9 +19,10 @@ namespace NavegadorWeb.Adult
 
         private void viewTutorialBtn_Click(object sender, EventArgs e)
         {
-            /*var tourController = new TourController();
-            var tour = tourController.GetAsync(textBox1.Text).Result;
-            MessageBox.Show(tour.name + ", " + tour.description);*/
+            var tourController = new TourController();
+            var allTours = tourController.GetAllToursAsync("5f0907dd5d988f31d515dc72").Result;
+            var tour = tourController.GetTourAsync("5f0ce6e69f3acb754a1e5295").Result;
+            //MessageBox.Show(tour.name + ", " + tour.description);
             var doc = initStep();
             doc.InvokeScript("init");
         }
