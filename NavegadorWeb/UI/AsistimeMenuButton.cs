@@ -22,8 +22,10 @@ namespace NavegadorWeb.UI
             Width = Constants.MenuWidth;
             Height = Constants.MenuButtonHeight;
 
-            
+
             //Font = new Font(FontFamily.GenericSansSerif,12.0F, FontStyle.Bold);
+            //Font = new Font(FontFamily.SegoeUI, 12.0F, FontStyle.Bold);
+            //Font = new Font("Segoe UI", 14F);
             Parent = parent;
             Text = text;
             Click += new EventHandler(this.MenuButtonClick);

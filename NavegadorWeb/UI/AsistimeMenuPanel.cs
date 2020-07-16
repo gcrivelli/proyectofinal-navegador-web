@@ -39,6 +39,9 @@ namespace NavegadorWeb.UI
             this.Controls.Add(backMenuButton);
 
             this.profileMenuButton.Activate();
+
+            /*this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+            this.BackColor = Color.Transparent;*/
         }
         public void ReSize(int new_height)
         {
@@ -67,6 +70,12 @@ namespace NavegadorWeb.UI
                     this.newToursMenuButton.DeActivate();
                     this.myToursMenuButton.Activate();
                     break;
+                case Constants.backMenuButton:
+                    this.profileMenuButton.DeActivate();
+                    this.newToursMenuButton.DeActivate();
+                    this.myToursMenuButton.DeActivate();
+                    this.backMenuButton.Activate();
+                    break;
             }
 
             if(botonActivo.Active)
@@ -77,8 +86,6 @@ namespace NavegadorWeb.UI
             
         }
 
-
     }
 
-    
 }
