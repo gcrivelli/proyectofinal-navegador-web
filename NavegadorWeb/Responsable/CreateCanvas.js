@@ -1,32 +1,57 @@
 ﻿var desplazandoCanvas=false;
+var modificarTexto=false;
 var width=200;
 var line=1;
 var color=null;
 var x=null;
 var y=null;
 var i=0;
+var text="|";
 window.onclick=dibujar;
 
-setInterval("desplazarCanvas()",100);
+setInterval("desplazarCanvas()",300);
 
 document.addEventListener("mousemove",onMouseUpdate, false);
 document.addEventListener("mouseenter",onMouseUpdate, false);
+document.addEventListener("keypress",onKeyPress, false);
 
-function onMouseUpdate(e) {
+function onMouseUpdate(e) {                                 
   x=e.pageX;
   y=e.pageY;
 }
 
+function onKeyPress(e) {                          
+  if (modificarTexto) {
+    if (String.fromCharCode(e.keyCode).match(/(\w|\s)/g)) {
+      if (text=="|") {
+        text="";
+      }
+      text+=String.fromCharCode(e.keyCode).match(/(\w|\s)/g);
+    }
+    redibujarCanvas();
+  }
+}
 
 function dibujar() {
   desplazandoCanvas=false;
+  modificarTexto=false;
+  var canvas=document.getElementById("canvas"+i);
+  canvas.style.display="block";
+  text="|";
 }
 
 function desplazarCanvas() { 
   if (desplazandoCanvas) {
-    var canvas = document.getElementById("canvas"+i);
+    var canvas=document.getElementById("canvas"+i);
     canvas.style.left=(x-(width/2))+"px";
     canvas.style.top=(y-(width/2))+"px";    
+  }
+  if (modificarTexto) {
+    if (canvas.style.display==="none") {
+      canvas.style.display="block";
+    } else {
+      canvas.style.display="none";
+    }    
   }
 }
 
@@ -35,7 +60,7 @@ function init() {
 }
 
 function finishStep() {
-    document.body.style["pointer-events"] = "auto";
+    document.body.style["pointer-events"]="auto";
 }
 
 function initCuadrado() { 
@@ -43,8 +68,8 @@ function initCuadrado() {
   var context=canvas.getContext("2d");
   canvas.dataset.tipo=1;
   context.rect(0,0,width,width);
-  context.strokeStyle = "#"+color;
-  context.lineWidth = line;
+  context.strokeStyle="#"+color;
+  context.lineWidth=line;
   context.stroke();
   
 }
@@ -53,21 +78,24 @@ function initCirculo() {
   var canvas=document.getElementById("canvas"+i);
   var context=canvas.getContext("2d");
   canvas.dataset.tipo=2;
-  context.arc((width-2)/2, (width-2)/2, (width-2)/2, 0, 2 * Math.PI);
-  context.strokeStyle = "#"+color;
-  context.lineWidth = line;
+  context.arc((width-2)/2,(width-2)/2,(width-2)/2,0,2*Math.PI);
+  context.strokeStyle="#"+color;
+  context.lineWidth=line;
   context.stroke();
 }
 
 function initTexto() { 
+  modificarTexto=true;  
   var canvas=document.getElementById("canvas"+i);
   var context=canvas.getContext("2d");
+  width=500;
   canvas.dataset.tipo=3;
   context.font = "20px Arial";
-  context.fillText("Hello World", width/2, width/2);
+  context.fillText(text, width/2, width/2);
   context.strokeStyle = "#"+color;
   context.lineWidth = line;
   context.stroke();
+  document.body.focus();
 }
 
 function initEmoji() { 
