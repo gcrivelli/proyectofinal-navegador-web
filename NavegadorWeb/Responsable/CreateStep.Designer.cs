@@ -56,10 +56,10 @@
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.ForeColor = System.Drawing.Color.AliceBlue;
             this.textBox1.Location = new System.Drawing.Point(0, 0);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(217, 35);
+            this.textBox1.Size = new System.Drawing.Size(193, 30);
             this.textBox1.TabIndex = 11;
             this.textBox1.TabStop = false;
             this.textBox1.Text = "Forma";
@@ -67,10 +67,10 @@
             // 
             // circleBtn
             // 
-            this.circleBtn.Location = new System.Drawing.Point(18, 49);
-            this.circleBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.circleBtn.Location = new System.Drawing.Point(16, 39);
+            this.circleBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.circleBtn.Name = "circleBtn";
-            this.circleBtn.Size = new System.Drawing.Size(183, 35);
+            this.circleBtn.Size = new System.Drawing.Size(163, 28);
             this.circleBtn.TabIndex = 2;
             this.circleBtn.Text = "Circulo";
             this.circleBtn.UseVisualStyleBackColor = true;
@@ -78,10 +78,10 @@
             // 
             // rectangleBtn
             // 
-            this.rectangleBtn.Location = new System.Drawing.Point(18, 94);
-            this.rectangleBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.rectangleBtn.Location = new System.Drawing.Point(16, 75);
+            this.rectangleBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rectangleBtn.Name = "rectangleBtn";
-            this.rectangleBtn.Size = new System.Drawing.Size(183, 35);
+            this.rectangleBtn.Size = new System.Drawing.Size(163, 28);
             this.rectangleBtn.TabIndex = 3;
             this.rectangleBtn.Text = "Rectangulo";
             this.rectangleBtn.UseVisualStyleBackColor = true;
@@ -89,10 +89,10 @@
             // 
             // dialogBtn
             // 
-            this.dialogBtn.Location = new System.Drawing.Point(18, 138);
-            this.dialogBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dialogBtn.Location = new System.Drawing.Point(16, 110);
+            this.dialogBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dialogBtn.Name = "dialogBtn";
-            this.dialogBtn.Size = new System.Drawing.Size(183, 35);
+            this.dialogBtn.Size = new System.Drawing.Size(163, 28);
             this.dialogBtn.TabIndex = 4;
             this.dialogBtn.Text = "Cuadro de Dialogo";
             this.dialogBtn.UseVisualStyleBackColor = true;
@@ -100,10 +100,10 @@
             // 
             // textBtn
             // 
-            this.textBtn.Location = new System.Drawing.Point(18, 183);
-            this.textBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBtn.Location = new System.Drawing.Point(16, 146);
+            this.textBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBtn.Name = "textBtn";
-            this.textBtn.Size = new System.Drawing.Size(183, 35);
+            this.textBtn.Size = new System.Drawing.Size(163, 28);
             this.textBtn.TabIndex = 5;
             this.textBtn.Text = "Texto Libre";
             this.textBtn.UseVisualStyleBackColor = true;
@@ -111,23 +111,25 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(18, 228);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button5.Location = new System.Drawing.Point(16, 182);
+            this.button5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(183, 35);
+            this.button5.Size = new System.Drawing.Size(163, 28);
             this.button5.TabIndex = 6;
+            this.button5.Text = "Recuadrar";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // textBox2
             // 
             this.textBox2.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.ForeColor = System.Drawing.Color.AliceBlue;
-            this.textBox2.Location = new System.Drawing.Point(0, 289);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox2.Location = new System.Drawing.Point(0, 231);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(217, 35);
+            this.textBox2.Size = new System.Drawing.Size(193, 30);
             this.textBox2.TabIndex = 7;
             this.textBox2.TabStop = false;
             this.textBox2.Text = "Formato";
@@ -135,10 +137,10 @@
             // 
             // colorBtn
             // 
-            this.colorBtn.Location = new System.Drawing.Point(16, 429);
-            this.colorBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.colorBtn.Location = new System.Drawing.Point(14, 343);
+            this.colorBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.colorBtn.Name = "colorBtn";
-            this.colorBtn.Size = new System.Drawing.Size(183, 35);
+            this.colorBtn.Size = new System.Drawing.Size(163, 28);
             this.colorBtn.TabIndex = 9;
             this.colorBtn.UseVisualStyleBackColor = true;
             this.colorBtn.Click += new System.EventHandler(this.colorBtn_Click);
@@ -148,11 +150,11 @@
             this.textBox3.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox3.ForeColor = System.Drawing.Color.AliceBlue;
-            this.textBox3.Location = new System.Drawing.Point(0, 491);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox3.Location = new System.Drawing.Point(0, 393);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(217, 35);
+            this.textBox3.Size = new System.Drawing.Size(193, 30);
             this.textBox3.TabIndex = 11;
             this.textBox3.TabStop = false;
             this.textBox3.Text = "Audio";
@@ -160,10 +162,10 @@
             // 
             // btnRecord
             // 
-            this.btnRecord.Location = new System.Drawing.Point(16, 536);
-            this.btnRecord.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnRecord.Location = new System.Drawing.Point(14, 429);
+            this.btnRecord.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRecord.Name = "btnRecord";
-            this.btnRecord.Size = new System.Drawing.Size(183, 35);
+            this.btnRecord.Size = new System.Drawing.Size(163, 28);
             this.btnRecord.TabIndex = 12;
             this.btnRecord.Text = "Grabar";
             this.btnRecord.UseVisualStyleBackColor = true;
@@ -171,10 +173,10 @@
             // 
             // saveBtn
             // 
-            this.saveBtn.Location = new System.Drawing.Point(18, 733);
-            this.saveBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.saveBtn.Location = new System.Drawing.Point(16, 586);
+            this.saveBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.saveBtn.Name = "saveBtn";
-            this.saveBtn.Size = new System.Drawing.Size(183, 35);
+            this.saveBtn.Size = new System.Drawing.Size(163, 28);
             this.saveBtn.TabIndex = 13;
             this.saveBtn.Text = "Guardar Paso";
             this.saveBtn.UseVisualStyleBackColor = true;
@@ -185,11 +187,11 @@
             this.textBox4.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox4.ForeColor = System.Drawing.Color.AliceBlue;
-            this.textBox4.Location = new System.Drawing.Point(0, 684);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox4.Location = new System.Drawing.Point(0, 547);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(217, 35);
+            this.textBox4.Size = new System.Drawing.Size(193, 30);
             this.textBox4.TabIndex = 14;
             this.textBox4.TabStop = false;
             this.textBox4.Text = "Paso";
@@ -197,10 +199,10 @@
             // 
             // cancelBtn
             // 
-            this.cancelBtn.Location = new System.Drawing.Point(18, 778);
-            this.cancelBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cancelBtn.Location = new System.Drawing.Point(16, 622);
+            this.cancelBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(183, 35);
+            this.cancelBtn.Size = new System.Drawing.Size(163, 28);
             this.cancelBtn.TabIndex = 15;
             this.cancelBtn.Text = "Cancelar";
             this.cancelBtn.UseVisualStyleBackColor = true;
@@ -208,10 +210,10 @@
             // 
             // lessLineBtn
             // 
-            this.lessLineBtn.Location = new System.Drawing.Point(18, 338);
-            this.lessLineBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.lessLineBtn.Location = new System.Drawing.Point(16, 270);
+            this.lessLineBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lessLineBtn.Name = "lessLineBtn";
-            this.lessLineBtn.Size = new System.Drawing.Size(88, 35);
+            this.lessLineBtn.Size = new System.Drawing.Size(78, 28);
             this.lessLineBtn.TabIndex = 16;
             this.lessLineBtn.Text = "Linea -";
             this.lessLineBtn.UseVisualStyleBackColor = true;
@@ -219,10 +221,10 @@
             // 
             // moreLineBtn
             // 
-            this.moreLineBtn.Location = new System.Drawing.Point(111, 338);
-            this.moreLineBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.moreLineBtn.Location = new System.Drawing.Point(99, 270);
+            this.moreLineBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.moreLineBtn.Name = "moreLineBtn";
-            this.moreLineBtn.Size = new System.Drawing.Size(88, 35);
+            this.moreLineBtn.Size = new System.Drawing.Size(78, 28);
             this.moreLineBtn.TabIndex = 17;
             this.moreLineBtn.Text = "Linea +";
             this.moreLineBtn.UseVisualStyleBackColor = true;
@@ -230,10 +232,10 @@
             // 
             // moreCanvasBtn
             // 
-            this.moreCanvasBtn.Location = new System.Drawing.Point(111, 383);
-            this.moreCanvasBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.moreCanvasBtn.Location = new System.Drawing.Point(99, 306);
+            this.moreCanvasBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.moreCanvasBtn.Name = "moreCanvasBtn";
-            this.moreCanvasBtn.Size = new System.Drawing.Size(88, 35);
+            this.moreCanvasBtn.Size = new System.Drawing.Size(78, 28);
             this.moreCanvasBtn.TabIndex = 19;
             this.moreCanvasBtn.Text = "Forma +";
             this.moreCanvasBtn.UseVisualStyleBackColor = true;
@@ -241,10 +243,10 @@
             // 
             // lessCanvasBtn
             // 
-            this.lessCanvasBtn.Location = new System.Drawing.Point(18, 383);
-            this.lessCanvasBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.lessCanvasBtn.Location = new System.Drawing.Point(16, 306);
+            this.lessCanvasBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lessCanvasBtn.Name = "lessCanvasBtn";
-            this.lessCanvasBtn.Size = new System.Drawing.Size(88, 35);
+            this.lessCanvasBtn.Size = new System.Drawing.Size(78, 28);
             this.lessCanvasBtn.TabIndex = 18;
             this.lessCanvasBtn.Text = "Forma -";
             this.lessCanvasBtn.UseVisualStyleBackColor = true;
@@ -252,10 +254,10 @@
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(18, 581);
-            this.btnStop.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnStop.Location = new System.Drawing.Point(16, 465);
+            this.btnStop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(183, 35);
+            this.btnStop.Size = new System.Drawing.Size(163, 28);
             this.btnStop.TabIndex = 20;
             this.btnStop.Text = "Detener";
             this.btnStop.UseVisualStyleBackColor = true;
@@ -263,10 +265,10 @@
             // 
             // btnPlay
             // 
-            this.btnPlay.Location = new System.Drawing.Point(18, 626);
-            this.btnPlay.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnPlay.Location = new System.Drawing.Point(16, 501);
+            this.btnPlay.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPlay.Name = "btnPlay";
-            this.btnPlay.Size = new System.Drawing.Size(183, 35);
+            this.btnPlay.Size = new System.Drawing.Size(163, 28);
             this.btnPlay.TabIndex = 21;
             this.btnPlay.Text = "Reproducir";
             this.btnPlay.UseVisualStyleBackColor = true;
@@ -274,10 +276,10 @@
             // 
             // CreateStep
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(219, 828);
+            this.ClientSize = new System.Drawing.Size(195, 662);
             this.Controls.Add(this.btnPlay);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.moreCanvasBtn);
@@ -298,7 +300,7 @@
             this.Controls.Add(this.circleBtn);
             this.Controls.Add(this.textBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "CreateStep";
             this.Text = "Crear Paso";

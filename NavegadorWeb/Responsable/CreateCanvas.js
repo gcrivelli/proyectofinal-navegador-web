@@ -1,12 +1,20 @@
 ﻿var desplazandoCanvas=false;
 var modificarTexto=false;
+var dibujandoDiv=false;
+var dibujandoDiv2=false;
 var width=200;
 var line=1;
-var color=null;
+var color="000000";
 var x=null;
 var y=null;
+var divX1=null;
+var divY1=null;
+var divX2=null;
+var divY2=null;
+var opacity=0.5;
 var i=0;
 var text="|";
+
 window.onclick=dibujar;
 
 setInterval("desplazarCanvas()",300);
@@ -14,6 +22,7 @@ setInterval("desplazarCanvas()",300);
 document.addEventListener("mousemove",onMouseUpdate, false);
 document.addEventListener("mouseenter",onMouseUpdate, false);
 document.addEventListener("keypress",onKeyPress, false);
+document.addEventListener("click",onClick, false);
 
 function onMouseUpdate(e) {                                 
   x=e.pageX;
@@ -29,6 +38,43 @@ function onKeyPress(e) {
       text+=String.fromCharCode(e.keyCode).match(/(\w|\s)/g);
     }
     redibujarCanvas();
+  }
+}
+
+function onClick(e) {   
+  if (dibujandoDiv2) {
+    divX2=e.pageX;
+    divY2=e.pageY;
+    if (divX2<divX1) {
+      divX2=divX1;
+      divX1=e.pageX;
+    }
+    if (divY2<divY1) {
+      divY2=divY1;
+      divY1=e.pageY;
+    }
+    var div=document.createElement("div");
+    div.style.cssText="position:absolute;z-index:9999;background-color:#"+color+";width:100%;height:"+divY1+"px;top:0px;left:0px;opacity:"+opacity+";"; 
+    div.className="div";  
+    document.body.appendChild(div);
+    div=document.createElement("div");
+    div.style.cssText="position:absolute;z-index:9999;background-color:#"+color+";width:100%;height:100%;top:"+divY2+"px;left:0px;opacity:"+opacity+";";   
+    div.className="div";  
+    document.body.appendChild(div);
+    div=document.createElement("div");
+    div.style.cssText="position:absolute;z-index:9999;background-color:#"+color+";width:"+divX1+"px;height:"+(divY2-divY1)+"px;top:"+divY1+"px;left:0px;opacity:"+opacity+";";   
+    div.className="div";  
+    document.body.appendChild(div);
+    div=document.createElement("div");
+    div.style.cssText="position:absolute;z-index:9999;background-color:#"+color+";width:100%;height:"+(divY2-divY1)+"px;top:"+divY1+"px;left:"+divX2+"px;opacity:"+opacity+";";   
+    div.className="div";  
+    document.body.appendChild(div);
+    dibujandoDiv=false;
+    dibujandoDiv2=false;
+  } else if (dibujandoDiv) {
+    divX1=e.pageX;
+    divY1=e.pageY;
+    dibujandoDiv2=true;  
   }
 }
 
@@ -116,6 +162,16 @@ function initEmoji() {
   context.stroke();
 }
 
+function initDiv() {
+  if (dibujandoDiv==false) {    
+    var elements = document.getElementsByClassName("div");
+    while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+    }
+    dibujandoDiv=true;  
+  }
+}
+
 function initCanvas() {
   if (desplazandoCanvas==false) {
     desplazandoCanvas=true;
@@ -184,8 +240,6 @@ function redibujarCanvas() {
 }
 
 function setColor(code) {
-  if (desplazandoCanvas==true) {
-    color=code;
-    redibujarCanvas();
-  }  
+  color=code;
+  redibujarCanvas();
 }

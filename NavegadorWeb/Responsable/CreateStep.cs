@@ -215,5 +215,10 @@ namespace NavegadorWeb.Responsable
             navWebResponsable.tour.steps.Find(
                 step => step.order == navWebResponsable.countStep).elements.Add(element);
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            doc.InvokeScript("initDiv");
+        }
     }
 }
