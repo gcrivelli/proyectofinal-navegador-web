@@ -1,15 +1,20 @@
-﻿using System;
+﻿using NavegadorWeb.Adult;
+using System;
 using System.Drawing;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace NavegadorWeb.UI
 {
     public partial class Controles2 : Form
     {
+        public NavWebAdult Sarasa;
         private AsistimeMenuPanel asistimeMenuPanel;
         private AsistimeCardContainer asistimeCardContainer;
         public Controles2()
         {
+            this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
 
@@ -26,27 +31,9 @@ namespace NavegadorWeb.UI
 
         private void Controles2_Load(object sender, EventArgs e)
         {
-            //asistimeCardContainer1.ReSize(this.Width - asistimeMenuPanel1.Width - 16, this.Height);
-            //profileMenuButton.AsistimeMenuButton_load("Mi Perfil");
+            
         }
 
-        /*protected override void OnPaint(PaintEventArgs e)
-        {
-            base.OnPaint(e);
-            asistimeCardContainer1.ReSize(this.Width - asistimeMenuPanel1.Width - 16, this.Height);
-        }
-
-        private void profileMenuButton_Click(object sender, EventArgs e)
-        {
-            profileMenuButton.Activate();
-            asistimeCardContainer1.Show();
-        }
-
-        private void myToursMenuButton_Click(object sender, EventArgs e)
-        {
-            profileMenuButton.DeActivate();
-            asistimeCardContainer1.Hide();
-        }*/
 
         public void ActiveMenu(object sender)
         {
@@ -63,9 +50,17 @@ namespace NavegadorWeb.UI
                 case Constants.myToursMenuButton:
                     asistimeCardContainer.Show();
                     break;
+                case Constants.backMenuButton:
+                    this.Hide();
+                    Sarasa.Show();
+                    break;
             }
         }
 
+        private void Controles2_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+        }
 
     }
 }
