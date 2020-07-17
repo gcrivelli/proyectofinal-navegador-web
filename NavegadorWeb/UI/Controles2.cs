@@ -8,7 +8,7 @@ namespace NavegadorWeb.UI
 {
     public partial class Controles2 : Form
     {
-        public NavWebAdult Sarasa;
+        public Controles3 Sarasa;
         private AsistimeMenuPanel asistimeMenuPanel;
         private AsistimeCardContainer asistimeCardContainer;
         public Controles2()
@@ -59,7 +59,7 @@ namespace NavegadorWeb.UI
 
         private void Controles2_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            Application.Exit();
         }
 
     }

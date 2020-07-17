@@ -13,6 +13,7 @@ namespace NavegadorWeb.UI
     public partial class Controles3 : Form
     {
         private AsistimeAppBar asistimeAppBar;
+        private WebBrowser webBrowser;
         public Controles3()
         {
             this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
@@ -24,7 +25,7 @@ namespace NavegadorWeb.UI
             asistimeAppBar = new AsistimeAppBar() {Parent = this };
             this.Controls.Add(asistimeAppBar);
 
-            WebBrowser webBrowser = new WebBrowser()
+            webBrowser = new WebBrowser()
             {
                 Height = 1080 - Constants.AppBarHeight,
                 Width = Constants.AppBarWidth,
@@ -34,9 +35,38 @@ namespace NavegadorWeb.UI
             this.Controls.Add(webBrowser);
         }
 
-        private void Controles3_FormClosing(object sender, FormClosingEventArgs e)
-        {
+        private void Controles3_FormClosing(object sender, FormClosingEventArgs e) { }
 
+        public void NavigateBack() { webBrowser.GoBack(); }
+
+        public void NavigateUpdate() { webBrowser.Update(); }
+
+        public void NavigateForward() { webBrowser.GoForward(); }
+
+        public void Navigate(String address)
+        {
+            if (String.IsNullOrEmpty(address)) return;
+            if (address.Equals("about:blank")) return;
+            if (!address.StartsWith("http://") &&
+                !address.StartsWith("https://"))
+            {
+                address = "http://" + address;
+            }
+            try
+            {
+                webBrowser.Navigate(new Uri(address));
+            }
+            catch (System.UriFormatException)
+            {
+                return;
+            }
+        }
+
+        public void ShowMenu()
+        {
+            Controles2 mod = new Controles2() { Sarasa = this };
+            this.Hide();
+            mod.Show();
         }
     }
 }

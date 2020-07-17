@@ -76,9 +76,9 @@ namespace NavegadorWeb.Adult
 
         private void profile_Click(object sender, EventArgs e)
         {
-            Controles2 mod = new Controles2() {Sarasa = this };
+            /*Controles2 mod = new Controles2() {Sarasa = this };
             this.Hide();
-            mod.Show();
+            mod.Show();*/
         }
     }
 }

@@ -60,61 +60,6 @@ namespace NavegadorWeb.UI
             base.OnClick(e);
         }
 
-
     }
-
-
-    public sealed class NavButtons : Control
-    {
-        private static AsistimeRoundButton NavBackButton = null;
-        private static AsistimeRoundButton NavRefreshButton = null;
-        private static AsistimeRoundButton NavForwardButton = null;
-        private static AsistimeRoundButton NavProfileButton = null;
-        public Control GetNavBackButton(int x, int y)
-        {
-            if (NavBackButton == null)
-            {
-                NavBackButton = new AsistimeRoundButton(98, 98, Constants.NavBackImage, Constants.NavBackHoverImage, Constants.NavBackClickedImage) { Parent = this.Parent };
-                NavBackButton.Location = new Point(x, y);
-            }
-            return NavBackButton;
-        }
-
-        public Control GetNavRefreshButton(int x, int y)
-        {
-            if (NavRefreshButton == null)
-            {
-                NavRefreshButton = new AsistimeRoundButton(128, 128, Constants.NavRefreshImage, Constants.NavRefreshHoverImage, Constants.NavRefreshClickedImage) { Parent = this.Parent };
-                NavRefreshButton.Location = new Point(x, y);
-            }
-            return NavRefreshButton;
-        }
-
-        public Control GetNavForwardButton(int x, int y)
-        {
-            if (NavForwardButton == null)
-            {
-                NavForwardButton = new AsistimeRoundButton(98, 98, Constants.NavForwardImage, Constants.NavForwardHoverImage, Constants.NavForwardClickedImage) { Parent = this.Parent };
-                NavForwardButton.Location = new Point(x, y);
-            }
-            return NavForwardButton;
-        }
-
-        public Control GetNavProfileButton(int x, int y)
-        {
-            if (NavProfileButton == null)
-            {
-                NavProfileButton = new AsistimeRoundButton(128, 128, Constants.NavProfileImage, Constants.NavProfileHoverImage, Constants.NavProfileClickedImage) {Parent = this.Parent };
-                NavProfileButton.Location = new Point(x, y);
-            }
-            return NavProfileButton;
-        }
-
-        public void BringFrontRefreshButton()
-        {
-            NavRefreshButton.BringToFront();
-        }
-    }
-
 
 }
