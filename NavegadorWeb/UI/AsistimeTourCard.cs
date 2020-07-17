@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NavegadorWeb.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,8 @@ namespace NavegadorWeb.UI
     class AsistimeTourCard : GroupBox
     {
         int count = 1;
-        public AsistimeTourCard()
+        Tour tourAsociado;
+        public AsistimeTourCard(Tour tour, int x, int y)
         {
             //Título
             Label title = new Label();
@@ -41,6 +43,7 @@ namespace NavegadorWeb.UI
             button.TabIndex = 0;
             button.Text = "Ver";
             button.UseVisualStyleBackColor = false;
+            button.Click += new EventHandler(this.RealizarTour);
 
             //Formato de la tarjeta
             BackColor = System.Drawing.Color.SeaGreen;
@@ -54,6 +57,21 @@ namespace NavegadorWeb.UI
             Size = new System.Drawing.Size(194, 166);
             TabIndex = 0;
             TabStop = false;
+            Location = new System.Drawing.Point(x,y);
+            tourAsociado = tour;
+        }
+
+        private void RealizarTour(object sender, EventArgs e)
+        {
+            DialogResult result1 = MessageBox.Show("Tas seguro?",
+                                                    "Important Question",
+                                                    MessageBoxButtons.YesNo);
+            if(result1 == DialogResult.Yes)
+            {
+                //AsistimeCardContainer parent = this.Parent as AsistimeCardContainer;
+                Controles2 parent = this.Parent as Controles2;
+                parent.ReturnToNavigation();
+            }
         }
     }
 }

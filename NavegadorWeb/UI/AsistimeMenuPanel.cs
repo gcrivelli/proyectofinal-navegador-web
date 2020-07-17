@@ -27,6 +27,7 @@ namespace NavegadorWeb.UI
             newToursMenuButton = new AsistimeMenuButton(this, Constants.newToursMenuButton);
             myToursMenuButton = new AsistimeMenuButton(this, Constants.myToursMenuButton);
             backMenuButton = new AsistimeMenuButton(this, Constants.backMenuButton);
+            backMenuButton.Click += new EventHandler(this.ReturnToNavigation);
 
             profileMenuButton.Location = new System.Drawing.Point(0, 0);
             newToursMenuButton.Location = new System.Drawing.Point(0, Constants.MenuButtonHeight);
@@ -70,12 +71,12 @@ namespace NavegadorWeb.UI
                     this.newToursMenuButton.DeActivate();
                     this.myToursMenuButton.Activate();
                     break;
-                case Constants.backMenuButton:
+                /*case Constants.backMenuButton:
                     this.profileMenuButton.DeActivate();
                     this.newToursMenuButton.DeActivate();
                     this.myToursMenuButton.DeActivate();
                     this.backMenuButton.Activate();
-                    break;
+                    break;*/
             }
 
             if(botonActivo.Active)
@@ -84,6 +85,12 @@ namespace NavegadorWeb.UI
                 form.ActiveMenu(botonActivo);
             }
             
+        }
+
+        private void ReturnToNavigation(object sender, EventArgs e)
+        {
+            Controles2 parent = this.Parent as Controles2;
+            parent.ReturnToNavigation();
         }
 
     }

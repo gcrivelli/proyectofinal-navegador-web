@@ -10,7 +10,7 @@ using System.Threading;
 
 namespace NavegadorWeb.UI
 {
-    class AsistimeRoundButton : Button
+    public class AsistimeRoundButton : Button
     {
         private string normalImage;
         private string hoverImage;

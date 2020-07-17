@@ -8,7 +8,7 @@ namespace NavegadorWeb.UI
 {
     public partial class Controles2 : Form
     {
-        public Controles3 Sarasa;
+        public NavigatorForm PreviousForm;
         private AsistimeMenuPanel asistimeMenuPanel;
         private AsistimeCardContainer asistimeCardContainer;
         public Controles2()
@@ -18,9 +18,9 @@ namespace NavegadorWeb.UI
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
 
-            asistimeMenuPanel = new AsistimeMenuPanel(this);
+            asistimeMenuPanel = new AsistimeMenuPanel(this) { Parent = this };
             asistimeMenuPanel.Location = new System.Drawing.Point(0, 0);
-            asistimeCardContainer = new AsistimeCardContainer();
+            asistimeCardContainer = new AsistimeCardContainer() { Parent = this };
             asistimeCardContainer.Location = new System.Drawing.Point(Constants.MenuWidth, 0);
             this.Controls.Add(asistimeMenuPanel);
             this.Controls.Add(asistimeCardContainer);
@@ -52,7 +52,7 @@ namespace NavegadorWeb.UI
                     break;
                 case Constants.backMenuButton:
                     this.Hide();
-                    Sarasa.Show();
+                    PreviousForm.Show();
                     break;
             }
         }
@@ -60,6 +60,27 @@ namespace NavegadorWeb.UI
         private void Controles2_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        public void ShowProfile()
+        {
+
+        }
+
+        public void ShowNewTours()
+        {
+
+        }
+
+        public void ShowMyTours()
+        {
+
+        }
+
+        public void ReturnToNavigation()
+        {
+            this.Hide();
+            PreviousForm.Show();
         }
 
     }

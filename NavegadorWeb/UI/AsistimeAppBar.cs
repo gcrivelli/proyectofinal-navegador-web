@@ -1,4 +1,5 @@
 ﻿using Bunifu.Framework.UI;
+using NavegadorWeb.Adult;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -10,13 +11,13 @@ using System.Windows.Forms;
 
 namespace NavegadorWeb.UI
 {
-    class AsistimeAppBar : Panel
+    public class AsistimeAppBar : Panel
     {
 
-        private static AsistimeRoundButton NavBackButton = null;
-        private static AsistimeRoundButton NavRefreshButton = null;
-        private static AsistimeRoundButton NavForwardButton = null;
-        private static AsistimeRoundButton NavProfileButton = null;
+        public static AsistimeRoundButton NavBackButton = null;
+        public static AsistimeRoundButton NavRefreshButton = null;
+        public static AsistimeRoundButton NavForwardButton = null;
+        public static AsistimeRoundButton NavProfileButton = null;
         AsistimeSearchBox searchTextBox;
 
         public AsistimeAppBar()
@@ -39,6 +40,7 @@ namespace NavegadorWeb.UI
                 Parent = this
             };
             searchTextBox.Location = new System.Drawing.Point(330, 35);
+            searchTextBox.KeyDown += directionBox_KeyDown;
             this.Controls.Add(searchTextBox);
 
             AsistimeActionButton searchButton = new AsistimeActionButton()
@@ -58,16 +60,17 @@ namespace NavegadorWeb.UI
                 Parent = this
             };
             seeToursButton.Location = new System.Drawing.Point(searchTextBox.Location.X, searchTextBox.Location.Y + 50);
+            seeToursButton.Click += new EventHandler(ShowTour);
             this.Controls.Add(seeToursButton);
             
         }
 
-        private void BringFrontRefreshButton()
+        protected void BringFrontRefreshButton()
         {
             NavRefreshButton.BringToFront();
         }
 
-        private Control GetNavBackButton(int x, int y)
+        protected Control GetNavBackButton(int x, int y)
         {
             if (NavBackButton == null)
             {
@@ -78,13 +81,13 @@ namespace NavegadorWeb.UI
             return NavBackButton;
         }
 
-        private void NavigateBack(object sender, EventArgs e)
+        protected void NavigateBack(object sender, EventArgs e)
         {
-            Controles3 control = this.Parent as Controles3;
+            NavigatorForm control = this.Parent as NavigatorForm;
             control.NavigateBack();
         }
 
-        private Control GetNavRefreshButton(int x, int y)
+        protected Control GetNavRefreshButton(int x, int y)
         {
             if (NavRefreshButton == null)
             {
@@ -95,13 +98,13 @@ namespace NavegadorWeb.UI
             return NavRefreshButton;
         }
 
-        private void NavigateUpdate(object sender, EventArgs e)
+        protected void NavigateUpdate(object sender, EventArgs e)
         {
-            Controles3 control = this.Parent as Controles3;
+            NavigatorForm control = this.Parent as NavigatorForm;
             control.NavigateUpdate();
         }
 
-        private Control GetNavForwardButton(int x, int y)
+        protected Control GetNavForwardButton(int x, int y)
         {
             if (NavForwardButton == null)
             {
@@ -111,13 +114,13 @@ namespace NavegadorWeb.UI
             NavForwardButton.Click += new EventHandler(this.NavigateForward);
             return NavForwardButton;
         }
-        private void NavigateForward(object sender, EventArgs e)
+        protected void NavigateForward(object sender, EventArgs e)
         {
-            Controles3 control = this.Parent as Controles3;
+            NavigatorForm control = this.Parent as NavigatorForm;
             control.NavigateForward();
         }
 
-        private Control GetNavProfileButton(int x, int y)
+        protected Control GetNavProfileButton(int x, int y)
         {
             if (NavProfileButton == null)
             {
@@ -128,16 +131,36 @@ namespace NavegadorWeb.UI
             return NavProfileButton;
         }
 
-        private void ShowMenu(object sender, EventArgs e)
+        protected void ShowMenu(object sender, EventArgs e)
         {
-            Controles3 control = this.Parent as Controles3;
+            NavigatorForm control = this.Parent as NavigatorForm;
             control.ShowMenu();
         }
 
-        private void Navigate(object sender, EventArgs e)
+        public void Navigate(object sender, EventArgs e)
         {
-            Controles3 control = this.Parent as Controles3;
+            NavigatorForm control = this.Parent as NavigatorForm;
             control.Navigate(this.searchTextBox.TextName);
+        }
+
+        protected void ShowTour(Object sender, EventArgs e)
+        {
+            NavigationAdult control = this.Parent as NavigationAdult;
+            control.ShowTour();
+        }
+
+        public void Navigating(string url)
+        {
+            searchTextBox.TextName = url;
+        }
+
+        private void directionBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.Navigate(sender, e);
+                //Navigate(directionBox.Text);
+            }
         }
 
     }

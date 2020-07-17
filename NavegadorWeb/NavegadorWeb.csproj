@@ -121,6 +121,12 @@
     <Compile Include="Adult\DinamicCards.Designer.cs">
       <DependentUpon>DinamicCards.cs</DependentUpon>
     </Compile>
+    <Compile Include="Adult\NavigationAdult.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Adult\NavigationAdult.Designer.cs">
+      <DependentUpon>NavigationAdult.cs</DependentUpon>
+    </Compile>
     <Compile Include="Adult\NavWebAdult.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,11 +150,11 @@
     <Compile Include="Models\Step.model.cs" />
     <Compile Include="Models\Tour.model.cs" />
     <Compile Include="Models\User.model.cs" />
-    <Compile Include="NavigatorForm.cs">
+    <Compile Include="NavigatorForm2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NavigatorForm.Designer.cs">
-      <DependentUpon>NavigatorForm.cs</DependentUpon>
+    <Compile Include="NavigatorForm2.Designer.cs">
+      <DependentUpon>NavigatorForm2.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -202,11 +208,11 @@
     <Compile Include="UI\Controles2.Designer.cs">
       <DependentUpon>Controles2.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Controles3.cs">
+    <Compile Include="GeneralDisplay\NavigatorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Controles3.Designer.cs">
-      <DependentUpon>Controles3.cs</DependentUpon>
+    <Compile Include="GeneralDisplay\NavigatorForm.Designer.cs">
+      <DependentUpon>NavigatorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Form1.cs">
       <SubType>Form</SubType>
@@ -217,12 +223,6 @@
     <EmbeddedResource Include="Adult\DinamicCards.resx">
       <DependentUpon>DinamicCards.cs</DependentUpon>
     </EmbeddedResource>
-    <Compile Include="UI\JComponentes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\JComponentes.Designer.cs">
-      <DependentUpon>JComponentes.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Adult\NavWebAdult.resx">
       <DependentUpon>NavWebAdult.cs</DependentUpon>
     </EmbeddedResource>
@@ -232,8 +232,8 @@
     <EmbeddedResource Include="GeneralDisplay\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NavigatorForm.resx">
-      <DependentUpon>NavigatorForm.cs</DependentUpon>
+    <EmbeddedResource Include="NavigatorForm2.resx">
+      <DependentUpon>NavigatorForm2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -260,11 +260,8 @@
     <EmbeddedResource Include="UI\Controles2.resx">
       <DependentUpon>Controles2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Controles3.resx">
-      <DependentUpon>Controles3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\JComponentes.resx">
-      <DependentUpon>JComponentes.cs</DependentUpon>
+    <EmbeddedResource Include="GeneralDisplay\NavigatorForm.resx">
+      <DependentUpon>NavigatorForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="NavegadorWeb_TemporaryKey.pfx" />

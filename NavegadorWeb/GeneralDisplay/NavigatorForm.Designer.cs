@@ -1,6 +1,6 @@
 ﻿namespace NavegadorWeb.UI
 {
-    partial class Controles3
+    partial class NavigatorForm
     {
         /// <summary>
         /// Required designer variable.
@@ -40,6 +40,7 @@
             this.Name = "Controles3";
             this.Text = "Controles3";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Controles3_FormClosing);
+            this.Load += new System.EventHandler(this.Controles3_Load);
             this.ResumeLayout(false);
 
         }

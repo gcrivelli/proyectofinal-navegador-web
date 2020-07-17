@@ -7,9 +7,9 @@ using System.Text.RegularExpressions;
 
 namespace NavegadorWeb
 {
-    public partial class NavigatorForm : Form
+    public partial class NavigatorForm2 : Form
     {
-        public NavigatorForm()
+        public NavigatorForm2()
         {
             InitializeComponent();
         }

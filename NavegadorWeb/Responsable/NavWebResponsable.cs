@@ -7,7 +7,7 @@ using NavegadorWeb.Controller;
 
 namespace NavegadorWeb.Responsable
 {
-    public partial class NavWebResponsable : NavigatorForm
+    public partial class NavWebResponsable : NavigatorForm2
     {
         private CreateStep createStepView;
         public int countStep;

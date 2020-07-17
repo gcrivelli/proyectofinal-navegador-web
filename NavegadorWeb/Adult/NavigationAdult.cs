@@ -1,26 +1,28 @@
 ﻿using NavegadorWeb.Controller;
-using NavegadorWeb.Models;
-using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Windows;
-using MessageBox = System.Windows.MessageBox;
 using NavegadorWeb.UI;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace NavegadorWeb.Adult
 {
-    public partial class NavWebAdult : NavigatorForm2
+    public partial class NavigationAdult : NavigatorForm
     {
-        public NavWebAdult()
+        public NavigationAdult()
         {
             InitializeComponent();
         }
 
-        private void viewTutorialBtn_Click(object sender, EventArgs e)
+        public void ShowTour()
         {
             var tourController = new TourController();
-            var allTours = tourController.GetAllToursAsync("5f0907dd5d988f31d515dc72").Result;//en el menu para cargar las tarjetas
+            //var allTours = tourController.GetAllToursAsync("5f0907dd5d988f31d515dc72").Result; en el menu para cargar las tarjetas
             var tour = tourController.GetTourAsync("5f0ce6e69f3acb754a1e5295").Result;//cuando navego a un tour
             //MessageBox.Show(tour.name + ", " + tour.description);
             var doc = initStep();
@@ -72,13 +74,6 @@ namespace NavegadorWeb.Adult
             {
                 throw new Exception("No se pudo crear el documento.");
             }
-        }
-
-        private void profile_Click(object sender, EventArgs e)
-        {
-            /*Controles2 mod = new Controles2() {Sarasa = this };
-            this.Hide();
-            mod.Show();*/
         }
     }
 }
