@@ -12,7 +12,6 @@ namespace NavegadorWeb.UI
         public NavigatorForm()
         {
             this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
-            this.BackColor = Color.Blue;
 
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
