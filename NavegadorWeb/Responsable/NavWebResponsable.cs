@@ -88,7 +88,7 @@ namespace NavegadorWeb.Responsable
             // post del tour
             var tourController = new TourController();
             tour.user_id = "5f0907dd5d988f31d515dc72";
-            var response = tourController.PostAsync(tour);
+            var response = tourController.PostAsync(tour).Result;
 
             addStepBntt.Visible = true;
             endTutorialBtn.Visible = false;
@@ -96,8 +96,10 @@ namespace NavegadorWeb.Responsable
             countTxt.Visible = false;
             createStepView.Close();
             webBrowser.Refresh();
-
-            MessageBox.Show("Tutorial Terminado! Se guardaron "+ countStep.ToString() +" pasos", "Fin del Tutorial", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (response.Equals("Created"))
+                MessageBox.Show("Tutorial Terminado! Se guardaron " + countStep.ToString() + " pasos", "Fin del Tutorial", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show("Un error ha ocurrido tratando de conectar al servidor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void addStepBtn_Click(object sender, EventArgs e)
@@ -114,8 +116,7 @@ namespace NavegadorWeb.Responsable
             {
                 order = countStep,
                 elements = new List<Element>(),
-                url = webBrowser.Url.ToString(),
-                audio_url = webBrowser.Url.ToString()
+                url = webBrowser.Url.ToString()
             };
 
             tour.steps.Add(step);

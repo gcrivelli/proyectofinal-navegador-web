@@ -54,12 +54,12 @@ namespace NavegadorWeb.Controller
 
             using (var client = new HttpClient())
             {
-                var response = await client.PostAsync(APIurl,
-                     new StringContent(JSONresult, Encoding.UTF8, "application/json"));
+                var urlPost = APIurl + "tour";
+                var response = await client.PostAsync(urlPost,
+                     new StringContent(JSONresult, Encoding.UTF8, "application/json")).ConfigureAwait(false);
 
                 response.EnsureSuccessStatusCode();
-                var a = await response.Content.ReadAsStringAsync();
-                return await response.Content.ReadAsStringAsync();
+                return response.StatusCode.ToString();
             }
         }
     }

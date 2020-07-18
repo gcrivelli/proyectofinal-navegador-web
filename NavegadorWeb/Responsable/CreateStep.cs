@@ -3,7 +3,6 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Media;
 using NavegadorWeb.Models;
-using System.Windows;
 using System.Text.RegularExpressions;
 using MessageBox = System.Windows.MessageBox;
 
@@ -98,7 +97,12 @@ namespace NavegadorWeb.Responsable
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
-        {           
+        {
+
+            //Aca va el comportamiento para guardar el paso
+            navWebResponsable.incrementStepCount();
+            navWebResponsable.addStepToTour();
+
             for (int i = 1; i < 10; i++)
             {
                 HtmlElement canvas = doc.GetElementById("canvas" + i);
@@ -149,16 +153,12 @@ namespace NavegadorWeb.Responsable
                             color = "000000";
                         }
                     }
-                    // faltan enviar estos dos
                     type = Int16.Parse(canvas.GetAttribute("data-tipo"));
                     weight = Int16.Parse(canvas.GetAttribute("data-weight"));
+
                     addElementToStep(x, y, height, width, color, type, weight);
                 }
             }            
-
-            //Aca va el comportamiento para guardar el paso
-            navWebResponsable.incrementStepCount();
-            navWebResponsable.addStepToTour();
 
             navWebResponsable.webBrowser.Refresh();
             navWebResponsable.addStepBtn.Enabled = true;
@@ -204,9 +204,6 @@ namespace NavegadorWeb.Responsable
 
         private void addElementToStep(int x, int y, int height, int width, string color, int type, int weight)
         {
-            if (navWebResponsable.tour.steps.Count == 0) //En el caso del primer paso
-                navWebResponsable.addStepToTour();
-
             var element = new Element()
             {
                 x = x,
