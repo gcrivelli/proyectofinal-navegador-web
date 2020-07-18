@@ -4,6 +4,7 @@ var dibujandoDiv=false;
 var dibujandoDiv2=false;
 var width=200;
 var line=1;
+var inclinacion=0;
 var color="000000";
 var x=null;
 var y=null;
@@ -184,7 +185,8 @@ function initCanvas() {
   desplazandoCanvas=true;
   canvas.id="canvas"+i;
   canvas.className="canvas";
-  canvas.style.cssText="position: absolute; z-index: 9999;";
+  canvas.style.cssText="position: absolute; z-index: 9999;";  
+  canvas.style.transform="rotate("+inclinacion+"deg)";
   canvas.width=width;
   canvas.height=width;    
   canvas.dataset.color=color;
@@ -197,13 +199,29 @@ function initCanvas() {
 function achicarCanvas() {
   if (desplazandoCanvas==true && width>30) {
     width-=30;
+    inclinacion-=30;
+    redibujarCanvas();
+  }
+}
+
+function rotarCanvasDer() {
+  if (desplazandoCanvas==true) {
+    inclinacion+=30;
+    redibujarCanvas();
+  }
+}
+
+function rotarCanvasIzq() {
+  if (desplazandoCanvas==true) {
+    inclinacion-=30;
     redibujarCanvas();
   }
 }
 
 function agrandarCanvas() {
   if (desplazandoCanvas==true) {
-    width+=30;
+    width+=30;    
+    inclinacion+=30;
     redibujarCanvas();
   }
 }
