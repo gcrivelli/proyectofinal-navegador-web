@@ -1,5 +1,6 @@
 ﻿using NavegadorWeb.Adult;
 using NavegadorWeb.Responsable;
+using NavegadorWeb.UI;
 using System;
 using System.Windows.Forms;
 
@@ -20,7 +21,7 @@ namespace NavegadorWeb.GeneralDisplay
 
         private void adultBtn_Click(object sender, EventArgs e)
         {
-            NavWebAdult mod = new NavWebAdult();
+            NavigationAdult mod = new NavigationAdult();
             mod.Show();
         }
 
