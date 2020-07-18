@@ -56,7 +56,7 @@
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.ForeColor = System.Drawing.Color.AliceBlue;
             this.textBox1.Location = new System.Drawing.Point(0, 0);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(193, 30);
@@ -68,7 +68,7 @@
             // circleBtn
             // 
             this.circleBtn.Location = new System.Drawing.Point(16, 39);
-            this.circleBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.circleBtn.Margin = new System.Windows.Forms.Padding(4);
             this.circleBtn.Name = "circleBtn";
             this.circleBtn.Size = new System.Drawing.Size(163, 28);
             this.circleBtn.TabIndex = 2;
@@ -79,7 +79,7 @@
             // rectangleBtn
             // 
             this.rectangleBtn.Location = new System.Drawing.Point(16, 75);
-            this.rectangleBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rectangleBtn.Margin = new System.Windows.Forms.Padding(4);
             this.rectangleBtn.Name = "rectangleBtn";
             this.rectangleBtn.Size = new System.Drawing.Size(163, 28);
             this.rectangleBtn.TabIndex = 3;
@@ -90,7 +90,7 @@
             // dialogBtn
             // 
             this.dialogBtn.Location = new System.Drawing.Point(16, 110);
-            this.dialogBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dialogBtn.Margin = new System.Windows.Forms.Padding(4);
             this.dialogBtn.Name = "dialogBtn";
             this.dialogBtn.Size = new System.Drawing.Size(163, 28);
             this.dialogBtn.TabIndex = 4;
@@ -101,7 +101,7 @@
             // textBtn
             // 
             this.textBtn.Location = new System.Drawing.Point(16, 146);
-            this.textBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBtn.Margin = new System.Windows.Forms.Padding(4);
             this.textBtn.Name = "textBtn";
             this.textBtn.Size = new System.Drawing.Size(163, 28);
             this.textBtn.TabIndex = 5;
@@ -112,7 +112,7 @@
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(16, 182);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(163, 28);
             this.button5.TabIndex = 6;
@@ -126,7 +126,7 @@
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.ForeColor = System.Drawing.Color.AliceBlue;
             this.textBox2.Location = new System.Drawing.Point(0, 231);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(193, 30);
@@ -138,7 +138,7 @@
             // colorBtn
             // 
             this.colorBtn.Location = new System.Drawing.Point(14, 343);
-            this.colorBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.colorBtn.Margin = new System.Windows.Forms.Padding(4);
             this.colorBtn.Name = "colorBtn";
             this.colorBtn.Size = new System.Drawing.Size(163, 28);
             this.colorBtn.TabIndex = 9;
@@ -151,7 +151,7 @@
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox3.ForeColor = System.Drawing.Color.AliceBlue;
             this.textBox3.Location = new System.Drawing.Point(0, 393);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(4);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(193, 30);
@@ -163,7 +163,7 @@
             // btnRecord
             // 
             this.btnRecord.Location = new System.Drawing.Point(14, 429);
-            this.btnRecord.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRecord.Margin = new System.Windows.Forms.Padding(4);
             this.btnRecord.Name = "btnRecord";
             this.btnRecord.Size = new System.Drawing.Size(163, 28);
             this.btnRecord.TabIndex = 12;
@@ -174,7 +174,7 @@
             // saveBtn
             // 
             this.saveBtn.Location = new System.Drawing.Point(16, 586);
-            this.saveBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.saveBtn.Margin = new System.Windows.Forms.Padding(4);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(163, 28);
             this.saveBtn.TabIndex = 13;
@@ -188,7 +188,7 @@
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox4.ForeColor = System.Drawing.Color.AliceBlue;
             this.textBox4.Location = new System.Drawing.Point(0, 547);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(4);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(193, 30);
@@ -200,7 +200,7 @@
             // cancelBtn
             // 
             this.cancelBtn.Location = new System.Drawing.Point(16, 622);
-            this.cancelBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cancelBtn.Margin = new System.Windows.Forms.Padding(4);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(163, 28);
             this.cancelBtn.TabIndex = 15;
@@ -211,7 +211,7 @@
             // lessLineBtn
             // 
             this.lessLineBtn.Location = new System.Drawing.Point(16, 270);
-            this.lessLineBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lessLineBtn.Margin = new System.Windows.Forms.Padding(4);
             this.lessLineBtn.Name = "lessLineBtn";
             this.lessLineBtn.Size = new System.Drawing.Size(78, 28);
             this.lessLineBtn.TabIndex = 16;
@@ -222,7 +222,7 @@
             // moreLineBtn
             // 
             this.moreLineBtn.Location = new System.Drawing.Point(99, 270);
-            this.moreLineBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.moreLineBtn.Margin = new System.Windows.Forms.Padding(4);
             this.moreLineBtn.Name = "moreLineBtn";
             this.moreLineBtn.Size = new System.Drawing.Size(78, 28);
             this.moreLineBtn.TabIndex = 17;
@@ -233,7 +233,7 @@
             // moreCanvasBtn
             // 
             this.moreCanvasBtn.Location = new System.Drawing.Point(99, 306);
-            this.moreCanvasBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.moreCanvasBtn.Margin = new System.Windows.Forms.Padding(4);
             this.moreCanvasBtn.Name = "moreCanvasBtn";
             this.moreCanvasBtn.Size = new System.Drawing.Size(78, 28);
             this.moreCanvasBtn.TabIndex = 19;
@@ -244,7 +244,7 @@
             // lessCanvasBtn
             // 
             this.lessCanvasBtn.Location = new System.Drawing.Point(16, 306);
-            this.lessCanvasBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lessCanvasBtn.Margin = new System.Windows.Forms.Padding(4);
             this.lessCanvasBtn.Name = "lessCanvasBtn";
             this.lessCanvasBtn.Size = new System.Drawing.Size(78, 28);
             this.lessCanvasBtn.TabIndex = 18;
@@ -255,7 +255,7 @@
             // btnStop
             // 
             this.btnStop.Location = new System.Drawing.Point(16, 465);
-            this.btnStop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnStop.Margin = new System.Windows.Forms.Padding(4);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(163, 28);
             this.btnStop.TabIndex = 20;
@@ -266,7 +266,7 @@
             // btnPlay
             // 
             this.btnPlay.Location = new System.Drawing.Point(16, 501);
-            this.btnPlay.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPlay.Margin = new System.Windows.Forms.Padding(4);
             this.btnPlay.Name = "btnPlay";
             this.btnPlay.Size = new System.Drawing.Size(163, 28);
             this.btnPlay.TabIndex = 21;
@@ -300,7 +300,7 @@
             this.Controls.Add(this.circleBtn);
             this.Controls.Add(this.textBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "CreateStep";
             this.Text = "Crear Paso";

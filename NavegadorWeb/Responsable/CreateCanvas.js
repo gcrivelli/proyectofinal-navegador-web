@@ -17,7 +17,7 @@ var text="|";
 
 window.onclick=dibujar;
 
-setInterval("desplazarCanvas()",300);
+setInterval("desplazarCanvas()",50);
 
 document.addEventListener("mousemove",onMouseUpdate, false);
 document.addEventListener("mouseenter",onMouseUpdate, false);
@@ -173,20 +173,25 @@ function initDiv() {
 }
 
 function initCanvas() {
-  if (desplazandoCanvas==false) {
-    desplazandoCanvas=true;
-    i++;
-    var canvas=document.createElement("canvas");
-    canvas.id="canvas"+i;
-    canvas.className="canvas";
-    canvas.style.cssText="position: absolute; z-index: 9999;";
-    canvas.width=width;
-    canvas.height=width;    
-    canvas.dataset.color=color;
-    canvas.dataset.weight=line;
-    document.body.appendChild(canvas);    
-    desplazarCanvas();
+  if (desplazandoCanvas==true) { 
+    var canvas=document.getElementById("canvas"+i);
+    canvas.parentNode.removeChild(canvas);
+    canvas=document.createElement("canvas");  
+  } else {
+    var canvas=document.createElement("canvas");  
+    i++;  
   }
+  desplazandoCanvas=true;
+  canvas.id="canvas"+i;
+  canvas.className="canvas";
+  canvas.style.cssText="position: absolute; z-index: 9999;";
+  canvas.width=width;
+  canvas.height=width;    
+  canvas.dataset.color=color;
+  canvas.dataset.weight=line;
+  document.body.appendChild(canvas);    
+  desplazarCanvas();
+  
 }
 
 function achicarCanvas() {
@@ -214,6 +219,18 @@ function agrandarLine() {
   if (desplazandoCanvas==true) {
     line+=1;
     redibujarCanvas();
+  }
+}
+
+function achicarOpacity() {
+  if (dibujandoDiv==true && opacity>0.1) {
+    opacity-=0.1;
+  }
+}
+
+function agrandarOpacity() {
+  if (dibujandoDiv==true && opacity<1) {
+    opacity+=0.1;
   }
 }
 

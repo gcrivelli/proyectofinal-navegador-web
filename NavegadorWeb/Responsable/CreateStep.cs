@@ -78,11 +78,13 @@ namespace NavegadorWeb.Responsable
         private void moreLineBtn_Click(object sender, EventArgs e)
         {
             doc.InvokeScript("agrandarLine");
+            doc.InvokeScript("agrandarOpacity");
         }
 
         private void lessLineBtn_Click(object sender, EventArgs e)
         {
             doc.InvokeScript("achicarLine");
+            doc.InvokeScript("achicarOpacity");
         }
 
         private void lessCanvasBtn_Click(object sender, EventArgs e)
