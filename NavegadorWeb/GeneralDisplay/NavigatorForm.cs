@@ -1,4 +1,6 @@
-﻿using System;
+﻿using NavegadorWeb.Controller;
+using NavegadorWeb.Models;
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
@@ -9,6 +11,7 @@ namespace NavegadorWeb.UI
     {
         protected AsistimeAppBar asistimeAppBar;
         protected WebBrowser webBrowser;
+        protected User user;
         public NavigatorForm()
         {
             this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
@@ -33,7 +36,10 @@ namespace NavegadorWeb.UI
             //this.FormBorderStyle = FormBorderStyle.none;
         }
 
-        private void Controles3_FormClosing(object sender, FormClosingEventArgs e) { }
+        private void Controles3_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
 
         public void NavigateBack() { webBrowser.GoBack(); }
 
@@ -60,14 +66,9 @@ namespace NavegadorWeb.UI
             }
         }
 
-        public void ShowMenu()
-        {
-            Controles2 mod = new Controles2() { PreviousForm = this };
-            this.Hide();
-            mod.Show();
-        }
+        public virtual void ShowMenu() { }
 
-        private void Controles3_Load(object sender, EventArgs e)
+        private void NavigatorForm_Load(object sender, EventArgs e)
         {
             int[] browserEmulationVersion = { 0, 7000, 8000, 8888, 9000, 9999, 10000, 10001, 11000, 11001 };
             var appName = Process.GetCurrentProcess().ProcessName + ".exe";

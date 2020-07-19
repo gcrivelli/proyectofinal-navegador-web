@@ -1,12 +1,6 @@
-﻿using Bunifu.Framework.UI;
-using NavegadorWeb.Adult;
+﻿using NavegadorWeb.Adult;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Forms;
 
 namespace NavegadorWeb.UI
@@ -31,7 +25,7 @@ namespace NavegadorWeb.UI
             this.Controls.Add(this.GetNavRefreshButton(100, 20));
             this.Controls.Add(this.GetNavForwardButton(210, 35));
             this.Controls.Add(this.GetNavProfileButton(this.ClientSize.Width - 150, 20));
-            this.BringFrontRefreshButton();
+            NavRefreshButton.BringToFront();
 
             searchTextBox = new AsistimeSearchBox()
             {
@@ -63,11 +57,6 @@ namespace NavegadorWeb.UI
             seeToursButton.Click += new EventHandler(ShowTour);
             this.Controls.Add(seeToursButton);
             
-        }
-
-        protected void BringFrontRefreshButton()
-        {
-            NavRefreshButton.BringToFront();
         }
 
         protected Control GetNavBackButton(int x, int y)
@@ -145,7 +134,7 @@ namespace NavegadorWeb.UI
 
         protected void ShowTour(Object sender, EventArgs e)
         {
-            NavigationAdult control = this.Parent as NavigationAdult;
+            NavigatorAdult control = this.Parent as NavigatorAdult;
             control.ShowTour();
         }
 
@@ -159,9 +148,7 @@ namespace NavegadorWeb.UI
             if (e.KeyCode == Keys.Enter)
             {
                 this.Navigate(sender, e);
-                //Navigate(directionBox.Text);
             }
         }
-
     }
 }

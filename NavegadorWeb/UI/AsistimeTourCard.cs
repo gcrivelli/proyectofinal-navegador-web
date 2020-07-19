@@ -43,7 +43,7 @@ namespace NavegadorWeb.UI
             button.TabIndex = 0;
             button.Text = "Ver";
             button.UseVisualStyleBackColor = false;
-            button.Click += new EventHandler(this.RealizarTour);
+            button.Click += new EventHandler(this.PlayTour);
 
             //Formato de la tarjeta
             BackColor = System.Drawing.Color.SeaGreen;
@@ -61,16 +61,16 @@ namespace NavegadorWeb.UI
             tourAsociado = tour;
         }
 
-        private void RealizarTour(object sender, EventArgs e)
+        private void PlayTour(object sender, EventArgs e)
         {
             DialogResult result1 = MessageBox.Show("Tas seguro?",
                                                     "Important Question",
                                                     MessageBoxButtons.YesNo);
             if(result1 == DialogResult.Yes)
             {
-                //AsistimeCardContainer parent = this.Parent as AsistimeCardContainer;
-                Controles2 parent = this.Parent as Controles2;
-                parent.ReturnToNavigation();
+                AsistimeCardContainer parent = this.Parent as AsistimeCardContainer;
+                //Controles2 parent = this.Parent as Controles2;
+                parent.PlayTour(this.tourAsociado);
             }
         }
     }
