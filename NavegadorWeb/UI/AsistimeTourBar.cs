@@ -1,4 +1,5 @@
-﻿using NavegadorWeb.Adult;
+﻿using Bunifu.Framework.UI;
+using NavegadorWeb.Adult;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -11,6 +12,7 @@ namespace NavegadorWeb.UI
         public static AsistimeRoundButton PlayButton = null;
         public static AsistimeRoundButton StepForwardButton = null;
         public static AsistimeRoundButton CloseTourButton = null;
+        public static AsistimeTourProgressBar progressBar;
         public AsistimeTourBar()
         {
             BackColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour);
@@ -18,7 +20,10 @@ namespace NavegadorWeb.UI
             Height = Constants.AppBarHeight;
             Width = Constants.AppBarWidth;
 
-            
+            progressBar = new AsistimeTourProgressBar();
+            this.Controls.Add(progressBar);
+
+
             this.Controls.Add(this.GetStepBackButton((this.Width / 2) - 39 - 150, 35));
             this.Controls.Add(this.GetPlayButton((this.Width / 2) - 39, 35));
             this.Controls.Add(this.GetStepForwardButton((this.Width / 2) + 39 + 72, 35));
@@ -70,7 +75,7 @@ namespace NavegadorWeb.UI
 
         protected void GoOneStepForward(object sender, EventArgs e)
         {
-
+            progressBar.Value = progressBar.Value + 10;
         }
 
         protected Control GetCloseTourButton(int x, int y)

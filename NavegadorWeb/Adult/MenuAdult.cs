@@ -26,7 +26,7 @@ namespace NavegadorWeb.Adult
 
         public void ShowNewTours()
         {
-
+            asistimeCardContainer.Hide();
         }
 
         public void ShowMyTours()
