@@ -8,6 +8,7 @@ namespace NavegadorWeb.Adult
 {
     public partial class NavigatorAdult : NavigatorForm
     {
+        AsistimeTourBar tourBar;
         public NavigatorAdult()
         {
             InitializeComponent();
@@ -84,9 +85,20 @@ namespace NavegadorWeb.Adult
         public void PlayTour(Tour tour)
         {
             this.Show();
+            tourBar = new AsistimeTourBar() { Parent = this };
+            tourBar.Location = new System.Drawing.Point(0, 0);
+            this.Controls.Add(tourBar);
+            tourBar.Show();
+            this.asistimeAppBar.Hide();
             //ir a la url del tour
             //cambiar de appbar a tourbar
             //reproducir el primer paso
+        }
+
+        public void CloseTour()
+        {
+            tourBar.Hide();
+            asistimeAppBar.Show();
         }
     }
 }

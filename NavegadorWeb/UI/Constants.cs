@@ -50,6 +50,14 @@ namespace NavegadorWeb.UI
         public static string NavForwardClickedImage = path + "NavForwardClickedImage.jpg";
         public static string NavProfileClickedImage = path + "NavProfileClickedImage.jpg";
 
+        public static string StepBackImage = path + "StepBackImage.jpg";
+        public static string StepBackClickImage = path + "StepBackClickImage.jpg";
+        public static string StepPlayImage = path + "StepPlayImage.jpg";
+        public static string StepPlayClickImage = path + "StepPlayClickImage.jpg";
+        public static string StepForwardImage = path + "StepForwardImage.jpg";
+        public static string StepForwardClickImage = path + "StepForwardClickImage.jpg";
+        public static string CloseTourImage = path + "CloseTourImage.jpg";
+
         public static Font ActionbuttonFont = new Font("Segoe UI", 10, FontStyle.Bold);
         public static Font TextBoxFont = new Font("Segoe UI", 8, FontStyle.Regular);
         public const string SearchButtonText = "Ir";

@@ -215,6 +215,9 @@
     <Compile Include="UI\AsistimeActionButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="UI\AsistimeTourBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\AsistimeTourCard.cs">
       <SubType>Component</SubType>
     </Compile>
