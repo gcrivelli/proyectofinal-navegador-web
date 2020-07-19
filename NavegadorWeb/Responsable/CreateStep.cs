@@ -135,12 +135,6 @@ namespace NavegadorWeb.Responsable
                             m = Regex.Match(attr[1], " ?([0-9]+)px", RegexOptions.IgnoreCase);
                             y = Int16.Parse(m.Groups[1].ToString());
                         }
-                        if (attr[0].Trim(charsToTrim) == "width")
-                        {
-                            Match m;
-                            m = Regex.Match(attr[1], " ?([0-9]+)px", RegexOptions.IgnoreCase);
-                            width = Int16.Parse(m.Groups[1].ToString());
-                        }
                         if (attr[0].Trim(charsToTrim) == "height")
                         {
                             Match m;
@@ -155,6 +149,7 @@ namespace NavegadorWeb.Responsable
                     }
                     type = Int16.Parse(canvas.GetAttribute("data-tipo"));
                     weight = Int16.Parse(canvas.GetAttribute("data-weight"));
+                    width = Int16.Parse(canvas.GetAttribute("data-width"));
 
                     addElementToStep(x, y, height, width, color, type, weight);
                 }

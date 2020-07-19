@@ -191,6 +191,7 @@ function initCanvas() {
   canvas.height=width;    
   canvas.dataset.color=color;
   canvas.dataset.weight=line;
+  canvas.dataset.width=width;
   document.body.appendChild(canvas);    
   desplazarCanvas();
   
