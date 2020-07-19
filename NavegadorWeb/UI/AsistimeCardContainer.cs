@@ -1,27 +1,23 @@
-﻿using NavegadorWeb.Models;
-using System.Drawing;
+﻿using NavegadorWeb.Adult;
+using NavegadorWeb.Models;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace NavegadorWeb.UI
 {
-    class AsistimeCardContainer : Panel
+    class AsistimeCardContainer : AsistimeContentPanel
     {
-        public AsistimeCardContainer()
+        public AsistimeCardContainer(List<Tour> tourList)
         {
-            BackColor = ColorTranslator.FromHtml(Constants.CardContainerBackground);
-            //ForeColor = ColorTranslator.FromHtml(Constants.AppSecondaryColour);
-            Width = 1515;
-            Height = 1024;
+            int i = 1;
 
-            for (int i = 0; i < 10; i++)
+            //MessageBox.Show("La cantidad de tours es: " + tourList.Count);
+
+            foreach (Tour tour in tourList)
             {
-                /*Label label = new Label();
-                label.Text = "sarasa";
-                label.Location = new Point(20,50+(i-1)*50+30);
-                this.Controls.Add(label);*/
-
-                this.Controls.Add(new AsistimeTourCard(new Tour(), 20, 50 + (i - 1) * 50 + 30) { Parent = this });
-
+                //MessageBox.Show("Tour " + tour.name);
+                this.Controls.Add(new AsistimeTourCard(tour, 20, 50 + (i - 1) * 50 + 30) { Parent = this });
+                i++;
             }
         }
 
@@ -32,9 +28,11 @@ namespace NavegadorWeb.UI
             this.Dock = DockStyle.Right;
         }
 
-        public void RealizarTour(Tour tour)
+        public void PlayTour(Tour tour)
         {
-
+            //MessageBox.Show("pidieron un tour: " + tour.name);
+            MenuAdult parent = this.Parent as MenuAdult;
+            parent.PlayTour(tour);
         }
     }
 }

@@ -1,7 +1,7 @@
-﻿using NavegadorWeb.Adult;
+﻿using NavegadorWeb.Controller;
+using NavegadorWeb.Models;
 using System;
-using System.Drawing;
-using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NavegadorWeb.UI
@@ -11,31 +11,45 @@ namespace NavegadorWeb.UI
         public NavigatorForm PreviousForm;
         private AsistimeMenuPanel asistimeMenuPanel;
         private AsistimeCardContainer asistimeCardContainer;
-        public Controles2()
+
+        protected User user;
+        public Controles2(User user)
         {
             this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
 
-            InitializeComponent();
             WindowState = FormWindowState.Maximized;
 
             asistimeMenuPanel = new AsistimeMenuPanel(this) { Parent = this };
             asistimeMenuPanel.Location = new System.Drawing.Point(0, 0);
-            asistimeCardContainer = new AsistimeCardContainer() { Parent = this };
+            asistimeCardContainer = new AsistimeCardContainer(user.tours) { Parent = this };
             asistimeCardContainer.Location = new System.Drawing.Point(Constants.MenuWidth, 0);
             this.Controls.Add(asistimeMenuPanel);
             this.Controls.Add(asistimeCardContainer);
 
             asistimeCardContainer.Hide();
 
+            this.user = user;
+
+            InitializeComponent();
         }
 
         private void Controles2_Load(object sender, EventArgs e)
         {
-            
+            /*var tourController = new TourController();
+            user = await tourController.GetAllToursAsync("5f0907dd5d988f31d515dc72");
+            int count = user.tours.Count;
+            MessageBox.Show("cantidad de tours: " + count);
+            asistimeCardContainer.AddCards(user.tours);*/
         }
 
+        /*private async Task<User> GetUserInfo()
+        {
+            var tourController = new TourController();
+            user = await tourController.GetAllToursAsync("5f0907dd5d988f31d515dc72");
+            return user;
+        }*/
 
-        public void ActiveMenu(object sender)
+        /*public void ActiveMenu(object sender)
         {
             AsistimeMenuButton botonActivo = sender as AsistimeMenuButton;
 
@@ -55,7 +69,7 @@ namespace NavegadorWeb.UI
                     PreviousForm.Show();
                     break;
             }
-        }
+        }*/
 
         private void Controles2_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -74,13 +88,19 @@ namespace NavegadorWeb.UI
 
         public void ShowMyTours()
         {
-
+            asistimeCardContainer.Show();
         }
 
         public void ReturnToNavigation()
         {
             this.Hide();
             PreviousForm.Show();
+        }
+
+        public void PlayTour(Tour tour)
+        {
+            this.Hide();
+            //PreviousForm.PlayTour(tour);
         }
 
     }

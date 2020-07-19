@@ -1,6 +1,6 @@
-﻿namespace NavegadorWeb.UI
+﻿namespace NavegadorWeb.Adult
 {
-    partial class NavigatorForm
+    partial class NavigatorAdult
     {
         /// <summary>
         /// Required designer variable.
@@ -28,21 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // Controles3
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.components = new System.ComponentModel.Container();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "Controles3";
-            this.Text = "Controles3";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Controles3_FormClosing);
-            this.Load += new System.EventHandler(this.NavigatorForm_Load);
-            this.ResumeLayout(false);
-
+            this.Text = "NavigationAdult";
         }
 
         #endregion
