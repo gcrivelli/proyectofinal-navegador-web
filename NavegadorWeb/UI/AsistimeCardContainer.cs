@@ -16,7 +16,9 @@ namespace NavegadorWeb.UI
             foreach (Tour tour in tourList)
             {
                 //MessageBox.Show("Tour " + tour.name);
-                this.Controls.Add(new AsistimeTourCard(tour, 20, 50 + (i - 1) * 50 + 30) { Parent = this });
+                int x = 20 * (i + 1) + 400 * (i - 1);
+                int y = 20;
+                this.Controls.Add(new AsistimeTourCard(tour, x, y) { Parent = this, count = i });
                 i++;
             }
         }
