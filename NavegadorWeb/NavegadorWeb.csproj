@@ -100,6 +100,7 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Activities" />
@@ -113,6 +114,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adult\DinamicCards.cs">
@@ -121,11 +123,17 @@
     <Compile Include="Adult\DinamicCards.Designer.cs">
       <DependentUpon>DinamicCards.cs</DependentUpon>
     </Compile>
-    <Compile Include="Adult\NavigationAdult.cs">
+    <Compile Include="Adult\MenuAdult.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Adult\NavigationAdult.Designer.cs">
-      <DependentUpon>NavigationAdult.cs</DependentUpon>
+    <Compile Include="Adult\MenuAdult.Designer.cs">
+      <DependentUpon>MenuAdult.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Adult\NavigatorAdult.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Adult\NavigatorAdult.Designer.cs">
+      <DependentUpon>NavigatorAdult.cs</DependentUpon>
     </Compile>
     <Compile Include="Adult\NavWebAdult.cs">
       <SubType>Form</SubType>
@@ -145,6 +153,12 @@
     </Compile>
     <Compile Include="GeneralDisplay\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GeneralDisplay\MenuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GeneralDisplay\MenuForm.Designer.cs">
+      <DependentUpon>MenuForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Element.model.cs" />
     <Compile Include="Models\Step.model.cs" />
@@ -183,6 +197,9 @@
     <Compile Include="UI\AsistimeCardContainer.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UI\AsistimeContentPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\AsistimeMenuButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -198,8 +215,14 @@
     <Compile Include="UI\AsistimeActionButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="UI\AsistimeTourBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\AsistimeTourCard.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\AsistimeTourProgressBar.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UI\Constants.cs" />
     <Compile Include="UI\Controles2.cs">
@@ -213,9 +236,6 @@
     </Compile>
     <Compile Include="GeneralDisplay\NavigatorForm.Designer.cs">
       <DependentUpon>NavigatorForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Form1.cs">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\AsistimeMenuContentDisplay.cs">
       <SubType>Form</SubType>
@@ -231,6 +251,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GeneralDisplay\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GeneralDisplay\MenuForm.resx">
+      <DependentUpon>MenuForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NavigatorForm2.resx">
       <DependentUpon>NavigatorForm2.cs</DependentUpon>

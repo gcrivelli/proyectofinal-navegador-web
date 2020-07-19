@@ -28,7 +28,7 @@ namespace NavegadorWeb.UI
             //Font = new Font("Segoe UI", 14F);
             Parent = parent;
             Text = text;
-            Click += new EventHandler(this.MenuButtonClick);
+            //Click += new EventHandler(this.MenuButtonClick);
         }
 
         protected override void OnPaint(PaintEventArgs pevent)
@@ -98,14 +98,14 @@ namespace NavegadorWeb.UI
             Activecolor = ColorTranslator.FromHtml(Constants.MenuButtonHover);
         }
 
-        public void MenuButtonClick(object sender, EventArgs e)
+        /*public void MenuButtonClick(object sender, EventArgs e)
         {
             if (!Active)
             {
                 AsistimeMenuPanel menupanel = this.Parent as AsistimeMenuPanel;
                 menupanel.ActiveMenu(sender);
             }
-        }
+        }*/
 
     }
 }

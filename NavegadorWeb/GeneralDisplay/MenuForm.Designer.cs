@@ -1,6 +1,6 @@
-﻿namespace NavegadorWeb.UI
+﻿namespace NavegadorWeb.GeneralDisplay
 {
-    partial class NavigatorForm
+    partial class MenuForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,17 +30,15 @@
         {
             this.SuspendLayout();
             // 
-            // Controles3
+            // MenuForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "Controles3";
-            this.Text = "Controles3";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Controles3_FormClosing);
-            this.Load += new System.EventHandler(this.NavigatorForm_Load);
+            this.Name = "MenuForm";
+            this.Text = "MenuForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MenuForm_FormClosing);
+            this.Load += new System.EventHandler(this.MenuForm_Load);
             this.ResumeLayout(false);
 
         }

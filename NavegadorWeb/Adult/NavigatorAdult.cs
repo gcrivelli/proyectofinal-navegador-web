@@ -1,20 +1,15 @@
 ﻿using NavegadorWeb.Controller;
+using NavegadorWeb.Models;
 using NavegadorWeb.UI;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NavegadorWeb.Adult
 {
-    public partial class NavigationAdult : NavigatorForm
+    public partial class NavigatorAdult : NavigatorForm
     {
-        public NavigationAdult()
+        AsistimeTourBar tourBar;
+        public NavigatorAdult()
         {
             InitializeComponent();
         }
@@ -74,6 +69,36 @@ namespace NavegadorWeb.Adult
             {
                 throw new Exception("No se pudo crear el documento.");
             }
+        }
+
+        public override void ShowMenu()
+        {
+            //esta instanciacion deberia ir después del login
+            var userController = new TourController();
+            user = userController.GetAllToursAsync("5f0907dd5d988f31d515dc72").Result;
+            MenuAdult menu = new MenuAdult(user, this);
+
+            this.Hide();
+            menu.Show();
+        }
+
+        public void PlayTour(Tour tour)
+        {
+            this.Show();
+            tourBar = new AsistimeTourBar() { Parent = this };
+            tourBar.Location = new System.Drawing.Point(0, 0);
+            this.Controls.Add(tourBar);
+            tourBar.Show();
+            this.asistimeAppBar.Hide();
+            //ir a la url del tour
+            //cambiar de appbar a tourbar
+            //reproducir el primer paso
+        }
+
+        public void CloseTour()
+        {
+            tourBar.Hide();
+            asistimeAppBar.Show();
         }
     }
 }

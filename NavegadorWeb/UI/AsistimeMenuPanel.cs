@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using NavegadorWeb.Adult;
+using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NavegadorWeb.UI
 {
-    class AsistimeMenuPanel : Panel
+    public class AsistimeMenuPanel : Panel
     {
         AsistimeMenuButton profileMenuButton;
         AsistimeMenuButton myToursMenuButton;
@@ -24,8 +21,11 @@ namespace NavegadorWeb.UI
             Parent = parent;
 
             profileMenuButton = new AsistimeMenuButton(this, Constants.profileMenuButton);
+            profileMenuButton.Click += new EventHandler(this.ShowProfile);
             newToursMenuButton = new AsistimeMenuButton(this, Constants.newToursMenuButton);
+            newToursMenuButton.Click += new EventHandler(this.ShowNewTours);
             myToursMenuButton = new AsistimeMenuButton(this, Constants.myToursMenuButton);
+            myToursMenuButton.Click += new EventHandler(this.ShowMyTours);
             backMenuButton = new AsistimeMenuButton(this, Constants.backMenuButton);
             backMenuButton.Click += new EventHandler(this.ReturnToNavigation);
 
@@ -50,7 +50,7 @@ namespace NavegadorWeb.UI
             this.Dock = DockStyle.Left;
         }
 
-        public void ActiveMenu(object sender)
+        /*public void ActiveMenu(object sender)
         {
             AsistimeMenuButton botonActivo = sender as AsistimeMenuButton;
 
@@ -71,12 +71,12 @@ namespace NavegadorWeb.UI
                     this.newToursMenuButton.DeActivate();
                     this.myToursMenuButton.Activate();
                     break;
-                /*case Constants.backMenuButton:
+                case Constants.backMenuButton:
                     this.profileMenuButton.DeActivate();
                     this.newToursMenuButton.DeActivate();
                     this.myToursMenuButton.DeActivate();
                     this.backMenuButton.Activate();
-                    break;*/
+                    break;
             }
 
             if(botonActivo.Active)
@@ -85,12 +85,51 @@ namespace NavegadorWeb.UI
                 form.ActiveMenu(botonActivo);
             }
             
+        }*/
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        private void ShowProfile(object sender, EventArgs e)
+        {
+            this.profileMenuButton.Activate();
+            this.newToursMenuButton.DeActivate();
+            this.myToursMenuButton.DeActivate();
+        }
+
+        private void ShowNewTours(object sender, EventArgs e)
+        {
+            this.profileMenuButton.DeActivate();
+            this.newToursMenuButton.Activate();
+            this.myToursMenuButton.DeActivate();
         }
 
         private void ReturnToNavigation(object sender, EventArgs e)
         {
-            Controles2 parent = this.Parent as Controles2;
+            this.profileMenuButton.DeActivate();
+            this.newToursMenuButton.DeActivate();
+            this.myToursMenuButton.DeActivate();
+            this.backMenuButton.Activate();
+            MenuAdult parent = this.Parent as MenuAdult;
             parent.ReturnToNavigation();
+        }
+
+        private void ShowMyTours(object sender, EventArgs e)
+        {
+            this.profileMenuButton.DeActivate();
+            this.newToursMenuButton.DeActivate();
+            this.myToursMenuButton.Activate();
+            MenuAdult parent = this.Parent as MenuAdult;
+            parent.ShowMyTours();
         }
 
     }
