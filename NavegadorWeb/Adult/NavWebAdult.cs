@@ -19,7 +19,7 @@ namespace NavegadorWeb.Adult
         private void viewTutorialBtn_Click(object sender, EventArgs e)
         {
             var tourController = new TourController();
-            tour = tourController.GetTourAsync("5f136ace0464571900349ff4").Result;//cuando navego a un tour
+            tour = tourController.GetTourAsync("5f16226e8f3f333ee16eee64").Result;//cuando navego a un tour
             MessageBox.Show("Comienza la reproducción del Tutorial " + tour.name, "Inicio de Tour", MessageBoxButton.OK, MessageBoxImage.Information);
 
             stepCount = 0;

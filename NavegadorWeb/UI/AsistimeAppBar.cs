@@ -1,5 +1,4 @@
-﻿using NavegadorWeb.Adult;
-using System;
+﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -47,7 +46,7 @@ namespace NavegadorWeb.UI
             searchButton.Location = new System.Drawing.Point(searchTextBox.Location.X + searchTextBox.Width, searchTextBox.Location.Y);
             this.Controls.Add(searchButton);
 
-            AsistimeActionButton seeToursButton = new AsistimeActionButton()
+            /*AsistimeActionButton seeToursButton = new AsistimeActionButton()
             {
                 Font = Constants.ActionbuttonFont,
                 ButtonText = Constants.SeeToursButtonText,
@@ -55,7 +54,7 @@ namespace NavegadorWeb.UI
             };
             seeToursButton.Location = new System.Drawing.Point(searchTextBox.Location.X, searchTextBox.Location.Y + 50);
             seeToursButton.Click += new EventHandler(ShowTour);
-            this.Controls.Add(seeToursButton);
+            this.Controls.Add(seeToursButton);*/
             
         }
 
@@ -132,11 +131,11 @@ namespace NavegadorWeb.UI
             control.Navigate(this.searchTextBox.TextName);
         }
 
-        protected void ShowTour(Object sender, EventArgs e)
+        /*protected void ShowTour(Object sender, EventArgs e)
         {
             NavigatorAdult control = this.Parent as NavigatorAdult;
             control.ShowTour();
-        }
+        }*/
 
         public void Navigating(string url)
         {

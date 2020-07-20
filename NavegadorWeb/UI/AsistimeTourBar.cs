@@ -1,5 +1,6 @@
 ﻿using Bunifu.Framework.UI;
 using NavegadorWeb.Adult;
+using NavegadorWeb.Models;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -13,6 +14,9 @@ namespace NavegadorWeb.UI
         public static AsistimeRoundButton StepForwardButton = null;
         public static AsistimeRoundButton CloseTourButton = null;
         public static AsistimeTourProgressBar progressBar;
+        private Tour tour;
+        private int StepCount;
+
         public AsistimeTourBar()
         {
             BackColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour);
@@ -43,7 +47,12 @@ namespace NavegadorWeb.UI
 
         protected void GoOneStepBack(object sender, EventArgs e)
         {
-
+            StepCount--;
+            double progressDouble = StepCount / tour.steps.Count * 100;
+            int progress = (int)Math.Truncate(progressDouble);
+            progressBar.Value = progress;
+            NavigatorAdult form = this.Parent as NavigatorAdult;
+            form.playStep(tour, StepCount);
         }
 
         protected Control GetPlayButton(int x, int y)
@@ -59,7 +68,8 @@ namespace NavegadorWeb.UI
 
         protected void PlayStep(object sender, EventArgs e)
         {
-
+            NavigatorAdult form = this.Parent as NavigatorAdult;
+            form.playStep(tour, StepCount);
         }
 
         protected Control GetStepForwardButton(int x, int y)
@@ -75,7 +85,12 @@ namespace NavegadorWeb.UI
 
         protected void GoOneStepForward(object sender, EventArgs e)
         {
-            progressBar.Value = progressBar.Value + 10;
+            StepCount++;
+            double progressDouble = StepCount / tour.steps.Count * 100;
+            int progress = (int)Math.Truncate(progressDouble);
+            progressBar.Value = progress;
+            NavigatorAdult form = this.Parent as NavigatorAdult;
+            form.playStep(tour, StepCount);
         }
 
         protected Control GetCloseTourButton(int x, int y)
@@ -93,6 +108,12 @@ namespace NavegadorWeb.UI
         {
             NavigatorAdult form = this.Parent as NavigatorAdult;
             form.CloseTour();
+        }
+
+        public void TourInititated(Tour tour)
+        {
+            StepCount = 0;
+            this.tour = tour;
         }
     }
 }

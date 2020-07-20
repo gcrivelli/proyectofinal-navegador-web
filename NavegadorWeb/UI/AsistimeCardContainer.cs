@@ -12,12 +12,13 @@ namespace NavegadorWeb.UI
             int i = 1;
 
             //MessageBox.Show("La cantidad de tours es: " + tourList.Count);
+            AutoScroll = true;
 
             foreach (Tour tour in tourList)
             {
                 //MessageBox.Show("Tour " + tour.name);
-                int x = 20 * (i + 1) + 400 * (i - 1);
-                int y = 20;
+                int x = 20;
+                int y = 20 * (i + 1) + 400 * (i - 1);
                 this.Controls.Add(new AsistimeTourCard(tour, x, y) { Parent = this, count = i });
                 i++;
             }
