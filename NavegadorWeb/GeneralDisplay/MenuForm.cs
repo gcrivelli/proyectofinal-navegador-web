@@ -17,6 +17,8 @@ namespace NavegadorWeb.GeneralDisplay
             this.previousForm = form;
 
             WindowState = FormWindowState.Maximized;
+            this.Width = Screen.PrimaryScreen.WorkingArea.Size.Width;
+            this.Height = Screen.PrimaryScreen.WorkingArea.Size.Height;
             InitializeComponent();
         }
 

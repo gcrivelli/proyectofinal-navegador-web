@@ -3,6 +3,8 @@ using NavegadorWeb.Models;
 using NavegadorWeb.UI;
 using System;
 using System.Windows.Forms;
+using MessageBox = System.Windows.MessageBox;
+using System.Windows;
 
 namespace NavegadorWeb.Adult
 {
@@ -14,52 +16,74 @@ namespace NavegadorWeb.Adult
             InitializeComponent();
         }
 
-        public void ShowTour()
+        public void PlayTour(Tour tour)
         {
+            this.Show();
+            tourBar = new AsistimeTourBar() { Parent = this };
+            tourBar.Location = new System.Drawing.Point(0, 0);
+            this.Controls.Add(tourBar);
+            tourBar.Show();
+            this.asistimeAppBar.Hide();
+            //ir a la url del tour
+            //cambiar de appbar a tourbar
+            //reproducir el primer paso
+
             var tourController = new TourController();
-            //var allTours = tourController.GetAllToursAsync("5f0907dd5d988f31d515dc72").Result; en el menu para cargar las tarjetas
-            var tour = tourController.GetTourAsync("5f0ce6e69f3acb754a1e5295").Result;//cuando navego a un tour
-            //MessageBox.Show(tour.name + ", " + tour.description);
-            var doc = initStep();
-            doc.InvokeScript("init");
+            tour = tourController.GetTourAsync(tour._id).Result;//cuando navego a un tour
+            MessageBox.Show("Comienza la reproducción del Tutorial " + tour.name, "Inicio de Tour", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            tourBar.TourInititated(tour);
+            playStep(tour, 0);
         }
 
-        private HtmlDocument initStep()
+        public void playStep(Tour tour, int positionStep)
+        {
+            //var step = tour.steps.Find(s => s.order == StepCount);
+            var step = tour.steps.Find(s => s.order == positionStep);
+            if (step != null)
+            {
+                //webBrowser.Navigate(step.url);
+
+                foreach (Element e in step.elements)
+                {
+                    var doc = initStep(step.order, e.x, e.y, e.width, e.weight, e.type, e.color);
+                    doc.InvokeScript("init");
+                }
+            }
+            else
+            {
+                MessageBox.Show("No hay mas pasos, vuelve a comenzar", "Fin del tutorial", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        private HtmlDocument initStep(int positionStep, int x, int y, int width, int weight, int type, string color)
         {
             try
             {
+                positionStep = 1;
                 HtmlDocument doc = webBrowser.Document;
                 HtmlElement head = doc.GetElementsByTagName("head")[0];
                 HtmlElement script = doc.CreateElement("script");
 
-                string[] colors = { "FF0000", "008000", "FF0000", "0000FF" };
-                int[] withs = { 200, 100, 500, 300 };
-                int[] weights = { 5, 2, 4, 5 };
-                int[] tipos = { 1, 1, 1, 1 };
-                int[] lefts = { 500, 600, 900, 20 };
-                int[] tops = { 10, 600, 20, 400 };
-
                 script.SetAttribute("type", "text/javascript");
                 script.InnerText = "function init() {";
 
-                for (int i = 0; i < 4; i++)
+                script.InnerText += "var canvas" + positionStep + " = document.createElement('canvas');";
+                script.InnerText += "canvas" + positionStep + ".id='canvas" + positionStep + "';";
+                script.InnerText += "canvas" + positionStep + ".style.cssText = 'position: absolute; z-index: 9999; left: " + x + "px; top: " + y + "px;';";
+                script.InnerText += "canvas" + positionStep + ".width=" + width + ";";
+                script.InnerText += "canvas" + positionStep + ".height=" + width + ";";
+                script.InnerText += "document.body.appendChild(canvas" + positionStep + ");";
+                if (type == 1) // cuadrado
                 {
-                    script.InnerText += "var canvas" + i + " = document.createElement('canvas');";
-                    script.InnerText += "canvas" + i + ".id='canvas" + i + "';";
-                    script.InnerText += "canvas" + i + ".style.cssText = 'position: absolute; z-index: 9999; left: " + lefts[i] + "px; top: " + tops[i] + "px;';";
-                    script.InnerText += "canvas" + i + ".width=" + withs[i] + ";";
-                    script.InnerText += "canvas" + i + ".height=" + withs[i] + ";";
-                    script.InnerText += "document.body.appendChild(canvas" + i + ");";
-                    if (tipos[i] == 1) // cuadrado
-                    {
-                        script.InnerText += "var cuadrado=document.getElementById('canvas" + i + "');";
-                        script.InnerText += "var context = cuadrado.getContext('2d');";
-                        script.InnerText += "context.rect(0,0," + withs[i] + "," + withs[i] + ");";
-                        script.InnerText += "context.strokeStyle = '#" + colors[i] + "'" + ";";
-                        script.InnerText += "context.lineWidth =" + weights[i] + ";";
-                        script.InnerText += "context.stroke();";
-                    }
+                    script.InnerText += "var cuadrado=document.getElementById('canvas" + positionStep + "');";
+                    script.InnerText += "var context = cuadrado.getContext('2d');";
+                    script.InnerText += "context.rect(0,0," + width + "," + width + ");";
+                    script.InnerText += "context.strokeStyle = '#" + color + "'" + ";";
+                    script.InnerText += "context.lineWidth =" + weight + ";";
+                    script.InnerText += "context.stroke();";
                 }
+
                 script.InnerText += "}";
                 head.AppendChild(script);
 
@@ -80,19 +104,6 @@ namespace NavegadorWeb.Adult
 
             this.Hide();
             menu.Show();
-        }
-
-        public void PlayTour(Tour tour)
-        {
-            this.Show();
-            tourBar = new AsistimeTourBar() { Parent = this };
-            tourBar.Location = new System.Drawing.Point(0, 0);
-            this.Controls.Add(tourBar);
-            tourBar.Show();
-            this.asistimeAppBar.Hide();
-            //ir a la url del tour
-            //cambiar de appbar a tourbar
-            //reproducir el primer paso
         }
 
         public void CloseTour()

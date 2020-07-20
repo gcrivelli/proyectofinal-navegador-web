@@ -18,18 +18,22 @@ namespace NavegadorWeb.UI
 
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
+            this.Width = Screen.PrimaryScreen.WorkingArea.Size.Width;
+            this.Height = Screen.PrimaryScreen.WorkingArea.Size.Height;
+
 
             asistimeAppBar = new AsistimeAppBar() {Parent = this };
+            asistimeAppBar.Width = this.Width;
             this.Controls.Add(asistimeAppBar);
 
             webBrowser = new WebBrowser()
             {
-                Height = 1080 - Constants.AppBarHeight,
-                Width = Constants.AppBarWidth,
                 Parent = this,
                 Url = new Uri("http://www.google.com.ar"),
                 ScriptErrorsSuppressed = true
             };
+            webBrowser.Width = this.Width;
+            webBrowser.Height = this.Height - Constants.AppBarHeight;
             webBrowser.Location = new Point(0, Constants.AppBarHeight);
             webBrowser.Navigating += webBrowser_Navigating;
             this.Controls.Add(webBrowser);
