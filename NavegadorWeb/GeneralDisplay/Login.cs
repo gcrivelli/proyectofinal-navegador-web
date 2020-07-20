@@ -21,7 +21,7 @@ namespace NavegadorWeb.GeneralDisplay
 
         private void adultBtn_Click(object sender, EventArgs e)
         {
-            NavWebAdult mod = new NavWebAdult();
+            NavigatorAdult mod = new NavigatorAdult();
             mod.Show();
         }
 

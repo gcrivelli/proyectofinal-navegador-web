@@ -24,12 +24,9 @@ namespace NavegadorWeb.Adult
             this.Controls.Add(tourBar);
             tourBar.Show();
             this.asistimeAppBar.Hide();
-            //ir a la url del tour
-            //cambiar de appbar a tourbar
-            //reproducir el primer paso
 
             var tourController = new TourController();
-            tour = tourController.GetTourAsync(tour._id).Result;//cuando navego a un tour
+            tour = tourController.GetTourAsync(tour._id).Result;
             MessageBox.Show("Comienza la reproducción del Tutorial " + tour.name, "Inicio de Tour", MessageBoxButton.OK, MessageBoxImage.Information);
 
             tourBar.TourInititated(tour);
