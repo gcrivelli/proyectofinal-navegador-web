@@ -108,8 +108,6 @@ namespace NavegadorWeb.Responsable
                 HtmlElement canvas = doc.GetElementById("canvas" + i);
                 if (canvas!=null)
                 {
-                    String style = canvas.Style;
-                    String[] styles = style.Split(";".ToCharArray());
                     Int16 x = 0;
                     Int16 y = 0;
                     Int16 width = 0;
@@ -117,39 +115,22 @@ namespace NavegadorWeb.Responsable
                     String color = "";
                     Int16 type = 0;
                     Int16 weight = 1;
-                    char[] charsToTrim = {' '};
-                    foreach (var item in styles)
+                    String inclinacion;
+                    String text;
+
+                    color = canvas.GetAttribute("data-color");
+                    if (color == null)
                     {
-
-                        String[] attr = item.Split(":".ToCharArray());
-
-                        if (attr[0].Trim(charsToTrim) == "left")
-                        {
-                            Match m;
-                            m = Regex.Match(attr[1], " ?([0-9]+)px",RegexOptions.IgnoreCase);
-                            x = Int16.Parse(m.Groups[1].ToString());
-                        }
-                        if (attr[0].Trim(charsToTrim) =="top")
-                        {
-                            Match m;
-                            m = Regex.Match(attr[1], " ?([0-9]+)px", RegexOptions.IgnoreCase);
-                            y = Int16.Parse(m.Groups[1].ToString());
-                        }
-                        if (attr[0].Trim(charsToTrim) == "height")
-                        {
-                            Match m;
-                            m = Regex.Match(attr[1], " ?([0-9]+)px", RegexOptions.IgnoreCase);
-                            height = Int16.Parse(m.Groups[1].ToString());
-                        }
-                        color = canvas.GetAttribute("data-color");
-                        if (color == null)
-                        {
-                            color = "000000";
-                        }
+                        color = "000000";
                     }
+                    width = Int16.Parse(canvas.OffsetRectangle.Width.ToString());
+                    height = Int16.Parse(canvas.OffsetRectangle.Height.ToString());
+                    x = Int16.Parse(canvas.OffsetRectangle.X.ToString());
+                    y = Int16.Parse(canvas.OffsetRectangle.Y.ToString());
                     type = Int16.Parse(canvas.GetAttribute("data-tipo"));
                     weight = Int16.Parse(canvas.GetAttribute("data-weight"));
-                    width = Int16.Parse(canvas.GetAttribute("data-width"));
+                    inclinacion = canvas.GetAttribute("data-inclinacion");
+                    text = canvas.GetAttribute("data-text");
 
                     addElementToStep(x, y, height, width, color, type, weight);
                 }

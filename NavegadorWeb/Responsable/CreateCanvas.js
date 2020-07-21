@@ -137,6 +137,7 @@ function initTexto() {
   var context=canvas.getContext("2d");
   width=500;
   canvas.dataset.tipo=3;
+  canvas.dataset.text=text;
   context.font = "20px Arial";
   context.fillText(text, width/2, width/2);
   context.strokeStyle = "#"+color;
@@ -191,7 +192,7 @@ function initCanvas() {
   canvas.height=width;    
   canvas.dataset.color=color;
   canvas.dataset.weight=line;
-  canvas.dataset.width=width;
+  canvas.dataset.inclinacion=inclinacion;
   document.body.appendChild(canvas);    
   desplazarCanvas();
   
