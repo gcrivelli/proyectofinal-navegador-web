@@ -49,6 +49,10 @@ namespace NavegadorWeb.Adult
 
                 script.SetAttribute("type", "text/javascript");
                 script.InnerText = "function init" + step.order + "() {";
+                script.InnerText += "var elements = document.getElementsByClassName('asistime');";
+                script.InnerText += "while(elements.length > 0){";
+                script.InnerText += "elements[0].parentNode.removeChild(elements[0]);";
+                script.InnerText += "}";
 
                 foreach (Element e in step.elements)
                 {
@@ -78,6 +82,7 @@ namespace NavegadorWeb.Adult
                 js += "canvas" + positionStep + positionElement + ".style.cssText = 'position: absolute; z-index: 9999; left: " + x + "px; top: " + y + "px;';";
                 js += "canvas" + positionStep + positionElement + ".width=" + width + ";";
                 js += "canvas" + positionStep + positionElement + ".height=" + width + ";";
+                js += "canvas" + positionStep + positionElement + ".className = 'asistime';";
                 js += "document.body.appendChild(canvas" + positionStep + positionElement + ");";
                 if (type == 1) // cuadrado
                 {
