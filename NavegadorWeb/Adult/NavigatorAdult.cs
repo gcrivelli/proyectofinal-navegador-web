@@ -5,6 +5,7 @@ using System;
 using System.Windows.Forms;
 using MessageBox = System.Windows.MessageBox;
 using System.Windows;
+using Newtonsoft.Json;
 
 namespace NavegadorWeb.Adult
 {
@@ -37,15 +38,28 @@ namespace NavegadorWeb.Adult
         {
             //var step = tour.steps.Find(s => s.order == StepCount);
             var step = tour.steps.Find(s => s.order == positionStep);
+            var i = 1;
             if (step != null)
             {
                 //webBrowser.Navigate(step.url);
 
+                HtmlDocument doc = webBrowser.Document;
+                HtmlElement head = doc.GetElementsByTagName("head")[0];
+                HtmlElement script = doc.CreateElement("script");
+
+                script.SetAttribute("type", "text/javascript");
+                script.InnerText = "function init" + step.order + "() {";
+
                 foreach (Element e in step.elements)
                 {
-                    var doc = initStep(step.order, e.x, e.y, e.width, e.weight, e.type, e.color);
-                    doc.InvokeScript("init");
+                    script.InnerText += initElement(i, e.x, e.y, e.width, e.weight, e.type, e.color);
+                    i++;
                 }
+
+                script.InnerText += "}";
+                head.AppendChild(script);
+
+                doc.InvokeScript("init" + step.order);
             }
             else
             {
@@ -53,38 +67,29 @@ namespace NavegadorWeb.Adult
             }
         }
 
-        private HtmlDocument initStep(int positionStep, int x, int y, int width, int weight, int type, string color)
+        private string initElement(int position, int x, int y, int width, int weight, int type, string color)
         {
             try
             {
-                positionStep = 1;
-                HtmlDocument doc = webBrowser.Document;
-                HtmlElement head = doc.GetElementsByTagName("head")[0];
-                HtmlElement script = doc.CreateElement("script");
-
-                script.SetAttribute("type", "text/javascript");
-                script.InnerText = "function init() {";
-
-                script.InnerText += "var canvas" + positionStep + " = document.createElement('canvas');";
-                script.InnerText += "canvas" + positionStep + ".id='canvas" + positionStep + "';";
-                script.InnerText += "canvas" + positionStep + ".style.cssText = 'position: absolute; z-index: 9999; left: " + x + "px; top: " + y + "px;';";
-                script.InnerText += "canvas" + positionStep + ".width=" + width + ";";
-                script.InnerText += "canvas" + positionStep + ".height=" + width + ";";
-                script.InnerText += "document.body.appendChild(canvas" + positionStep + ");";
+                width = 200;
+                var js = "";
+                js += "var canvas" + position + " = document.createElement('canvas');";
+                js += "canvas" + position + ".id='canvas" + position + "';";
+                js += "canvas" + position + ".style.cssText = 'position: absolute; z-index: 9999; left: " + x + "px; top: " + y + "px;';";
+                js += "canvas" + position + ".width=" + width + ";";
+                js += "canvas" + position + ".height=" + width + ";";
+                js += "document.body.appendChild(canvas" + position + ");";
                 if (type == 1) // cuadrado
                 {
-                    script.InnerText += "var cuadrado=document.getElementById('canvas" + positionStep + "');";
-                    script.InnerText += "var context = cuadrado.getContext('2d');";
-                    script.InnerText += "context.rect(0,0," + width + "," + width + ");";
-                    script.InnerText += "context.strokeStyle = '#" + color + "'" + ";";
-                    script.InnerText += "context.lineWidth =" + weight + ";";
-                    script.InnerText += "context.stroke();";
+                    js += "var cuadrado=document.getElementById('canvas" + position + "');";
+                    js += "var context = cuadrado.getContext('2d');";
+                    js += "context.rect(0,0," + width + "," + width + ");";
+                    js += "context.strokeStyle = '#" + color + "'" + ";";
+                    js += "context.lineWidth =" + weight + ";";
+                    js += "context.stroke();";
                 }
 
-                script.InnerText += "}";
-                head.AppendChild(script);
-
-                return doc;
+                return js;
             }
             catch
             {
