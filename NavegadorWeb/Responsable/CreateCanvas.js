@@ -201,6 +201,12 @@ function initCanvas() {
 function achicarCanvas() {
   if (desplazandoCanvas==true && width>30) {
     width-=30;
+    redibujarCanvas();
+  }
+}
+
+function achicarAngulo() {
+  if (desplazandoCanvas==true) {
     inclinacion-=30;
     redibujarCanvas();
   }
@@ -223,6 +229,12 @@ function rotarCanvasIzq() {
 function agrandarCanvas() {
   if (desplazandoCanvas==true) {
     width+=30;    
+    redibujarCanvas();
+  }
+}
+
+function agrandarAngulo() {
+  if (desplazandoCanvas==true) {
     inclinacion+=30;
     redibujarCanvas();
   }

@@ -199,5 +199,15 @@ namespace NavegadorWeb.Responsable
         {
             doc.InvokeScript("initDiv");
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            doc.InvokeScript("agrandarAngulo");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            doc.InvokeScript("achicarAngulo");
+        }
     }
 }
