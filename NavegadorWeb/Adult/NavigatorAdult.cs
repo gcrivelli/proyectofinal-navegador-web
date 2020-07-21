@@ -52,7 +52,7 @@ namespace NavegadorWeb.Adult
 
                 foreach (Element e in step.elements)
                 {
-                    script.InnerText += initElement(i, e.x, e.y, e.width, e.weight, e.type, e.color);
+                    script.InnerText += initElement(positionStep, i, e.x, e.y, e.width, e.weight, e.type, e.color);
                     i++;
                 }
 
@@ -67,21 +67,21 @@ namespace NavegadorWeb.Adult
             }
         }
 
-        private string initElement(int position, int x, int y, int width, int weight, int type, string color)
+        private string initElement(int positionStep, int positionElement, int x, int y, int width, int weight, int type, string color)
         {
             try
             {
                 width = 200;
                 var js = "";
-                js += "var canvas" + position + " = document.createElement('canvas');";
-                js += "canvas" + position + ".id='canvas" + position + "';";
-                js += "canvas" + position + ".style.cssText = 'position: absolute; z-index: 9999; left: " + x + "px; top: " + y + "px;';";
-                js += "canvas" + position + ".width=" + width + ";";
-                js += "canvas" + position + ".height=" + width + ";";
-                js += "document.body.appendChild(canvas" + position + ");";
+                js += "var canvas" + positionStep + positionElement + " = document.createElement('canvas');";
+                js += "canvas" + positionStep + positionElement + ".id='canvas" + positionStep + positionElement + "';";
+                js += "canvas" + positionStep + positionElement + ".style.cssText = 'position: absolute; z-index: 9999; left: " + x + "px; top: " + y + "px;';";
+                js += "canvas" + positionStep + positionElement + ".width=" + width + ";";
+                js += "canvas" + positionStep + positionElement + ".height=" + width + ";";
+                js += "document.body.appendChild(canvas" + positionStep + positionElement + ");";
                 if (type == 1) // cuadrado
                 {
-                    js += "var cuadrado=document.getElementById('canvas" + position + "');";
+                    js += "var cuadrado=document.getElementById('canvas" + positionStep + positionElement + "');";
                     js += "var context = cuadrado.getContext('2d');";
                     js += "context.rect(0,0," + width + "," + width + ");";
                     js += "context.strokeStyle = '#" + color + "'" + ";";
