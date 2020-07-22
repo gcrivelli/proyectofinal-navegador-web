@@ -36,13 +36,10 @@ namespace NavegadorWeb.Adult
 
         public void playStep(Tour tour, int positionStep)
         {
-            //var step = tour.steps.Find(s => s.order == StepCount);
             var step = tour.steps.Find(s => s.order == positionStep);
             var i = 1;
             if (step != null)
             {
-                //webBrowser.Navigate(step.url);
-
                 HtmlDocument doc = webBrowser.Document;
                 HtmlElement head = doc.GetElementsByTagName("head")[0];
                 HtmlElement script = doc.CreateElement("script");
@@ -56,7 +53,7 @@ namespace NavegadorWeb.Adult
 
                 foreach (Element e in step.elements)
                 {
-                    script.InnerText += initElement(positionStep, i, e.x, e.y, e.width, e.weight, e.type, e.color);
+                    script.InnerText += initElement(positionStep, i, e.x, e.y, e.width, e.weight, e.type, e.color/*, e.rotate, e.text*/);
                     i++;
                 }
 
@@ -71,14 +68,15 @@ namespace NavegadorWeb.Adult
             }
         }
 
-        private string initElement(int positionStep, int positionElement, int x, int y, int width, int weight, int type, string color)
+        private string initElement(int positionStep, int positionElement, int x, int y, int width, int weight, int type, string color/*, int rotate, string text*/)
         {
             try
             {
                 var js = "";
                 js += "var canvas" + positionStep + positionElement + " = document.createElement('canvas');";
                 js += "canvas" + positionStep + positionElement + ".id='canvas" + positionStep + positionElement + "';";
-                js += "canvas" + positionStep + positionElement + ".style.cssText = 'position: absolute; z-index: 9999; left: " + x + "px; top: " + y + "px;';";
+                js += "canvas" + positionStep + positionElement + ".style.cssText = 'position:absolute;z-index: 9999;left:" + x + "px;top:" + y + "px;';";
+                //js += "canvas" + positionStep + positionElement + ".style.transform = 'rotate(" + rotate + "deg)';";
                 js += "canvas" + positionStep + positionElement + ".width=" + width + ";";
                 js += "canvas" + positionStep + positionElement + ".height=" + width + ";";
                 js += "canvas" + positionStep + positionElement + ".className = 'asistime';";
@@ -94,6 +92,13 @@ namespace NavegadorWeb.Adult
                     js += "var element=document.getElementById('canvas" + positionStep + positionElement + "');";
                     js += "var context = element.getContext('2d');";
                     js += "context.arc((" + width + "-2)/2,(" + width + "-2)/2,(" + width + "-2)/2,0,2*Math.PI);";
+                }
+                if (type == 3) // texto
+                {
+                    js += "var element=document.getElementById('canvas" + positionStep + positionElement + "');";
+                    js += "var context = element.getContext('2d');";
+                    js += "context.font = '20px Arial';";
+                    //js += "context.fillText(" + text + ", " + width + "/2, " + width + "/2);";
                 }
                 if (type == 4) // dialogo
                 {
@@ -122,7 +127,7 @@ namespace NavegadorWeb.Adult
 
         public override void ShowMenu()
         {
-            //esta instanciacion deberia ir después del login
+            // esta instanciacion deberia ir después del login
             var userController = new TourController();
             user = userController.GetAllToursAsync("5f0907dd5d988f31d515dc72").Result;
             MenuAdult menu = new MenuAdult(user, this);

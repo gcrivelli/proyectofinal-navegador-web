@@ -212,20 +212,6 @@ function achicarAngulo() {
   }
 }
 
-function rotarCanvasDer() {
-  if (desplazandoCanvas==true) {
-    inclinacion+=30;
-    redibujarCanvas();
-  }
-}
-
-function rotarCanvasIzq() {
-  if (desplazandoCanvas==true) {
-    inclinacion-=30;
-    redibujarCanvas();
-  }
-}
-
 function agrandarCanvas() {
   if (desplazandoCanvas==true) {
     width+=30;    
