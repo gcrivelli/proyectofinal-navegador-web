@@ -16,9 +16,10 @@ namespace NavegadorWeb.UI
         {
             BackColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour);
             ForeColor = ColorTranslator.FromHtml(Constants.AppSecondaryColour);
-            Height = 1024;
             Width = Constants.MenuWidth;
             Parent = parent;
+            Height = 1024;
+            //Height = Parent.Height;
 
             profileMenuButton = new AsistimeMenuButton(this, Constants.profileMenuButton);
             profileMenuButton.Click += new EventHandler(this.ShowProfile);
@@ -43,11 +44,6 @@ namespace NavegadorWeb.UI
 
             /*this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             this.BackColor = Color.Transparent;*/
-        }
-        public void ReSize(int new_height)
-        {
-            this.Height = new_height;
-            this.Dock = DockStyle.Left;
         }
 
         /*public void ActiveMenu(object sender)
@@ -104,6 +100,8 @@ namespace NavegadorWeb.UI
             this.profileMenuButton.Activate();
             this.newToursMenuButton.DeActivate();
             this.myToursMenuButton.DeActivate();
+            MenuAdult parent = this.Parent as MenuAdult;
+            parent.ShowProfile();
         }
 
         private void ShowNewTours(object sender, EventArgs e)
@@ -111,6 +109,8 @@ namespace NavegadorWeb.UI
             this.profileMenuButton.DeActivate();
             this.newToursMenuButton.Activate();
             this.myToursMenuButton.DeActivate();
+            MenuAdult parent = this.Parent as MenuAdult;
+            parent.ShowNewTours();
         }
 
         private void ReturnToNavigation(object sender, EventArgs e)
@@ -132,6 +132,27 @@ namespace NavegadorWeb.UI
             parent.ShowMyTours();
         }
 
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // AsistimeMenuPanel
+            // 
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.AsistimeMenuPanel_Paint);
+            this.Resize += new System.EventHandler(this.AsistimeMenuPanel_Resize);
+            this.ResumeLayout(false);
+
+        }
+
+        private void AsistimeMenuPanel_Resize(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void AsistimeMenuPanel_Paint(object sender, PaintEventArgs e)
+        {
+            
+        }
     }
 
 }

@@ -16,7 +16,7 @@ namespace NavegadorWeb
                 SetProcessDPIAware();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login());
+            Application.Run(new AsistimeLogin());
         }
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]

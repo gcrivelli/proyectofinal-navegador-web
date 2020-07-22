@@ -37,9 +37,8 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "Controles3";
-            this.Text = "Controles3";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Controles3_FormClosing);
+            this.Name = "NavigatorForm";
+            this.Text = "NavigatorForm";
             this.Load += new System.EventHandler(this.NavigatorForm_Load);
             this.ResumeLayout(false);
 

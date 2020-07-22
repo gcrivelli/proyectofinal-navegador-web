@@ -148,6 +148,18 @@
       <DependentUpon>TestStyles.cs</DependentUpon>
     </Compile>
     <Compile Include="Controller\TourController.cs" />
+    <Compile Include="GeneralDisplay\AsistimeBaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GeneralDisplay\AsistimeBaseForm.Designer.cs">
+      <DependentUpon>AsistimeBaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GeneralDisplay\AsistimeLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GeneralDisplay\AsistimeLogin.Designer.cs">
+      <DependentUpon>AsistimeLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="GeneralDisplay\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -237,8 +249,8 @@
     <Compile Include="GeneralDisplay\NavigatorForm.Designer.cs">
       <DependentUpon>NavigatorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\AsistimeMenuContentDisplay.cs">
-      <SubType>Form</SubType>
+    <Compile Include="UI\AsistimeMenuContent.cs">
+      <SubType>Component</SubType>
     </Compile>
     <EmbeddedResource Include="Adult\DinamicCards.resx">
       <DependentUpon>DinamicCards.cs</DependentUpon>
@@ -248,6 +260,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Adult\TestStyles.resx">
       <DependentUpon>TestStyles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GeneralDisplay\AsistimeBaseForm.resx">
+      <DependentUpon>AsistimeBaseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GeneralDisplay\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -279,6 +294,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\AsistimeMenuButton.resx">
       <DependentUpon>AsistimeMenuButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AsistimeMenuPanel.resx">
+      <DependentUpon>AsistimeMenuPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Controles2.resx">
       <DependentUpon>Controles2.cs</DependentUpon>

@@ -20,7 +20,7 @@ namespace NavegadorWeb.UI
         public const string MenuButtonBackground = "";
         public const string MenuButtonHover = "#2C454E";
         public const string MenuButtonSelected = "#FFFFFF";
-        public const int MenuWidth = 300;
+        public const int MenuWidth = 400;
         public const int MenuButtonHeight = 80;
         public const string profileMenuButton = "MI PERFIL";
         public const string newToursMenuButton = "TOURS NUEVOS";
@@ -33,8 +33,10 @@ namespace NavegadorWeb.UI
         public const string TourCardBackground = "";
         public const string TourCardHover = "";
         public const string TourCardSelected = "";
+        public const int TourCardHeigth = 300;
+        public const int TourCardWidth = 400;
 
-        public const string CardContainerBackground = "#FFFFFF";
+        public const string ContentPanelBackground = "#FFFFFF";
 
 
         private static string path = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "/Images/";
@@ -72,6 +74,8 @@ namespace NavegadorWeb.UI
         public const string SearchBoxText = "Ingrese aquí la dirección a buscar";
 
         public static Font ProgressBarFont = new Font("Segoe UI", 15, FontStyle.Bold);
+        public static Font H2LabelFont = new Font("Segoe UI", 10, FontStyle.Regular);
+        public static Font LogoLabelFont = new Font("Segoe UI", 30, FontStyle.Regular);
 
     }
 
