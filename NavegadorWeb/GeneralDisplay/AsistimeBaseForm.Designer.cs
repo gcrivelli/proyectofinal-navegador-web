@@ -1,6 +1,6 @@
 ﻿namespace NavegadorWeb.GeneralDisplay
 {
-    partial class MenuForm
+    partial class AsistimeBaseForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,14 +30,15 @@
         {
             this.SuspendLayout();
             // 
-            // MenuForm
+            // AsistimeBaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "MenuForm";
-            this.Text = "MenuForm";
-            this.Load += new System.EventHandler(this.MenuForm_Load);
+            this.Name = "AsistimeBaseForm";
+            this.Text = "AsistimeBaseForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AsistimeBaseForm_FormClosing);
+            this.Load += new System.EventHandler(this.AsistimeBaseForm_Load);
             this.ResumeLayout(false);
 
         }

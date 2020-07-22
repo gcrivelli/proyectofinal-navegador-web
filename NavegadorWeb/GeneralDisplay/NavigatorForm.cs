@@ -1,4 +1,5 @@
 ﻿using NavegadorWeb.Controller;
+using NavegadorWeb.GeneralDisplay;
 using NavegadorWeb.Models;
 using System;
 using System.Diagnostics;
@@ -7,7 +8,7 @@ using System.Windows.Forms;
 
 namespace NavegadorWeb.UI
 {
-    public partial class NavigatorForm : Form
+    public partial class NavigatorForm : AsistimeBaseForm
     {
         protected AsistimeAppBar asistimeAppBar;
         protected WebBrowser webBrowser;
@@ -17,11 +18,7 @@ namespace NavegadorWeb.UI
             this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
 
             InitializeComponent();
-            WindowState = FormWindowState.Maximized;
-            this.Width = Screen.PrimaryScreen.WorkingArea.Size.Width;
-            this.Height = Screen.PrimaryScreen.WorkingArea.Size.Height;
-
-
+            
             asistimeAppBar = new AsistimeAppBar() {Parent = this };
             asistimeAppBar.Width = this.Width;
             this.Controls.Add(asistimeAppBar);
@@ -37,12 +34,6 @@ namespace NavegadorWeb.UI
             webBrowser.Location = new Point(0, Constants.AppBarHeight);
             webBrowser.Navigating += webBrowser_Navigating;
             this.Controls.Add(webBrowser);
-            //this.FormBorderStyle = FormBorderStyle.none;
-        }
-
-        private void Controles3_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
         }
 
         public void NavigateBack() { webBrowser.GoBack(); }

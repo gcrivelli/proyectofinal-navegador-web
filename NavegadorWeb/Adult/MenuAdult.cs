@@ -1,37 +1,42 @@
 ﻿using NavegadorWeb.GeneralDisplay;
 using NavegadorWeb.Models;
 using NavegadorWeb.UI;
+using System;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace NavegadorWeb.Adult
 {
     public partial class MenuAdult : MenuForm
     {
-        private AsistimeMenuPanel asistimeMenuPanel;
-        private AsistimeCardContainer asistimeCardContainer;
+        private AsistimeCardContainer MyTours;
+        private AsistimeCardContainer NewTours;
 
         public MenuAdult(User user, NavigatorAdult form) : base(user,form)
         {
-            asistimeMenuPanel = new AsistimeMenuPanel(this) { Parent = this };
-            asistimeMenuPanel.Location = new System.Drawing.Point(0, 0);
-            this.Controls.Add(asistimeMenuPanel);
-
-            asistimeCardContainer = new AsistimeCardContainer(user.tours) { Parent = this };
-            asistimeCardContainer.Location = new System.Drawing.Point(Constants.MenuWidth, 0);
-            this.Controls.Add(asistimeCardContainer);
-            asistimeCardContainer.Hide();
-
             InitializeComponent();
+
+            menuPanel = new AsistimeMenuPanel(this) { Parent = this };
+            menuPanel.Location = new System.Drawing.Point(0, 0);
+            this.Controls.Add(menuPanel);
+
+            MyTours = new AsistimeCardContainer(user.tours) { Parent = this };
+            contentPanel.Controls.Add(MyTours);
+
+            NewTours = new AsistimeCardContainer(null) { Parent = this };
+            contentPanel.Controls.Add(NewTours);
+
+            ShowProfile();
         }
 
         public void ShowNewTours()
         {
-            asistimeCardContainer.Hide();
+            contentPanel.ShowControl(NewTours);
         }
 
         public void ShowMyTours()
         {
-            asistimeCardContainer.Show();
+            contentPanel.ShowControl(MyTours);
         }
 
         public void PlayTour(Tour tour)

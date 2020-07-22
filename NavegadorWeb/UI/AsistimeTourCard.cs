@@ -8,7 +8,6 @@ namespace NavegadorWeb.UI
 {
     class AsistimeTourCard : BunifuCards
     {
-        public int count = 1;
         Tour tourAsociado;
         public AsistimeTourCard(Tour tour, int x, int y)
         {
@@ -21,42 +20,33 @@ namespace NavegadorWeb.UI
             title.AutoSize = true;
             title.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             title.Location = new System.Drawing.Point(12, 16);
-            //title.Name = "TourTitle" + count;
-            title.Size = new System.Drawing.Size(109, 16);
+            title.Width = Constants.TourCardWidth - 20;
             title.TabIndex = 1;
             title.Text = tour.name;
 
             //Descripción
             Label description = new Label();
             description.Location = new System.Drawing.Point(12, 59);
-            //description.Name = "label" + count;
-            description.Size = new System.Drawing.Size(182, 72);
+            description.Width = Constants.TourCardWidth - 20;
+            description.Height = Constants.TourCardHeigth / 2;
             description.TabIndex = 2;
             description.Text = tour.description;
 
             //Botón de realizar tour
             AsistimeActionButton button = new AsistimeActionButton();
-            //button.BackColor = Color.White;
-            //button.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            button.Location = new System.Drawing.Point(113, 134);
-            //button.Name = "button" + count;
-            //button.Size = new System.Drawing.Size(75, 23);
             button.TabIndex = 0;
-            //button.Text = "Realizar Tour";
             button.ButtonText = "Realizar Tour";
-            //button.UseVisualStyleBackColor = false;
+            button.Location = new Point(Constants.TourCardWidth - button.Width - 30, 
+                Constants.TourCardHeigth - button.Height - 10);
             button.Click += new EventHandler(this.PlayTour);
 
             //Formato de la tarjeta
-            //BackColor = System.Drawing.Color.SeaGreen;
             Controls.Add(description);
             Controls.Add(title);
             Controls.Add(button);
             Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            Location = new System.Drawing.Point(53, 36);
-            //Name = "groupBox" + count;
-            Size = new System.Drawing.Size(400, 300);
+            Size = new System.Drawing.Size(Constants.TourCardWidth, Constants.TourCardHeigth);
             TabIndex = 0;
             TabStop = false;
             Location = new System.Drawing.Point(x,y);
@@ -71,7 +61,6 @@ namespace NavegadorWeb.UI
             if(result1 == DialogResult.Yes)
             {
                 AsistimeCardContainer parent = this.Parent as AsistimeCardContainer;
-                //Controles2 parent = this.Parent as Controles2;
                 parent.PlayTour(this.tourAsociado);
             }
         }

@@ -7,10 +7,20 @@ namespace NavegadorWeb.UI
     {
         public AsistimeContentPanel()
         {
-            BackColor = ColorTranslator.FromHtml(Constants.CardContainerBackground);
-            //ForeColor = ColorTranslator.FromHtml(Constants.AppSecondaryColour);
-            Width = 1515;
+            BackColor = ColorTranslator.FromHtml(Constants.ContentPanelBackground);
+            Location = new Point(Constants.MenuWidth, 0);
+            Width = 1920 - Constants.MenuWidth;
             Height = 1024;
+        }
+
+        public void ShowControl(Control control)
+        {
+            foreach (Control X in this.Controls)
+            {
+                X.Hide();
+            }
+
+            control.Show();
         }
     }
 }
