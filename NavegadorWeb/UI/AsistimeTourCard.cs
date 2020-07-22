@@ -55,9 +55,10 @@ namespace NavegadorWeb.UI
 
         private void PlayTour(object sender, EventArgs e)
         {
-            DialogResult result1 = MessageBox.Show("Tas seguro?",
-                                                    "Important Question",
-                                                    MessageBoxButtons.YesNo);
+            DialogResult result1 = MessageBox.Show(Constants.InitiateTourConfirmation1
+                + tourAsociado.name + Constants.InitiateTourConfirmation2,
+                Constants.InitiateTourTitle,
+                MessageBoxButtons.YesNo);
             if(result1 == DialogResult.Yes)
             {
                 AsistimeCardContainer parent = this.Parent as AsistimeCardContainer;

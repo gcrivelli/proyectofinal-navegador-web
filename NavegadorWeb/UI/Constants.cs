@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -77,6 +78,10 @@ namespace NavegadorWeb.UI
         public static Font ProgressBarFont = new Font("Segoe UI", 15, FontStyle.Bold);
         public static Font H2LabelFont = new Font("Segoe UI", 10, FontStyle.Regular);
         public static Font LogoLabelFont = new Font("Segoe UI", 30, FontStyle.Regular);
+
+        public const string InitiateTourTitle = "Vas a dejar esta pantalla";
+        public const string InitiateTourConfirmation1 = "Estás por iniciar el tour ";
+        public const string InitiateTourConfirmation2 = ". Vas a ser redirigido a la página incial del tour. ¿Estás seguro?";
 
     }
 
