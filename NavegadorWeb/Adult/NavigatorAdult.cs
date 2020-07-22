@@ -143,6 +143,7 @@ namespace NavegadorWeb.Adult
         {
             tourBar.Hide();
             asistimeAppBar.Show();
+            webBrowser.Refresh();
         }
     }
 }

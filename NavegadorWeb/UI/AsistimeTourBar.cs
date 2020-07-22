@@ -1,5 +1,4 @@
-﻿using Bunifu.Framework.UI;
-using NavegadorWeb.Adult;
+﻿using NavegadorWeb.Adult;
 using NavegadorWeb.Models;
 using System;
 using System.Drawing;
@@ -32,6 +31,7 @@ namespace NavegadorWeb.UI
             this.Controls.Add(this.GetPlayButton((this.Width / 2) - 39, 35));
             this.Controls.Add(this.GetStepForwardButton((this.Width / 2) + 39 + 72, 35));
             this.Controls.Add(this.GetCloseTourButton(this.ClientSize.Width - 150, 35));
+            StepBackButton.Enabled = false;
         }
 
         protected Control GetStepBackButton(int x, int y)
@@ -47,12 +47,19 @@ namespace NavegadorWeb.UI
 
         protected void GoOneStepBack(object sender, EventArgs e)
         {
-            StepCount--;
-            double progressDouble = StepCount / tour.steps.Count * 100;
-            int progress = (int)Math.Truncate(progressDouble);
-            progressBar.Value = progress;
-            NavigatorAdult form = this.Parent as NavigatorAdult;
-            form.playStep(tour, StepCount);
+            if (StepCount > 0)
+            {
+                StepCount--;
+                double progressDouble = ((double)StepCount / (double)tour.steps.Count) * 100;
+                int progress = (int)Math.Truncate(progressDouble);
+                progressBar.Value = progress;
+                NavigatorAdult form = this.Parent as NavigatorAdult;
+                form.playStep(tour, StepCount);
+                StepForwardButton.Enabled = true;
+            }
+
+            if (StepCount == 0)
+                StepBackButton.Enabled = false;
         }
 
         protected Control GetPlayButton(int x, int y)
@@ -85,12 +92,19 @@ namespace NavegadorWeb.UI
 
         protected void GoOneStepForward(object sender, EventArgs e)
         {
-            StepCount++;
-            double progressDouble = StepCount / tour.steps.Count * 100;
-            int progress = (int)Math.Truncate(progressDouble);
-            progressBar.Value = progress;
-            NavigatorAdult form = this.Parent as NavigatorAdult;
-            form.playStep(tour, StepCount);
+            if (StepCount < tour.steps.Count)
+            {
+                StepCount++;
+                double progressDouble = ((double)StepCount / (double)tour.steps.Count) * 100;
+                int progress = (int)Math.Truncate(progressDouble);
+                progressBar.Value = progress;
+                NavigatorAdult form = this.Parent as NavigatorAdult;
+                form.playStep(tour, StepCount);
+                StepBackButton.Enabled = true;
+            }
+
+            if (StepCount == tour.steps.Count - 1)
+                StepForwardButton.Enabled = false;
         }
 
         protected Control GetCloseTourButton(int x, int y)
