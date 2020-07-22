@@ -13,7 +13,7 @@ namespace NavegadorWeb.UI
         {
             color = Color.Transparent;
             BorderRadius = 10;
-            BackColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour);
+            BackColor = ColorTranslator.FromHtml(Constants.TourCardBackground);
 
             //Título
             Label title = new Label();
@@ -45,7 +45,7 @@ namespace NavegadorWeb.UI
             Controls.Add(title);
             Controls.Add(button);
             Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            ForeColor = ColorTranslator.FromHtml(Constants.TourCardFontColour);
             Size = new System.Drawing.Size(Constants.TourCardWidth, Constants.TourCardHeigth);
             TabIndex = 0;
             TabStop = false;

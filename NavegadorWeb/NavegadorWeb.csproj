@@ -237,12 +237,6 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UI\Constants.cs" />
-    <Compile Include="UI\Controles2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Controles2.Designer.cs">
-      <DependentUpon>Controles2.cs</DependentUpon>
-    </Compile>
     <Compile Include="GeneralDisplay\NavigatorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -297,9 +291,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\AsistimeMenuPanel.resx">
       <DependentUpon>AsistimeMenuPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Controles2.resx">
-      <DependentUpon>Controles2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GeneralDisplay\NavigatorForm.resx">
       <DependentUpon>NavigatorForm.cs</DependentUpon>

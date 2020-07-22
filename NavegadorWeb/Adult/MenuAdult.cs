@@ -20,10 +20,10 @@ namespace NavegadorWeb.Adult
             menuPanel.Location = new System.Drawing.Point(0, 0);
             this.Controls.Add(menuPanel);
 
-            MyTours = new AsistimeCardContainer(user.tours) { Parent = this };
+            MyTours = new AsistimeCardContainer(user.tours, this) { Parent = this };
             contentPanel.Controls.Add(MyTours);
 
-            NewTours = new AsistimeCardContainer(null) { Parent = this };
+            NewTours = new AsistimeCardContainer(null, this) { Parent = this };
             contentPanel.Controls.Add(NewTours);
 
             ShowProfile();

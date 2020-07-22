@@ -42,58 +42,8 @@ namespace NavegadorWeb.UI
 
             this.profileMenuButton.Activate();
 
-            /*this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
-            this.BackColor = Color.Transparent;*/
         }
 
-        /*public void ActiveMenu(object sender)
-        {
-            AsistimeMenuButton botonActivo = sender as AsistimeMenuButton;
-
-            switch(botonActivo.Text)
-            {
-                case Constants.profileMenuButton:
-                    this.profileMenuButton.Activate();
-                    this.newToursMenuButton.DeActivate();
-                    this.myToursMenuButton.DeActivate();
-                    break;
-                case Constants.newToursMenuButton:
-                    this.profileMenuButton.DeActivate();
-                    this.newToursMenuButton.Activate();
-                    this.myToursMenuButton.DeActivate();
-                    break;
-                case Constants.myToursMenuButton:
-                    this.profileMenuButton.DeActivate();
-                    this.newToursMenuButton.DeActivate();
-                    this.myToursMenuButton.Activate();
-                    break;
-                case Constants.backMenuButton:
-                    this.profileMenuButton.DeActivate();
-                    this.newToursMenuButton.DeActivate();
-                    this.myToursMenuButton.DeActivate();
-                    this.backMenuButton.Activate();
-                    break;
-            }
-
-            if(botonActivo.Active)
-            {
-                Controles2 form = this.Parent as Controles2;
-                form.ActiveMenu(botonActivo);
-            }
-            
-        }*/
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         private void ShowProfile(object sender, EventArgs e)
         {

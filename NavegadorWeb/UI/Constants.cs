@@ -30,9 +30,10 @@ namespace NavegadorWeb.UI
         
 
 
-        public const string TourCardBackground = "";
+        public const string TourCardBackground = "#C2C2C2";
         public const string TourCardHover = "";
         public const string TourCardSelected = "";
+        public const string TourCardFontColour = "#14272E";
         public const int TourCardHeigth = 300;
         public const int TourCardWidth = 400;
 

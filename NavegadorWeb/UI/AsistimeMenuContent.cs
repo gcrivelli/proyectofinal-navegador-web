@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace NavegadorWeb.UI
 {
-    class AsistimeMenuContent : Control
+    class AsistimeMenuContent : Panel
     {
         public AsistimeMenuContent()
         {
             this.Dock = DockStyle.Fill;
-            //AutoScroll = true;
-            //BackColor = Color.Transparent;
+            AutoScroll = true;
+            BackColor = Color.Transparent;
         }
     }
 }

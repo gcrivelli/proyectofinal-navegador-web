@@ -9,16 +9,18 @@ namespace NavegadorWeb.UI
     class AsistimeCardContainer : AsistimeMenuContent
     {
         List<Tour> TourList;
-        public AsistimeCardContainer(List<Tour> tourList)
+        MenuAdult formAnterior;
+        public AsistimeCardContainer(List<Tour> tourList, MenuAdult form) : base()
         {
+            formAnterior = form;
             TourList = tourList;
             ArrangeCardGrid();
         }
 
         public void PlayTour(Tour tour)
         {
-            MenuAdult parent = this.Parent as MenuAdult;
-            parent.PlayTour(tour);
+            //MenuAdult parent = this.Parent as MenuAdult;
+            formAnterior.PlayTour(tour);
         }
 
         private void ArrangeCardGrid()
