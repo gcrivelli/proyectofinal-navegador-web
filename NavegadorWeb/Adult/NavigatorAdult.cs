@@ -101,7 +101,7 @@ namespace NavegadorWeb.Adult
                     js += "var element=document.getElementById('canvas" + positionStep + positionElement + "');";
                     js += "var context = element.getContext('2d');";
                     js += "context.font = '20px Arial';";
-                    js += "context.fillText(" + text + ", " + width + "/2, " + width + "/2);";
+                    js += "context.fillText('" + text + "', 250, 250);";
                 }
                 if (type == 4) // dialogo
                 {
