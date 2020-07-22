@@ -9,5 +9,7 @@
         public int width { get; set; }
         public int weight { get; set; }
         public int type { get; set; }
+        public string text { get; set; }
+        public string inclination { get; set; }
     }
 }

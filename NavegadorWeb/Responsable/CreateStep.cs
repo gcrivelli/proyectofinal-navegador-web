@@ -115,7 +115,7 @@ namespace NavegadorWeb.Responsable
                     String color = "";
                     Int16 type = 0;
                     Int16 weight = 1;
-                    String inclinacion;
+                    String inclination;
                     String text;
 
                     color = canvas.GetAttribute("data-color");
@@ -129,10 +129,10 @@ namespace NavegadorWeb.Responsable
                     y = Int16.Parse(canvas.OffsetRectangle.Y.ToString());
                     type = Int16.Parse(canvas.GetAttribute("data-tipo"));
                     weight = Int16.Parse(canvas.GetAttribute("data-weight"));
-                    inclinacion = canvas.GetAttribute("data-inclinacion");
+                    inclination = canvas.GetAttribute("data-inclinacion");
                     text = canvas.GetAttribute("data-text");
 
-                    addElementToStep(x, y, height, width, color, type, weight);
+                    addElementToStep(x, y, height, width, color, type, weight, inclination, text);
                 }
             }            
 
@@ -178,7 +178,7 @@ namespace NavegadorWeb.Responsable
             ReproductorWav.Play();
         }
 
-        private void addElementToStep(int x, int y, int height, int width, string color, int type, int weight)
+        private void addElementToStep(int x, int y, int height, int width, string color, int type, int weight, string inclination, string text)
         {
             var element = new Element()
             {
@@ -188,7 +188,9 @@ namespace NavegadorWeb.Responsable
                 width = width,
                 color = color,
                 weight = weight,
-                type = type
+                type = type,
+                inclination = inclination,
+                text = text
             };
 
             navWebResponsable.tour.steps.Find(

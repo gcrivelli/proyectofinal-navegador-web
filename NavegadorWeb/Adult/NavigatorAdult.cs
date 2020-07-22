@@ -56,7 +56,7 @@ namespace NavegadorWeb.Adult
 
                 foreach (Element e in step.elements)
                 {
-                    script.InnerText += initElement(positionStep, i, e.x, e.y, e.width, e.weight, e.type, e.color/*, e.rotate, e.text*/);
+                    script.InnerText += initElement(positionStep, i, e.x, e.y, e.width, e.weight, e.type, e.color, e.inclination, e.text);
                     i++;
                 }
 
@@ -71,7 +71,7 @@ namespace NavegadorWeb.Adult
             }
         }
 
-        private string initElement(int positionStep, int positionElement, int x, int y, int width, int weight, int type, string color/*, int rotate, string text*/)
+        private string initElement(int positionStep, int positionElement, int x, int y, int width, int weight, int type, string color, string inclination, string text)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace NavegadorWeb.Adult
                 js += "var canvas" + positionStep + positionElement + " = document.createElement('canvas');";
                 js += "canvas" + positionStep + positionElement + ".id='canvas" + positionStep + positionElement + "';";
                 js += "canvas" + positionStep + positionElement + ".style.cssText = 'position:absolute;z-index: 9999;left:" + x + "px;top:" + y + "px;';";
-                //js += "canvas" + positionStep + positionElement + ".style.transform = 'rotate(" + rotate + "deg)';";
+                js += "canvas" + positionStep + positionElement + ".style.transform = 'rotate(" + inclination + "deg)';";
                 js += "canvas" + positionStep + positionElement + ".width=" + width + ";";
                 js += "canvas" + positionStep + positionElement + ".height=" + width + ";";
                 js += "canvas" + positionStep + positionElement + ".className = 'asistime';";
@@ -101,7 +101,7 @@ namespace NavegadorWeb.Adult
                     js += "var element=document.getElementById('canvas" + positionStep + positionElement + "');";
                     js += "var context = element.getContext('2d');";
                     js += "context.font = '20px Arial';";
-                    //js += "context.fillText(" + text + ", " + width + "/2, " + width + "/2);";
+                    js += "context.fillText(" + text + ", " + width + "/2, " + width + "/2);";
                 }
                 if (type == 4) // dialogo
                 {
