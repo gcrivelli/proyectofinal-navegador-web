@@ -39,8 +39,6 @@ namespace NavegadorWeb.Adult
             var i = 1;
             if (step != null)
             {
-                webBrowser.Navigate(step.url);
-
                 MessageBox.Show("Paso N° " + (step.order + 1), "Informacion", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 HtmlDocument doc = webBrowser.Document;
@@ -48,7 +46,16 @@ namespace NavegadorWeb.Adult
                 HtmlElement script = doc.CreateElement("script");
 
                 script.SetAttribute("type", "text/javascript");
-                script.InnerText = "function init" + step.order + "() {";
+                script.InnerText = "function ocultar(id) {";
+                script.InnerText += "var element = document.getElementById(id);";
+                script.InnerText += "element.style.display = 'none';";
+                script.InnerText += "setTimeout(function(){ mostrar(id); }, 2000);";
+                script.InnerText += "}";
+                script.InnerText += "function mostrar(id) {";
+                script.InnerText += "var element = document.getElementById(id);";
+                script.InnerText += "element.style.display = 'block';";
+                script.InnerText += "}";
+                script.InnerText += "function init" + step.order + "() {";
                 script.InnerText += "var elements = document.getElementsByClassName('asistime');";
                 script.InnerText += "while(elements.length > 0) {";
                 script.InnerText += "elements[0].parentNode.removeChild(elements[0]);";
@@ -82,7 +89,8 @@ namespace NavegadorWeb.Adult
                 js += "canvas" + positionStep + positionElement + ".style.transform = 'rotate(" + inclination + "deg)';";
                 js += "canvas" + positionStep + positionElement + ".width=" + width + ";";
                 js += "canvas" + positionStep + positionElement + ".height=" + width + ";";
-                js += "canvas" + positionStep + positionElement + ".className = 'asistime';";
+                js += "canvas" + positionStep + positionElement + ".className = 'asistime';"; 
+                js += "canvas" + positionStep + positionElement + ".onmouseover = function() {ocultar('canvas" + positionStep + positionElement + "')};";
                 js += "document.body.appendChild(canvas" + positionStep + positionElement + ");";
                 if (type == 1) // cuadrado
                 {
