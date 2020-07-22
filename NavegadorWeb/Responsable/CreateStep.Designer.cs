@@ -48,6 +48,8 @@
             this.lessCanvasBtn = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
             this.btnPlay = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
@@ -137,7 +139,7 @@
             // 
             // colorBtn
             // 
-            this.colorBtn.Location = new System.Drawing.Point(14, 343);
+            this.colorBtn.Location = new System.Drawing.Point(16, 381);
             this.colorBtn.Margin = new System.Windows.Forms.Padding(4);
             this.colorBtn.Name = "colorBtn";
             this.colorBtn.Size = new System.Drawing.Size(163, 28);
@@ -150,7 +152,7 @@
             this.textBox3.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox3.ForeColor = System.Drawing.Color.AliceBlue;
-            this.textBox3.Location = new System.Drawing.Point(0, 393);
+            this.textBox3.Location = new System.Drawing.Point(2, 431);
             this.textBox3.Margin = new System.Windows.Forms.Padding(4);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
@@ -162,7 +164,7 @@
             // 
             // btnRecord
             // 
-            this.btnRecord.Location = new System.Drawing.Point(14, 429);
+            this.btnRecord.Location = new System.Drawing.Point(16, 467);
             this.btnRecord.Margin = new System.Windows.Forms.Padding(4);
             this.btnRecord.Name = "btnRecord";
             this.btnRecord.Size = new System.Drawing.Size(163, 28);
@@ -173,7 +175,7 @@
             // 
             // saveBtn
             // 
-            this.saveBtn.Location = new System.Drawing.Point(16, 586);
+            this.saveBtn.Location = new System.Drawing.Point(18, 624);
             this.saveBtn.Margin = new System.Windows.Forms.Padding(4);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(163, 28);
@@ -187,7 +189,7 @@
             this.textBox4.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox4.ForeColor = System.Drawing.Color.AliceBlue;
-            this.textBox4.Location = new System.Drawing.Point(0, 547);
+            this.textBox4.Location = new System.Drawing.Point(2, 585);
             this.textBox4.Margin = new System.Windows.Forms.Padding(4);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
@@ -199,7 +201,7 @@
             // 
             // cancelBtn
             // 
-            this.cancelBtn.Location = new System.Drawing.Point(16, 622);
+            this.cancelBtn.Location = new System.Drawing.Point(18, 660);
             this.cancelBtn.Margin = new System.Windows.Forms.Padding(4);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(163, 28);
@@ -254,7 +256,7 @@
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(16, 465);
+            this.btnStop.Location = new System.Drawing.Point(18, 503);
             this.btnStop.Margin = new System.Windows.Forms.Padding(4);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(163, 28);
@@ -265,7 +267,7 @@
             // 
             // btnPlay
             // 
-            this.btnPlay.Location = new System.Drawing.Point(16, 501);
+            this.btnPlay.Location = new System.Drawing.Point(18, 539);
             this.btnPlay.Margin = new System.Windows.Forms.Padding(4);
             this.btnPlay.Name = "btnPlay";
             this.btnPlay.Size = new System.Drawing.Size(163, 28);
@@ -274,12 +276,36 @@
             this.btnPlay.UseVisualStyleBackColor = true;
             this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(100, 341);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(78, 28);
+            this.button1.TabIndex = 23;
+            this.button1.Text = "Angulo +";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(17, 341);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(78, 28);
+            this.button2.TabIndex = 22;
+            this.button2.Text = "Angulo -";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // CreateStep
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(195, 662);
+            this.ClientSize = new System.Drawing.Size(195, 711);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.btnPlay);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.moreCanvasBtn);
@@ -331,5 +357,7 @@
         private System.Windows.Forms.Button lessCanvasBtn;
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Button btnPlay;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
