@@ -5,7 +5,6 @@ using System;
 using System.Windows.Forms;
 using MessageBox = System.Windows.MessageBox;
 using System.Windows;
-using Newtonsoft.Json;
 
 namespace NavegadorWeb.Adult
 {
@@ -36,12 +35,13 @@ namespace NavegadorWeb.Adult
 
         public void playStep(Tour tour, int positionStep)
         {
-            //var step = tour.steps.Find(s => s.order == StepCount);
             var step = tour.steps.Find(s => s.order == positionStep);
             var i = 1;
             if (step != null)
             {
-                //webBrowser.Navigate(step.url);
+                webBrowser.Navigate(step.url);
+
+                MessageBox.Show("Paso N° " + (step.order + 1), "Informacion", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 HtmlDocument doc = webBrowser.Document;
                 HtmlElement head = doc.GetElementsByTagName("head")[0];
