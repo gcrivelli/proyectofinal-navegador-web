@@ -93,7 +93,7 @@
             this.webBrowser.Size = new System.Drawing.Size(1241, 563);
             this.webBrowser.TabIndex = 6;
             this.webBrowser.Url = new System.Uri("http://www.google.com.ar", System.UriKind.Absolute);
-            this.webBrowser.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.webBrowser_Navigating);
+            this.webBrowser.Navigated += new System.Windows.Forms.WebBrowserNavigatedEventHandler(this.webBrowser_Navigated);
             // 
             // NavigatorForm
             // 

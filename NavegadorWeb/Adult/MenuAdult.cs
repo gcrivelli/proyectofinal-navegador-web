@@ -1,9 +1,6 @@
 ﻿using NavegadorWeb.GeneralDisplay;
 using NavegadorWeb.Models;
 using NavegadorWeb.UI;
-using System;
-using System.Windows;
-using System.Windows.Controls;
 
 namespace NavegadorWeb.Adult
 {

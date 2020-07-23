@@ -39,7 +39,9 @@ namespace NavegadorWeb.Adult
             var i = 1;
             if (step != null)
             {
-                webBrowser.Navigate(step.url);
+                if (positionStep ==0)
+                    webBrowser.Navigate(step.url);
+
                 MessageBox.Show("Paso N° " + (step.order + 1), "Informacion", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 HtmlDocument doc = webBrowser.Document;

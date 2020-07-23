@@ -1,5 +1,4 @@
-﻿using NavegadorWeb.Controller;
-using NavegadorWeb.GeneralDisplay;
+﻿using NavegadorWeb.GeneralDisplay;
 using NavegadorWeb.Models;
 using System;
 using System.Diagnostics;
@@ -32,7 +31,7 @@ namespace NavegadorWeb.UI
             webBrowser.Width = this.Width;
             webBrowser.Height = this.Height - Constants.AppBarHeight;
             webBrowser.Location = new Point(0, Constants.AppBarHeight);
-            webBrowser.Navigating += webBrowser_Navigating;
+            webBrowser.Navigated += webBrowser_Navigated;
             this.Controls.Add(webBrowser);
         }
 
@@ -75,10 +74,9 @@ namespace NavegadorWeb.UI
                 WebBrowserHelper.FixBrowserVersion(appName, i);
         }
 
-        private void webBrowser_Navigating(object sender, WebBrowserNavigatingEventArgs e)
+        private void webBrowser_Navigated(object sender, WebBrowserNavigatedEventArgs e)
         {
-            asistimeAppBar.Navigating(webBrowser.Url.ToString());
+            asistimeAppBar.Navigated(webBrowser.Url.ToString());
         }
-
     }
 }

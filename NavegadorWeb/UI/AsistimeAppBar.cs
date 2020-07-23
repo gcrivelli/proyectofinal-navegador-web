@@ -137,7 +137,7 @@ namespace NavegadorWeb.UI
             control.ShowTour();
         }*/
 
-        public void Navigating(string url)
+        public void Navigated(string url)
         {
             searchTextBox.TextName = url;
         }

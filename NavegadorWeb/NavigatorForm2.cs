@@ -76,7 +76,7 @@ namespace NavegadorWeb
 
         // Updates the URL in TextBoxAddress upon navigation.
 
-        private void webBrowser_Navigating(object sender, WebBrowserNavigatingEventArgs e)
+        private void webBrowser_Navigated(object sender, WebBrowserNavigatedEventArgs e)
         {
             directionBox.Text = webBrowser.Url.ToString();
         }
