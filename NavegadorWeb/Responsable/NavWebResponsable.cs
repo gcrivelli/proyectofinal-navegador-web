@@ -97,7 +97,7 @@ namespace NavegadorWeb.Responsable
             var allAudioResponse = true;
             for (int i = 0; i < countStep; i++)
             {
-                var audioName = "Audio " + tour.name + countStep + ".wav";
+                var audioName = "/Audio " + tour.name + countStep + ".wav";
                 var filename = Constants.audioPath + audioName;
                 if (filename != null)
                 {

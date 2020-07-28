@@ -155,7 +155,7 @@ namespace NavegadorWeb.Responsable
         {
             createDirectory();
 
-            var audioName = "Audio "+ navWebResponsable.tour.name + navWebResponsable.countStep + ".wav";
+            var audioName = "/Audio "+ navWebResponsable.tour.name + navWebResponsable.countStep + ".wav";
             UrlReproductor = Constants.audioPath + audioName;
 
             Grabar("save recsound " + UrlReproductor, "", 0, 0);
