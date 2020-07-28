@@ -1,6 +1,7 @@
 ﻿using NavegadorWeb.Models;
 using Newtonsoft.Json;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -48,7 +49,7 @@ namespace NavegadorWeb.Controller
         /// </summary>
         /// <param name="tour"> tour to be saved </param>
         /// <returns></returns>
-        public async Task<string> PostAsync(Tour tour)
+        public async Task<Tour> PostAsync(Tour tour)
         {
             string JSONresult = JsonConvert.SerializeObject(tour);
 
@@ -59,7 +60,43 @@ namespace NavegadorWeb.Controller
                      new StringContent(JSONresult, Encoding.UTF8, "application/json")).ConfigureAwait(false);
 
                 response.EnsureSuccessStatusCode();
-                return response.StatusCode.ToString();
+                string responseBody = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<Tour>(responseBody);
+            }
+        }
+
+        public async Task<bool> PostAudio(ByteArrayContent file_bytes, string tourId, string stepId)
+        {
+            MultipartFormDataContent form = new MultipartFormDataContent();
+            form.Add(file_bytes, "audio", "hello1.wav");
+
+            var url = APIurl + "tour/" + tourId +"/step/" + stepId +"/audio";
+            HttpClient httpClient = new HttpClient();
+            var response = await httpClient.PostAsync(url, form).ConfigureAwait(false);
+
+            response.EnsureSuccessStatusCode();
+            httpClient.Dispose();
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<byte[]> GetAudio(string tourId, string stepId)
+        {
+            using (var client = new HttpClient())
+            {
+                //change url
+                //var url = "http://proyecto-final-navegador-web.herokuapp.com/api/tour/5f18c69cba42a71d61403755/step/5f18c69cba42a71d61403752/audio";
+                
+                var url = APIurl + "tour/" + tourId + "/step/" + stepId + "/audio";
+                var response = await client.GetAsync(url).ConfigureAwait(false);
+                var filename = "C:/Users/Francisco Ghersi/Documents/T001P001A20202906000002.wav";
+
+                var a = await response.Content.ReadAsByteArrayAsync();
+                System.IO.File.WriteAllBytes(filename, a);
+
+                response.EnsureSuccessStatusCode();
+                string responseBody = await response.Content.ReadAsStringAsync();
+                return null;
+
             }
         }
     }

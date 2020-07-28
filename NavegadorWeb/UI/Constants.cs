@@ -40,7 +40,7 @@ namespace NavegadorWeb.UI
 
         public const string ContentPanelBackground = "#FFFFFF";
 
-
+        public static string audioPath = @"c:\Asistime";
         private static string path = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "/Images/";
         public static string NavBackImage = path + "NavBackImage.jpg";
         public static string NavRefreshImage = path + "NavRefreshImage.jpg";
