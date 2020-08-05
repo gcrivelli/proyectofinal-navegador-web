@@ -12,7 +12,7 @@ namespace NavegadorWeb
         [STAThread]
         static void Main()
         {
-            //if (Environment.OSVersion.Version.Major = 6)
+            if (Environment.OSVersion.Version.Major == 6)
                 SetProcessDPIAware();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
