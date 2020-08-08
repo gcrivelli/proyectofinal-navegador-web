@@ -1,7 +1,7 @@
 ﻿using NavegadorWeb.Models;
+using NavegadorWeb.UI;
 using Newtonsoft.Json;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -79,24 +79,18 @@ namespace NavegadorWeb.Controller
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<byte[]> GetAudio(string tourId, string stepId)
+        public async Task<bool> GetAudio(string tourId, string stepId)
         {
             using (var client = new HttpClient())
-            {
-                //change url
-                //var url = "http://proyecto-final-navegador-web.herokuapp.com/api/tour/5f18c69cba42a71d61403755/step/5f18c69cba42a71d61403752/audio";
-                
+            {                
                 var url = APIurl + "tour/" + tourId + "/step/" + stepId + "/audio";
                 var response = await client.GetAsync(url).ConfigureAwait(false);
-                var filename = "C:/Users/Francisco Ghersi/Documents/T001P001A20202906000002.wav";
+                var filename = Constants.audioPath + "/Audio " + tourId + stepId;
 
-                var a = await response.Content.ReadAsByteArrayAsync();
-                System.IO.File.WriteAllBytes(filename, a);
+                var responseBody = await response.Content.ReadAsByteArrayAsync();
+                System.IO.File.WriteAllBytes(filename, responseBody);
 
-                response.EnsureSuccessStatusCode();
-                string responseBody = await response.Content.ReadAsStringAsync();
-                return null;
-
+                return response.IsSuccessStatusCode;
             }
         }
     }

@@ -95,18 +95,18 @@ namespace NavegadorWeb.Responsable
 
             // post de los audios
             var allAudioResponse = true;
-            for (int i = 0; i < countStep; i++)
-            {
-                var audioName = "/Audio " + tour.name + countStep + ".wav";
-                var filename = Constants.audioPath + audioName;
-                if (filename != null)
-                {
-                    var audioContent = new ByteArrayContent(System.IO.File.ReadAllBytes(filename));
-                    audioContent.Headers.ContentType = MediaTypeHeaderValue.Parse("audio/wav");
+            //for (int i = 0; i < countStep; i++)
+            //{
+            //    var audioName = "/Audio " + tour.name + countStep + ".wav";
+            //    var filename = Constants.audioPath + audioName;
+            //    if (File.Exists(filename))
+            //    {
+            //        var audioContent = new ByteArrayContent(System.IO.File.ReadAllBytes(filename));
+            //        audioContent.Headers.ContentType = MediaTypeHeaderValue.Parse("audio/wav");
 
-                    allAudioResponse = allAudioResponse && tourController.PostAudio(audioContent, tourResponse._id, tourResponse.steps[i]._id).Result;
-                }
-            }
+            //        allAudioResponse = allAudioResponse && tourController.PostAudio(audioContent, tourResponse._id, tourResponse.steps[i]._id).Result;
+            //    }
+            //}
 
             addStepBntt.Visible = true;
             endTutorialBtn.Visible = false;
