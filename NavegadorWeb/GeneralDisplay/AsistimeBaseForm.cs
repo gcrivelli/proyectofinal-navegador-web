@@ -24,7 +24,7 @@ namespace NavegadorWeb.GeneralDisplay
 
         private void AsistimeBaseForm_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void AsistimeBaseForm_FormClosing(object sender, FormClosingEventArgs e)

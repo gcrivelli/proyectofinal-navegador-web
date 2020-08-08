@@ -1,6 +1,6 @@
-﻿namespace NavegadorWeb.GeneralDisplay
+﻿namespace NavegadorWeb.UI
 {
-    partial class AsistimeLogin
+    partial class Form1
     {
         /// <summary>
         /// Required designer variable.
@@ -30,15 +30,18 @@
         {
             this.SuspendLayout();
             // 
-            // AsistimeLogin
+            // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "AsistimeLogin";
-            this.Text = "AsistimeLogin";
-            this.Load += new System.EventHandler(this.AsistimeLogin_Load);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AsistimeLogin_MouseDown);
+            this.Name = "Form1";
+            this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.ResizeBegin += new System.EventHandler(this.Form1_ResizeBegin);
+            this.ResizeEnd += new System.EventHandler(this.Form1_ResizeEnd);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
+            this.Resize += new System.EventHandler(this.Form1_Resize);
             this.ResumeLayout(false);
 
         }

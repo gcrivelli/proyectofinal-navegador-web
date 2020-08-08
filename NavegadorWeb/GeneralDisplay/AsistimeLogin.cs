@@ -3,6 +3,7 @@ using NavegadorWeb.Responsable;
 using NavegadorWeb.UI;
 using System;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace NavegadorWeb.GeneralDisplay
@@ -113,7 +114,29 @@ namespace NavegadorWeb.GeneralDisplay
                 NavWebResponsable mod = new NavWebResponsable();
                 mod.Show();
             }
+            else if (userTextBox.TextName == "prueba")
+            {
+                Form1 mod = new Form1();
+                mod.Show();
+            }
 
+        }
+
+        private void AsistimeLogin_Load(object sender, EventArgs e)
+        {
+            //this.Opacity = 0.8;
+        }
+
+        /*[DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);*/
+
+        private void AsistimeLogin_MouseDown(object sender, MouseEventArgs e)
+        {
+            /*ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);*/
         }
     }
 }

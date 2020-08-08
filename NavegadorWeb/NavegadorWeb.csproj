@@ -247,6 +247,15 @@
     <Compile Include="UI\AsistimeMenuContent.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UI\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\OpaquePanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="Adult\DinamicCards.resx">
       <DependentUpon>DinamicCards.cs</DependentUpon>
     </EmbeddedResource>
@@ -258,6 +267,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GeneralDisplay\AsistimeBaseForm.resx">
       <DependentUpon>AsistimeBaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GeneralDisplay\AsistimeLogin.resx">
+      <DependentUpon>AsistimeLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GeneralDisplay\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -295,6 +307,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GeneralDisplay\NavigatorForm.resx">
       <DependentUpon>NavigatorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="NavegadorWeb_TemporaryKey.pfx" />
