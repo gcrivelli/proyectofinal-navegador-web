@@ -3,7 +3,6 @@ using NavegadorWeb.Responsable;
 using NavegadorWeb.UI;
 using System;
 using System.Drawing;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace NavegadorWeb.GeneralDisplay
@@ -31,7 +30,11 @@ namespace NavegadorWeb.GeneralDisplay
             this.Width = 700;
             this.Height = 800;
 
-            
+            AsistimeRoundButton exitButton = new AsistimeRoundButton(48, 48, Constants.CloseImage, Constants.CloseImage, Constants.CloseClickedImage) { Parent = this.Parent };
+            exitButton.Location = new Point(this.Width - 60, 10);
+            exitButton.Click += new EventHandler(Exit);
+            this.Controls.Add(exitButton);
+
 
             Panel panel = new Panel();
             panel.BackColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour);
@@ -39,13 +42,15 @@ namespace NavegadorWeb.GeneralDisplay
             panel.Size = new Size(800, 200);
             this.Controls.Add(panel);
 
-            /*asistimeLabel = new Label()
+            asistimeLabel = new Label()
             {
                 Text = "Asistime",
-                Font = Constants.LogoLabelFont
+                Font = Constants.LogoLabelFont,
+                ForeColor = Color.White
             };
             this.Controls.Add(asistimeLabel);
-            asistimeLabel.BringToFront();*/
+            panel.Controls.Add(asistimeLabel);
+            asistimeLabel.BringToFront();
 
             Label userLabel = new Label()
             {
@@ -88,14 +93,12 @@ namespace NavegadorWeb.GeneralDisplay
             passwrdLabel.Location = new Point(passwrdTextBox.Location.X, passwrdTextBox.Location.Y - spaceBeforeTextBox);
 
             loginButton = new AsistimeActionButton();
-
             loginButton.Click += new EventHandler(LogUser);
-            //loginButton.IdleFillColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour);
-            //loginButton.ForeColor = ColorTranslator.FromHtml(Constants.AppSecondaryColour);
             loginButton.ButtonText = "Ingresar";
             this.Controls.Add(loginButton);
 
             registerButton = new AsistimeActionButton();
+            registerButton.Click += new EventHandler(RegisterUser);
             registerButton.ButtonText = "Registrarse";
             this.Controls.Add(registerButton);
             
@@ -119,6 +122,19 @@ namespace NavegadorWeb.GeneralDisplay
                 mod.Show();
             }
 
+        }
+
+        protected void RegisterUser(object sender, EventArgs e)
+        {
+            AsistimeRegister registerForm = new AsistimeRegister();
+            registerForm.previousForm = this;
+            this.Hide();
+            registerForm.Show();
+        }
+
+        protected void Exit(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
 
         private void AsistimeLogin_Load(object sender, EventArgs e)

@@ -218,6 +218,9 @@
     <Compile Include="UI\AsistimeMenuPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="GeneralDisplay\AsistimeRegister.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\AsistimeRoundButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -306,6 +309,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GeneralDisplay\NavigatorForm.resx">
       <DependentUpon>NavigatorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GeneralDisplay\AsistimeRegister.resx">
+      <DependentUpon>AsistimeRegister.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
