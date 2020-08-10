@@ -5,7 +5,6 @@ using NavegadorWeb.Responsable;
 using NavegadorWeb.UI;
 using System;
 using System.Drawing;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace NavegadorWeb.GeneralDisplay
@@ -15,6 +14,16 @@ namespace NavegadorWeb.GeneralDisplay
         private AsistimeSearchBox userTextBox;
         private AsistimeSearchBox passwrdTextBox;
 
+        private AsistimeActionButton loginButton;
+        private AsistimeActionButton registerButton;
+
+        private Label asistimeLabel;
+
+        private int initControlsHeight = 300;
+        private int spaceBetweenTextBoxes = 150;
+        private int spaceBeforeTextBox = 30;
+        private int spaceBetweeActionButtons = 100;
+
         public AsistimeLogin()
         {
             InitializeComponent();
@@ -23,10 +32,11 @@ namespace NavegadorWeb.GeneralDisplay
             this.Width = 700;
             this.Height = 800;
 
-            int initControlsHeight = 300;
-            int spaceBetweenTextBoxes = 150;
-            int spaceBeforeTextBox = 30;
-            int spaceBetweeActionButtons = 100;
+            AsistimeRoundButton exitButton = new AsistimeRoundButton(48, 48, Constants.CloseImage, Constants.CloseImage, Constants.CloseClickedImage) { Parent = this.Parent };
+            exitButton.Location = new Point(this.Width - 60, 10);
+            exitButton.Click += new EventHandler(Exit);
+            this.Controls.Add(exitButton);
+
 
             Panel panel = new Panel();
             panel.BackColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour);
@@ -34,17 +44,15 @@ namespace NavegadorWeb.GeneralDisplay
             panel.Size = new Size(800, 200);
             this.Controls.Add(panel);
 
-            /*Label asistimeLabel = new Label()
+            asistimeLabel = new Label()
             {
                 Text = "Asistime",
-                Font = Constants.LogoLabelFont
+                Font = Constants.LogoLabelFont,
+                ForeColor = Color.White
             };
-            asistimeLabel.BackColor = Color.Transparent;
-            asistimeLabel.Image = null;
-            asistimeLabel.ForeColor = Color.White;
-            asistimeLabel.Location = new Point(this.Width / 2 - asistimeLabel.Width / 2, 50);
             this.Controls.Add(asistimeLabel);
-            asistimeLabel.BringToFront();*/
+            panel.Controls.Add(asistimeLabel);
+            asistimeLabel.BringToFront();
 
             Label userLabel = new Label()
             {
@@ -86,21 +94,15 @@ namespace NavegadorWeb.GeneralDisplay
             passwrdTextBox.Location = new Point(this.Width / 2 - passwrdTextBox.Width / 2, userTextBox.Location.Y + spaceBetweenTextBoxes);
             passwrdLabel.Location = new Point(passwrdTextBox.Location.X, passwrdTextBox.Location.Y - spaceBeforeTextBox);
 
-            AsistimeActionButton loginButton = new AsistimeActionButton();
-
+            loginButton = new AsistimeActionButton();
             loginButton.Click += new EventHandler(LogUser);
-            //loginButton.IdleFillColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour);
-            //loginButton.ForeColor = ColorTranslator.FromHtml(Constants.AppSecondaryColour);
             loginButton.ButtonText = "Ingresar";
             this.Controls.Add(loginButton);
-            loginButton.Width = 200;
-            loginButton.Location = new Point(this.Width / 2 - loginButton.Width / 2 + 15, passwrdTextBox.Location.Y + spaceBetweeActionButtons);
 
-            AsistimeActionButton registerButton = new AsistimeActionButton();
+            registerButton = new AsistimeActionButton();
+            registerButton.Click += new EventHandler(RegisterUser);
             registerButton.ButtonText = "Registrarse";
             this.Controls.Add(registerButton);
-            registerButton.Width = 200;
-            registerButton.Location = new Point(this.Width / 2 - registerButton.Width / 2, loginButton.Location.Y + 80);
             
         }
 
@@ -156,11 +158,52 @@ namespace NavegadorWeb.GeneralDisplay
             }
         }
 
-        private void AsistimeLogin_Load(object sender, EventArgs e)
+        protected void RegisterUser(object sender, EventArgs e)
         {
-            //this.Opacity = 0.8;
+            AsistimeRegister registerForm = new AsistimeRegister();
+            registerForm.previousForm = this;
+            this.Hide();
+            registerForm.Show();
         }
 
+        protected void Exit(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void AsistimeLogin_Load(object sender, EventArgs e)
+        {
+            int loginButtonWidth;
+            using (Graphics cg = this.CreateGraphics())
+            {
+                SizeF size = cg.MeasureString(loginButton.ButtonText, loginButton.Font);
+                size.Width += 40;
+                loginButtonWidth = (int)size.Width;
+            }
+            loginButton.Location = new Point(this.Width / 2 - loginButtonWidth / 2, passwrdTextBox.Location.Y + spaceBetweeActionButtons);
+
+            int registerButtonWidth;
+            using (Graphics cg = this.CreateGraphics())
+            {
+                SizeF size = cg.MeasureString(registerButton.ButtonText, registerButton.Font);
+                size.Width += 40;
+                registerButtonWidth = (int)size.Width;
+            }
+            registerButton.Location = new Point(this.Width / 2 - registerButtonWidth / 2, loginButton.Location.Y + 80);
+
+            /*asistimeLabel.BackColor = Color.Transparent;
+            asistimeLabel.Image = null;
+            asistimeLabel.ForeColor = Color.White;
+            asistimeLabel.Location = new Point(this.Width / 2 - asistimeLabel.Width / 2, 50);*/
+        }
+
+
+
+
+
+
+
+        //NO BORRAR ESTO
         /*[DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
 
