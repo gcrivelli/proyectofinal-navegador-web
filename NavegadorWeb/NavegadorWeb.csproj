@@ -149,6 +149,7 @@
       <DependentUpon>TestStyles.cs</DependentUpon>
     </Compile>
     <Compile Include="Controller\TourController.cs" />
+    <Compile Include="Controller\UserController.cs" />
     <Compile Include="GeneralDisplay\AsistimeBaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,6 +176,7 @@
     </Compile>
     <Compile Include="Models\Element.model.cs" />
     <Compile Include="Models\Step.model.cs" />
+    <Compile Include="Models\Token.model.cs" />
     <Compile Include="Models\Tour.model.cs" />
     <Compile Include="Models\User.model.cs" />
     <Compile Include="NavigatorForm2.cs">

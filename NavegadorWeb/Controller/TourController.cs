@@ -9,7 +9,7 @@ namespace NavegadorWeb.Controller
 {
     public class TourController
     {
-        private static string APIurl = "https://proyecto-final-navegador-web.herokuapp.com/api/";
+        private static string APIurl = Constants.ApiUrl;
 
         /// <summary>
         /// Get a specific tour 
