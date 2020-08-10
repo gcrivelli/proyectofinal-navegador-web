@@ -1,6 +1,7 @@
 ﻿using NavegadorWeb.Models;
 using NavegadorWeb.UI;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,7 +33,7 @@ namespace NavegadorWeb.Controller
         /// </summary>
         /// <param name="id"> id of the user to be search </param>
         /// <returns></returns>
-        public async Task<User> GetAllToursAsync(string id)
+        public async Task<List<Tour>> GetAllToursAsync(string id)
         {
             using (var client = new HttpClient())
             {
@@ -40,7 +41,7 @@ namespace NavegadorWeb.Controller
                 var response = await client.GetAsync(APIurl + "user/"+ id +"/tour").ConfigureAwait(false);
                 response.EnsureSuccessStatusCode();
                 string responseBody = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<User>(responseBody);
+                return JsonConvert.DeserializeObject<List<Tour>>(responseBody);
             }
         }
 
