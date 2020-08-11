@@ -29,6 +29,7 @@ namespace NavegadorWeb.GeneralDisplay
             StartPosition = FormStartPosition.CenterScreen;
             this.Width = 700;
             this.Height = 800;
+            this.AllowTransparency = true;
 
             AsistimeRoundButton exitButton = new AsistimeRoundButton(48, 48, Constants.CloseImage, Constants.CloseImage, Constants.CloseClickedImage) { Parent = this.Parent };
             exitButton.Location = new Point(this.Width - 60, 10);
@@ -134,7 +135,10 @@ namespace NavegadorWeb.GeneralDisplay
 
         protected void Exit(object sender, EventArgs e)
         {
-            Application.Exit();
+            //Application.Exit();
+            AsistimeTourCreation sarasa = new AsistimeTourCreation();
+            this.Hide();
+            sarasa.Show();
         }
 
         private void AsistimeLogin_Load(object sender, EventArgs e)
