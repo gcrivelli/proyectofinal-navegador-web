@@ -36,14 +36,14 @@ namespace NavegadorWeb.Adult
 
             // GET AUDIO 
 
-            //var audioResult = true;
-            //createDirectory();
-            //for(int i = 0; i < tour.steps.Count; i++)
-            //{
-            //    if(tour.steps[i].url != null)
-            //        audioResult = audioResult && tourController.GetAudio(tour._id, tour.steps[i]._id).Result;
-            //}
-
+            var audioResult = true;
+            createDirectory();
+            for (int i = 0; i < tour.steps.Count; i++)
+            {
+                if (tour.steps[i].hasAudio)
+                    audioResult = audioResult && tourController.GetAudio(tour._id, tour.steps[i]._id).Result;
+            }
+            
             tourBar.TourInititated(tour);
             tourLoad = tour;
             countLoad = 0;
@@ -56,11 +56,16 @@ namespace NavegadorWeb.Adult
             var i = 1;
             if (step != null)
             {
+                var audioPath = "";
+                if (step.hasAudio)
+                    audioPath = Constants.audioPath + "/Audio " + tour._id + step._id + ".wav";
+
                 if (positionStep == 0)
                 {
                     webBrowser.Navigate(step.url);
                     actualURL = step.url;
                     MessageBox.Show("Comienza la reproducción del Tutorial " + tour.name, "Inicio de Tour", MessageBoxButton.OK, MessageBoxImage.Information);
+                    playAudio(audioPath);
                 }
 
 
@@ -99,6 +104,7 @@ namespace NavegadorWeb.Adult
                     head.AppendChild(script);
 
                     doc.InvokeScript("init" + step.order);
+                    playAudio(audioPath);
                 }
                 else
                 { 
@@ -198,6 +204,14 @@ namespace NavegadorWeb.Adult
             catch
             {
                 MessageBox.Show("Error al crear el directorio para los audios", "Error");
+            }
+        }
+        private void playAudio(string audioPath)
+        {
+            if (File.Exists(audioPath))
+            {
+                System.Media.SoundPlayer player = new System.Media.SoundPlayer(audioPath);
+                player.Play();
             }
         }
 

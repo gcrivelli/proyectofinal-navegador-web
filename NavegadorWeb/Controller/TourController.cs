@@ -86,7 +86,7 @@ namespace NavegadorWeb.Controller
             {                
                 var url = APIurl + "tour/" + tourId + "/step/" + stepId + "/audio";
                 var response = await client.GetAsync(url).ConfigureAwait(false);
-                var filename = Constants.audioPath + "/Audio " + tourId + stepId;
+                var filename = Constants.audioPath + "/Audio " + tourId + stepId+ ".wav";
 
                 var responseBody = await response.Content.ReadAsByteArrayAsync();
                 System.IO.File.WriteAllBytes(filename, responseBody);
