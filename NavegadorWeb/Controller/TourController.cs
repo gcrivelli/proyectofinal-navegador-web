@@ -1,5 +1,7 @@
 ﻿using NavegadorWeb.Models;
+using NavegadorWeb.UI;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +10,7 @@ namespace NavegadorWeb.Controller
 {
     public class TourController
     {
-        private static string APIurl = "https://proyecto-final-navegador-web.herokuapp.com/api/";
+        private static string APIurl = Constants.ApiUrl;
 
         /// <summary>
         /// Get a specific tour 
@@ -31,7 +33,7 @@ namespace NavegadorWeb.Controller
         /// </summary>
         /// <param name="id"> id of the user to be search </param>
         /// <returns></returns>
-        public async Task<User> GetAllToursAsync(string id)
+        public async Task<List<Tour>> GetAllToursAsync(string id)
         {
             using (var client = new HttpClient())
             {
@@ -39,7 +41,7 @@ namespace NavegadorWeb.Controller
                 var response = await client.GetAsync(APIurl + "user/"+ id +"/tour").ConfigureAwait(false);
                 response.EnsureSuccessStatusCode();
                 string responseBody = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<User>(responseBody);
+                return JsonConvert.DeserializeObject<List<Tour>>(responseBody);
             }
         }
 
@@ -48,7 +50,7 @@ namespace NavegadorWeb.Controller
         /// </summary>
         /// <param name="tour"> tour to be saved </param>
         /// <returns></returns>
-        public async Task<string> PostAsync(Tour tour)
+        public async Task<Tour> PostAsync(Tour tour)
         {
             string JSONresult = JsonConvert.SerializeObject(tour);
 
@@ -59,7 +61,37 @@ namespace NavegadorWeb.Controller
                      new StringContent(JSONresult, Encoding.UTF8, "application/json")).ConfigureAwait(false);
 
                 response.EnsureSuccessStatusCode();
-                return response.StatusCode.ToString();
+                string responseBody = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<Tour>(responseBody);
+            }
+        }
+
+        public async Task<bool> PostAudio(ByteArrayContent file_bytes, string tourId, string stepId)
+        {
+            MultipartFormDataContent form = new MultipartFormDataContent();
+            form.Add(file_bytes, "audio", "hello1.wav");
+
+            var url = APIurl + "tour/" + tourId +"/step/" + stepId +"/audio";
+            HttpClient httpClient = new HttpClient();
+            var response = await httpClient.PostAsync(url, form).ConfigureAwait(false);
+
+            response.EnsureSuccessStatusCode();
+            httpClient.Dispose();
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> GetAudio(string tourId, string stepId)
+        {
+            using (var client = new HttpClient())
+            {                
+                var url = APIurl + "tour/" + tourId + "/step/" + stepId + "/audio";
+                var response = await client.GetAsync(url).ConfigureAwait(false);
+                var filename = Constants.audioPath + "/Audio " + tourId + stepId+ ".wav";
+
+                var responseBody = await response.Content.ReadAsByteArrayAsync();
+                System.IO.File.WriteAllBytes(filename, responseBody);
+
+                return response.IsSuccessStatusCode;
             }
         }
     }

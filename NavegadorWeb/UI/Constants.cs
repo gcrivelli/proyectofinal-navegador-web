@@ -40,7 +40,8 @@ namespace NavegadorWeb.UI
 
         public const string ContentPanelBackground = "#FFFFFF";
 
-
+        public static string audioPath = @"c:\Asistime";
+        public static string ApiUrl = "https://proyecto-final-navegador-web.herokuapp.com/api/";
         private static string path = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "/Images/";
         public static string NavBackImage = path + "NavBackImage.jpg";
         public static string NavRefreshImage = path + "NavRefreshImage.jpg";

@@ -3,6 +3,7 @@ var modificarTexto=false;
 var dibujandoDiv=false;
 var dibujandoDiv2=false;
 var width=200;
+var size=20;
 var line=1;
 var inclinacion=0;
 var color="000000";
@@ -138,9 +139,9 @@ function initTexto() {
   width=500;
   canvas.dataset.tipo=3;
   canvas.dataset.text=text;
-  context.font = "20px Arial";
+  context.font = size+"px Arial";
+  context.fillStyle = "#"+color;
   context.fillText(text, width/2, width/2);
-  context.strokeStyle = "#"+color;
   context.lineWidth = line;
   context.stroke();
   document.body.focus();
@@ -240,6 +241,20 @@ function agrandarLine() {
   }
 }
 
+function achicarLetra() {
+  if (desplazandoCanvas==true && size>1) {
+    size-=1;
+    redibujarCanvas();
+  }
+}
+
+function agrandarLetra() {
+  if (desplazandoCanvas==true) {
+    size+=1;
+    redibujarCanvas();
+  }
+}
+
 function achicarOpacity() {
   if (dibujandoDiv==true && opacity>0.1) {
     opacity-=0.1;
@@ -275,6 +290,8 @@ function redibujarCanvas() {
 }
 
 function setColor(code) {
-  color=code;
-  redibujarCanvas();
+  if (desplazandoCanvas==true) {
+    color=code;
+    redibujarCanvas();    
+  }
 }

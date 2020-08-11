@@ -1,6 +1,7 @@
 ﻿using NavegadorWeb.GeneralDisplay;
 using NavegadorWeb.Models;
 using NavegadorWeb.UI;
+using System.Collections.Generic;
 
 namespace NavegadorWeb.Adult
 {
@@ -9,7 +10,7 @@ namespace NavegadorWeb.Adult
         private AsistimeCardContainer MyTours;
         private AsistimeCardContainer NewTours;
 
-        public MenuAdult(User user, NavigatorAdult form) : base(user,form)
+        public MenuAdult(List<Tour> tours, NavigatorAdult form) : base(tours, form)
         {
             InitializeComponent();
 
@@ -17,7 +18,7 @@ namespace NavegadorWeb.Adult
             menuPanel.Location = new System.Drawing.Point(0, 0);
             this.Controls.Add(menuPanel);
 
-            MyTours = new AsistimeCardContainer(user.tours, this) { Parent = this };
+            MyTours = new AsistimeCardContainer(tours, this) { Parent = this };
             contentPanel.Controls.Add(MyTours);
 
             NewTours = new AsistimeCardContainer(null, this) { Parent = this };

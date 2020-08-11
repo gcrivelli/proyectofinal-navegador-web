@@ -4,6 +4,9 @@ using System.IO;
 using NavegadorWeb.Models;
 using System.Collections.Generic;
 using NavegadorWeb.Controller;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using NavegadorWeb.UI;
 
 namespace NavegadorWeb.Responsable
 {
@@ -88,7 +91,22 @@ namespace NavegadorWeb.Responsable
             // post del tour
             var tourController = new TourController();
             tour.user_id = "5f0907dd5d988f31d515dc72";
-            var response = tourController.PostAsync(tour).Result;
+            var tourResponse = tourController.PostAsync(tour).Result;
+
+            // post de los audios
+            var allAudioResponse = true;
+            for (int i = 0; i < countStep; i++)
+            {
+                var audioName = "/Audio " + tour.name + countStep + ".wav";
+                var filename = Constants.audioPath + audioName;
+                if (File.Exists(filename))
+                {
+                    var audioContent = new ByteArrayContent(System.IO.File.ReadAllBytes(filename));
+                    audioContent.Headers.ContentType = MediaTypeHeaderValue.Parse("audio/wav");
+
+                    allAudioResponse = allAudioResponse && tourController.PostAudio(audioContent, tourResponse._id, tourResponse.steps[i]._id).Result;
+                }
+            }
 
             addStepBntt.Visible = true;
             endTutorialBtn.Visible = false;
@@ -96,7 +114,8 @@ namespace NavegadorWeb.Responsable
             countTxt.Visible = false;
             createStepView.Close();
             webBrowser.Refresh();
-            if (response.Equals("Created"))
+
+            if (tourResponse._id != null && allAudioResponse)
                 MessageBox.Show("Tutorial Terminado! Se guardaron " + countStep.ToString() + " pasos", "Fin del Tutorial", MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
                 MessageBox.Show("Un error ha ocurrido tratando de conectar al servidor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -118,6 +137,13 @@ namespace NavegadorWeb.Responsable
                 elements = new List<Element>(),
                 url = webBrowser.Url.ToString()
             };
+
+            var audioName = "/Audio " + tour.name + countStep + ".wav";
+            var filename = Constants.audioPath + audioName;
+            if (File.Exists(filename))
+            {
+                step.hasAudio = true;
+            }
 
             tour.steps.Add(step);
         }

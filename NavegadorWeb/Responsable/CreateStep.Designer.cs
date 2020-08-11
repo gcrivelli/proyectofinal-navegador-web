@@ -50,6 +50,8 @@
             this.btnPlay = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
@@ -139,7 +141,7 @@
             // 
             // colorBtn
             // 
-            this.colorBtn.Location = new System.Drawing.Point(16, 381);
+            this.colorBtn.Location = new System.Drawing.Point(14, 432);
             this.colorBtn.Margin = new System.Windows.Forms.Padding(4);
             this.colorBtn.Name = "colorBtn";
             this.colorBtn.Size = new System.Drawing.Size(163, 28);
@@ -152,7 +154,7 @@
             this.textBox3.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox3.ForeColor = System.Drawing.Color.AliceBlue;
-            this.textBox3.Location = new System.Drawing.Point(2, 431);
+            this.textBox3.Location = new System.Drawing.Point(0, 482);
             this.textBox3.Margin = new System.Windows.Forms.Padding(4);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
@@ -164,7 +166,7 @@
             // 
             // btnRecord
             // 
-            this.btnRecord.Location = new System.Drawing.Point(16, 467);
+            this.btnRecord.Location = new System.Drawing.Point(14, 518);
             this.btnRecord.Margin = new System.Windows.Forms.Padding(4);
             this.btnRecord.Name = "btnRecord";
             this.btnRecord.Size = new System.Drawing.Size(163, 28);
@@ -175,7 +177,7 @@
             // 
             // saveBtn
             // 
-            this.saveBtn.Location = new System.Drawing.Point(18, 624);
+            this.saveBtn.Location = new System.Drawing.Point(16, 675);
             this.saveBtn.Margin = new System.Windows.Forms.Padding(4);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(163, 28);
@@ -189,7 +191,7 @@
             this.textBox4.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox4.ForeColor = System.Drawing.Color.AliceBlue;
-            this.textBox4.Location = new System.Drawing.Point(2, 585);
+            this.textBox4.Location = new System.Drawing.Point(0, 636);
             this.textBox4.Margin = new System.Windows.Forms.Padding(4);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
@@ -201,7 +203,7 @@
             // 
             // cancelBtn
             // 
-            this.cancelBtn.Location = new System.Drawing.Point(18, 660);
+            this.cancelBtn.Location = new System.Drawing.Point(16, 711);
             this.cancelBtn.Margin = new System.Windows.Forms.Padding(4);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(163, 28);
@@ -256,7 +258,7 @@
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(18, 503);
+            this.btnStop.Location = new System.Drawing.Point(16, 554);
             this.btnStop.Margin = new System.Windows.Forms.Padding(4);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(163, 28);
@@ -267,7 +269,7 @@
             // 
             // btnPlay
             // 
-            this.btnPlay.Location = new System.Drawing.Point(18, 539);
+            this.btnPlay.Location = new System.Drawing.Point(16, 590);
             this.btnPlay.Margin = new System.Windows.Forms.Padding(4);
             this.btnPlay.Name = "btnPlay";
             this.btnPlay.Size = new System.Drawing.Size(163, 28);
@@ -298,12 +300,36 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(100, 377);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(78, 28);
+            this.button3.TabIndex = 25;
+            this.button3.Text = "Letra +";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(17, 377);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(78, 28);
+            this.button4.TabIndex = 24;
+            this.button4.Text = "Letra -";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // CreateStep
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(195, 711);
+            this.ClientSize = new System.Drawing.Size(195, 795);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnPlay);
@@ -359,5 +385,7 @@
         private System.Windows.Forms.Button btnPlay;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }

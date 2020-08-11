@@ -1,21 +1,22 @@
 ﻿using NavegadorWeb.Models;
 using NavegadorWeb.UI;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace NavegadorWeb.GeneralDisplay
 {
     public partial class MenuForm : AsistimeBaseForm
     {
-        protected User user;
+        protected List<Tour> tours;
         protected NavigatorForm previousForm;
         protected AsistimeMenuPanel menuPanel;
         protected AsistimeContentPanel contentPanel;
         protected Panel profile;
 
-        public MenuForm(User user, NavigatorForm form)
+        public MenuForm(List<Tour> tours, NavigatorForm form)
         {
             InitializeComponent();
-            this.user = user;
+            this.tours = tours;
             this.previousForm = form;
 
             WindowState = FormWindowState.Maximized;

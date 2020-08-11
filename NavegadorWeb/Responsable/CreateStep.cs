@@ -3,8 +3,9 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Media;
 using NavegadorWeb.Models;
-using System.Text.RegularExpressions;
 using MessageBox = System.Windows.MessageBox;
+using System.IO;
+using NavegadorWeb.UI;
 
 namespace NavegadorWeb.Responsable
 {
@@ -106,7 +107,7 @@ namespace NavegadorWeb.Responsable
             for (int i = 1; i < 10; i++)
             {
                 HtmlElement canvas = doc.GetElementById("canvas" + i);
-                if (canvas!=null)
+                if (canvas != null)
                 {
                     Int16 x = 0;
                     Int16 y = 0;
@@ -134,7 +135,7 @@ namespace NavegadorWeb.Responsable
 
                     addElementToStep(x, y, height, width, color, type, weight, inclination, text);
                 }
-            }            
+            }
 
             navWebResponsable.webBrowser.Refresh();
             navWebResponsable.addStepBtn.Enabled = true;
@@ -152,23 +153,15 @@ namespace NavegadorWeb.Responsable
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            SaveFileDialog DialogoGuardar = new SaveFileDialog();
-            DialogoGuardar.AddExtension = true;
-            DialogoGuardar.FileName = "Audio"+ navWebResponsable.countStep + ".wav";
-            DialogoGuardar.Filter = "Sonido (*.wav)|*.wav";
-            DialogoGuardar.ShowDialog();
-            if (!string.IsNullOrEmpty(DialogoGuardar.FileName))
-            {
-                UrlReproductor = DialogoGuardar.FileName;
+            createDirectory();
 
-                Grabar("save recsound " + DialogoGuardar.FileName, "", 0, 0);
-                Grabar("close recsound", "", 0, 0);
-                MessageBox.Show("Archivo de audio guardado en: " + DialogoGuardar.FileName);
-            }
-            else
-            {
-                MessageBox.Show("No se encontró ningún archivo de audio");
-            }
+            var audioName = "/Audio "+ navWebResponsable.tour.name + navWebResponsable.countStep + ".wav";
+            UrlReproductor = Constants.audioPath + audioName;
+
+            Grabar("save recsound " + UrlReproductor, "", 0, 0);
+            Grabar("close recsound", "", 0, 0);
+            MessageBox.Show("Archivo de audio guardado en: " + UrlReproductor);
+
             btnPlay.Enabled = true;
         }
 
@@ -210,6 +203,30 @@ namespace NavegadorWeb.Responsable
         private void button2_Click(object sender, EventArgs e)
         {
             doc.InvokeScript("achicarAngulo");
+        }
+
+        private void createDirectory()
+        {
+            var path = Constants.audioPath;
+            try
+            {
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+            }
+            catch
+            {
+                MessageBox.Show("Error al crear el directorio para los audios", "Error");
+            } 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            doc.InvokeScript("achicarLetra");
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            doc.InvokeScript("agrandarLetra");
         }
     }
 }

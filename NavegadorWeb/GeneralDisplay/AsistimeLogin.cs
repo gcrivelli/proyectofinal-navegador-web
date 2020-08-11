@@ -1,4 +1,6 @@
 ﻿using NavegadorWeb.Adult;
+using NavegadorWeb.Controller;
+using NavegadorWeb.Models;
 using NavegadorWeb.Responsable;
 using NavegadorWeb.UI;
 using System;
@@ -107,6 +109,39 @@ namespace NavegadorWeb.GeneralDisplay
 
         protected void LogUser(object sender, EventArgs e)
         {
+            //nuevo login
+            //if (userTextBox.TextName != string.Empty)
+            //{
+            //    if (passwrdTextBox.TextName != string.Empty)
+            //    {
+            //        var userController = new UserController();
+            //        var user = new User();
+            //        user.name = userTextBox.TextName;
+            //        user.password = passwrdTextBox.TextName;
+
+            //        var token = userController.LoginAsync(user).Result;
+            //        if (token.access_token != null)
+            //        {
+            //            if (token.token_type == "adulto")
+            //            {
+            //                NavigatorAdult mod = new NavigatorAdult();
+            //                mod.Show();
+            //            }
+            //            else if (token.token_type == "responsable")
+            //            {
+            //                NavWebResponsable mod = new NavWebResponsable();
+            //                mod.Show();
+            //            }
+            //        }
+            //        else
+            //            MessageBox.Show("Usuario o contraseña incorrecta.", "Error Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            //    }
+            //}
+            //else
+            //    MessageBox.Show("Todos los campos deben tenes un valor.", "Error Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            //Viejo login
             if (userTextBox.TextName == "adulto")
             {
                 NavigatorAdult mod = new NavigatorAdult();
@@ -122,7 +157,6 @@ namespace NavegadorWeb.GeneralDisplay
                 Form1 mod = new Form1();
                 mod.Show();
             }
-
         }
 
         protected void RegisterUser(object sender, EventArgs e)

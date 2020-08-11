@@ -5,15 +5,21 @@ using System;
 using System.Windows.Forms;
 using MessageBox = System.Windows.MessageBox;
 using System.Windows;
+using System.IO;
 
 namespace NavegadorWeb.Adult
 {
     public partial class NavigatorAdult : NavigatorForm
     {
         AsistimeTourBar tourBar;
+        private Tour tourLoad;
+        private int countLoad;
+        private string actualURL;
+
         public NavigatorAdult()
         {
             InitializeComponent();
+            webBrowser.Navigated += webBrowser_Navigated;
         }
 
         public void PlayTour(Tour tour)
@@ -27,10 +33,21 @@ namespace NavegadorWeb.Adult
 
             var tourController = new TourController();
             tour = tourController.GetTourAsync(tour._id).Result;
-            MessageBox.Show("Comienza la reproducción del Tutorial " + tour.name, "Inicio de Tour", MessageBoxButton.OK, MessageBoxImage.Information);
 
+            // GET AUDIO 
+
+            var audioResult = true;
+            createDirectory();
+            for (int i = 0; i < tour.steps.Count; i++)
+            {
+                if (tour.steps[i].hasAudio)
+                    audioResult = audioResult && tourController.GetAudio(tour._id, tour.steps[i]._id).Result;
+            }
+            
             tourBar.TourInititated(tour);
-            playStep(tour, 0);
+            tourLoad = tour;
+            countLoad = 0;
+            playStep(tour, countLoad);
         }
 
         public void playStep(Tour tour, int positionStep)
@@ -39,41 +56,82 @@ namespace NavegadorWeb.Adult
             var i = 1;
             if (step != null)
             {
-                if (positionStep ==0)
-                    webBrowser.Navigate(step.url);
+                var audioPath = "";
+                if (step.hasAudio)
+                    audioPath = Constants.audioPath + "/Audio " + tour._id + step._id + ".wav";
 
-                MessageBox.Show("Paso N° " + (step.order + 1), "Informacion", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                HtmlDocument doc = webBrowser.Document;
-                HtmlElement head = doc.GetElementsByTagName("head")[0];
-                HtmlElement script = doc.CreateElement("script");
-
-                script.SetAttribute("type", "text/javascript");
-                script.InnerText = "function ocultar(id) {";
-                script.InnerText += "var element = document.getElementById(id);";
-                script.InnerText += "element.style.display = 'none';";
-                script.InnerText += "setTimeout(function(){ mostrar(id); }, 2000);";
-                script.InnerText += "}";
-                script.InnerText += "function mostrar(id) {";
-                script.InnerText += "var element = document.getElementById(id);";
-                script.InnerText += "element.style.display = 'block';";
-                script.InnerText += "}";
-                script.InnerText += "function init" + step.order + "() {";
-                script.InnerText += "var elements = document.getElementsByClassName('asistime');";
-                script.InnerText += "while(elements.length > 0) {";
-                script.InnerText += "elements[0].parentNode.removeChild(elements[0]);";
-                script.InnerText += "}";
-
-                foreach (Element e in step.elements)
+                if (positionStep == 0)
                 {
-                    script.InnerText += initElement(positionStep, i, e.x, e.y, e.width, e.weight, e.type, e.color, e.inclination, e.text);
-                    i++;
+                    webBrowser.Navigate(step.url);
+                    actualURL = step.url;
+                    MessageBox.Show("Comienza la reproducción del Tutorial " + tour.name, "Inicio de Tour", MessageBoxButton.OK, MessageBoxImage.Information);
+                    playAudio(audioPath);
                 }
 
-                script.InnerText += "}";
-                head.AppendChild(script);
 
-                doc.InvokeScript("init" + step.order);
+                if (webBrowser.Url.ToString() == step.url)
+                {
+                    if (positionStep != 0)
+                        MessageBox.Show("Correcto! proximo paso N° " + (step.order + 1), "Informacion", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    HtmlDocument doc = webBrowser.Document;
+                    HtmlElement head = doc.GetElementsByTagName("head")[0];
+                    HtmlElement script = doc.CreateElement("script");
+
+                    script.SetAttribute("type", "text/javascript");
+                    script.InnerText = "";
+                    script.InnerText += "var id = '';";
+                    script.InnerText += "var habilitado = false;";
+                    script.InnerText += "var x_min = 0;";
+                    script.InnerText += "var x_max = 0;";
+                    script.InnerText += "var y_min = 0;";
+                    script.InnerText += "var y_max = 0;";
+                    script.InnerText += "document.body.style['pointer-events']='none';";
+                    script.InnerText += "document.addEventListener('mousemove',onMouseUpdate, false);";
+                    script.InnerText += "document.addEventListener('mouseenter',onMouseUpdate, false);";
+                    script.InnerText += "function onMouseUpdate(e) {  ";
+                    script.InnerText += "if(habilitado&&(e.pageX<x_min||e.pageX>x_max||e.pageY<y_min||e.pageY>y_max)) {";
+                    script.InnerText += "document.body.style['pointer-events']='none';";
+                    script.InnerText += "}";
+                    script.InnerText += "}";
+                    script.InnerText += "function ocultar(id,x1,x2,y1,y2) {";
+                    script.InnerText += "x_min=parseInt(x1);";
+                    script.InnerText += "x_max=parseInt(x1)+parseInt(x2);";
+                    script.InnerText += "y_min=parseInt(y1);";
+                    script.InnerText += "y_max=parseInt(y1)+parseInt(y2);";
+                    script.InnerText += "habilitado=true;";
+                    script.InnerText += "document.body.style['pointer-events']='auto';";
+                    script.InnerText += "var element = document.getElementById(id);";
+                    script.InnerText += "element.style.display = 'none';";
+                    script.InnerText += "setTimeout(function(){ mostrar(id); }, 2000);";
+                    script.InnerText += "}";
+                    script.InnerText += "function mostrar(id) {";
+                    script.InnerText += "var element = document.getElementById(id);";
+                    script.InnerText += "element.style.display = 'block';";
+                    script.InnerText += "}";
+                    script.InnerText += "function init" + step.order + "() {";
+                    script.InnerText += "var elements = document.getElementsByClassName('asistime');";
+                    script.InnerText += "while(elements.length > 0) {";
+                    script.InnerText += "elements[0].parentNode.removeChild(elements[0]);";
+                    script.InnerText += "}";
+
+                    foreach (Element e in step.elements)
+                    {
+                        script.InnerText += initElement(positionStep, i, e.x, e.y, e.width, e.weight, e.type, e.color, e.inclination, e.text);
+                        i++;
+                    }
+
+                    script.InnerText += "}";
+                    head.AppendChild(script);
+
+                    doc.InvokeScript("init" + step.order);
+                    playAudio(audioPath);
+                }
+                else
+                { 
+                    MessageBox.Show("No entraste donde debias", "Paso equivocado", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                
             }
             else
             {
@@ -90,10 +148,11 @@ namespace NavegadorWeb.Adult
                 js += "canvas" + positionStep + positionElement + ".id='canvas" + positionStep + positionElement + "';";
                 js += "canvas" + positionStep + positionElement + ".style.cssText = 'position:absolute;z-index: 9999;left:" + x + "px;top:" + y + "px;';";
                 js += "canvas" + positionStep + positionElement + ".style.transform = 'rotate(" + inclination + "deg)';";
+                js += "canvas" + positionStep + positionElement + ".style['pointer-events'] = 'auto';";
                 js += "canvas" + positionStep + positionElement + ".width=" + width + ";";
                 js += "canvas" + positionStep + positionElement + ".height=" + width + ";";
                 js += "canvas" + positionStep + positionElement + ".className = 'asistime';"; 
-                js += "canvas" + positionStep + positionElement + ".onmouseover = function() {ocultar('canvas" + positionStep + positionElement + "')};";
+                js += "canvas" + positionStep + positionElement + ".onmouseover = function() {ocultar('canvas" + positionStep + positionElement + "','" + x + "','" + width + "','" + y + "','" + width + "')};";
                 js += "document.body.appendChild(canvas" + positionStep + positionElement + ");";
                 if (type == 1) // cuadrado
                 {
@@ -143,8 +202,8 @@ namespace NavegadorWeb.Adult
         {
             // esta instanciacion deberia ir después del login
             var userController = new TourController();
-            user = userController.GetAllToursAsync("5f0907dd5d988f31d515dc72").Result;
-            MenuAdult menu = new MenuAdult(user, this);
+            var tours = userController.GetAllToursAsync("5f0907dd5d988f31d515dc72").Result;
+            MenuAdult menu = new MenuAdult(tours, this);
 
             this.Hide();
             menu.Show();
@@ -156,5 +215,42 @@ namespace NavegadorWeb.Adult
             asistimeAppBar.Show();
             webBrowser.Refresh();
         }
+        private void createDirectory()
+        {
+            var path = Constants.audioPath;
+            try
+            {
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+            }
+            catch
+            {
+                MessageBox.Show("Error al crear el directorio para los audios", "Error");
+            }
+        }
+        private void playAudio(string audioPath)
+        {
+            if (File.Exists(audioPath))
+            {
+                System.Media.SoundPlayer player = new System.Media.SoundPlayer(audioPath);
+                player.Play();
+            }
+        }
+
+        private void webBrowser_Navigated(object sender, WebBrowserNavigatedEventArgs e)
+        {
+            asistimeAppBar.Navigated(webBrowser.Url.ToString());
+            if (actualURL != webBrowser.Url.ToString())
+            {
+                if (tourLoad != null)
+                {
+                    actualURL = webBrowser.Url.ToString();
+                    countLoad++;
+                    playStep(tourLoad, countLoad);
+                }
+
+            }
+        }
+
     }
 }
