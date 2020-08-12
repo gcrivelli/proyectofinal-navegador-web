@@ -79,7 +79,28 @@ namespace NavegadorWeb.Adult
                     HtmlElement script = doc.CreateElement("script");
 
                     script.SetAttribute("type", "text/javascript");
-                    script.InnerText = "function ocultar(id) {";
+                    script.InnerText = "";
+                    script.InnerText += "var id = '';";
+                    script.InnerText += "var habilitado = false;";
+                    script.InnerText += "var x_min = 0;";
+                    script.InnerText += "var x_max = 0;";
+                    script.InnerText += "var y_min = 0;";
+                    script.InnerText += "var y_max = 0;";
+                    script.InnerText += "document.body.style['pointer-events']='none';";
+                    script.InnerText += "document.addEventListener('mousemove',onMouseUpdate, false);";
+                    script.InnerText += "document.addEventListener('mouseenter',onMouseUpdate, false);";
+                    script.InnerText += "function onMouseUpdate(e) {  ";
+                    script.InnerText += "if(habilitado&&(e.pageX<x_min||e.pageX>x_max||e.pageY<y_min||e.pageY>y_max)) {";
+                    script.InnerText += "document.body.style['pointer-events']='none';";
+                    script.InnerText += "}";
+                    script.InnerText += "}";
+                    script.InnerText += "function ocultar(id,x1,x2,y1,y2) {";
+                    script.InnerText += "x_min=parseInt(x1);";
+                    script.InnerText += "x_max=parseInt(x1)+parseInt(x2);";
+                    script.InnerText += "y_min=parseInt(y1);";
+                    script.InnerText += "y_max=parseInt(y1)+parseInt(y2);";
+                    script.InnerText += "habilitado=true;";
+                    script.InnerText += "document.body.style['pointer-events']='auto';";
                     script.InnerText += "var element = document.getElementById(id);";
                     script.InnerText += "element.style.display = 'none';";
                     script.InnerText += "setTimeout(function(){ mostrar(id); }, 2000);";
@@ -136,10 +157,11 @@ namespace NavegadorWeb.Adult
                 js += "canvas" + positionStep + positionElement + ".id='canvas" + positionStep + positionElement + "';";
                 js += "canvas" + positionStep + positionElement + ".style.cssText = 'position:absolute;z-index: 9999;left:" + x + "px;top:" + y + "px;';";
                 js += "canvas" + positionStep + positionElement + ".style.transform = 'rotate(" + inclination + "deg)';";
+                js += "canvas" + positionStep + positionElement + ".style['pointer-events'] = 'auto';";
                 js += "canvas" + positionStep + positionElement + ".width=" + width + ";";
                 js += "canvas" + positionStep + positionElement + ".height=" + width + ";";
                 js += "canvas" + positionStep + positionElement + ".className = 'asistime';"; 
-                js += "canvas" + positionStep + positionElement + ".onmouseover = function() {ocultar('canvas" + positionStep + positionElement + "')};";
+                js += "canvas" + positionStep + positionElement + ".onmouseover = function() {ocultar('canvas" + positionStep + positionElement + "','" + x + "','" + width + "','" + y + "','" + width + "')};";
                 js += "document.body.appendChild(canvas" + positionStep + positionElement + ");";
                 if (type == 1) // cuadrado
                 {
