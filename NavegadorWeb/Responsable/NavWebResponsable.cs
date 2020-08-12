@@ -97,7 +97,8 @@ namespace NavegadorWeb.Responsable
             var allAudioResponse = true;
             for (int i = 0; i < countStep; i++)
             {
-                var audioName = "/Audio " + tour.name + countStep + ".wav";
+                var nameTourWithoutSpace = tour.name.Replace(" ", "");
+                var audioName = "/Audio" + nameTourWithoutSpace + i + ".wav";
                 var filename = Constants.audioPath + audioName;
                 if (File.Exists(filename))
                 {
@@ -137,13 +138,6 @@ namespace NavegadorWeb.Responsable
                 elements = new List<Element>(),
                 url = webBrowser.Url.ToString()
             };
-
-            var audioName = "/Audio " + tour.name + countStep + ".wav";
-            var filename = Constants.audioPath + audioName;
-            if (File.Exists(filename))
-            {
-                step.hasAudio = true;
-            }
 
             tour.steps.Add(step);
         }

@@ -40,7 +40,7 @@ namespace NavegadorWeb.Adult
             createDirectory();
             for (int i = 0; i < tour.steps.Count; i++)
             {
-                if (tour.steps[i].hasAudio)
+                if (tour.steps[i].audio != null)
                     audioResult = audioResult && tourController.GetAudio(tour._id, tour.steps[i]._id).Result;
             }
             
@@ -57,7 +57,7 @@ namespace NavegadorWeb.Adult
             if (step != null)
             {
                 var audioPath = "";
-                if (step.hasAudio)
+                if (step.audio != null)
                     audioPath = Constants.audioPath + "/Audio " + tour._id + step._id + ".wav";
 
                 if (positionStep == 0)
@@ -108,7 +108,16 @@ namespace NavegadorWeb.Adult
                 }
                 else
                 { 
-                    MessageBox.Show("No entraste donde debias", "Paso equivocado", MessageBoxButton.OK, MessageBoxImage.Information);
+                    var result = MessageBox.Show("Paso erroneo, ¿quiere volver al último paso correcto?", "Paso equivocado", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                    if (result.ToString() == "Yes")
+                    {
+                        countLoad--;
+                        playStep(tourLoad, countLoad);
+                    }
+                    else
+                    {
+                        ///cerrar panel principal
+                    }
                 }
                 
             }
