@@ -10,6 +10,8 @@ namespace NavegadorWeb.UI
 {
     class AsistimeMultilineTextbox : Control
     {
+        public String texto;
+
         public AsistimeMultilineTextbox()
         {
             AsistimeSearchBox box = new AsistimeSearchBox();
@@ -27,6 +29,8 @@ namespace NavegadorWeb.UI
             textbox.BorderStyle = BorderStyle.None;
             textbox.Font = Constants.TextBoxFont;
             textbox.BringToFront();
+
+            textbox.Text = texto;
         }
     }
 }
