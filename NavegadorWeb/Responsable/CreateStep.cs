@@ -16,7 +16,7 @@ namespace NavegadorWeb.Responsable
         String UrlReproductor = null;
         SoundPlayer ReproductorWav;
         [DllImport("winmm.dll", EntryPoint = "mciSendStringA", ExactSpelling = true, CharSet = CharSet.Ansi, SetLastError = true)]
-        private static extern int Grabar(string Comando, string StringRetorno, int Longitud, int hwndCallback);
+        private static extern int record(string lpstrCommand, string lpstrReturnString, int uReturnLength, int hwndCallback);
 
         public CreateStep(HtmlDocument _doc, NavWebResponsable _navWebResponsable)
         {
@@ -145,8 +145,8 @@ namespace NavegadorWeb.Responsable
 
         private void btnRecord_Click(object sender, EventArgs e)
         {
-            Grabar("open new Type waveaudio Alias recsound", "", 0, 0);
-            Grabar("record recsound", "", 0, 0);
+            record("open new Type waveaudio Alias recsound", "", 0, 0);
+            record("record recsound", "", 0, 0);
             btnRecord.Enabled = false;
             btnStop.Enabled = true;
         }
@@ -155,14 +155,17 @@ namespace NavegadorWeb.Responsable
         {
             createDirectory();
 
-            var audioName = "/Audio "+ navWebResponsable.tour.name + navWebResponsable.countStep + ".wav";
+            var nameTourWithoutSpace = navWebResponsable.tour.name.Replace(" ", "");
+            var audioName = "/Audio"+ nameTourWithoutSpace + navWebResponsable.countStep + ".wav";
             UrlReproductor = Constants.audioPath + audioName;
 
-            Grabar("save recsound " + UrlReproductor, "", 0, 0);
-            Grabar("close recsound", "", 0, 0);
+            record("save recsound " + UrlReproductor, "", 0, 0);
+            record("close recsound", "", 0, 0);
+
             MessageBox.Show("Archivo de audio guardado en: " + UrlReproductor);
 
             btnPlay.Enabled = true;
+            btnStop.Enabled = false;
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
