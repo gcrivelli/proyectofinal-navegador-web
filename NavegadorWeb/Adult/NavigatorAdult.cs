@@ -56,6 +56,7 @@ namespace NavegadorWeb.Adult
             var i = 1;
             if (step != null)
             {
+                this.tourBar.SetStep(positionStep);
                 var audioPath = "";
                 if (step.audio != null)
                     audioPath = Constants.audioPath + "/Audio " + tour._id + step._id + ".wav";
@@ -74,7 +75,13 @@ namespace NavegadorWeb.Adult
                 {
                     lastCorrectURL = step.url;
                     if (positionStep != 0)
-                        MessageBox.Show("Correcto! proximo paso N° " + (step.order + 1), "Informacion", MessageBoxButton.OK, MessageBoxImage.Information);
+                    {
+                        if (positionStep == tour.steps.Count - 1)
+                            MessageBox.Show("Completaste el Tour!", "Fin del tutorial", MessageBoxButton.OK, MessageBoxImage.Information);
+                        else
+                            MessageBox.Show("Correcto! proximo paso N° " + (step.order + 1), "Informacion", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+
 
                     HtmlDocument doc = webBrowser.Document;
                     HtmlElement head = doc.GetElementsByTagName("head")[0];
