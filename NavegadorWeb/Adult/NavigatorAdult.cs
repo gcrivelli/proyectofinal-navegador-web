@@ -14,7 +14,7 @@ namespace NavegadorWeb.Adult
         AsistimeTourBar tourBar;
         private Tour tourLoad;
         private int countLoad;
-        private string actualURL;
+        private string actualURL, lastCorrectURL;
 
         public NavigatorAdult()
         {
@@ -56,6 +56,7 @@ namespace NavegadorWeb.Adult
             var i = 1;
             if (step != null)
             {
+                this.tourBar.SetStep(positionStep);
                 var audioPath = "";
                 if (step.audio != null)
                     audioPath = Constants.audioPath + "/Audio " + tour._id + step._id + ".wav";
@@ -64,15 +65,23 @@ namespace NavegadorWeb.Adult
                 {
                     webBrowser.Navigate(step.url);
                     actualURL = step.url;
+                    lastCorrectURL = step.url;
                     MessageBox.Show("Comienza la reproducción del Tutorial " + tour.name, "Inicio de Tour", MessageBoxButton.OK, MessageBoxImage.Information);
                     playAudio(audioPath);
                 }
 
 
-                if (webBrowser.Url.ToString() == step.url)
+                if (webBrowser.Url.ToString() == step.url || step.url == lastCorrectURL)
                 {
+                    lastCorrectURL = step.url;
                     if (positionStep != 0)
-                        MessageBox.Show("Correcto! proximo paso N° " + (step.order + 1), "Informacion", MessageBoxButton.OK, MessageBoxImage.Information);
+                    {
+                        if (positionStep == tour.steps.Count - 1)
+                            MessageBox.Show("Completaste el Tour!", "Fin del tutorial", MessageBoxButton.OK, MessageBoxImage.Information);
+                        else
+                            MessageBox.Show("Correcto! proximo paso N° " + (step.order + 1), "Informacion", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+
 
                     HtmlDocument doc = webBrowser.Document;
                     HtmlElement head = doc.GetElementsByTagName("head")[0];
@@ -133,18 +142,22 @@ namespace NavegadorWeb.Adult
                     if (result.ToString() == "Yes")
                     {
                         countLoad--;
+                        actualURL = lastCorrectURL;
+                        webBrowser.Navigate(lastCorrectURL);
                         playStep(tourLoad, countLoad);
                     }
                     else
                     {
-                        ///cerrar panel principal
+                        this.tourBar.Hide();
+                        this.asistimeAppBar.Show();
+                        tourLoad = null;
                     }
                 }
                 
             }
             else
             {
-                MessageBox.Show("No hay mas pasos, vuelve a comenzar", "Fin del tutorial", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Completaste el Tour!", "Fin del tutorial", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -249,7 +262,7 @@ namespace NavegadorWeb.Adult
         private void webBrowser_Navigated(object sender, WebBrowserNavigatedEventArgs e)
         {
             asistimeAppBar.Navigated(webBrowser.Url.ToString());
-            if (actualURL != webBrowser.Url.ToString())
+            if (actualURL != webBrowser.Url.ToString() || actualURL != lastCorrectURL)
             {
                 if (tourLoad != null)
                 {

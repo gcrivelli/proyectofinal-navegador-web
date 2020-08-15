@@ -33,6 +33,10 @@ namespace NavegadorWeb.UI
             this.Controls.Add(this.GetCloseTourButton(this.ClientSize.Width - 150, 35));
             StepBackButton.Enabled = false;
         }
+        public void SetStep(int actualStep)
+        {
+            this.StepCount = actualStep;
+        }
 
         protected Control GetStepBackButton(int x, int y)
         {
