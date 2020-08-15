@@ -11,16 +11,18 @@ namespace NavegadorWeb.UI
     class AsistimeMultilineTextbox : Control
     {
         public String texto;
+        AsistimeSearchBox box;
+        TextBox textbox;
 
         public AsistimeMultilineTextbox()
         {
-            AsistimeSearchBox box = new AsistimeSearchBox();
+            box = new AsistimeSearchBox();
             box.Width = 400;
             box.Height = 300;
             this.Controls.Add(box);
             box.BringToFront();
 
-            TextBox textbox = new TextBox();
+            textbox = new TextBox();
             textbox.Multiline = true;
             textbox.Width = 380; //20 menos que el ancho del searchbox
             textbox.Height = 280; //20 menos que la altura del searchbox

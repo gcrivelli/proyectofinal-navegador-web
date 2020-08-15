@@ -154,7 +154,7 @@ namespace NavegadorWeb.GeneralDisplay
             }
             else if (userTextBox.TextName == "prueba")
             {
-                Form1 mod = new Form1();
+                AsistimeTourCreation mod = new AsistimeTourCreation();
                 mod.Show();
             }
         }
@@ -169,10 +169,7 @@ namespace NavegadorWeb.GeneralDisplay
 
         protected void Exit(object sender, EventArgs e)
         {
-            //Application.Exit();
-            AsistimeTourCreation sarasa = new AsistimeTourCreation();
-            this.Hide();
-            sarasa.Show();
+            Application.Exit();
         }
 
         private void AsistimeLogin_Load(object sender, EventArgs e)
