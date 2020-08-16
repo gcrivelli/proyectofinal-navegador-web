@@ -43,11 +43,10 @@ namespace NavegadorWeb.Adult
                 if (tour.steps[i].audio != null)
                     audioResult = audioResult && tourController.GetAudio(tour._id, tour.steps[i]._id).Result;
             }
-            
-            tourBar.TourInititated(tour);
+
             tourLoad = tour;
             countLoad = 0;
-            playStep(tour, countLoad);
+            tourBar.TourInititated(tour);
         }
 
         public void playStep(Tour tour, int positionStep)
@@ -56,7 +55,7 @@ namespace NavegadorWeb.Adult
             var i = 1;
             if (step != null)
             {
-                this.tourBar.SetStep(positionStep);
+                //this.tourBar.SetStep(positionStep);
                 var audioPath = "";
                 if (step.audio != null)
                     audioPath = Constants.audioPath + "/Audio " + tour._id + step._id + ".wav";

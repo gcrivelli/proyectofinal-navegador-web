@@ -36,6 +36,11 @@ namespace NavegadorWeb.UI
         public void SetStep(int actualStep)
         {
             this.StepCount = actualStep;
+            double progressDouble = ((double)(StepCount + 1) / (double)tour.steps.Count) * 100;
+            int progress = (int)Math.Truncate(progressDouble);
+            progressBar.Value = progress;
+            StepForwardButton.Enabled = ValidateForwardButton();
+            StepBackButton.Enabled = ValidateBackButton();
         }
 
         protected Control GetStepBackButton(int x, int y)
@@ -54,12 +59,9 @@ namespace NavegadorWeb.UI
             if (StepCount > 0)
             {
                 StepCount--;
-                double progressDouble = ((double)StepCount / (double)tour.steps.Count) * 100;
-                int progress = (int)Math.Truncate(progressDouble);
-                progressBar.Value = progress;
                 NavigatorAdult form = this.Parent as NavigatorAdult;
+                this.SetStep(StepCount);
                 form.playStep(tour, StepCount);
-                StepForwardButton.Enabled = true;
             }
 
             if (StepCount == 0)
@@ -99,16 +101,10 @@ namespace NavegadorWeb.UI
             if (StepCount < tour.steps.Count)
             {
                 StepCount++;
-                double progressDouble = ((double)StepCount / (double)tour.steps.Count) * 100;
-                int progress = (int)Math.Truncate(progressDouble);
-                progressBar.Value = progress;
                 NavigatorAdult form = this.Parent as NavigatorAdult;
+                this.SetStep(StepCount);
                 form.playStep(tour, StepCount);
-                StepBackButton.Enabled = true;
             }
-
-            if (StepCount == tour.steps.Count - 1)
-                StepForwardButton.Enabled = false;
         }
 
         protected Control GetCloseTourButton(int x, int y)
@@ -132,6 +128,41 @@ namespace NavegadorWeb.UI
         {
             StepCount = 0;
             this.tour = tour;
+            this.SetStep(StepCount);
+            NavigatorAdult form = this.Parent as NavigatorAdult;
+            form.playStep(tour, StepCount);
+        }
+
+        private bool ValidateForwardButton()
+        {
+            if (StepCount == tour.steps.Count - 1) //es el último paso
+            {
+                return false;
+            }
+            else if (tour.steps[StepCount].url == tour.steps[StepCount + 1].url) //sigue en la misma url
+            {
+                return true;
+            }
+            else
+            {
+                return false; //el próximo paso cambia de url
+            }
+        }
+
+        private bool ValidateBackButton()
+        {
+            if (StepCount == 0) //es el último paso
+            {
+                return false;
+            }
+            else if (tour.steps[StepCount].url == tour.steps[StepCount - 1].url) //sigue en la misma url
+            {
+                return true;
+            }
+            else
+            {
+                return false; //el próximo paso cambia de url
+            }
         }
     }
 }
