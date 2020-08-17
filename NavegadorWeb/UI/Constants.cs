@@ -87,6 +87,12 @@ namespace NavegadorWeb.UI
         public const string InitiateTourConfirmation1 = "Estás por iniciar el tour ";
         public const string InitiateTourConfirmation2 = ". Vas a ser redirigido a la página incial del tour. ¿Estás seguro?";
 
+        public static Color ConfirmationMessageBackColor = Color.Green;
+        public static Color WarningMessageBackColor = Color.Yellow;
+        public static Color ErrorMessageBackColor = Color.Red;
+        public static Color ConfirmationMessageForeColor = Color.White;
+        public static Color WarningMessageForeColor = Color.Black;
+        public static Color ErrorMessageForeColor = Color.Yellow; 
     }
 
 }

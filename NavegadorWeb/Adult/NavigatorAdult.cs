@@ -47,6 +47,10 @@ namespace NavegadorWeb.Adult
             tourLoad = tour;
             countLoad = 0;
             tourBar.TourInititated(tour);
+
+            ConfirmationMessage m = new ConfirmationMessage("Iniciaste el tour!");
+            m.Location = new System.Drawing.Point(Constants.AppBarWidth - 410, Constants.AppBarHeight + 50);
+            m.Show();
         }
 
         public void playStep(Tour tour, int positionStep)
@@ -55,7 +59,6 @@ namespace NavegadorWeb.Adult
             var i = 1;
             if (step != null)
             {
-                //this.tourBar.SetStep(positionStep);
                 var audioPath = "";
                 if (step.audio != null)
                     audioPath = Constants.audioPath + "/Audio " + tour._id + step._id + ".wav";
@@ -65,7 +68,7 @@ namespace NavegadorWeb.Adult
                     webBrowser.Navigate(step.url);
                     actualURL = step.url;
                     lastCorrectURL = step.url;
-                    MessageBox.Show("Comienza la reproducción del Tutorial " + tour.name, "Inicio de Tour", MessageBoxButton.OK, MessageBoxImage.Information);
+                    //MessageBox.Show("Comienza la reproducción del Tutorial " + tour.name, "Inicio de Tour", MessageBoxButton.OK, MessageBoxImage.Information);
                     playAudio(audioPath);
                 }
 
@@ -75,10 +78,15 @@ namespace NavegadorWeb.Adult
                     lastCorrectURL = step.url;
                     if (positionStep != 0)
                     {
-                        if (positionStep == tour.steps.Count - 1)
+                        /*if (positionStep == tour.steps.Count - 1)
                             MessageBox.Show("Completaste el Tour!", "Fin del tutorial", MessageBoxButton.OK, MessageBoxImage.Information);
                         else
-                            MessageBox.Show("Correcto! proximo paso N° " + (step.order + 1), "Informacion", MessageBoxButton.OK, MessageBoxImage.Information);
+                        {*/
+                            ConfirmationMessage m = new ConfirmationMessage("Completaste el paso " + (step.order) + "!");
+                            m.Location = new System.Drawing.Point(Constants.AppBarWidth - 410, Constants.AppBarHeight + 50);
+                            m.Show();
+                        //}
+                            //MessageBox.Show("Correcto! proximo paso N° " + (step.order + 1), "Informacion", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
 
 
@@ -156,7 +164,10 @@ namespace NavegadorWeb.Adult
             }
             else
             {
-                MessageBox.Show("Completaste el Tour!", "Fin del tutorial", MessageBoxButton.OK, MessageBoxImage.Information);
+                ConfirmationMessage m = new ConfirmationMessage("Completaste el tour!");
+                m.Location = new System.Drawing.Point(Constants.AppBarWidth - 410, Constants.AppBarHeight + 50);
+                m.Show(); 
+                //MessageBox.Show("Completaste el Tour!", "Fin del tutorial", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

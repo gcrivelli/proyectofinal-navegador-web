@@ -218,6 +218,9 @@
     <Compile Include="UI\AsistimeContentPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UI\AsistimeDialogBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\AsistimeMenuButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -312,6 +315,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Responsable\NavWebResponsable.resx">
       <DependentUpon>NavWebResponsable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AsistimeDialogBox.resx">
+      <DependentUpon>AsistimeDialogBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\AsistimeMenuButton.resx">
       <DependentUpon>AsistimeMenuButton.cs</DependentUpon>

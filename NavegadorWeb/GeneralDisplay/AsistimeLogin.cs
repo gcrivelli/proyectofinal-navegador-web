@@ -104,7 +104,7 @@ namespace NavegadorWeb.GeneralDisplay
             registerButton.Click += new EventHandler(RegisterUser);
             registerButton.ButtonText = "Registrarse";
             this.Controls.Add(registerButton);
-            
+
         }
 
         protected void LogUser(object sender, EventArgs e)
