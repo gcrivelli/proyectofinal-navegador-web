@@ -17,13 +17,13 @@ namespace NavegadorWeb.Responsable
 
         private void createBtn_Click(object sender, EventArgs e)
         {
-            if (nameTxt.Text != string.Empty)
+            if (nameTxt.Text != string.Empty && descTxt.Text != string.Empty)
             {
                 DialogResult = DialogResult.OK;
-                Close();
+                Close();  
             }
             else
-                MessageBox.Show("Elija un nombre para el tutorial.", "Nombre Invalido",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Elija un nombre y descripción para el tutorial.", "Nombre Invalido", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

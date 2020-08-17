@@ -260,9 +260,10 @@ namespace NavegadorWeb.Adult
 
         private void webBrowser_Navigated(object sender, WebBrowserNavigatedEventArgs e)
         {
-            asistimeAppBar.Navigated(webBrowser.Url.ToString());
             if (actualURL != webBrowser.Url.ToString() || actualURL != lastCorrectURL)
             {
+                asistimeAppBar.Navigated(webBrowser.Url.ToString());
+
                 if (tourLoad != null)
                 {
                     actualURL = webBrowser.Url.ToString();
