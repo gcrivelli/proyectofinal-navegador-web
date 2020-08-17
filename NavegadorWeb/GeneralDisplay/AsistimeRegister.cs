@@ -153,23 +153,5 @@ namespace NavegadorWeb.UI
             this.Hide();
             this.previousForm.Show();
         }
-
-        private void InitializeComponent()
-        {
-            this.SuspendLayout();
-            // 
-            // AsistimeRegister
-            // 
-            this.ClientSize = new System.Drawing.Size(278, 244);
-            this.Name = "AsistimeRegister";
-            this.Load += new System.EventHandler(this.AsistimeRegister_Load);
-            this.ResumeLayout(false);
-
-        }
-
-        private void AsistimeRegister_Load(object sender, EventArgs e)
-        {
-            
-        }
     }
 }

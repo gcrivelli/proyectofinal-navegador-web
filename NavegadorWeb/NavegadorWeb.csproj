@@ -209,6 +209,9 @@
     <Compile Include="UI\AsistimeAppBar.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UI\AsistimeBasePopup.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\AsistimeCardContainer.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -224,6 +227,9 @@
     <Compile Include="GeneralDisplay\AsistimeRegister.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="UI\AsistimeMultilineTextbox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\AsistimeRoundButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -238,6 +244,9 @@
     </Compile>
     <Compile Include="UI\AsistimeTourCard.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\AsistimeTourCreation.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\AsistimeTourProgressBar.cs">
       <SubType>UserControl</SubType>
@@ -315,6 +324,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GeneralDisplay\AsistimeRegister.resx">
       <DependentUpon>AsistimeRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AsistimeTourCreation.resx">
+      <DependentUpon>AsistimeTourCreation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

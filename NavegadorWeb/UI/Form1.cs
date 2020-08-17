@@ -24,6 +24,9 @@ namespace NavegadorWeb.UI
             Panel panel = new Panel();
 
             this.Controls.Add(panel);
+
+
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -32,6 +35,11 @@ namespace NavegadorWeb.UI
             Left = Top = 0;
             Width = Screen.PrimaryScreen.WorkingArea.Width;
             Height = Screen.PrimaryScreen.WorkingArea.Height;
+
+            AsistimeMultilineTextbox multi = new AsistimeMultilineTextbox();
+            multi.Location = new Point(100, 100);
+            this.Controls.Add(multi);
+            multi.BringToFront();
         }
 
         private void Form1_Resize(object sender, EventArgs e)

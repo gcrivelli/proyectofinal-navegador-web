@@ -31,6 +31,7 @@ namespace NavegadorWeb.GeneralDisplay
             StartPosition = FormStartPosition.CenterScreen;
             this.Width = 700;
             this.Height = 800;
+            this.AllowTransparency = true;
 
             AsistimeRoundButton exitButton = new AsistimeRoundButton(48, 48, Constants.CloseImage, Constants.CloseImage, Constants.CloseClickedImage) { Parent = this.Parent };
             exitButton.Location = new Point(this.Width - 60, 10);
@@ -153,7 +154,7 @@ namespace NavegadorWeb.GeneralDisplay
             }
             else if (userTextBox.TextName == "prueba")
             {
-                Form1 mod = new Form1();
+                AsistimeTourCreation mod = new AsistimeTourCreation();
                 mod.Show();
             }
         }
