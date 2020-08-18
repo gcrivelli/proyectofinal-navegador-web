@@ -143,11 +143,15 @@ namespace NavegadorWeb.Responsable
                     Int16 y = 0;
                     Int16 width = 0;
                     Int16 height = 0;
-                    String opacity = "0.5";
+                    String opacity = "";
                     String color = "";
                     Int16 type = 9;
 
                     opacity = div.GetAttribute("data-opacity");
+                    if (opacity == null)
+                    {
+                        opacity = "0.5";
+                    }
 
                     color = div.GetAttribute("data-color");
                     if (color == null)
@@ -256,6 +260,21 @@ namespace NavegadorWeb.Responsable
         private void button3_Click(object sender, EventArgs e)
         {
             doc.InvokeScript("agrandarLetra");
+        }
+
+        private void CreateStep_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            doc.InvokeScript("achicarOpacity");
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            doc.InvokeScript("agrandarOpacity");
         }
     }
 }
