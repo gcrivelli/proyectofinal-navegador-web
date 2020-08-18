@@ -135,6 +135,32 @@ namespace NavegadorWeb.Responsable
 
                     addElementToStep(x, y, height, width, color, type, weight, inclination, text);
                 }
+
+                HtmlElement div = doc.GetElementById("div");
+                if (div != null)
+                {
+                    Int16 x = 0;
+                    Int16 y = 0;
+                    Int16 width = 0;
+                    Int16 height = 0;
+                    String opacity = "0.5";
+                    String color = "";
+                    Int16 type = 9;
+
+                    opacity = div.GetAttribute("data-opacity");
+
+                    color = div.GetAttribute("data-color");
+                    if (color == null)
+                    {
+                        color = "000000";
+                    }
+
+                    x = Int16.Parse(div.GetAttribute("data-x1"));
+                    y = Int16.Parse(div.GetAttribute("data-y1"));
+                    width = Int16.Parse(div.GetAttribute("data-x2"));
+                    height = Int16.Parse(div.GetAttribute("data-y2"));
+                    addElementToStep(x, y, height, width, color, type, 0, opacity, "");
+                }
             }
 
             navWebResponsable.webBrowser.Refresh();

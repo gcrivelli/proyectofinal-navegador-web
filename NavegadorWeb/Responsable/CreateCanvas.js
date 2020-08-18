@@ -66,6 +66,13 @@ function onClick(e) {
     div=document.createElement("div");
     div.style.cssText="position:absolute;z-index:9999;background-color:#"+color+";width:"+divX1+"px;height:"+(divY2-divY1)+"px;top:"+divY1+"px;left:0px;opacity:"+opacity+";";   
     div.className="div";  
+    div.id="div";
+    div.dataset.opacity=opacity;
+    div.dataset.x1=divX1;
+    div.dataset.y1=divY1;
+    div.dataset.x2=divX2;
+    div.dataset.y2=divY2;
+    div.dataset.color=color;
     document.body.appendChild(div);
     div=document.createElement("div");
     div.style.cssText="position:absolute;z-index:9999;background-color:#"+color+";width:100%;height:"+(divY2-divY1)+"px;top:"+divY1+"px;left:"+divX2+"px;opacity:"+opacity+";";   
