@@ -138,7 +138,10 @@ namespace NavegadorWeb.Adult
 
                     script.InnerText += "}";
                     head.AppendChild(script);
-
+                    do
+                    {
+                        var hardcode = true;
+                    } while (webBrowser.ReadyState != WebBrowserReadyState.Complete);
                     doc.InvokeScript("init" + step.order);
                     playAudio(audioPath);
                 }
