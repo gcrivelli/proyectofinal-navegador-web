@@ -66,7 +66,7 @@ function onClick(e) {
     div=document.createElement("div");
     div.style.cssText="position:absolute;z-index:9999;background-color:#"+color+";width:"+divX1+"px;height:"+(divY2-divY1)+"px;top:"+divY1+"px;left:0px;opacity:"+opacity+";";   
     div.className="div";  
-    div.id="div";
+    div.id="asistime-div";
     div.dataset.opacity=opacity;
     div.dataset.x1=divX1;
     div.dataset.y1=divY1;
@@ -112,6 +112,10 @@ function desplazarCanvas() {
 
 function init() {
   document.body.style["pointer-events"]="none";
+  /*var elementos = document.body.querySelectorAll('[id^="google_ads_iframe"]');
+  elementos.forEach(function (div, i) {
+      alert(div);
+  })*/
 }
 
 function finishStep() {
