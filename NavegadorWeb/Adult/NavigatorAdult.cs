@@ -81,13 +81,13 @@ namespace NavegadorWeb.Adult
                 if (webBrowser.Url.ToString() == step.url || step.url == lastCorrectURL)
                 {
                     lastCorrectURL = step.url;
-                    if (positionStep != 0)
+                    /*if (positionStep != 0)
                     {
                         ConfirmationMessage m = new ConfirmationMessage("Completaste el paso " + (step.order) + "!");
                         m.Location = new System.Drawing.Point(Constants.AppBarWidth - 410, Constants.AppBarHeight + 50);
                         m.BringToFront();
                         m.Show();
-                    }
+                    }*/
 
 
                     HtmlDocument doc = webBrowser.Document;
@@ -311,7 +311,6 @@ namespace NavegadorWeb.Adult
         public void CloseTour()
         {
             tourBar.Hide();
-            tourBar.Dispose();
             tourLoad = null;
             asistimeAppBar.Show();
             webBrowser.Refresh();
