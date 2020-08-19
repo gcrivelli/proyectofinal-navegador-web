@@ -1,14 +1,12 @@
-﻿using Microsoft.Win32;
-using NavegadorWeb.Controller;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Windows.Forms;
-using System.Text.RegularExpressions;
 
 namespace NavegadorWeb
 {
     public partial class NavigatorForm2 : Form
     {
+        string actualUrl = null;
         public NavigatorForm2()
         {
             InitializeComponent();
@@ -67,6 +65,7 @@ namespace NavegadorWeb
             try
             {
                 webBrowser.Navigate(new Uri(address));
+                actualUrl = address;
             }
             catch (System.UriFormatException)
             {
@@ -78,7 +77,8 @@ namespace NavegadorWeb
 
         private void webBrowser_Navigated(object sender, WebBrowserNavigatedEventArgs e)
         {
-            directionBox.Text = webBrowser.Url.ToString();
+            if(actualUrl != webBrowser.Url.ToString())
+                directionBox.Text = webBrowser.Url.ToString();
         }
 
         // Resolve error "not load images" 

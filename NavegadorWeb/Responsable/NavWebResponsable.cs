@@ -4,8 +4,6 @@ using System.IO;
 using NavegadorWeb.Models;
 using System.Collections.Generic;
 using NavegadorWeb.Controller;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using NavegadorWeb.UI;
 
 namespace NavegadorWeb.Responsable
@@ -102,10 +100,7 @@ namespace NavegadorWeb.Responsable
                 var filename = Constants.audioPath + audioName;
                 if (File.Exists(filename))
                 {
-                    var audioContent = new ByteArrayContent(System.IO.File.ReadAllBytes(filename));
-                    audioContent.Headers.ContentType = MediaTypeHeaderValue.Parse("audio/wav");
-
-                    allAudioResponse = allAudioResponse && tourController.PostAudio(audioContent, tourResponse._id, tourResponse.steps[i]._id).Result;
+                    allAudioResponse = allAudioResponse && tourController.PostAudio(filename, tourResponse._id, tourResponse.steps[i]._id).Result;
                 }
             }
 

@@ -2,7 +2,9 @@
 using NavegadorWeb.UI;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -66,15 +68,19 @@ namespace NavegadorWeb.Controller
             }
         }
 
-        public async Task<bool> PostAudio(ByteArrayContent file_bytes, string tourId, string stepId)
+        public async Task<bool> PostAudio(string file_path, string tourId, string stepId)
         {
+            var audioContent = new ByteArrayContent(System.IO.File.ReadAllBytes(file_path));
+            audioContent.Headers.ContentType = MediaTypeHeaderValue.Parse("audio/wav");
+
             MultipartFormDataContent form = new MultipartFormDataContent();
-            form.Add(file_bytes, "audio", "hello1.wav");
+            form.Add(audioContent, "audio", "hello1.wav");
 
             var url = APIurl + "tour/" + tourId +"/step/" + stepId +"/audio";
             HttpClient httpClient = new HttpClient();
             var response = await httpClient.PostAsync(url, form).ConfigureAwait(false);
 
+            File.Delete(file_path);
             response.EnsureSuccessStatusCode();
             httpClient.Dispose();
             return response.IsSuccessStatusCode;

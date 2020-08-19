@@ -133,13 +133,15 @@ namespace NavegadorWeb.Adult
 
                     foreach (Element e in step.elements)
                     {
-                        if (e.y < firstElementY)
+                        if (e.type == 9)
                         {
-                            firstElementY = e.y;
+                            script.InnerText += initDiv(e.x, e.y, e.width, e.height, e.color, e.inclination);
                         }
-                        //webBrowser.Document.Window.ScrollTo(0, e.y - 100);
-                        script.InnerText += initElement(positionStep, i, e.x, e.y, e.width, e.weight, e.type, e.color, e.inclination, e.text);
-                        i++;
+                        else
+                        {
+                            script.InnerText += initElement(positionStep, i, e.x, e.y, e.width, e.weight, e.type, e.color, e.inclination, e.text);
+                            i++;
+                        }
                     }
 
                     int pos;
@@ -166,7 +168,10 @@ namespace NavegadorWeb.Adult
 
                     script.InnerText += "}";
                     head.AppendChild(script);
-
+                    do
+                    {
+                        var hardcode = true;
+                    } while (webBrowser.ReadyState != WebBrowserReadyState.Complete);
                     doc.InvokeScript("init" + step.order);
                     playAudio(audioPath);
                 }
@@ -257,6 +262,36 @@ namespace NavegadorWeb.Adult
             }
         }
 
+        private string initDiv(int x, int y, int width, int height, string color, string opacity)
+        {
+            try
+            {
+                var js = "";
+                js += "var div = document.createElement('div');";
+                js += "div.style.cssText = 'position:absolute;z-index:9999;background-color:#" + color + ";width:100%;height:" + y + "px;top:0px;left:0px;opacity:" + opacity + ";';";
+                js += "div.className = 'asistime';";
+                js += "document.body.appendChild(div);";
+                js += "var div = document.createElement('div');";
+                js += "div.style.cssText = 'position:absolute;z-index:9999;background-color:#" + color + ";width:100%;height:100%;top:" + height + "px;left:0px;opacity:" + opacity + ";';";
+                js += "div.className = 'asistime';";
+                js += "document.body.appendChild(div);";
+                js += "var div = document.createElement('div');";
+                js += "div.style.cssText = 'position:absolute;z-index:9999;background-color:#" + color + ";width:" + x + "px;height:" + (height - y) + "px;top:" + y + "px;left:0px;opacity:" + opacity + ";';";
+                js += "div.className = 'asistime';";
+                js += "document.body.appendChild(div);";
+                js += "var div = document.createElement('div');";
+                js += "div.style.cssText = 'position:absolute;z-index:9999;background-color:#" + color + ";width:100%;height:" + (height - y) + "px;top:" + y + "px;left:" + width + "px;opacity:" + opacity + ";';";
+                js += "div.className = 'asistime';";
+                js += "document.body.appendChild(div);";
+
+                return js;
+            }
+            catch
+            {
+                throw new Exception("No se pudo crear el documento.");
+            }
+        }
+
         public override void ShowMenu()
         {
             // esta instanciacion deberia ir después del login
@@ -300,9 +335,10 @@ namespace NavegadorWeb.Adult
 
         private void webBrowser_Navigated(object sender, WebBrowserNavigatedEventArgs e)
         {
-            asistimeAppBar.Navigated(webBrowser.Url.ToString());
             if (actualURL != webBrowser.Url.ToString() || actualURL != lastCorrectURL)
             {
+                asistimeAppBar.Navigated(webBrowser.Url.ToString());
+
                 if (tourLoad != null)
                 {
                     actualURL = webBrowser.Url.ToString();

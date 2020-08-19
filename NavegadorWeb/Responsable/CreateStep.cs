@@ -137,6 +137,36 @@ namespace NavegadorWeb.Responsable
                 }
             }
 
+            HtmlElement div = doc.GetElementById("asistime-div");
+            if (div != null)
+            {
+                Int16 x = 0;
+                Int16 y = 0;
+                Int16 width = 0;
+                Int16 height = 0;
+                String opacity = "";
+                String color = "";
+                Int16 type = 9;
+
+                opacity = div.GetAttribute("data-opacity");
+                if (opacity == null)
+                {
+                    opacity = "0.5";
+                }
+
+                color = div.GetAttribute("data-color");
+                if (color == null)
+                {
+                    color = "000000";
+                }
+
+                x = Int16.Parse(div.GetAttribute("data-x1"));
+                y = Int16.Parse(div.GetAttribute("data-y1"));
+                width = Int16.Parse(div.GetAttribute("data-x2"));
+                height = Int16.Parse(div.GetAttribute("data-y2"));
+                addElementToStep(x, y, height, width, color, type, 0, opacity, "");
+            }
+
             navWebResponsable.webBrowser.Refresh();
             navWebResponsable.addStepBtn.Enabled = true;
             doc.InvokeScript("finishStep");
@@ -230,6 +260,21 @@ namespace NavegadorWeb.Responsable
         private void button3_Click(object sender, EventArgs e)
         {
             doc.InvokeScript("agrandarLetra");
+        }
+
+        private void CreateStep_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            doc.InvokeScript("achicarOpacity");
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            doc.InvokeScript("agrandarOpacity");
         }
     }
 }
