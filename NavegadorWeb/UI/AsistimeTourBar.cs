@@ -129,6 +129,9 @@ namespace NavegadorWeb.UI
             StepCount = 0;
             this.tour = tour;
             this.SetStep(StepCount);
+            ConfirmationMessage m = new ConfirmationMessage("Iniciaste el tour!");
+            m.Location = new System.Drawing.Point(Constants.AppBarWidth - 410, Constants.AppBarHeight + 50);
+            m.Show();
             NavigatorAdult form = this.Parent as NavigatorAdult;
             form.playStep(tour, StepCount);
         }

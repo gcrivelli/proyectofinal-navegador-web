@@ -15,6 +15,7 @@ namespace NavegadorWeb.Adult
         private Tour tourLoad;
         private int countLoad;
         private string actualURL, lastCorrectURL;
+        private int posActual;
 
         public NavigatorAdult()
         {
@@ -57,6 +58,7 @@ namespace NavegadorWeb.Adult
         {
             var step = tour.steps.Find(s => s.order == positionStep);
             var i = 1;
+            int firstElementY = 100000;
             if (step != null)
             {
                 var audioPath = "";
@@ -65,9 +67,12 @@ namespace NavegadorWeb.Adult
 
                 if (positionStep == 0)
                 {
-                    webBrowser.Navigate(step.url);
-                    actualURL = step.url;
-                    lastCorrectURL = step.url;
+                    if (webBrowser.Url.ToString() != step.url)
+                    {
+                        webBrowser.Navigate(step.url);
+                        actualURL = step.url;
+                        lastCorrectURL = step.url;
+                    }
                     //MessageBox.Show("Comienza la reproducción del Tutorial " + tour.name, "Inicio de Tour", MessageBoxButton.OK, MessageBoxImage.Information);
                     playAudio(audioPath);
                 }
@@ -78,15 +83,10 @@ namespace NavegadorWeb.Adult
                     lastCorrectURL = step.url;
                     if (positionStep != 0)
                     {
-                        /*if (positionStep == tour.steps.Count - 1)
-                            MessageBox.Show("Completaste el Tour!", "Fin del tutorial", MessageBoxButton.OK, MessageBoxImage.Information);
-                        else
-                        {*/
-                            ConfirmationMessage m = new ConfirmationMessage("Completaste el paso " + (step.order) + "!");
-                            m.Location = new System.Drawing.Point(Constants.AppBarWidth - 410, Constants.AppBarHeight + 50);
-                            m.Show();
-                        //}
-                            //MessageBox.Show("Correcto! proximo paso N° " + (step.order + 1), "Informacion", MessageBoxButton.OK, MessageBoxImage.Information);
+                        ConfirmationMessage m = new ConfirmationMessage("Completaste el paso " + (step.order) + "!");
+                        m.Location = new System.Drawing.Point(Constants.AppBarWidth - 410, Constants.AppBarHeight + 50);
+                        m.BringToFront();
+                        m.Show();
                     }
 
 
@@ -133,8 +133,35 @@ namespace NavegadorWeb.Adult
 
                     foreach (Element e in step.elements)
                     {
+                        if (e.y < firstElementY)
+                        {
+                            firstElementY = e.y;
+                        }
+                        //webBrowser.Document.Window.ScrollTo(0, e.y - 100);
                         script.InnerText += initElement(positionStep, i, e.x, e.y, e.width, e.weight, e.type, e.color, e.inclination, e.text);
                         i++;
+                    }
+
+                    int pos;
+
+                    if (posActual + 100 < firstElementY)
+                    {
+                        for (pos = posActual; pos <= firstElementY - 100; pos++)
+                        {
+                            webBrowser.Document.Window.ScrollTo(0, pos - 100);
+                            pos = pos + 9;
+                        }
+                        posActual = pos - 100;
+                    }
+
+                    else if (posActual + 100 > firstElementY)
+                    {
+                        for (pos = posActual; pos >= firstElementY - 100; pos--)
+                        {
+                            webBrowser.Document.Window.ScrollTo(0, pos - 100);
+                            pos = pos - 9;
+                        }
+                        posActual = pos - 100;
                     }
 
                     script.InnerText += "}";
@@ -244,6 +271,8 @@ namespace NavegadorWeb.Adult
         public void CloseTour()
         {
             tourBar.Hide();
+            tourBar.Dispose();
+            tourLoad = null;
             asistimeAppBar.Show();
             webBrowser.Refresh();
         }
