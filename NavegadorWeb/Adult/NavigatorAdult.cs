@@ -133,6 +133,11 @@ namespace NavegadorWeb.Adult
 
                     foreach (Element e in step.elements)
                     {
+                        if (e.y < firstElementY)
+                        {
+                            firstElementY = e.y;
+                        }
+
                         if (e.type == 9)
                         {
                             script.InnerText += initDiv(e.x, e.y, e.width, e.height, e.color, e.inclination);
@@ -168,10 +173,10 @@ namespace NavegadorWeb.Adult
 
                     script.InnerText += "}";
                     head.AppendChild(script);
-                    do
+                    /*do
                     {
                         var hardcode = true;
-                    } while (webBrowser.ReadyState != WebBrowserReadyState.Complete);
+                    } while (webBrowser.ReadyState != WebBrowserReadyState.Complete);*/
                     doc.InvokeScript("init" + step.order);
                     playAudio(audioPath);
                 }
