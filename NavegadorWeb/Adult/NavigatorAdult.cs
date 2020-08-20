@@ -57,11 +57,10 @@ namespace NavegadorWeb.Adult
         public void playStep(Tour tour, int positionStep)
         {
             var step = tour.steps.Find(s => s.order == positionStep);
-            var i = 1;
-            int firstElementY = 100000;
+            var audioPath = "";
+
             if (step != null)
             {
-                var audioPath = "";
                 if (step.audio != null)
                     audioPath = Constants.audioPath + "/Audio " + tour._id + step._id + ".wav";
 
@@ -73,7 +72,6 @@ namespace NavegadorWeb.Adult
                         actualURL = step.url;
                         lastCorrectURL = step.url;
                     }
-                    //MessageBox.Show("Comienza la reproducción del Tutorial " + tour.name, "Inicio de Tour", MessageBoxButton.OK, MessageBoxImage.Information);
                     playAudio(audioPath);
                 }
 
@@ -89,95 +87,9 @@ namespace NavegadorWeb.Adult
                         m.Show();
                     }*/
 
-
-                    HtmlDocument doc = webBrowser.Document;
-                    HtmlElement head = doc.GetElementsByTagName("head")[0];
-                    HtmlElement script = doc.CreateElement("script");
-
-                    script.SetAttribute("type", "text/javascript");
-                    script.InnerText = "";
-                    script.InnerText += "var id = '';";
-                    script.InnerText += "var habilitado = false;";
-                    script.InnerText += "var x_min = 0;";
-                    script.InnerText += "var x_max = 0;";
-                    script.InnerText += "var y_min = 0;";
-                    script.InnerText += "var y_max = 0;";
-                    script.InnerText += "document.body.style['pointer-events']='none';";
-                    script.InnerText += "document.addEventListener('mousemove',onMouseUpdate, false);";
-                    script.InnerText += "document.addEventListener('mouseenter',onMouseUpdate, false);";
-                    script.InnerText += "function onMouseUpdate(e) {  ";
-                    script.InnerText += "if(habilitado&&(e.pageX<x_min||e.pageX>x_max||e.pageY<y_min||e.pageY>y_max)) {";
-                    script.InnerText += "document.body.style['pointer-events']='none';";
-                    script.InnerText += "}";
-                    script.InnerText += "}";
-                    script.InnerText += "function ocultar(id,x1,x2,y1,y2) {";
-                    script.InnerText += "x_min=parseInt(x1);";
-                    script.InnerText += "x_max=parseInt(x1)+parseInt(x2);";
-                    script.InnerText += "y_min=parseInt(y1);";
-                    script.InnerText += "y_max=parseInt(y1)+parseInt(y2);";
-                    script.InnerText += "habilitado=true;";
-                    script.InnerText += "document.body.style['pointer-events']='auto';";
-                    script.InnerText += "var element = document.getElementById(id);";
-                    script.InnerText += "element.style.display = 'none';";
-                    script.InnerText += "setTimeout(function(){ mostrar(id); }, 2000);";
-                    script.InnerText += "}";
-                    script.InnerText += "function mostrar(id) {";
-                    script.InnerText += "var element = document.getElementById(id);";
-                    script.InnerText += "element.style.display = 'block';";
-                    script.InnerText += "}";
-                    script.InnerText += "function init" + step.order + "() {";
-                    script.InnerText += "var elements = document.getElementsByClassName('asistime');";
-                    script.InnerText += "while(elements.length > 0) {";
-                    script.InnerText += "elements[0].parentNode.removeChild(elements[0]);";
-                    script.InnerText += "}";
-
-                    foreach (Element e in step.elements)
-                    {
-                        if (e.y < firstElementY)
-                        {
-                            firstElementY = e.y;
-                        }
-
-                        if (e.type == 9)
-                        {
-                            script.InnerText += initDiv(e.x, e.y, e.width, e.height, e.color, e.inclination);
-                        }
-                        else
-                        {
-                            script.InnerText += initElement(positionStep, i, e.x, e.y, e.width, e.weight, e.type, e.color, e.inclination, e.text);
-                            i++;
-                        }
-                    }
-
-                    int pos;
-
-                    if (posActual + 100 < firstElementY)
-                    {
-                        for (pos = posActual; pos <= firstElementY - 100; pos++)
-                        {
-                            webBrowser.Document.Window.ScrollTo(0, pos - 100);
-                            pos = pos + 9;
-                        }
-                        posActual = pos - 100;
-                    }
-
-                    else if (posActual + 100 > firstElementY)
-                    {
-                        for (pos = posActual; pos >= firstElementY - 100; pos--)
-                        {
-                            webBrowser.Document.Window.ScrollTo(0, pos - 100);
-                            pos = pos - 9;
-                        }
-                        posActual = pos - 100;
-                    }
-
-                    script.InnerText += "}";
-                    head.AppendChild(script);
-                    /*do
-                    {
-                        var hardcode = true;
-                    } while (webBrowser.ReadyState != WebBrowserReadyState.Complete);*/
+                    var doc = initDocument(step, positionStep);
                     doc.InvokeScript("init" + step.order);
+
                     playAudio(audioPath);
                 }
                 else
@@ -204,59 +116,152 @@ namespace NavegadorWeb.Adult
                 ConfirmationMessage m = new ConfirmationMessage("Completaste el tour!");
                 m.Location = new System.Drawing.Point(Constants.AppBarWidth - 410, Constants.AppBarHeight + 50);
                 m.Show(); 
-                //MessageBox.Show("Completaste el Tour!", "Fin del tutorial", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
-        private string initElement(int positionStep, int positionElement, int x, int y, int width, int weight, int type, string color, string inclination, string text)
+        private HtmlDocument initDocument (Step step, int positionStep)
+        {
+            var i = 1;
+            int firstElementY = 100000;
+
+            HtmlDocument doc = webBrowser.Document;
+            HtmlElement head = doc.GetElementsByTagName("head")[0];
+            HtmlElement script = doc.CreateElement("script");
+
+            script.SetAttribute("type", "text/javascript");
+            script.InnerText = "";
+            script.InnerText += "var id = '';";
+            script.InnerText += "var habilitado = false;";
+            script.InnerText += "var x_min = 0;";
+            script.InnerText += "var x_max = 0;";
+            script.InnerText += "var y_min = 0;";
+            script.InnerText += "var y_max = 0;";
+            script.InnerText += "document.body.style['pointer-events']='none';";
+            script.InnerText += "document.addEventListener('mousemove',onMouseUpdate, false);";
+            script.InnerText += "document.addEventListener('mouseenter',onMouseUpdate, false);";
+            script.InnerText += "function onMouseUpdate(e) {  ";
+            script.InnerText += "if(habilitado&&(e.pageX<x_min||e.pageX>x_max||e.pageY<y_min||e.pageY>y_max)) {";
+            script.InnerText += "document.body.style['pointer-events']='none';";
+            script.InnerText += "}";
+            script.InnerText += "}";
+            script.InnerText += "function ocultar(id,x1,x2,y1,y2) {";
+            script.InnerText += "x_min=parseInt(x1);";
+            script.InnerText += "x_max=parseInt(x1)+parseInt(x2);";
+            script.InnerText += "y_min=parseInt(y1);";
+            script.InnerText += "y_max=parseInt(y1)+parseInt(y2);";
+            script.InnerText += "habilitado=true;";
+            script.InnerText += "document.body.style['pointer-events']='auto';";
+            script.InnerText += "var element = document.getElementById(id);";
+            script.InnerText += "element.style.display = 'none';";
+            script.InnerText += "setTimeout(function(){ mostrar(id); }, 2000);";
+            script.InnerText += "}";
+            script.InnerText += "function mostrar(id) {";
+            script.InnerText += "var element = document.getElementById(id);";
+            script.InnerText += "element.style.display = 'block';";
+            script.InnerText += "}";
+            script.InnerText += "function init" + step.order + "() {";
+            script.InnerText += "var elements = document.getElementsByClassName('asistime');";
+            script.InnerText += "while(elements.length > 0) {";
+            script.InnerText += "elements[0].parentNode.removeChild(elements[0]);";
+            script.InnerText += "}";
+
+            foreach (Element elem in step.elements)
+            {
+                if (elem.y < firstElementY)
+                {
+                    firstElementY = elem.y;
+                }
+
+                if (elem.type == 9)
+                {
+                    script.InnerText += initDiv(elem);
+                }
+                else
+                {
+                    script.InnerText += initElement(positionStep, i, elem);
+                    i++;
+                }
+            }
+
+            int pos;
+
+            if (posActual + 100 < firstElementY)
+            {
+                for (pos = posActual; pos <= firstElementY - 100; pos++)
+                {
+                    webBrowser.Document.Window.ScrollTo(0, pos - 100);
+                    pos = pos + 9;
+                }
+                posActual = pos - 100;
+            }
+
+            else if (posActual + 100 > firstElementY)
+            {
+                for (pos = posActual; pos >= firstElementY - 100; pos--)
+                {
+                    webBrowser.Document.Window.ScrollTo(0, pos - 100);
+                    pos = pos - 9;
+                }
+                posActual = pos - 100;
+            }
+
+            script.InnerText += "}";
+            head.AppendChild(script);
+
+            return doc;
+        }
+
+        private string initElement(int positionStep, int positionElement, Element element)
         {
             try
             {
                 var js = "";
                 js += "var canvas" + positionStep + positionElement + " = document.createElement('canvas');";
                 js += "canvas" + positionStep + positionElement + ".id='canvas" + positionStep + positionElement + "';";
-                js += "canvas" + positionStep + positionElement + ".style.cssText = 'position:absolute;z-index: 9999;left:" + x + "px;top:" + y + "px;';";
-                js += "canvas" + positionStep + positionElement + ".style.transform = 'rotate(" + inclination + "deg)';";
+                js += "canvas" + positionStep + positionElement + ".style.cssText = 'position:absolute;z-index: 9999;left:" + 
+                    element.x + "px;top:" + element.y + "px;';";
+                js += "canvas" + positionStep + positionElement + ".style.transform = 'rotate(" + element.inclination + "deg)';";
                 js += "canvas" + positionStep + positionElement + ".style['pointer-events'] = 'auto';";
-                js += "canvas" + positionStep + positionElement + ".width=" + width + ";";
-                js += "canvas" + positionStep + positionElement + ".height=" + width + ";";
+                js += "canvas" + positionStep + positionElement + ".width=" + element.width + ";";
+                js += "canvas" + positionStep + positionElement + ".height=" + element.width + ";";
                 js += "canvas" + positionStep + positionElement + ".className = 'asistime';"; 
-                js += "canvas" + positionStep + positionElement + ".onmouseover = function() {ocultar('canvas" + positionStep + positionElement + "','" + x + "','" + width + "','" + y + "','" + width + "')};";
+                js += "canvas" + positionStep + positionElement + ".onmouseover = function() {ocultar('canvas" + positionStep + 
+                    positionElement + "','" + element.x + "','" + element.width + "','" + element.y + "','" + element.width + "')};";
                 js += "document.body.appendChild(canvas" + positionStep + positionElement + ");";
-                if (type == 1) // cuadrado
+                if (element.type == 1) // cuadrado
                 {
                     js += "var element=document.getElementById('canvas" + positionStep + positionElement + "');";
                     js += "var context = element.getContext('2d');";
-                    js += "context.rect(0,0," + width + "," + width + ");";
+                    js += "context.rect(0,0," + element.width + "," + element.width + ");";
                 }
-                if (type == 2) // circulo
+                if (element.type == 2) // circulo
                 {
                     js += "var element=document.getElementById('canvas" + positionStep + positionElement + "');";
                     js += "var context = element.getContext('2d');";
-                    js += "context.arc((" + width + "-2)/2,(" + width + "-2)/2,(" + width + "-2)/2,0,2*Math.PI);";
+                    js += "context.arc((" + element.width + "-2)/2,(" + element.width + "-2)/2,(" + element.width + "-2)/2,0,2*Math.PI);";
                 }
-                if (type == 3) // texto
+                if (element.type == 3) // texto
                 {
                     js += "var element=document.getElementById('canvas" + positionStep + positionElement + "');";
                     js += "var context = element.getContext('2d');";
                     js += "context.font = '20px Arial';";
-                    js += "context.fillText('" + text + "', 250, 250);";
+                    js += "context.fillText('" + element.text + "', 250, 250);";
                 }
-                if (type == 4) // dialogo
+                if (element.type == 4) // dialogo
                 {
                     js += "var element=document.getElementById('canvas" + positionStep + positionElement + "');";
                     js += "var context = element.getContext('2d');";
                     js += "context.beginPath();";
-                    js += "context.moveTo(75/200*" + width + ",25/200*" + width + ");";
-                    js += "context.quadraticCurveTo(25/200*" + width + ",25/200*" + width + ",25/200*" + width + ",62.5/200*" + width + ");";
-                    js += "context.quadraticCurveTo(25/200*" + width + ",100/200*" + width + ",50/200*" + width + ",100/200*" + width + ");";
-                    js += "context.quadraticCurveTo(50/200*" + width + ",120/200*" + width + ",30/200*" + width + ",125/200*" + width + ");";
-                    js += "context.quadraticCurveTo(60/200*" + width + ",120/200*" + width + ",65/200*" + width + ",100/200*" + width + ");";
-                    js += "context.quadraticCurveTo(125/200*" + width + ",100/200*" + width + ",125/200*" + width + ",62.5/200*" + width + ");";
-                    js += "context.quadraticCurveTo(125/200*" + width + ",25/200*" + width + ",75/200*" + width + ",25/200*" + width + ");";
+                    js += "context.moveTo(75/200*" + element.width + ",25/200*" + element.width + ");";
+                    js += "context.quadraticCurveTo(25/200*" + element.width + ",25/200*" + element.width + ",25/200*" + element.width + ",62.5/200*" + element.width + ");";
+                    js += "context.quadraticCurveTo(25/200*" + element.width + ",100/200*" + element.width + ",50/200*" + element.width + ",100/200*" + element.width + ");";
+                    js += "context.quadraticCurveTo(50/200*" + element.width + ",120/200*" + element.width + ",30/200*" + element.width + ",125/200*" + element.width + ");";
+                    js += "context.quadraticCurveTo(60/200*" + element.width + ",120/200*" + element.width + ",65/200*" + element.width + ",100/200*" + element.width + ");";
+                    js += "context.quadraticCurveTo(125/200*" + element.width + ",100/200*" + element.width + ",125/200*" + element.width + ",62.5/200*" + element.width + ");";
+                    js += "context.quadraticCurveTo(125/200*" + element.width + ",25/200*" + element.width + ",75/200*" + element.width + ",25/200*" + element.width + ");";
                 }
-                js += "context.strokeStyle = '#" + color + "'" + ";";
-                js += "context.lineWidth =" + weight + ";";
+                js += "context.strokeStyle = '#" + element.color + "'" + ";";
+                js += "context.lineWidth =" + element.weight + ";";
                 js += "context.stroke();";
 
                 return js;
@@ -267,25 +272,25 @@ namespace NavegadorWeb.Adult
             }
         }
 
-        private string initDiv(int x, int y, int width, int height, string color, string opacity)
+        private string initDiv(Element element)
         {
             try
             {
                 var js = "";
                 js += "var div = document.createElement('div');";
-                js += "div.style.cssText = 'position:absolute;z-index:9999;background-color:#" + color + ";width:100%;height:" + y + "px;top:0px;left:0px;opacity:" + opacity + ";';";
+                js += "div.style.cssText = 'position:absolute;z-index:9999;background-color:#" + element.color + ";width:100%;height:" + element.y + "px;top:0px;left:0px;opacity:" + element.inclination + ";';";
                 js += "div.className = 'asistime';";
                 js += "document.body.appendChild(div);";
                 js += "var div = document.createElement('div');";
-                js += "div.style.cssText = 'position:absolute;z-index:9999;background-color:#" + color + ";width:100%;height:100%;top:" + height + "px;left:0px;opacity:" + opacity + ";';";
+                js += "div.style.cssText = 'position:absolute;z-index:9999;background-color:#" + element.color + ";width:100%;height:100%;top:" + element.height + "px;left:0px;opacity:" + element.inclination + ";';";
                 js += "div.className = 'asistime';";
                 js += "document.body.appendChild(div);";
                 js += "var div = document.createElement('div');";
-                js += "div.style.cssText = 'position:absolute;z-index:9999;background-color:#" + color + ";width:" + x + "px;height:" + (height - y) + "px;top:" + y + "px;left:0px;opacity:" + opacity + ";';";
+                js += "div.style.cssText = 'position:absolute;z-index:9999;background-color:#" + element.color + ";width:" + element.x + "px;height:" + (element.height - element.y) + "px;top:" + element.y + "px;left:0px;opacity:" + element.inclination + ";';";
                 js += "div.className = 'asistime';";
                 js += "document.body.appendChild(div);";
                 js += "var div = document.createElement('div');";
-                js += "div.style.cssText = 'position:absolute;z-index:9999;background-color:#" + color + ";width:100%;height:" + (height - y) + "px;top:" + y + "px;left:" + width + "px;opacity:" + opacity + ";';";
+                js += "div.style.cssText = 'position:absolute;z-index:9999;background-color:#" + element.color + ";width:100%;height:" + (element.height - element.y) + "px;top:" + y + "px;left:" + element.width + "px;opacity:" + element.inclination + ";';";
                 js += "div.className = 'asistime';";
                 js += "document.body.appendChild(div);";
 
