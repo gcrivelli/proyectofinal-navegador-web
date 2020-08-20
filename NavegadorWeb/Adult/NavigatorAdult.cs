@@ -290,7 +290,7 @@ namespace NavegadorWeb.Adult
                 js += "div.className = 'asistime';";
                 js += "document.body.appendChild(div);";
                 js += "var div = document.createElement('div');";
-                js += "div.style.cssText = 'position:absolute;z-index:9999;background-color:#" + element.color + ";width:100%;height:" + (element.height - element.y) + "px;top:" + y + "px;left:" + element.width + "px;opacity:" + element.inclination + ";';";
+                js += "div.style.cssText = 'position:absolute;z-index:9999;background-color:#" + element.color + ";width:100%;height:" + (element.height - element.y) + "px;top:" + element.y + "px;left:" + element.width + "px;opacity:" + element.inclination + ";';";
                 js += "div.className = 'asistime';";
                 js += "document.body.appendChild(div);";
 
