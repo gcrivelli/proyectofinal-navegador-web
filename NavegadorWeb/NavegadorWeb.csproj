@@ -118,12 +118,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Adult\DinamicCards.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Adult\DinamicCards.Designer.cs">
-      <DependentUpon>DinamicCards.cs</DependentUpon>
-    </Compile>
     <Compile Include="Adult\MenuAdult.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,18 +129,6 @@
     </Compile>
     <Compile Include="Adult\NavigatorAdult.Designer.cs">
       <DependentUpon>NavigatorAdult.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Adult\NavWebAdult.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Adult\NavWebAdult.Designer.cs">
-      <DependentUpon>NavWebAdult.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Adult\TestStyles.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Adult\TestStyles.Designer.cs">
-      <DependentUpon>TestStyles.cs</DependentUpon>
     </Compile>
     <Compile Include="Controller\TourController.cs" />
     <Compile Include="Controller\UserController.cs" />
@@ -161,12 +143,6 @@
     </Compile>
     <Compile Include="GeneralDisplay\AsistimeLogin.Designer.cs">
       <DependentUpon>AsistimeLogin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GeneralDisplay\Login.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GeneralDisplay\Login.Designer.cs">
-      <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="GeneralDisplay\MenuForm.cs">
       <SubType>Form</SubType>
@@ -273,23 +249,11 @@
     <Compile Include="UI\OpaquePanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <EmbeddedResource Include="Adult\DinamicCards.resx">
-      <DependentUpon>DinamicCards.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Adult\NavWebAdult.resx">
-      <DependentUpon>NavWebAdult.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Adult\TestStyles.resx">
-      <DependentUpon>TestStyles.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="GeneralDisplay\AsistimeBaseForm.resx">
       <DependentUpon>AsistimeBaseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GeneralDisplay\AsistimeLogin.resx">
       <DependentUpon>AsistimeLogin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GeneralDisplay\Login.resx">
-      <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GeneralDisplay\MenuForm.resx">
       <DependentUpon>MenuForm.cs</DependentUpon>
