@@ -15,6 +15,7 @@ namespace NavegadorWeb.UI
         public static AsistimeTourProgressBar progressBar;
         private Tour tour;
         private int StepCount;
+        public bool isLastStepInUrl;
 
         public AsistimeTourBar()
         {
@@ -59,9 +60,8 @@ namespace NavegadorWeb.UI
             if (StepCount > 0)
             {
                 StepCount--;
-                NavigatorAdult form = this.Parent as NavigatorAdult;
                 this.SetStep(StepCount);
-                form.playStep(tour, StepCount);
+                playStepInTheSameUrl(tour, StepCount);
             }
 
             if (StepCount == 0)
@@ -81,8 +81,7 @@ namespace NavegadorWeb.UI
 
         protected void PlayStep(object sender, EventArgs e)
         {
-            NavigatorAdult form = this.Parent as NavigatorAdult;
-            form.playStep(tour, StepCount);
+            playStepInTheSameUrl(tour, StepCount);
         }
 
         protected Control GetStepForwardButton(int x, int y)
@@ -101,9 +100,8 @@ namespace NavegadorWeb.UI
             if (StepCount < tour.steps.Count)
             {
                 StepCount++;
-                NavigatorAdult form = this.Parent as NavigatorAdult;
                 this.SetStep(StepCount);
-                form.playStep(tour, StepCount);
+                playStepInTheSameUrl(tour, StepCount);
             }
         }
 
@@ -132,8 +130,6 @@ namespace NavegadorWeb.UI
             ConfirmationMessage m = new ConfirmationMessage("Iniciaste el tour!");
             m.Location = new System.Drawing.Point(Constants.AppBarWidth - 410, Constants.AppBarHeight + 50);
             m.Show();
-            NavigatorAdult form = this.Parent as NavigatorAdult;
-            form.playStep(tour, StepCount);
         }
 
         private bool ValidateForwardButton()
@@ -156,16 +152,33 @@ namespace NavegadorWeb.UI
         {
             if (StepCount == 0) //es el último paso
             {
-                return false;
+                isLastStepInUrl = false;
             }
             else if (tour.steps[StepCount].url == tour.steps[StepCount - 1].url) //sigue en la misma url
             {
-                return true;
+                isLastStepInUrl = true;
             }
             else
             {
-                return false; //el próximo paso cambia de url
+                isLastStepInUrl = true; //el próximo paso cambia de url
             }
+            return isLastStepInUrl;
+        }
+
+        private void playStepInTheSameUrl(Tour tour, int positionStep)
+        {
+            var step = tour.steps.Find(s => s.order == positionStep);
+            var audioPath = "";
+
+            if (step.audio != null)
+                audioPath = Constants.audioPath + "/Audio " + tour._id + step._id + ".wav";
+           
+            NavigatorAdult form = this.Parent as NavigatorAdult;
+            var doc = form.initDocument(step, positionStep);
+            doc.InvokeScript("init" + step.order);
+
+            form.playAudio(audioPath);
+            form.countLoad = positionStep;
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using MessageBox = System.Windows.MessageBox;
 using System.Windows;
 using System.IO;
+using System.Linq;
 
 namespace NavegadorWeb.Adult
 {
@@ -13,7 +14,7 @@ namespace NavegadorWeb.Adult
     {
         AsistimeTourBar tourBar;
         private Tour tourLoad;
-        private int countLoad;
+        public int countLoad;
         private string actualURL, lastCorrectURL;
         private int posActual;
 
@@ -49,36 +50,41 @@ namespace NavegadorWeb.Adult
             countLoad = 0;
             tourBar.TourInititated(tour);
 
+            //Hago paso 0 
+            var firstStep = tour.steps[0];
+            webBrowser.Navigate(firstStep.url);
+            actualURL = firstStep.url;
+            lastCorrectURL = firstStep.url;
+
             ConfirmationMessage m = new ConfirmationMessage("Iniciaste el tour!");
             m.Location = new System.Drawing.Point(Constants.AppBarWidth - 410, Constants.AppBarHeight + 50);
             m.Show();
+
+            if (firstStep.audio != null)
+            {
+                var audioPath = Constants.audioPath + "/Audio " + tour._id + firstStep._id + ".wav";
+                playAudio(audioPath);
+            }
         }
 
         public void playStep(Tour tour, int positionStep)
         {
-            var step = tour.steps.Find(s => s.order == positionStep);
+            var actualStep = tour.steps.Find(s => s.order == positionStep);
+            var nextStep = nextDiferentUrlStep(actualStep);
             var audioPath = "";
 
-            if (step != null)
+            if (!tourBar.isLastStepInUrl)
+                actualStep = nextStep;
+
+            if (actualStep != null)
             {
-                if (step.audio != null)
-                    audioPath = Constants.audioPath + "/Audio " + tour._id + step._id + ".wav";
+                if (actualStep.audio != null)
+                    audioPath = Constants.audioPath + "/Audio " + tour._id + actualStep._id + ".wav";
 
-                if (positionStep == 0)
+                if (webBrowser.Url.ToString() == actualStep.url || actualStep.url == lastCorrectURL)
                 {
-                    if (webBrowser.Url.ToString() != step.url)
-                    {
-                        webBrowser.Navigate(step.url);
-                        actualURL = step.url;
-                        lastCorrectURL = step.url;
-                    }
-                    playAudio(audioPath);
-                }
-
-
-                if (webBrowser.Url.ToString() == step.url || step.url == lastCorrectURL)
-                {
-                    lastCorrectURL = step.url;
+                    lastCorrectURL = actualStep.url;
+                    tourBar.SetStep(actualStep.order);
                     /*if (positionStep != 0)
                     {
                         ConfirmationMessage m = new ConfirmationMessage("Completaste el paso " + (step.order) + "!");
@@ -87,8 +93,8 @@ namespace NavegadorWeb.Adult
                         m.Show();
                     }*/
 
-                    var doc = initDocument(step, positionStep);
-                    doc.InvokeScript("init" + step.order);
+                    var doc = initDocument(actualStep, actualStep.order);
+                    doc.InvokeScript("init" + actualStep.order);
 
                     playAudio(audioPath);
                 }
@@ -97,6 +103,7 @@ namespace NavegadorWeb.Adult
                     var result = MessageBox.Show("Paso erroneo, ¿quiere volver al último paso correcto?", "Paso equivocado", MessageBoxButton.YesNo, MessageBoxImage.Information);
                     if (result.ToString() == "Yes")
                     {
+                        tourBar.isLastStepInUrl = true;
                         countLoad--;
                         actualURL = lastCorrectURL;
                         webBrowser.Navigate(lastCorrectURL);
@@ -119,7 +126,7 @@ namespace NavegadorWeb.Adult
             }
         }
 
-        private HtmlDocument initDocument (Step step, int positionStep)
+        public HtmlDocument initDocument (Step step, int positionStep)
         {
             var i = 1;
             int firstElementY = 100000;
@@ -333,7 +340,7 @@ namespace NavegadorWeb.Adult
                 MessageBox.Show("Error al crear el directorio para los audios", "Error");
             }
         }
-        private void playAudio(string audioPath)
+        public void playAudio(string audioPath)
         {
             if (File.Exists(audioPath))
             {
@@ -357,6 +364,11 @@ namespace NavegadorWeb.Adult
 
             }
         }
+    private Step nextDiferentUrlStep (Step step)
+        {
+            var steps = this.tourLoad.steps.FindAll(s => s.order > step.order);
+            return steps.FirstOrDefault(s => s.url != step.url);
 
+        }
     }
 }
