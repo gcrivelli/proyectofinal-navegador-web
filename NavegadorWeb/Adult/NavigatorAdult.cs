@@ -17,6 +17,7 @@ namespace NavegadorWeb.Adult
         public int countLoad;
         private string actualURL, lastCorrectURL;
         private int posActual;
+        private bool volverAPasoCorrecto;
 
         public NavigatorAdult()
         {
@@ -81,8 +82,9 @@ namespace NavegadorWeb.Adult
                 if (actualStep.audio != null)
                     audioPath = Constants.audioPath + "/Audio " + tour._id + actualStep._id + ".wav";
 
-                if (webBrowser.Url.ToString() == actualStep.url || actualStep.url == lastCorrectURL)
+                if (webBrowser.Url.ToString() == actualStep.url || volverAPasoCorrecto)
                 {
+                    volverAPasoCorrecto = false;
                     lastCorrectURL = actualStep.url;
                     tourBar.SetStep(actualStep.order);
                     /*if (positionStep != 0)
@@ -107,6 +109,7 @@ namespace NavegadorWeb.Adult
                         countLoad--;
                         actualURL = lastCorrectURL;
                         webBrowser.Navigate(lastCorrectURL);
+                        volverAPasoCorrecto = true;
                         playStep(tourLoad, countLoad);
                     }
                     else
