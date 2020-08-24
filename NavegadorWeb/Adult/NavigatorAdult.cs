@@ -22,7 +22,7 @@ namespace NavegadorWeb.Adult
         public NavigatorAdult()
         {
             InitializeComponent();
-            webBrowser.Navigated += webBrowser_Navigated;
+            webBrowser.DocumentCompleted += webBrowser_DocumentCompleted;
         }
 
         public void PlayTour(Tour tour)
@@ -68,13 +68,13 @@ namespace NavegadorWeb.Adult
             }
         }
 
-        public void playStep(Tour tour, int positionStep)
+        public void playStep(Tour tour, int positionStep, bool flag = false)
         {
             var actualStep = tour.steps.Find(s => s.order == positionStep);
             var nextStep = nextDiferentUrlStep(actualStep);
             var audioPath = "";
 
-            if (!tourBar.isLastStepInUrl)
+            if (!tourBar.isLastStepInUrl && !flag)
                 actualStep = nextStep;
 
             if (actualStep != null)
@@ -352,7 +352,7 @@ namespace NavegadorWeb.Adult
             }
         }
 
-        private void webBrowser_Navigated(object sender, WebBrowserNavigatedEventArgs e)
+        private void webBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
             if (actualURL != webBrowser.Url.ToString() || actualURL != lastCorrectURL)
             {
@@ -365,6 +365,10 @@ namespace NavegadorWeb.Adult
                     playStep(tourLoad, countLoad);
                 }
 
+            } 
+            else
+            {
+                playStep(tourLoad, countLoad, true);
             }
         }
     private Step nextDiferentUrlStep (Step step)
