@@ -27,6 +27,7 @@ namespace NavegadorWeb.Adult
 
         public void PlayTour(Tour tour)
         {
+            //Mostrar la barra de tour
             this.Show();
             tourBar = new AsistimeTourBar() { Parent = this };
             tourBar.Location = new System.Drawing.Point(0, 0);
@@ -34,11 +35,11 @@ namespace NavegadorWeb.Adult
             tourBar.Show();
             this.asistimeAppBar.Hide();
 
+            //Instanciar el controller para el tour
             var tourController = new TourController();
             tour = tourController.GetTourAsync(tour._id).Result;
 
             // GET AUDIO 
-
             var audioResult = true;
             createDirectory();
             for (int i = 0; i < tour.steps.Count; i++)
@@ -51,16 +52,18 @@ namespace NavegadorWeb.Adult
             countLoad = 0;
             tourBar.TourInititated(tour);
 
-            //Hago paso 0 
+            //Reproducir el paso 0 
             var firstStep = tour.steps[0];
             webBrowser.Navigate(firstStep.url);
             actualURL = firstStep.url;
             lastCorrectURL = firstStep.url;
 
+            //Mostrar mensaje de confirmación
             ConfirmationMessage m = new ConfirmationMessage("Iniciaste el tour!");
             m.Location = new System.Drawing.Point(Constants.AppBarWidth - 410, Constants.AppBarHeight + 50);
             m.Show();
 
+            //Reproducir audio
             if (firstStep.audio != null)
             {
                 var audioPath = Constants.audioPath + "/Audio " + tour._id + firstStep._id + ".wav";
