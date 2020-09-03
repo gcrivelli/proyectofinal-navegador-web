@@ -9,6 +9,6 @@ namespace NavegadorWeb.Models
         public string email { get; set; }
         public string password { get; set; }
         public List<Tour> tours { get; set; }
-       // public Token token { get; set; }
+        public string rol { get; set; }
     }
 }

@@ -92,7 +92,9 @@ namespace NavegadorWeb.UI
         public static Color ErrorMessageBackColor = Color.Red;
         public static Color ConfirmationMessageForeColor = Color.White;
         public static Color WarningMessageForeColor = Color.Black;
-        public static Color ErrorMessageForeColor = Color.Yellow; 
+        public static Color ErrorMessageForeColor = Color.Yellow;
+
+        public static String token;
     }
 
 }

@@ -127,54 +127,38 @@ namespace NavegadorWeb.GeneralDisplay
             popup.Size = new Size(300, 200);
             popup.Popup();
 
-            //nuevo login
-            //if (userTextBox.TextName != string.Empty)
-            //{
-            //    if (passwrdTextBox.TextName != string.Empty)
-            //    {
-            //        var userController = new UserController();
-            //        var user = new User();
-            //        user.name = userTextBox.TextName;
-            //        user.password = passwrdTextBox.TextName;
-
-            //        var token = userController.LoginAsync(user).Result;
-            //        if (token.access_token != null)
-            //        {
-            //            if (token.token_type == "adulto")
-            //            {
-            //                NavigatorAdult mod = new NavigatorAdult();
-            //                mod.Show();
-            //            }
-            //            else if (token.token_type == "responsable")
-            //            {
-            //                NavWebResponsable mod = new NavWebResponsable();
-            //                mod.Show();
-            //            }
-            //        }
-            //        else
-            //            MessageBox.Show("Usuario o contraseña incorrecta.", "Error Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            //    }
-            //}
-            //else
-            //    MessageBox.Show("Todos los campos deben tenes un valor.", "Error Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            //Viejo login
-            if (userTextBox.TextName == "adulto")
+            if (userTextBox.TextName != string.Empty)
             {
-                NavigatorAdult mod = new NavigatorAdult();
-                mod.Show();
+                if (passwrdTextBox.TextName != string.Empty)
+                {
+                    var userController = new UserController();
+                    var user = new User();
+                    user.email = userTextBox.TextName;
+                    user.password = passwrdTextBox.TextName;
+
+                    var token = userController.LoginAsync(user).Result;
+                    Constants.token = token.access_token;
+
+                    if (token.access_token != null)
+                    {
+                        if (token.user.rol == "Adulto")
+                        {
+                            NavigatorAdult mod = new NavigatorAdult();
+                            mod.Show();
+                        }
+                        else if (token.user.rol == "Responsable")
+                        {
+                            NavWebResponsable mod = new NavWebResponsable();
+                            mod.Show();
+                        }
+                    }
+                    else
+                        MessageBox.Show("Usuario o contraseña incorrecta.", "Error Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
             }
-            else if (userTextBox.TextName == "responsable")
-            {
-                NavWebResponsable mod = new NavWebResponsable();
-                mod.Show();
-            }
-            else if (userTextBox.TextName == "prueba")
-            {
-                AsistimeTourCreation mod = new AsistimeTourCreation();
-                mod.Show();
-            }
+            else
+                MessageBox.Show("Todos los campos deben tenes un valor.", "Error Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         protected void RegisterUser(object sender, EventArgs e)
