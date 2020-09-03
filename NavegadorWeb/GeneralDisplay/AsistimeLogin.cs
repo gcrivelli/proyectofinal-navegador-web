@@ -7,6 +7,7 @@ using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using Tulpep.NotificationWindow;
 
 namespace NavegadorWeb.GeneralDisplay
 {
@@ -112,54 +113,52 @@ namespace NavegadorWeb.GeneralDisplay
 
         protected void LogUser(object sender, EventArgs e)
         {
-            //nuevo login
-            //if (userTextBox.TextName != string.Empty)
-            //{
-            //    if (passwrdTextBox.TextName != string.Empty)
-            //    {
-            //        var userController = new UserController();
-            //        var user = new User();
-            //        user.name = userTextBox.TextName;
-            //        user.password = passwrdTextBox.TextName;
+            PopupNotifier popup = new PopupNotifier();
+            popup.TitleText = "Asistime!!";
+            popup.TitlePadding = new Padding(50, 20, 20, 20);
+            popup.TitleFont = new Font("Arial", 26);
+            popup.ContentText = "Bienvenido";
+            popup.ContentFont = new Font("Arial", 13);
+            popup.ContentPadding = new Padding(50, 0, 20, 20);
 
-            //        var token = userController.LoginAsync(user).Result;
-            //        if (token.access_token != null)
-            //        {
-            //            if (token.token_type == "adulto")
-            //            {
-            //                NavigatorAdult mod = new NavigatorAdult();
-            //                mod.Show();
-            //            }
-            //            else if (token.token_type == "responsable")
-            //            {
-            //                NavWebResponsable mod = new NavWebResponsable();
-            //                mod.Show();
-            //            }
-            //        }
-            //        else
-            //            MessageBox.Show("Usuario o contraseña incorrecta.", "Error Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            popup.ShowCloseButton = true;
+            popup.ShowOptionsButton = true;
+            popup.Delay = 5000;
+            popup.Size = new Size(300, 200);
+            popup.Popup();
 
-            //    }
-            //}
-            //else
-            //    MessageBox.Show("Todos los campos deben tenes un valor.", "Error Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (userTextBox.TextName != string.Empty)
+            {
+                if (passwrdTextBox.TextName != string.Empty)
+                {
+                    var userController = new UserController();
+                    var user = new User();
+                    user.email = userTextBox.TextName;
+                    user.password = passwrdTextBox.TextName;
 
-            //Viejo login
-            if (userTextBox.TextName == "adulto")
-            {
-                NavigatorAdult mod = new NavigatorAdult();
-                mod.Show();
+                    var token = userController.LoginAsync(user).Result;
+                    Constants.token = token.access_token;
+
+                    if (token.access_token != null)
+                    {
+                        if (token.user.rol == "Adulto")
+                        {
+                            NavigatorAdult mod = new NavigatorAdult();
+                            mod.Show();
+                        }
+                        else if (token.user.rol == "Responsable")
+                        {
+                            NavWebResponsable mod = new NavWebResponsable();
+                            mod.Show();
+                        }
+                    }
+                    else
+                        MessageBox.Show("Usuario o contraseña incorrecta.", "Error Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
             }
-            else if (userTextBox.TextName == "responsable")
-            {
-                NavWebResponsable mod = new NavWebResponsable();
-                mod.Show();
-            }
-            else if (userTextBox.TextName == "prueba")
-            {
-                AsistimeTourCreation mod = new AsistimeTourCreation();
-                mod.Show();
-            }
+            else
+                MessageBox.Show("Todos los campos deben tenes un valor.", "Error Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         protected void RegisterUser(object sender, EventArgs e)

@@ -23,6 +23,7 @@ namespace NavegadorWeb.Controller
         {
             using (var client = new HttpClient())
             {
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + Constants.token);
                 var response = await client.GetAsync(APIurl + "tour/" + id).ConfigureAwait(false);
                 response.EnsureSuccessStatusCode();
                 string responseBody = await response.Content.ReadAsStringAsync();
@@ -40,6 +41,7 @@ namespace NavegadorWeb.Controller
             using (var client = new HttpClient())
             {
                 //change url
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer "+ Constants.token);
                 var response = await client.GetAsync(APIurl + "user/"+ id +"/tour").ConfigureAwait(false);
                 response.EnsureSuccessStatusCode();
                 string responseBody = await response.Content.ReadAsStringAsync();
@@ -59,6 +61,7 @@ namespace NavegadorWeb.Controller
             using (var client = new HttpClient())
             {
                 var urlPost = APIurl + "tour";
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + Constants.token);
                 var response = await client.PostAsync(urlPost,
                      new StringContent(JSONresult, Encoding.UTF8, "application/json")).ConfigureAwait(false);
 
@@ -78,6 +81,7 @@ namespace NavegadorWeb.Controller
 
             var url = APIurl + "tour/" + tourId +"/step/" + stepId +"/audio";
             HttpClient httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + Constants.token);
             var response = await httpClient.PostAsync(url, form).ConfigureAwait(false);
 
             File.Delete(file_path);
@@ -91,6 +95,7 @@ namespace NavegadorWeb.Controller
             using (var client = new HttpClient())
             {                
                 var url = APIurl + "tour/" + tourId + "/step/" + stepId + "/audio";
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + Constants.token);
                 var response = await client.GetAsync(url).ConfigureAwait(false);
                 var filename = Constants.audioPath + "/Audio " + tourId + stepId+ ".wav";
 

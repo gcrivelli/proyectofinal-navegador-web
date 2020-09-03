@@ -1,10 +1,13 @@
-﻿using NavegadorWeb.GeneralDisplay;
+﻿using NavegadorWeb.Controller;
+using NavegadorWeb.GeneralDisplay;
+using NavegadorWeb.Models;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using System.Windows.Forms;
 
 namespace NavegadorWeb.UI
@@ -146,12 +149,34 @@ namespace NavegadorWeb.UI
             //Llamado al a api
             //Mensaje de que hay que validar la cuenta
             //Volver al login?
+            if (validateForm())
+            {
+                var user = new User();
+                user.name = nameTextBox.TextName;
+                user.email = mailTextBox.TextName;
+                user.password = passwrdTextBox.TextName;
+                user.tours = new List<Tour>();
+
+                var userController = new UserController();
+                var token = userController.RegisterAsync(user).Result;
+                //Aca hace su magia nacho con el token
+            }
+            else
+                MessageBox.Show("Registro invalido", "Todos los campos son requeridos", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         protected void BackToLogin(object sender, EventArgs e)
         {
             this.Hide();
             this.previousForm.Show();
+        }
+
+        private bool validateForm()
+        {
+            if (nameTextBox.TextName == string.Empty || passwrdTextBox.TextName == string.Empty || mailTextBox.TextName == string.Empty)
+                return false;
+            else 
+                return true;
         }
     }
 }
