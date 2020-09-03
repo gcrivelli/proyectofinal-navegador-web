@@ -141,7 +141,7 @@ namespace NavegadorWeb.GeneralDisplay
 
                     if (token.access_token != null)
                     {
-                        if (token.user.rol == "Adulto")
+                        if (token.user.rol == "Adult")
                         {
                             NavigatorAdult mod = new NavigatorAdult();
                             mod.Show();
