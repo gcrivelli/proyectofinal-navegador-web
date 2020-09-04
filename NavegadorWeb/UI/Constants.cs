@@ -11,9 +11,10 @@ namespace NavegadorWeb.UI
 {
     class Constants
     {
-        public const string AppPrimaryColour = "#14272E";
-        //public const string AppSecondaryColour = "#FFD123";
-        public const string AppSecondaryColour = "#FFFFFF";
+        //public const string AppPrimaryColour = "#14272E";
+        public const string AppPrimaryColour = "#1B3770";
+        //public const string AppSecondaryColour = "#FFFFFF";
+        public const string AppSecondaryColour = "#4EB19D";
 
         public const int AppBarHeight = 170;
         public const int AppBarWidth = 1920;
