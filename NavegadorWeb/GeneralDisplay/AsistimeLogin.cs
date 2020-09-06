@@ -19,9 +19,7 @@ namespace NavegadorWeb.GeneralDisplay
         private AsistimeActionButton loginButton;
         private AsistimeActionButton registerButton;
 
-        private Label asistimeLabel;
-
-        private int initControlsHeight = 300;
+        private int initControlsHeight = 350;
         private int spaceBetweenTextBoxes = 150;
         private int spaceBeforeTextBox = 30;
         private int spaceBetweeActionButtons = 100;
@@ -35,30 +33,22 @@ namespace NavegadorWeb.GeneralDisplay
             this.Width = 700;
             this.Height = 800;
             this.AllowTransparency = true;
+            this.BackColor = Color.White;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
 
-            AsistimeRoundButton exitButton = new AsistimeRoundButton(48, 48, Constants.CloseImage, Constants.CloseImage, Constants.CloseClickedImage) { Parent = this.Parent };
-            exitButton.Location = new Point(this.Width - 60, 10);
+            AsistimeRoundButton exitButton = new AsistimeRoundButton(44, 44, Constants.CloseImage, Constants.CloseHoverImage, Constants.CloseClickedImage) { Parent = this.Parent };
+            exitButton.Location = new Point(this.Width - 56, 10);
             exitButton.Click += new EventHandler(Exit);
             this.Controls.Add(exitButton);
 
-
-            Panel panel = new Panel();
-            panel.BackColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour);
-            panel.Location = new Point(0, 0);
-            panel.Size = new Size(800, 200);
-            this.Controls.Add(panel);
-
-            asistimeLabel = new Label()
-            {
-                Text = "Asistime",
-                Font = Constants.LogoLabelFont,
-                ForeColor = Color.White
-            };
-            this.Controls.Add(asistimeLabel);
-            panel.Controls.Add(asistimeLabel);
-            asistimeLabel.BringToFront();
-
+            PictureBox logo = new PictureBox();
+            logo.ImageLocation = Constants.AsistimeLogo; ;
+            this.Controls.Add(logo);
+            logo.Width = 500;
+            logo.Height = 200;
+            logo.Location = new Point(101,70);
+            logo.BringToFront();
+            
             Label userLabel = new Label()
             {
                 Text = "USUARIO",
@@ -192,31 +182,20 @@ namespace NavegadorWeb.GeneralDisplay
                 size.Width += 40;
                 registerButtonWidth = (int)size.Width;
             }
-            registerButton.Location = new Point(this.Width / 2 - registerButtonWidth / 2, loginButton.Location.Y + 80);
+            registerButton.Location = new Point(this.Width / 2 - registerButtonWidth / 2, loginButton.Location.Y + 80);  
 
-            /*asistimeLabel.BackColor = Color.Transparent;
-            asistimeLabel.Image = null;
-            asistimeLabel.ForeColor = Color.White;
-            asistimeLabel.Location = new Point(this.Width / 2 - asistimeLabel.Width / 2, 50);*/
         }
 
-
-
-
-
-
-
-        //NO BORRAR ESTO
-        /*[DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
 
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
-        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);*/
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
 
         private void AsistimeLogin_MouseDown(object sender, MouseEventArgs e)
         {
-            /*ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);*/
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]

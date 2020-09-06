@@ -28,11 +28,24 @@ namespace NavegadorWeb.UI
             this.Controls.Add(progressBar);
 
 
-            this.Controls.Add(this.GetStepBackButton((this.Width / 2) - 39 - 150, 35));
-            this.Controls.Add(this.GetPlayButton((this.Width / 2) - 39, 35));
-            this.Controls.Add(this.GetStepForwardButton((this.Width / 2) + 39 + 72, 35));
-            this.Controls.Add(this.GetCloseTourButton(this.ClientSize.Width - 150, 35));
+            this.Controls.Add(this.GetStepBackButton((this.Width / 2) - 49 - 200, 15));
+            this.Controls.Add(this.GetPlayButton((this.Width / 2) - 49, 15));
+            this.Controls.Add(this.GetStepForwardButton((this.Width / 2) - 49 + 200, 15));
+            this.Controls.Add(this.GetCloseTourButton(this.ClientSize.Width - 150, 15));
             StepBackButton.Enabled = false;
+
+            Label backLabel = new Label() { Text = "Paso anterior", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
+            Center_With(backLabel, StepBackButton);
+            this.Controls.Add(backLabel);
+            Label playLabel = new Label() { Text = "Repetir paso", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
+            Center_With(playLabel, PlayButton);
+            this.Controls.Add(playLabel);
+            Label forwardLabel = new Label() { Text = "Siguiente paso", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
+            Center_With(forwardLabel, StepForwardButton);
+            this.Controls.Add(forwardLabel);
+            Label closeLabel = new Label() { Text = "Cerrar", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
+            Center_With(closeLabel, CloseTourButton);
+            this.Controls.Add(closeLabel);
         }
         public void SetStep(int actualStep)
         {
@@ -48,7 +61,7 @@ namespace NavegadorWeb.UI
         {
             if (StepBackButton == null)
             {
-                StepBackButton = new AsistimeRoundButton(78, 78, Constants.StepBackImage, Constants.StepBackImage, Constants.StepBackClickImage) { Parent = this.Parent };
+                StepBackButton = new AsistimeRoundButton(98, 98, Constants.StepBackImage, Constants.StepBackHoverImage, Constants.StepBackClickImage) { Parent = this.Parent };
                 StepBackButton.Location = new Point(x, y);
             }
             StepBackButton.Click += new EventHandler(this.GoOneStepBack);
@@ -72,7 +85,7 @@ namespace NavegadorWeb.UI
         {
             if (PlayButton == null)
             {
-                PlayButton = new AsistimeRoundButton(78, 78, Constants.StepPlayImage, Constants.StepPlayImage, Constants.StepPlayClickImage) { Parent = this.Parent };
+                PlayButton = new AsistimeRoundButton(98, 98, Constants.StepPlayImage, Constants.StepPlayHoverImage, Constants.StepPlayClickImage) { Parent = this.Parent };
                 PlayButton.Location = new Point(x, y);
             }
             PlayButton.Click += new EventHandler(this.PlayStep);
@@ -88,7 +101,7 @@ namespace NavegadorWeb.UI
         {
             if (StepForwardButton == null)
             {
-                StepForwardButton = new AsistimeRoundButton(78, 78, Constants.StepForwardImage, Constants.StepForwardImage, Constants.StepForwardClickImage) { Parent = this.Parent };
+                StepForwardButton = new AsistimeRoundButton(98, 98, Constants.StepForwardImage, Constants.StepForwardHoverImage, Constants.StepForwardClickImage) { Parent = this.Parent };
                 StepForwardButton.Location = new Point(x, y);
             }
             StepForwardButton.Click += new EventHandler(this.GoOneStepForward);
@@ -109,7 +122,7 @@ namespace NavegadorWeb.UI
         {
             if (CloseTourButton == null)
             {
-                CloseTourButton = new AsistimeRoundButton(78, 78, Constants.CloseTourImage, Constants.CloseTourImage, Constants.CloseTourImage) { Parent = this.Parent };
+                CloseTourButton = new AsistimeRoundButton(98, 98, Constants.CloseTourImage, Constants.CloseTourHoverImage, Constants.CloseTourClickImage) { Parent = this.Parent };
                 CloseTourButton.Location = new Point(x, y);
             }
             CloseTourButton.Click += new EventHandler(this.CloseTour);
@@ -179,6 +192,18 @@ namespace NavegadorWeb.UI
 
             form.playAudio(audioPath);
             form.countLoad = positionStep;
+        }
+
+        private void Center_With(Label label, AsistimeRoundButton button)
+        {
+            int labelWidth;
+            using (Graphics cg = this.CreateGraphics())
+            {
+                SizeF size = cg.MeasureString(label.Text, label.Font);
+                labelWidth = (int)size.Width + 7;
+            }
+            label.Width = labelWidth;
+            label.Location = new Point(button.Location.X + button.Width / 2 - labelWidth / 2, button.Location.Y + button.Width);
         }
     }
 }

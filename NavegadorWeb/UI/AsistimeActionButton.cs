@@ -20,11 +20,11 @@ namespace NavegadorWeb.UI
             this.IdleCornerRadius = Constants.ActionButtonCornerRadius;
             this.ActiveCornerRadius = Constants.ActionButtonCornerRadius;
 
-            this.IdleLineColor = this.ActiveLineColor;
+            //this.IdleLineColor = this.ActiveLineColor;
             this.BackColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour);
-            this.ForeColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour);
-            this.ActiveForecolor = ColorTranslator.FromHtml(Constants.AppPrimaryColour);
-            this.IdleForecolor = ColorTranslator.FromHtml(Constants.AppPrimaryColour);
+            this.ForeColor = ColorTranslator.FromHtml(Constants.ActionButtonForeColor);
+            this.ActiveForecolor = ColorTranslator.FromHtml(Constants.ActionButtonForeColor);
+            this.IdleForecolor = ColorTranslator.FromHtml(Constants.ActionButtonForeColor);
             this.ActiveFillColor = ColorTranslator.FromHtml(Constants.ActionButtonHoverFillColor);
             this.IdleFillColor = ColorTranslator.FromHtml(Constants.ActionButtonFillColor);
             this.IdleLineColor = ColorTranslator.FromHtml(Constants.ActionButtonFillColor);

@@ -20,11 +20,23 @@ namespace NavegadorWeb.UI
             Height = Constants.AppBarHeight;
             Width = Constants.AppBarWidth;
 
-            this.Controls.Add(this.GetNavBackButton(20, 35));
-            this.Controls.Add(this.GetNavRefreshButton(100, 20));
-            this.Controls.Add(this.GetNavForwardButton(210, 35));
-            this.Controls.Add(this.GetNavProfileButton(this.ClientSize.Width - 150, 20));
-            NavRefreshButton.BringToFront();
+            this.Controls.Add(this.GetNavBackButton(20, 15));
+            this.Controls.Add(this.GetNavRefreshButton(130, 15));
+            this.Controls.Add(this.GetNavForwardButton(240, 15));
+            this.Controls.Add(this.GetNavProfileButton(this.ClientSize.Width - 150, 15));
+
+            Label backLabel = new Label() { Text = "Atrás", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
+            Center_With(backLabel, NavBackButton);
+            this.Controls.Add(backLabel);
+            Label refreshLabel = new Label() { Text = "Recargar", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
+            Center_With(refreshLabel, NavRefreshButton);
+            this.Controls.Add(refreshLabel);
+            Label forwardLabel = new Label() { Text = "Adelante", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
+            Center_With(forwardLabel, NavForwardButton);
+            this.Controls.Add(forwardLabel);
+            Label profileLabel = new Label() { Text = "Menú", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
+            Center_With(profileLabel, NavProfileButton);
+            this.Controls.Add(profileLabel);
 
             searchTextBox = new AsistimeSearchBox()
             {
@@ -32,7 +44,7 @@ namespace NavegadorWeb.UI
                 TextName = Constants.SearchBoxText,
                 Parent = this
             };
-            searchTextBox.Location = new System.Drawing.Point(330, 35);
+            searchTextBox.Location = new System.Drawing.Point(350, 37);
             searchTextBox.KeyDown += directionBox_KeyDown;
             this.Controls.Add(searchTextBox);
 
@@ -79,7 +91,7 @@ namespace NavegadorWeb.UI
         {
             if (NavRefreshButton == null)
             {
-                NavRefreshButton = new AsistimeRoundButton(128, 128, Constants.NavRefreshImage, Constants.NavRefreshHoverImage, Constants.NavRefreshClickedImage) { Parent = this.Parent };
+                NavRefreshButton = new AsistimeRoundButton(98, 98, Constants.NavRefreshImage, Constants.NavRefreshHoverImage, Constants.NavRefreshClickedImage) { Parent = this.Parent };
                 NavRefreshButton.Location = new Point(x, y);
             }
             NavRefreshButton.Click += new EventHandler(this.NavigateUpdate);
@@ -112,7 +124,7 @@ namespace NavegadorWeb.UI
         {
             if (NavProfileButton == null)
             {
-                NavProfileButton = new AsistimeRoundButton(128, 128, Constants.NavProfileImage, Constants.NavProfileHoverImage, Constants.NavProfileClickedImage) { Parent = this.Parent };
+                NavProfileButton = new AsistimeRoundButton(98, 98, Constants.NavProfileImage, Constants.NavProfileHoverImage, Constants.NavProfileClickedImage) { Parent = this.Parent };
                 NavProfileButton.Location = new Point(x, y);
             }
             NavProfileButton.Click += new EventHandler(this.ShowMenu);
@@ -148,6 +160,18 @@ namespace NavegadorWeb.UI
             {
                 this.Navigate(sender, e);
             }
+        }
+
+        private void Center_With(Label label, AsistimeRoundButton button)
+        {
+            int labelWidth;
+            using (Graphics cg = this.CreateGraphics())
+            {
+                SizeF size = cg.MeasureString(label.Text, label.Font);
+                labelWidth = (int)size.Width + 7;
+            }
+            label.Width = labelWidth;
+            label.Location = new Point(button.Location.X + button.Width / 2 - labelWidth / 2, button.Location.Y + button.Width);
         }
     }
 }

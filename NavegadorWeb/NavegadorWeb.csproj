@@ -283,6 +283,9 @@
     <EmbeddedResource Include="Responsable\NavWebResponsable.resx">
       <DependentUpon>NavWebResponsable.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\AsistimeActionButton.resx">
+      <DependentUpon>AsistimeActionButton.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\AsistimeDialogBox.resx">
       <DependentUpon>AsistimeDialogBox.cs</DependentUpon>
     </EmbeddedResource>
