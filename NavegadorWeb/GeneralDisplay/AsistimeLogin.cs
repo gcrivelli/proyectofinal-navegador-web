@@ -107,10 +107,10 @@ namespace NavegadorWeb.GeneralDisplay
                     user.password = passwrdTextBox.TextName;
 
                     var token = userController.LoginAsync(user).Result;
-                    Constants.token = token.access_token;
 
-                    if (token.access_token != null)
+                    if (token != null)
                     {
+                        Constants.token = token.access_token;
                         if (token.user.rol == "Adult")
                         {
                             NavigatorAdult mod = new NavigatorAdult();

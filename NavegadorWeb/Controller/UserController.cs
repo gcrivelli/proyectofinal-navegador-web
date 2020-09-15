@@ -21,9 +21,16 @@ namespace NavegadorWeb.Controller
                 var response = await client.PostAsync(urlPost,
                      new StringContent(JSONresult, Encoding.UTF8, "application/json")).ConfigureAwait(false);
 
-                response.EnsureSuccessStatusCode();
-                string responseBody = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<Token>(responseBody);
+                try
+                {
+                    response.EnsureSuccessStatusCode();
+                    string responseBody = await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<Token>(responseBody);
+                }
+                catch (HttpRequestException)
+                {
+                    return JsonConvert.DeserializeObject<Token>("");
+                }                
             }
         }
 
