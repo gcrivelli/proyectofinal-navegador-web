@@ -1,12 +1,7 @@
-﻿using NavegadorWeb.UI;
+﻿using NavegadorWeb.Controller;
+using NavegadorWeb.UI;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NavegadorWeb.GeneralDisplay
@@ -53,7 +48,24 @@ namespace NavegadorWeb.GeneralDisplay
 
         protected void ResetPassword(object sender, EventArgs e)
         {
-            return;
+            if (mailTextBox.TextName != string.Empty)
+            {
+                var userController = new UserController();
+                var result = userController.ForgotPasswordAsync(mailTextBox.TextName).Result;
+
+                if (result)
+                {
+                    MessageBox.Show("Se ha enviado un mail de recupero de contraseña, introduzcala para " +
+                        "iniciar sesion", "Mail enviado con éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                    previousForm.Show();
+                }
+                else
+                    MessageBox.Show("El mail ingresado es incorrecto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                mailTextBox.TextName = string.Empty;
+            }
+            else
+                MessageBox.Show("Ingrese un mail", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void AsistimePassReset_Load(object sender, EventArgs e)

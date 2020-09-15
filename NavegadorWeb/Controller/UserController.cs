@@ -1,6 +1,7 @@
 ﻿using NavegadorWeb.Models;
 using NavegadorWeb.UI;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,5 +51,31 @@ namespace NavegadorWeb.Controller
                 
             }
         }
+
+        public async Task<bool> ForgotPasswordAsync(string email)
+        {
+            var values = new Dictionary<string, string>
+            {
+                  { "email", email }
+            };
+
+            var content = new FormUrlEncodedContent(values);
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    var urlPost = APIurl + "forgotpassword";
+                    var response = await client.PostAsync(urlPost, content).ConfigureAwait(false);
+                    response.EnsureSuccessStatusCode();
+                    string responseBody = await response.Content.ReadAsStringAsync();
+                    return response.EnsureSuccessStatusCode().IsSuccessStatusCode;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
+
     }
 }
