@@ -14,7 +14,7 @@ using WindowsFormsControlLibrary1;
 
 namespace NavegadorWeb.UI
 {
-    class AsistimeSearchBox : JMetroTextBox.JMetroTextBox //BunifuMetroTextbox
+    public class AsistimeSearchBox : JMetroTextBox.JMetroTextBox //BunifuMetroTextbox
     {
         
         public AsistimeSearchBox()

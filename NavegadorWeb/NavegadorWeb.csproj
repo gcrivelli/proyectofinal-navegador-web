@@ -147,6 +147,12 @@
     <Compile Include="GeneralDisplay\AsistimeLogin.Designer.cs">
       <DependentUpon>AsistimeLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="GeneralDisplay\AsistimePassReset.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GeneralDisplay\AsistimePassReset.Designer.cs">
+      <DependentUpon>AsistimePassReset.cs</DependentUpon>
+    </Compile>
     <Compile Include="GeneralDisplay\MenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -208,6 +214,12 @@
     </Compile>
     <Compile Include="GeneralDisplay\AsistimeRegister.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AsistimeModalForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AsistimeModalForm.Designer.cs">
+      <DependentUpon>AsistimeModalForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\AsistimeMultilineTextbox.cs">
       <SubType>Component</SubType>
@@ -300,6 +312,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GeneralDisplay\AsistimeRegister.resx">
       <DependentUpon>AsistimeRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AsistimeModalForm.resx">
+      <DependentUpon>AsistimeModalForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\AsistimeTourCreation.resx">
       <DependentUpon>AsistimeTourCreation.cs</DependentUpon>

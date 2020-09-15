@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace NavegadorWeb.UI
 {
-    class AsistimeActionButton : BunifuThinButton2
+    public class AsistimeActionButton : BunifuThinButton2
     {
         public AsistimeActionButton()
         {

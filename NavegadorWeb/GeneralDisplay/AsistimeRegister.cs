@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace NavegadorWeb.UI
 {
-    public partial class AsistimeRegister : Form
+    public partial class AsistimeRegister : AsistimeModalForm
     {
 
         private AsistimeSearchBox nameTextBox;
@@ -23,35 +23,11 @@ namespace NavegadorWeb.UI
         private AsistimeActionButton registerAccountButton;
         private AsistimeActionButton backToLoginButton;
 
-        private int initControlsHeight = 350;
-        private int spaceBetweenTextBoxes = 150;
-        private int spaceBeforeTextBox = 30;
-        private int spaceBetweeActionButtons = 100;
-
         public AsistimeLogin previousForm;
 
-        public AsistimeRegister()
+        public AsistimeRegister() : base()
         {
             InitializeComponent();
-            this.FormBorderStyle = FormBorderStyle.None;
-            StartPosition = FormStartPosition.CenterScreen;
-            this.Width = 700;
-            this.Height = 1000;
-            this.BackColor = Color.White;
-            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
-
-            AsistimeRoundButton exitButton = new AsistimeRoundButton(46, 46, Constants.CloseImage, Constants.CloseHoverImage, Constants.CloseClickedImage) { Parent = this.Parent };
-            exitButton.Location = new Point(this.Width - 56, 10);
-            exitButton.Click += new EventHandler(Exit);
-            this.Controls.Add(exitButton);
-
-            PictureBox logo = new PictureBox();
-            logo.ImageLocation = Constants.AsistimeLogo; ;
-            this.Controls.Add(logo);
-            logo.Width = 500;
-            logo.Height = 200;
-            logo.Location = new Point(101, 70);
-            logo.BringToFront();
 
             Label nameLabel = new Label()
             {
@@ -128,11 +104,6 @@ namespace NavegadorWeb.UI
 
         }
 
-        protected void Exit(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
         protected void RegisterAccount(object sender, EventArgs e)
         {
             //Validaciones de campos
@@ -175,10 +146,8 @@ namespace NavegadorWeb.UI
             // 
             // AsistimeRegister
             // 
-            this.ClientSize = new System.Drawing.Size(278, 244);
             this.Name = "AsistimeRegister";
             this.Load += new System.EventHandler(this.AsistimeRegister_Load);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AsistimeRegister_MouseDown);
             this.ResumeLayout(false);
 
         }
@@ -192,7 +161,7 @@ namespace NavegadorWeb.UI
                 size.Width += 40;
                 registerAccountButtonWidth = (int)size.Width;
             }
-            registerAccountButton.Location = new Point(this.Width / 2 - registerAccountButtonWidth / 2, passwrdTextBox.Location.Y + spaceBetweeActionButtons);
+            registerAccountButton.Location = new Point(this.Width / 2 - registerAccountButtonWidth / 2, passwrdTextBox.Location.Y + spaceBeforeActionButtons);
 
             int backToLoginButtonWidth;
             using (Graphics cg = this.CreateGraphics())
@@ -201,30 +170,10 @@ namespace NavegadorWeb.UI
                 size.Width += 40;
                 backToLoginButtonWidth = (int)size.Width;
             }
-            backToLoginButton.Location = new Point(this.Width / 2 - backToLoginButtonWidth / 2, registerAccountButton.Location.Y + 80);
+            backToLoginButton.Location = new Point(this.Width / 2 - backToLoginButtonWidth / 2, registerAccountButton.Location.Y + spaceBetweeActionButtons);
+
+            this.Height = backToLoginButton.Location.Y;
+            this.FinalizeLoading();
         }
-
-        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
-        private extern static void ReleaseCapture();
-
-        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
-        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
-
-        private void AsistimeRegister_MouseDown(object sender, MouseEventArgs e)
-        {
-            ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);
-        }
-
-        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-        private static extern IntPtr CreateRoundRectRgn
-        (
-            int nLeftRect,     // x-coordinate of upper-left corner
-            int nTopRect,      // y-coordinate of upper-left corner
-            int nRightRect,    // x-coordinate of lower-right corner
-            int nBottomRect,   // y-coordinate of lower-right corner
-            int nWidthEllipse, // width of ellipse
-            int nHeightEllipse // height of ellipse
-        );
     }
 }

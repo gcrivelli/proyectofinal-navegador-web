@@ -1,6 +1,6 @@
 ﻿namespace NavegadorWeb.GeneralDisplay
 {
-    partial class AsistimeLogin
+    partial class AsistimePassReset
     {
         /// <summary>
         /// Required designer variable.
@@ -20,6 +20,7 @@
             base.Dispose(disposing);
         }
 
+
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -28,18 +29,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // AsistimeLogin
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            //this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "AsistimeLogin";
-            this.Text = "AsistimeLogin";
-            this.Load += new System.EventHandler(this.AsistimeLogin_Load);
-            this.ResumeLayout(false);
-
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Text = "AsistimePassReset";
         }
 
         #endregion

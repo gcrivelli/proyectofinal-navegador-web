@@ -5,50 +5,24 @@ using NavegadorWeb.Responsable;
 using NavegadorWeb.UI;
 using System;
 using System.Drawing;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Tulpep.NotificationWindow;
 
 namespace NavegadorWeb.GeneralDisplay
 {
-    public partial class AsistimeLogin : Form
+    public partial class AsistimeLogin : AsistimeModalForm
     {
-        private AsistimeSearchBox userTextBox;
-        private AsistimeSearchBox passwrdTextBox;
+        protected AsistimeSearchBox userTextBox;
+        protected AsistimeSearchBox passwrdTextBox;
 
-        private AsistimeActionButton loginButton;
-        private AsistimeActionButton registerButton;
+        protected AsistimeActionButton loginButton;
+        protected AsistimeActionButton registerButton;
+        protected AsistimeActionButton forgotPasswordButton;
 
-        private int initControlsHeight = 350;
-        private int spaceBetweenTextBoxes = 150;
-        private int spaceBeforeTextBox = 30;
-        private int spaceBetweeActionButtons = 100;
-
-        public AsistimeLogin()
+        public AsistimeLogin() : base()
         {
-            
             InitializeComponent();
-            this.FormBorderStyle = FormBorderStyle.None;
-            StartPosition = FormStartPosition.CenterScreen;
-            this.Width = 700;
-            this.Height = 800;
-            this.AllowTransparency = true;
-            this.BackColor = Color.White;
-            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
 
-            AsistimeRoundButton exitButton = new AsistimeRoundButton(44, 44, Constants.CloseImage, Constants.CloseHoverImage, Constants.CloseClickedImage) { Parent = this.Parent };
-            exitButton.Location = new Point(this.Width - 56, 10);
-            exitButton.Click += new EventHandler(Exit);
-            this.Controls.Add(exitButton);
-
-            PictureBox logo = new PictureBox();
-            logo.ImageLocation = Constants.AsistimeLogo; ;
-            this.Controls.Add(logo);
-            logo.Width = 500;
-            logo.Height = 200;
-            logo.Location = new Point(101,70);
-            logo.BringToFront();
-            
             Label userLabel = new Label()
             {
                 Text = "USUARIO",
@@ -71,7 +45,7 @@ namespace NavegadorWeb.GeneralDisplay
 
             Label passwrdLabel = new Label()
             {
-                Text = "PASSWORD",
+                Text = "CONTRASEÑA",
                 Font = Constants.H2LabelFont,
                 Width = 400
             };
@@ -98,6 +72,11 @@ namespace NavegadorWeb.GeneralDisplay
             registerButton.Click += new EventHandler(RegisterUser);
             registerButton.ButtonText = "Registrarse";
             this.Controls.Add(registerButton);
+
+            forgotPasswordButton = new AsistimeActionButton();
+            forgotPasswordButton.Click += new EventHandler(ForgotPassword);
+            forgotPasswordButton.ButtonText = "Olvidé mi contraseña";
+            this.Controls.Add(forgotPasswordButton);
 
         }
 
@@ -159,10 +138,15 @@ namespace NavegadorWeb.GeneralDisplay
             registerForm.Show();
         }
 
-        protected void Exit(object sender, EventArgs e)
+        protected void ForgotPassword(object sender, EventArgs e)
         {
-            Application.Exit();
+            AsistimePassReset forgotPassForm = new AsistimePassReset();
+            forgotPassForm.previousForm = this;
+            this.Hide();
+            forgotPassForm.Show();
         }
+
+
 
         private void AsistimeLogin_Load(object sender, EventArgs e)
         {
@@ -173,7 +157,7 @@ namespace NavegadorWeb.GeneralDisplay
                 size.Width += 40;
                 loginButtonWidth = (int)size.Width;
             }
-            loginButton.Location = new Point(this.Width / 2 - loginButtonWidth / 2, passwrdTextBox.Location.Y + spaceBetweeActionButtons);
+            loginButton.Location = new Point(this.Width / 2 - loginButtonWidth / 2, passwrdTextBox.Location.Y + spaceBeforeActionButtons);
 
             int registerButtonWidth;
             using (Graphics cg = this.CreateGraphics())
@@ -182,31 +166,21 @@ namespace NavegadorWeb.GeneralDisplay
                 size.Width += 40;
                 registerButtonWidth = (int)size.Width;
             }
-            registerButton.Location = new Point(this.Width / 2 - registerButtonWidth / 2, loginButton.Location.Y + 80);  
+            registerButton.Location = new Point(this.Width / 2 - registerButtonWidth / 2, loginButton.Location.Y + spaceBetweeActionButtons);
+
+            int forgotButtonWidth;
+            using (Graphics cg = this.CreateGraphics())
+            {
+                SizeF size = cg.MeasureString(forgotPasswordButton.ButtonText, forgotPasswordButton.Font);
+                size.Width += 40;
+                forgotButtonWidth = (int)size.Width;
+            }
+            forgotPasswordButton.Location = new Point(this.Width / 2 - forgotButtonWidth / 2, registerButton.Location.Y + spaceBetweeActionButtons);
+
+            this.Height = forgotPasswordButton.Location.Y;
+            this.FinalizeLoading();
 
         }
 
-        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
-        private extern static void ReleaseCapture();
-
-        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
-        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
-
-        private void AsistimeLogin_MouseDown(object sender, MouseEventArgs e)
-        {
-            ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);
-        }
-
-        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-        private static extern IntPtr CreateRoundRectRgn
-        (
-            int nLeftRect,     // x-coordinate of upper-left corner
-            int nTopRect,      // y-coordinate of upper-left corner
-            int nRightRect,    // x-coordinate of lower-right corner
-            int nBottomRect,   // y-coordinate of lower-right corner
-            int nWidthEllipse, // width of ellipse
-            int nHeightEllipse // height of ellipse
-        );
     }
 }
