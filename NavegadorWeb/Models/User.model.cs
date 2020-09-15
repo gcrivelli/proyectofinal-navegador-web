@@ -8,6 +8,7 @@ namespace NavegadorWeb.Models
         public string name { get; set; }
         public string email { get; set; }
         public string password { get; set; }
+        public string password_confirmation { get; set; }
         public List<Tour> tours { get; set; }
         public string rol { get; set; }
     }

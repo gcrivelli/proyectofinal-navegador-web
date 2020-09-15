@@ -1,6 +1,7 @@
 ﻿using NavegadorWeb.Controller;
 using NavegadorWeb.GeneralDisplay;
 using NavegadorWeb.Models;
+using NavegadorWeb.Responsable;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -19,6 +20,7 @@ namespace NavegadorWeb.UI
         private AsistimeSearchBox nameTextBox;
         private AsistimeSearchBox mailTextBox;
         private AsistimeSearchBox passwrdTextBox;
+        private AsistimeSearchBox passwrdConfirmationTextBox;
 
         private AsistimeActionButton registerAccountButton;
         private AsistimeActionButton backToLoginButton;
@@ -66,7 +68,7 @@ namespace NavegadorWeb.UI
             };
             this.Controls.Add(mailTextBox);
 
-            mailTextBox.Location = new Point(this.Width / 2 - mailTextBox.Width / 2, nameTextBox.Location.Y + spaceBetweenTextBoxes);
+            mailTextBox.Location = new Point(this.Width / 2 - mailTextBox.Width / 2, nameTextBox.Location.Y + spaceBetweenTextBoxes / 2);
             mailLabel.Location = new Point(mailTextBox.Location.X, mailTextBox.Location.Y - spaceBeforeTextBox);
 
             Label passwrdLabel = new Label()
@@ -82,12 +84,34 @@ namespace NavegadorWeb.UI
                 Font = Constants.TextBoxFont,
                 Parent = this,
                 Width = 400,
-                TextName = null
+                TextName = null,
+                IsPassword = true
             };
             this.Controls.Add(passwrdTextBox);
 
-            passwrdTextBox.Location = new Point(this.Width / 2 - passwrdTextBox.Width / 2, mailTextBox.Location.Y + spaceBetweenTextBoxes);
+            passwrdTextBox.Location = new Point(this.Width / 2 - passwrdTextBox.Width / 2, mailTextBox.Location.Y + spaceBetweenTextBoxes/2);
             passwrdLabel.Location = new Point(passwrdTextBox.Location.X, passwrdTextBox.Location.Y - spaceBeforeTextBox);
+
+            Label passwrdConfirmationLabel = new Label()
+            {
+                Text = "PASSWORD",
+                Font = Constants.H2LabelFont,
+                Width = 400
+            };
+            this.Controls.Add(passwrdConfirmationLabel);
+
+            passwrdConfirmationTextBox = new AsistimeSearchBox()
+            {
+                Font = Constants.TextBoxFont,
+                Parent = this,
+                Width = 400,
+                TextName = null,
+                IsPassword = true
+            };
+            this.Controls.Add(passwrdConfirmationTextBox);
+
+            passwrdConfirmationTextBox.Location = new Point(this.Width / 2 - passwrdConfirmationTextBox.Width / 2, passwrdTextBox.Location.Y + spaceBetweenTextBoxes / 2);
+            passwrdConfirmationLabel.Location = new Point(passwrdConfirmationTextBox.Location.X, passwrdConfirmationTextBox.Location.Y - spaceBeforeTextBox);
 
             registerAccountButton = new AsistimeActionButton();
             registerAccountButton.Click += new EventHandler(RegisterAccount);
@@ -116,14 +140,25 @@ namespace NavegadorWeb.UI
                 user.name = nameTextBox.TextName;
                 user.email = mailTextBox.TextName;
                 user.password = passwrdTextBox.TextName;
-                user.tours = new List<Tour>();
+                user.password_confirmation = passwrdConfirmationTextBox.TextName;
 
                 var userController = new UserController();
                 var token = userController.RegisterAsync(user).Result;
-                //Aca hace su magia nacho con el token
+                Constants.token = token.access_token;
+                NavWebResponsable mod = new NavWebResponsable();
+                mod.Show();
             }
             else
-                MessageBox.Show("Registro invalido", "Todos los campos son requeridos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {
+                if (passwrdTextBox.TextName != passwrdConfirmationTextBox.TextName)
+                {
+                    MessageBox.Show("Registro invalido", "No coinciden las contraseñas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                } else
+                {
+                    MessageBox.Show("Registro invalido", "Complete todos los datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+            }
         }
 
         protected void BackToLogin(object sender, EventArgs e)
@@ -134,7 +169,7 @@ namespace NavegadorWeb.UI
 
         private bool validateForm()
         {
-            if (nameTextBox.TextName == string.Empty || passwrdTextBox.TextName == string.Empty || mailTextBox.TextName == string.Empty)
+            if (nameTextBox.TextName == string.Empty || passwrdTextBox.TextName == string.Empty || mailTextBox.TextName == string.Empty || passwrdTextBox.TextName != passwrdConfirmationTextBox.TextName)
                 return false;
             else 
                 return true;

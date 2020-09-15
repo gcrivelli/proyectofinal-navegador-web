@@ -56,7 +56,8 @@ namespace NavegadorWeb.GeneralDisplay
                 Font = Constants.TextBoxFont,
                 Parent = this,
                 Width = 400,
-                TextName = null
+                TextName = null,
+                IsPassword = true
             };
             this.Controls.Add(passwrdTextBox);
 
