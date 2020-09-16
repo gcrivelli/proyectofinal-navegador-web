@@ -94,7 +94,7 @@ namespace NavegadorWeb.UI
 
             Label passwrdConfirmationLabel = new Label()
             {
-                Text = "PASSWORD",
+                Text = "REPETIR PASSWORD",
                 Font = Constants.H2LabelFont,
                 Width = 400
             };
@@ -196,7 +196,7 @@ namespace NavegadorWeb.UI
                 size.Width += 40;
                 registerAccountButtonWidth = (int)size.Width;
             }
-            registerAccountButton.Location = new Point(this.Width / 2 - registerAccountButtonWidth / 2, passwrdTextBox.Location.Y + spaceBeforeActionButtons);
+            registerAccountButton.Location = new Point(this.Width / 2 - registerAccountButtonWidth / 2, passwrdConfirmationTextBox.Location.Y + spaceBeforeActionButtons);
 
             int backToLoginButtonWidth;
             using (Graphics cg = this.CreateGraphics())

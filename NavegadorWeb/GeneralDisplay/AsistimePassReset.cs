@@ -43,7 +43,7 @@ namespace NavegadorWeb.GeneralDisplay
             resetPassButton.ButtonText = "Restablecer contraseña";
             this.Controls.Add(resetPassButton);
 
-            this.Load += new System.EventHandler(this.AsistimePassReset_Load);
+            //this.Load += new System.EventHandler(this.AsistimePassReset_Load);
         }
 
         protected void ResetPassword(object sender, EventArgs e)
