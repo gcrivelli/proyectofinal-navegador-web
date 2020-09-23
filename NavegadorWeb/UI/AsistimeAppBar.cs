@@ -11,7 +11,7 @@ namespace NavegadorWeb.UI
         public static AsistimeRoundButton NavRefreshButton = null;
         public static AsistimeRoundButton NavForwardButton = null;
         public static AsistimeRoundButton NavProfileButton = null;
-        AsistimeSearchBox searchTextBox;
+        public AsistimeSearchBox searchTextBox;
 
         public AsistimeAppBar()
         {
@@ -162,7 +162,7 @@ namespace NavegadorWeb.UI
             }
         }
 
-        private void Center_With(Label label, AsistimeRoundButton button)
+        protected void Center_With(Label label, AsistimeRoundButton button)
         {
             int labelWidth;
             using (Graphics cg = this.CreateGraphics())

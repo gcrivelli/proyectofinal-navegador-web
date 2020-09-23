@@ -17,6 +17,10 @@ namespace NavegadorWeb.UI
         private AsistimeBasePopup validationCreation = null;
         private AsistimeBasePopup messageCreation = null;
 
+        AsistimeCreatePanel tourName;
+        AsistimeStepsPanel steps;
+        private Tour tour;
+
         public AsistimeTourCreation()
         {
             this.Load += new System.EventHandler(this.AsistimeTourCreation_Load);
@@ -25,17 +29,42 @@ namespace NavegadorWeb.UI
 
             this.TransparencyKey = Color.Green;
             this.BackColor = Color.Green;
+
+            tour = new Tour();
         }
 
         private void AsistimeTourCreation_Load(object sender, EventArgs e)
         {
-            AsistimeCreatePanel panel = new AsistimeCreatePanel();
-            panel.Width = 700;
-            panel.Height = 800;
-            this.Controls.Add(panel);
-            panel.BackColor = Color.White;
-            panel.Location = new Point(this.Width / 2 - panel.Width / 2, this.Height / 2 - panel.Height / 2);
+            tourName = new AsistimeCreatePanel() { Parent = this };
+            tourName.Width = 700;
+            tourName.Height = 800;
+            this.Controls.Add(tourName);
+            tourName.BackColor = Color.White;
+            tourName.Location = new Point(this.Width / 2 - tourName.Width / 2, this.Height / 2 - tourName.Height / 2);
 
+            steps = new AsistimeStepsPanel() { Parent = this };
+            steps.Width = 700;
+            steps.Height = 800;
+            this.Controls.Add(steps);
+            steps.BackColor = Color.White;
+            steps.Location = new Point(this.Width / 2 - steps.Width / 2, this.Height / 2 - steps.Height / 2);
+            steps.Hide();
+
+        }
+
+        public void AdvanceToSteps(String name, String desc)
+        {
+            this.tour.name = name;
+            this.tour.description = desc;
+            steps.SetTour(tour.name, tour.description);
+            tourName.Hide();
+            steps.Show();
+        }
+
+        public void BackToTour()
+        {
+            steps.Hide();
+            tourName.Show();
         }
     }
 }

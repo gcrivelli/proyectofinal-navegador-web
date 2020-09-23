@@ -1,6 +1,6 @@
-﻿namespace NavegadorWeb.GeneralDisplay
+﻿namespace NavegadorWeb.Responsable
 {
-    partial class AsistimeBaseForm
+    partial class NavigatorAssistant
     {
         /// <summary>
         /// Required designer variable.
@@ -28,21 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AsistimeBaseForm));
-            this.SuspendLayout();
-            // 
-            // AsistimeBaseForm
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "AsistimeBaseForm";
-            this.Text = "AsistimeBaseForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AsistimeBaseForm_FormClosing);
-            this.Load += new System.EventHandler(this.AsistimeBaseForm_Load);
-            this.ResumeLayout(false);
-
+            this.Text = "NavigatorAssistant";
         }
 
         #endregion

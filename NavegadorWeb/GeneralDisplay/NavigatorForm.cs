@@ -18,9 +18,9 @@ namespace NavegadorWeb.UI
 
             InitializeComponent();
             
-            asistimeAppBar = new AsistimeAppBar() {Parent = this };
+            /*asistimeAppBar = new AsistimeAppBar() {Parent = this };
             asistimeAppBar.Width = this.Width;
-            this.Controls.Add(asistimeAppBar);
+            this.Controls.Add(asistimeAppBar);*/
 
             webBrowser = new WebBrowser()
             {
@@ -61,6 +61,8 @@ namespace NavegadorWeb.UI
         }
 
         public virtual void ShowMenu() { }
+
+        public virtual void AddTour() { }
 
         private void NavigatorForm_Load(object sender, EventArgs e)
         {

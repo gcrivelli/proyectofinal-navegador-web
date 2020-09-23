@@ -27,10 +27,12 @@ namespace NavegadorWeb.UI
         private AsistimeActionButton cancelButton;
 
         private AsistimeSearchBox box;
+        private Label tourNameLabel;
+        private TextBox textbox;
 
         public AsistimeCreatePanel()
         {
-            Label tourNameLabel = new Label()
+            tourNameLabel = new Label()
             {
                 Text = "NOMBRE DEL TOUR",
                 Font = Constants.H2LabelFont,
@@ -61,13 +63,13 @@ namespace NavegadorWeb.UI
             this.Controls.Add(box);
             box.BringToFront();
 
-            TextBox textbox = new TextBox();
+            textbox = new TextBox();
             textbox.Multiline = true;
             textbox.Width = 380; //20 menos que el ancho del searchbox
             textbox.Height = 280; //20 menos que la altura del searchbox
             this.Controls.Add(textbox);
             textbox.BorderStyle = BorderStyle.None;
-            textbox.Font = Constants.TextBoxFont;
+            textbox.Font = new Font("Segoe UI", 12, FontStyle.Regular); ;
             textbox.BringToFront();
 
             box.Location = new Point(this.Width / 2 - box.Width / 2, 200);
@@ -111,12 +113,102 @@ namespace NavegadorWeb.UI
 
         protected void Next(object sender, EventArgs e)
         {
-            Application.Exit();
+            AsistimeTourCreation form = this.Parent as AsistimeTourCreation;
+            form.AdvanceToSteps(tourNameLabel.Text, textbox.Text);
         }
 
         protected void Cancel(object sender, EventArgs e)
         {
-            Application.Exit();
+            AsistimeTourCreation form = this.Parent as AsistimeTourCreation;
+            form.Close();
         }
     }
+
+
+
+
+
+    class AsistimeStepsPanel : AsistimeBasePopup
+    {
+        private AsistimeActionButton nextButton;
+        private AsistimeActionButton cancelButton;
+
+        private Label tourNameLabel;
+        private TextBox textbox;
+
+        //private List<Step>;
+
+        public AsistimeStepsPanel()
+        {
+            tourNameLabel = new Label()
+            {
+                Text = "WAWAWAWAWA",
+                Font = Constants.H2LabelFont,
+                Width = 400
+            };
+            this.Controls.Add(tourNameLabel);
+
+            textbox = new TextBox();
+            textbox.Multiline = true;
+            textbox.Width = 380; //20 menos que el ancho del searchbox
+            textbox.Height = 280; //20 menos que la altura del searchbox
+            this.Controls.Add(textbox);
+            textbox.BorderStyle = BorderStyle.None;
+            textbox.Font = new Font("Segoe UI", 12, FontStyle.Regular);
+            textbox.BringToFront();
+
+            textbox.Location = new Point(this.Width / 2 - tourNameLabel.Width / 2, 90);
+            tourNameLabel.Location = new Point(textbox.Location.X, textbox.Location.Y - 30);
+
+            nextButton = new AsistimeActionButton();
+            nextButton.Click += new EventHandler(Next);
+            nextButton.ButtonText = "Siguiente";
+            this.Controls.Add(nextButton);
+            nextButton.BringToFront();
+
+            cancelButton = new AsistimeActionButton();
+            cancelButton.Click += new EventHandler(Cancel);
+            cancelButton.ButtonText = "Cancelar";
+            this.Controls.Add(cancelButton);
+            cancelButton.BringToFront();
+
+            int nextButtonWidth;
+            using (Graphics cg = this.CreateGraphics())
+            {
+                SizeF size = cg.MeasureString(nextButton.ButtonText, nextButton.Font);
+                size.Width += 40;
+                nextButtonWidth = (int)size.Width;
+            }
+            nextButton.Location = new Point(this.Width / 2 - nextButtonWidth / 2, 600);
+
+            int cancelButtonWidth;
+            using (Graphics cg = this.CreateGraphics())
+            {
+                SizeF size = cg.MeasureString(cancelButton.ButtonText, cancelButton.Font);
+                size.Width += 40;
+                cancelButtonWidth = (int)size.Width;
+            }
+            cancelButton.Location = new Point(this.Width / 2 - cancelButtonWidth / 2, nextButton.Location.Y + 80);
+        }
+
+        public void SetTour(String name, String desc)
+        {
+            tourNameLabel.Text = name;
+            textbox.Text = desc;
+        }
+
+        protected void Next(object sender, EventArgs e)
+        {
+            AsistimeTourCreation form = this.Parent as AsistimeTourCreation;
+            //form.AdvanceToForms();
+        }
+
+        protected void Cancel(object sender, EventArgs e)
+        {
+            AsistimeTourCreation form = this.Parent as AsistimeTourCreation;
+            form.BackToTour();
+        }
+    }
+
+
 }

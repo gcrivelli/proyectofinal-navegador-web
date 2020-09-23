@@ -22,6 +22,9 @@ namespace NavegadorWeb.Adult
         public NavigatorAdult()
         {
             InitializeComponent();
+            asistimeAppBar = new AsistimeAppBar() { Parent = this };
+            asistimeAppBar.Width = this.Width;
+            this.Controls.Add(asistimeAppBar);
             webBrowser.DocumentCompleted += webBrowser_DocumentCompleted;
         }
 

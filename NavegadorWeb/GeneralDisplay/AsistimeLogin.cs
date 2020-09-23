@@ -118,7 +118,7 @@ namespace NavegadorWeb.GeneralDisplay
                         }
                         else if (token.user.rol == "Responsable")
                         {
-                            NavWebResponsable mod = new NavWebResponsable();
+                            NavigatorAssistant mod = new NavigatorAssistant();
                             mod.Show();
                         }
                     }

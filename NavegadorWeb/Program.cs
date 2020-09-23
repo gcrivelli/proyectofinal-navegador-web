@@ -1,4 +1,7 @@
-﻿using NavegadorWeb.GeneralDisplay;
+﻿using NavegadorWeb.Adult;
+using NavegadorWeb.GeneralDisplay;
+using NavegadorWeb.Responsable;
+using NavegadorWeb.UI;
 using System;
 using System.Windows.Forms;
 
@@ -16,7 +19,9 @@ namespace NavegadorWeb
                 SetProcessDPIAware();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AsistimeLogin());
+            Application.Run(new NavigatorAdult());
+            //Application.Run(new AsistimeTourCreation());
+            //Application.Run(new NavigatorAssistant());
         }
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]
