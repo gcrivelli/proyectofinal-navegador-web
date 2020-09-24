@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NavegadorWeb.Models;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -106,6 +107,7 @@ namespace NavegadorWeb.UI
         public static Color ErrorMessageForeColor = Color.Yellow;
 
         public static String token;
+        public static User user;
     }
 
 }

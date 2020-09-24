@@ -133,8 +133,10 @@
     <Compile Include="Adult\NavigatorAdult.Designer.cs">
       <DependentUpon>NavigatorAdult.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controller\NotificationController.cs" />
     <Compile Include="Controller\TourController.cs" />
     <Compile Include="Controller\UserController.cs" />
+    <Compile Include="Extra\NotificationThread.cs" />
     <Compile Include="GeneralDisplay\AsistimeBaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,6 +162,7 @@
       <DependentUpon>MenuForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Element.model.cs" />
+    <Compile Include="Models\Notification.model.cs" />
     <Compile Include="Models\Step.model.cs" />
     <Compile Include="Models\Token.model.cs" />
     <Compile Include="Models\Tour.model.cs" />

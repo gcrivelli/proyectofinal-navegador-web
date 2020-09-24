@@ -319,7 +319,7 @@ namespace NavegadorWeb.Adult
         {
             // esta instanciacion deberia ir después del login
             var userController = new TourController();
-            var tours = userController.GetAllToursAsync("5f0907dd5d988f31d515dc72").Result;
+            var tours = userController.GetAllToursAsync(Constants.user._id).Result;
             MenuAdult menu = new MenuAdult(tours, this);
 
             this.Hide();
