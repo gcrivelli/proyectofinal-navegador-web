@@ -128,7 +128,7 @@ namespace NavegadorWeb.UI
 
         }
 
-        protected void RegisterAccount(object sender, EventArgs e)
+        protected async void RegisterAccount(object sender, EventArgs e)
         {
             //Validaciones de campos
             //Llamado al a api
@@ -143,10 +143,19 @@ namespace NavegadorWeb.UI
                 user.password_confirmation = passwrdConfirmationTextBox.TextName;
 
                 var userController = new UserController();
-                var token = userController.RegisterAsync(user).Result;
-                Constants.token = token.access_token;
-                NavWebResponsable mod = new NavWebResponsable();
-                mod.Show();
+                if (Constants.token is String)
+                {
+                    var token = userController.RegisterOldPeopleAsync(user).Result;
+                    MessageBox.Show("Registro correcto", "Adulto registrado correctamente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                   
+                } 
+                else
+                {
+                    var token = userController.RegisterAsync(user).Result;
+                    Constants.token = token.access_token;
+                    NavWebResponsable mod = new NavWebResponsable();
+                    mod.Show();
+                }
             }
             else
             {
