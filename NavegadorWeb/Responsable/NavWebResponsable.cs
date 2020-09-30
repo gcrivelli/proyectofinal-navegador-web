@@ -88,7 +88,7 @@ namespace NavegadorWeb.Responsable
         {
             // post del tour
             var tourController = new TourController();
-            tour.user_id = "5f0907dd5d988f31d515dc72";
+            tour.user_id = Constants.user._id;
             var tourResponse = tourController.PostAsync(tour).Result;
 
             // post de los audios

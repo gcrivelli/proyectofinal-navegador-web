@@ -11,5 +11,6 @@ namespace NavegadorWeb.Models
         public string password_confirmation { get; set; }
         public List<Tour> tours { get; set; }
         public string rol { get; set; }
+        public string user_responsable { get; set; }
     }
 }
