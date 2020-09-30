@@ -19,8 +19,8 @@ namespace NavegadorWeb
                 SetProcessDPIAware();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new NavigatorAdult());
-            //Application.Run(new AsistimeTourCreation());
+            //Application.Run(new NavigatorAdult());
+            Application.Run(new AsistimeTourCreation());
             //Application.Run(new NavigatorAssistant());
         }
 
