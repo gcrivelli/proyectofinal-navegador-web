@@ -1,7 +1,5 @@
-﻿using NavegadorWeb.Extra;
-using NavegadorWeb.GeneralDisplay;
+﻿using NavegadorWeb.GeneralDisplay;
 using System;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace NavegadorWeb
@@ -18,12 +16,6 @@ namespace NavegadorWeb
                 SetProcessDPIAware();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            //Active notifications 
-            Thread threadNotification = new Thread(NotificationThread.DoWork);
-            threadNotification.IsBackground = true;
-            threadNotification.Start();
-
             Application.Run(new AsistimeLogin());
         }
 

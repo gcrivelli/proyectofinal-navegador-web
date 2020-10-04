@@ -42,7 +42,7 @@ namespace NavegadorWeb.Controller
             {
                 //change url
                 client.DefaultRequestHeaders.Add("Authorization", "Bearer "+ Constants.token);
-                var response = await client.GetAsync(APIurl + "user/"+ id +"/tour").ConfigureAwait(false);
+                var response = await client.GetAsync(APIurl + "user/tour").ConfigureAwait(false);
                 response.EnsureSuccessStatusCode();
                 string responseBody = await response.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<List<Tour>>(responseBody);
