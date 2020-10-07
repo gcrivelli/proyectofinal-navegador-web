@@ -1,6 +1,7 @@
 ﻿using NavegadorWeb.Models;
 using NavegadorWeb.UI;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace NavegadorWeb.Controller
     {
         private static string APIurl = Constants.ApiUrl;
 
-        public async Task<Notification> getNotification ()
+        public async Task<List<Notification>> GetNotification ()
         {
             using (var client = new HttpClient())
             {
@@ -19,10 +20,10 @@ namespace NavegadorWeb.Controller
                 var response = await client.GetAsync(APIurl + "notificar").ConfigureAwait(false);
                 response.EnsureSuccessStatusCode();
                 string responseBody = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<Notification>(responseBody);
+                return JsonConvert.DeserializeObject<List<Notification>>(responseBody);
             }
         }
-        public async Task<bool> postNotification(Notification notification)
+        public async Task<bool> PostNotification(Notification notification)
         {
             string JSONresult = JsonConvert.SerializeObject(notification);
 
@@ -37,5 +38,18 @@ namespace NavegadorWeb.Controller
                 return response.IsSuccessStatusCode;
             }
         }
+        //var notificationController = new NotificationController();
+        //var notificacion = new Notification();
+        //notificacion.evento = "sarasa";
+        //notificacion.message = "sarasa";
+        //var a = notificationController.postNotification(notificacion).Result;
+
+        //var notificationController = new NotificationController();
+        //var a = notificationController.getNotification().Result;
+
+        ////Active notifications
+        //Thread threadNotification = new Thread(NotificationThread.DoWork);
+        //threadNotification.IsBackground = true;
+        //threadNotification.Start();
     }
 }

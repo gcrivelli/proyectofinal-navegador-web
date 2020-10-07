@@ -140,6 +140,7 @@
     <Compile Include="Controller\TourController.cs" />
     <Compile Include="Controller\UserController.cs" />
     <Compile Include="Extra\NotificationThread.cs" />
+    <Compile Include="Extra\PopupNotification.cs" />
     <Compile Include="GeneralDisplay\AsistimeBaseForm.cs">
       <SubType>Form</SubType>
     </Compile>

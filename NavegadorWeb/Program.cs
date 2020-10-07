@@ -1,10 +1,5 @@
-﻿using NavegadorWeb.Adult;
-using NavegadorWeb.Extra;
-using NavegadorWeb.GeneralDisplay;
-using NavegadorWeb.Responsable;
-using NavegadorWeb.UI;
+﻿using NavegadorWeb.GeneralDisplay;
 using System;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace NavegadorWeb
@@ -21,17 +16,7 @@ namespace NavegadorWeb
                 SetProcessDPIAware();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            //Active notifications 
-            Thread threadNotification = new Thread(NotificationThread.DoWork);
-            threadNotification.IsBackground = true;
-            threadNotification.Start();
-
-            //Application.Run(new AsistimeLogin());
-            //Application.Run(new NavWebResponsable());
-            Application.Run(new NavigatorAdult());
-            //Application.Run(new AsistimeTourCreation());
-            //Application.Run(new NavigatorAssistant());
+            Application.Run(new AsistimeLogin());
         }
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]
