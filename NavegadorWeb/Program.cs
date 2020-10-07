@@ -28,7 +28,8 @@ namespace NavegadorWeb
             threadNotification.Start();
 
             //Application.Run(new AsistimeLogin());
-            Application.Run(new NavWebResponsable());
+            //Application.Run(new NavWebResponsable());
+            Application.Run(new NavigatorAdult());
             //Application.Run(new AsistimeTourCreation());
             //Application.Run(new NavigatorAssistant());
         }

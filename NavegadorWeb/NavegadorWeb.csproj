@@ -121,6 +121,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adult\AdultAppBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Adult\MenuAdult.cs">
       <SubType>Form</SubType>
     </Compile>

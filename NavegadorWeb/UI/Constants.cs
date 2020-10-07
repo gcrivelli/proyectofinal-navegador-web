@@ -73,6 +73,9 @@ namespace NavegadorWeb.UI
         public static string AddTourImage = path + "AddTourImage.jpg";
         public static string AddTourHoverImage = path + "AddTourHoverImage.jpg";
         public static string AddTourClickImage = path + "AddTourClickImage.jpg";
+        public static string AsistimeImage = path + "AsistimeImage.jpg";
+        public static string AsistimeHoverImage = path + "AsistimeHoverImage.jpg";
+        public static string AsistimeClickImage = path + "AsistimeClickImage.jpg";
 
         public static string CloseImage = path + "CloseImage.jpg";
         public static string CloseHoverImage = path + "CloseHoverImage.jpg";

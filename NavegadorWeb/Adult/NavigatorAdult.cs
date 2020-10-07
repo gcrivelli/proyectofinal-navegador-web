@@ -22,7 +22,7 @@ namespace NavegadorWeb.Adult
         public NavigatorAdult()
         {
             InitializeComponent();
-            asistimeAppBar = new AsistimeAppBar() { Parent = this };
+            asistimeAppBar = new AdultAppBar() { Parent = this };
             asistimeAppBar.Width = this.Width;
             this.Controls.Add(asistimeAppBar);
             webBrowser.DocumentCompleted += webBrowser_DocumentCompleted;
@@ -377,11 +377,15 @@ namespace NavegadorWeb.Adult
                 playStep(tourLoad, countLoad, true);
             }
         }
-    private Step nextDiferentUrlStep (Step step)
+
+        private Step nextDiferentUrlStep (Step step)
         {
             var steps = this.tourLoad.steps.FindAll(s => s.order > step.order);
             return steps.FirstOrDefault(s => s.url != step.url);
 
         }
+
+        public void Asistime() { }
     }
+    
 }
