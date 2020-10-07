@@ -304,6 +304,9 @@
     <EmbeddedResource Include="Responsable\CreateTutorial.resx">
       <DependentUpon>CreateTutorial.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Responsable\NavigatorAssistant.resx">
+      <DependentUpon>NavigatorAssistant.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Responsable\NavWebResponsable.resx">
       <DependentUpon>NavWebResponsable.cs</DependentUpon>
     </EmbeddedResource>

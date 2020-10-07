@@ -35,7 +35,7 @@ namespace NavegadorWeb.Responsable
 
         protected void AddTour(object sender, EventArgs e)
         {
-            NavigatorForm control = this.Parent as NavigatorForm;
+            NavigatorAssistant control = this.Parent as NavigatorAssistant;
             control.AddTour();
         }
     }

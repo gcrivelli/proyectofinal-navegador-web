@@ -35,12 +35,12 @@ namespace NavegadorWeb.UI
 
         private void AsistimeTourCreation_Load(object sender, EventArgs e)
         {
-            tourName = new AsistimeCreatePanel() { Parent = this };
-            tourName.Width = 700;
-            tourName.Height = 800;
-            this.Controls.Add(tourName);
-            tourName.BackColor = Color.White;
-            tourName.Location = new Point(this.Width / 2 - tourName.Width / 2, this.Height / 2 - tourName.Height / 2);
+            tourCreation = new AsistimeCreatePanel() { Parent = this };
+            tourCreation.Width = 700;
+            tourCreation.Height = 800;
+            this.Controls.Add(tourCreation);
+            tourCreation.BackColor = Color.White;
+            tourCreation.Location = new Point(this.Width / 2 - tourCreation.Width / 2, this.Height / 2 - tourCreation.Height / 2);
 
             steps = new AsistimeStepsPanel() { Parent = this };
             steps.Width = 700;
@@ -57,14 +57,14 @@ namespace NavegadorWeb.UI
             this.tour.name = name;
             this.tour.description = desc;
             steps.SetTour(tour.name, tour.description);
-            tourName.Hide();
+            tourCreation.Hide();
             steps.Show();
         }
 
         public void BackToTour()
         {
             steps.Hide();
-            tourName.Show();
+            tourCreation.Show();
         }
     }
 }

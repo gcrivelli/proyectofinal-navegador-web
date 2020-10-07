@@ -1,5 +1,8 @@
-﻿using NavegadorWeb.Extra;
+﻿using NavegadorWeb.Adult;
+using NavegadorWeb.Extra;
 using NavegadorWeb.GeneralDisplay;
+using NavegadorWeb.Responsable;
+using NavegadorWeb.UI;
 using System;
 using System.Threading;
 using System.Windows.Forms;
@@ -24,7 +27,10 @@ namespace NavegadorWeb
             threadNotification.IsBackground = true;
             threadNotification.Start();
 
-            Application.Run(new AsistimeLogin());
+            //Application.Run(new AsistimeLogin());
+            Application.Run(new NavWebResponsable());
+            //Application.Run(new AsistimeTourCreation());
+            //Application.Run(new NavigatorAssistant());
         }
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]
