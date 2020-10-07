@@ -139,6 +139,7 @@
     <Compile Include="Controller\NotificationController.cs" />
     <Compile Include="Controller\TourController.cs" />
     <Compile Include="Controller\UserController.cs" />
+    <Compile Include="Extra\AutoClosingMessageBox.cs" />
     <Compile Include="Extra\NotificationThread.cs" />
     <Compile Include="Extra\PopupNotification.cs" />
     <Compile Include="GeneralDisplay\AsistimeBaseForm.cs">
@@ -280,6 +281,9 @@
     <Compile Include="UI\OpaquePanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <EmbeddedResource Include="Adult\NavigatorAdult.resx">
+      <DependentUpon>NavigatorAdult.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GeneralDisplay\AsistimeBaseForm.resx">
       <DependentUpon>AsistimeBaseForm.cs</DependentUpon>
     </EmbeddedResource>

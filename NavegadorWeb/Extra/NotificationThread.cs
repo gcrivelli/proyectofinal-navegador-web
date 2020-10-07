@@ -1,9 +1,6 @@
 ﻿using NavegadorWeb.Controller;
-using System;
-using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
-using Tulpep.NotificationWindow;
 
 namespace NavegadorWeb.Extra
 {
@@ -20,11 +17,12 @@ namespace NavegadorWeb.Extra
                 {
                     notificacion.ForEach(n =>
                     {
-                        var popup = new PopupNotification(n.evento, n.message);
-                        MessageBox.Show("");
+                        new PopupNotification(n.message, n.evento);
+                        MessageBox.Show(n.message, n.evento, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     });
                 }
-                Thread.Sleep(45000);
+
+                Thread.Sleep(60000);
             }
         }
     }

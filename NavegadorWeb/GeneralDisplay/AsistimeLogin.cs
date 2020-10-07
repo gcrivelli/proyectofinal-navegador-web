@@ -1,11 +1,13 @@
 ﻿using NavegadorWeb.Adult;
 using NavegadorWeb.Controller;
+using NavegadorWeb.Extra;
 using NavegadorWeb.Models;
 using NavegadorWeb.Responsable;
 using NavegadorWeb.UI;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Threading;
 using System.Windows.Forms;
 using Tulpep.NotificationWindow;
 
@@ -84,20 +86,6 @@ namespace NavegadorWeb.GeneralDisplay
 
         protected void LogUser(object sender, EventArgs e)
         {
-            PopupNotifier popup = new PopupNotifier();
-            popup.TitleText = "Asistime!!";
-            popup.TitlePadding = new Padding(50, 20, 20, 20);
-            popup.TitleFont = new Font("Arial", 26);
-            popup.ContentText = "Bienvenido";
-            popup.ContentFont = new Font("Arial", 13);
-            popup.ContentPadding = new Padding(50, 0, 20, 20);
-
-            popup.ShowCloseButton = true;
-            popup.ShowOptionsButton = true;
-            popup.Delay = 5000;
-            popup.Size = new Size(300, 200);
-            popup.Popup();
-
             if (userTextBox.TextName != string.Empty)
             {
                 if (passwrdTextBox.TextName != string.Empty)
@@ -114,6 +102,7 @@ namespace NavegadorWeb.GeneralDisplay
                         Constants.token = token.access_token;
                         Constants.user = new User();
                         Constants.user = token.user;
+                        new PopupNotification("App Asistime!", "Bienvenido " + token.user.name);
 
                         if (token.user.rol == "Adulto")
                         {
@@ -122,6 +111,11 @@ namespace NavegadorWeb.GeneralDisplay
                         }
                         else if (token.user.rol == "Responsable")
                         {
+                            ////Active notifications
+                            Thread threadNotification = new Thread(NotificationThread.DoWork);
+                            threadNotification.IsBackground = true;
+                            threadNotification.Start();
+
                             NavigatorAssistant mod = new NavigatorAssistant();
                             mod.Show();
                         }
