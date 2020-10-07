@@ -95,5 +95,32 @@ namespace NavegadorWeb.Controller
             }
         }
 
+        public async Task<bool> AsignAdult(string idTour, string idAdult)
+        {
+            using (var client = new HttpClient())
+            {
+                var urlPost = APIurl + "user/" + idAdult + "/tour/" + idTour;
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + Constants.token);
+                var response = await client.PostAsync(urlPost,
+                     new StringContent("", Encoding.UTF8, "application/json")).ConfigureAwait(false);
+
+                response.EnsureSuccessStatusCode();
+                return response.IsSuccessStatusCode;
+            }
+        }
+        
+        public async Task<bool> DeleteAsignAdult(string idTour, string idAdult)
+        {
+            using (var client = new HttpClient())
+            {
+                var urlDelete = APIurl + "user/" + idAdult + "/tour/" + idTour;
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + Constants.token);
+                var response = await client.DeleteAsync(urlDelete);
+
+                response.EnsureSuccessStatusCode();
+                return response.IsSuccessStatusCode;
+            }
+        }
+
     }
 }
