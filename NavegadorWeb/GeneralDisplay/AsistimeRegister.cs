@@ -1,15 +1,10 @@
 ﻿using NavegadorWeb.Controller;
+using NavegadorWeb.Extra;
 using NavegadorWeb.GeneralDisplay;
 using NavegadorWeb.Models;
 using NavegadorWeb.Responsable;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Documents;
 using System.Windows.Forms;
 
 namespace NavegadorWeb.UI
@@ -146,7 +141,7 @@ namespace NavegadorWeb.UI
                 if (Constants.token is String)
                 {
                     var token = userController.RegisterOldPeopleAsync(user).Result;
-                    MessageBox.Show("Registro correcto", "Adulto registrado correctamente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    new PopupNotification("Registro correcto", "Adulto registrado correctamente.");
                    
                 } 
                 else
@@ -161,11 +156,10 @@ namespace NavegadorWeb.UI
             {
                 if (passwrdTextBox.TextName != passwrdConfirmationTextBox.TextName)
                 {
-                    MessageBox.Show("Registro invalido", "No coinciden las contraseñas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    new PopupNotification("Registro invalido", "No coinciden las contraseñas.");
                 } else
                 {
-                    MessageBox.Show("Registro invalido", "Complete todos los datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                    new PopupNotification("Registro invalido", "Complete todos los datos.");
                 }
             }
         }

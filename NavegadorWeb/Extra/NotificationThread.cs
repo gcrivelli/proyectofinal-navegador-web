@@ -18,7 +18,7 @@ namespace NavegadorWeb.Extra
                     notificacion.ForEach(n =>
                     {
                         new PopupNotification(n.message, n.evento);
-                        MessageBox.Show(n.message, n.evento, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(n.evento, n.message, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     });
                 }
 

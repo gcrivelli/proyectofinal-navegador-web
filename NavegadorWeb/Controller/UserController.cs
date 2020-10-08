@@ -95,7 +95,7 @@ namespace NavegadorWeb.Controller
             }
         }
 
-        public async Task<bool> AsignAdult(string idTour, string idAdult)
+        public async Task<bool> AsignTourAdult(string idTour, string idAdult)
         {
             using (var client = new HttpClient())
             {
@@ -109,7 +109,7 @@ namespace NavegadorWeb.Controller
             }
         }
         
-        public async Task<bool> DeleteAsignAdult(string idTour, string idAdult)
+        public async Task<bool> DeleteAsignTourAdult(string idTour, string idAdult)
         {
             using (var client = new HttpClient())
             {

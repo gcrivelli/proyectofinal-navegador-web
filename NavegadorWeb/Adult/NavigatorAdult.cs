@@ -347,7 +347,7 @@ namespace NavegadorWeb.Adult
             }
             catch
             {
-                MessageBox.Show("Error al crear el directorio para los audios", "Error");
+                new PopupNotification("Error", "Error al crear el directorio para los audios.");
             }
         }
         public void playAudio(string audioPath)

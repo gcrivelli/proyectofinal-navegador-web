@@ -1,4 +1,5 @@
 ﻿using NavegadorWeb.Controller;
+using NavegadorWeb.Extra;
 using NavegadorWeb.UI;
 using System;
 using System.Drawing;
@@ -55,17 +56,17 @@ namespace NavegadorWeb.GeneralDisplay
 
                 if (result)
                 {
-                    MessageBox.Show("Se ha enviado un mail de recupero de contraseña, introduzcala para " +
-                        "iniciar sesion", "Mail enviado con éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    new PopupNotification("Mail enviado", "Se ha enviado un mail de recupero de contraseña.");
                     this.Close();
                     previousForm.Show();
                 }
                 else
-                    MessageBox.Show("El mail ingresado es incorrecto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    new PopupNotification("Error", "El mail ingresado es incorrecto.");
+
                 mailTextBox.TextName = string.Empty;
             }
             else
-                MessageBox.Show("Ingrese un mail", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new PopupNotification("Error", "Ingrese un mail.");
         }
 
         private void AsistimePassReset_Load(object sender, EventArgs e)

@@ -9,7 +9,6 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Threading;
 using System.Windows.Forms;
-using Tulpep.NotificationWindow;
 
 namespace NavegadorWeb.GeneralDisplay
 {
@@ -121,12 +120,12 @@ namespace NavegadorWeb.GeneralDisplay
                         }
                     }
                     else
-                        MessageBox.Show("Usuario o contraseña incorrecta.", "Error Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        new PopupNotification("Error Login", "Usuario o contraseña incorrecta.");
 
                 }
             }
             else
-                MessageBox.Show("Todos los campos deben tenes un valor.", "Error Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new PopupNotification("Error Login", "Todos los campos deben tenes un valor.");
         }
 
         protected void RegisterUser(object sender, EventArgs e)
