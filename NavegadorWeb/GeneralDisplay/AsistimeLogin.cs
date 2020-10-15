@@ -105,6 +105,16 @@ namespace NavegadorWeb.GeneralDisplay
 
                         if (token.user.rol == "Adulto")
                         {
+                            // Obtengo los tours 
+
+                            var tourController = new TourController();
+                            Constants.tours = tourController.GetAllToursAsync().Result;
+
+                            ////Active notifications of new tours
+                            Thread threadNewTour = new Thread(NewTourThread.DoWork);
+                            threadNewTour.IsBackground = true;
+                            threadNewTour.Start();
+
                             NavigatorAdult mod = new NavigatorAdult();
                             mod.Show();
                         }

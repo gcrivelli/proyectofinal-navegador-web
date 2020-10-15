@@ -130,6 +130,7 @@ namespace NavegadorWeb.UI
 
         public static String token;
         public static User user;
+        public static List<Tour> tours;
     }
 
 }

@@ -321,10 +321,7 @@ namespace NavegadorWeb.Adult
 
         public override void ShowMenu()
         {
-            // esta instanciacion deberia ir después del login
-            var userController = new TourController();
-            var tours = userController.GetAllToursAsync(Constants.user._id).Result;
-            MenuAdult menu = new MenuAdult(tours, this);
+            MenuAdult menu = new MenuAdult(Constants.tours, this);
 
             this.Hide();
             menu.Show();

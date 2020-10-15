@@ -122,5 +122,17 @@ namespace NavegadorWeb.Controller
             }
         }
 
+        public async Task<User> GetUser()
+        {
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + Constants.token);
+                var response = await client.GetAsync(APIurl + "user").ConfigureAwait(false);
+                response.EnsureSuccessStatusCode();
+                string responseBody = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<User>(responseBody);
+            }
+        }
+
     }
 }
