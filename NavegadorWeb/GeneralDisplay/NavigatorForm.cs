@@ -62,8 +62,6 @@ namespace NavegadorWeb.UI
 
         public virtual void ShowMenu() { }
 
-        public virtual void AddTour() { }
-
         private void NavigatorForm_Load(object sender, EventArgs e)
         {
             int[] browserEmulationVersion = { 0, 7000, 8000, 8888, 9000, 9999, 10000, 10001, 11000, 11001 };

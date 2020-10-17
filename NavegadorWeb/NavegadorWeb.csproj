@@ -195,6 +195,9 @@
     <Compile Include="Responsable\CreateTutorial.Designer.cs">
       <DependentUpon>CreateTutorial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Responsable\MenuAssistant.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Responsable\NavigatorAssistant.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -97,6 +97,19 @@ namespace NavegadorWeb.UI
         public static string CircleHoverImage = path + "CircleHoverImage.jpg";
         public static string CircleClickImage = path + "CircleClickImage.jpg";
 
+        public static string RecordImage = path + "RecordImage.jpg";
+        public static string RecordHoverImage = path + "RecordHoverImage.jpg";
+        public static string RecordClickImage = path + "RecordClickImage.jpg";
+        public static string StopImage = path + "StopImage.jpg";
+        public static string StopHoverImage = path + "StopHoverImage.jpg";
+        public static string StopClickImage = path + "StopClickImage.jpg";
+        public static string ListenImage = path + "ListenImage.jpg";
+        public static string ListenHoverImage = path + "ListenHoverImage.jpg";
+        public static string ListenClickImage = path + "ListenClickImage.jpg";
+        public static string AddStepImage = path + "AddStepImage.jpg";
+        public static string AddStepHoverImage = path + "AddStepHoverImage.jpg";
+        public static string AddStepClickImage = path + "AddStepClickImage.jpg";
+
         public static string AsistimeLogo = path + "logo.png";
         public static string AsistimeIcon = path + "logo.iso";
 
@@ -114,8 +127,9 @@ namespace NavegadorWeb.UI
         public const string SearchBoxText = "Ingrese aquí la dirección a buscar";
 
         public static Font ProgressBarFont = new Font("Segoe UI", 15, FontStyle.Bold);
+        public static Font HLabelFont = new Font("Segoe UI", 14, FontStyle.Bold);
         public static Font H1LabelFont = new Font("Segoe UI", 12, FontStyle.Bold);
-        public static Font H2LabelFont = new Font("Segoe UI", 10, FontStyle.Regular);
+        public static Font H2LabelFont = new Font("Segoe UI", 10, FontStyle.Bold);
 
         public const string InitiateTourTitle = "Vas a dejar esta pantalla";
         public const string InitiateTourConfirmation1 = "Estás por iniciar el tour ";

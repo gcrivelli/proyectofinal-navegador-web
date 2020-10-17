@@ -1,4 +1,5 @@
 ﻿using NavegadorWeb.Adult;
+using NavegadorWeb.GeneralDisplay;
 using NavegadorWeb.Models;
 using System.Collections.Generic;
 using System.Drawing;
@@ -9,8 +10,8 @@ namespace NavegadorWeb.UI
     class AsistimeCardContainer : AsistimeMenuContent
     {
         List<Tour> TourList;
-        MenuAdult formAnterior;
-        public AsistimeCardContainer(List<Tour> tourList, MenuAdult form) : base()
+        MenuForm formAnterior;
+        public AsistimeCardContainer(List<Tour> tourList, MenuForm form) : base()
         {
             formAnterior = form;
             TourList = tourList;
@@ -19,8 +20,8 @@ namespace NavegadorWeb.UI
 
         public void PlayTour(Tour tour)
         {
-            //MenuAdult parent = this.Parent as MenuAdult;
-            formAnterior.PlayTour(tour);
+            MenuAdult parent = this.formAnterior as MenuAdult;
+            parent.PlayTour(tour);
         }
 
         private void ArrangeCardGrid()

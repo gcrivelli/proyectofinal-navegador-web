@@ -2,19 +2,36 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Media;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using NavegadorWeb.Models;
 
 namespace NavegadorWeb.UI
 {
     class AsistimeBasePopup : Panel
     {
+        protected Label title;
+
         public AsistimeBasePopup()
         {
             this.Width = 700;
             this.Height = 700;
             this.BackColor = Color.White;
+
+            title = new Label()
+            {
+                Text = "CREACIÓN DE TOUR",
+                Font = Constants.HLabelFont,
+                Width = 400,
+                Height = 40,
+                TextAlign = ContentAlignment.MiddleCenter,
+            };
+            title.Location = new Point(this.Width / 2 - title.Width / 2, 50);
+            this.Controls.Add(title);
         }
 
         protected void Center_With(Label label, AsistimeRoundButton button)
@@ -44,13 +61,15 @@ namespace NavegadorWeb.UI
 
         public AsistimeCreatePanel()
         {
+            this.title.Text = "CREACIÓN DE TOUR";
+
             tourNameLabel = new Label()
             {
                 Text = "NOMBRE DEL TOUR",
                 Font = Constants.H2LabelFont,
                 Width = 400
             };
-            
+
             this.Controls.Add(tourNameLabel);
             tourNameTextBox = new AsistimeSearchBox()
             {
@@ -81,16 +100,14 @@ namespace NavegadorWeb.UI
             textbox.Height = 280; //20 menos que la altura del searchbox
             this.Controls.Add(textbox);
             textbox.BorderStyle = BorderStyle.None;
-            textbox.Font = new Font("Segoe UI", 12, FontStyle.Regular); ;
+            textbox.Font = Constants.H2LabelFont;
             textbox.BringToFront();
 
-            box.Location = new Point(this.Width / 2 - box.Width / 2, 200);
+            box.Location = new Point(this.Width / 2 - box.Width / 2, 260);
             textbox.Location = new Point(box.Location.X + 10, box.Location.Y + 10);
             tourDescTextBox.Location = new Point(box.Location.X, box.Location.Y - 30);
-            tourNameTextBox.Location = new Point(this.Width / 2 - tourNameTextBox.Width / 2, 90);
+            tourNameTextBox.Location = new Point(this.Width / 2 - tourNameTextBox.Width / 2, 150);
             tourNameLabel.Location = new Point(tourNameTextBox.Location.X, tourNameTextBox.Location.Y - 30);
-
-
 
             nextButton = new AsistimeActionButton();
             nextButton.Click += new EventHandler(Next);
@@ -125,14 +142,19 @@ namespace NavegadorWeb.UI
 
         protected void Next(object sender, EventArgs e)
         {
-            AsistimeTourCreation form = this.Parent as AsistimeTourCreation;
-            form.AdvanceToSteps(tourNameTextBox.TextName, textbox.Text);
+            if (tourNameTextBox.TextName != string.Empty && textbox.Text != string.Empty)
+            {
+                AsistimeTourCreation form = this.Parent as AsistimeTourCreation;
+                form.AdvanceToSteps(tourNameTextBox.TextName, textbox.Text);
+            }
+            else
+                MessageBox.Show("Elija un nombre y descripción para el tutorial.", "Nombre Inválido", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         protected void Cancel(object sender, EventArgs e)
         {
             AsistimeTourCreation form = this.Parent as AsistimeTourCreation;
-            form.Close();
+            form.BackToNavigation();
         }
     }
 
@@ -147,84 +169,51 @@ namespace NavegadorWeb.UI
 
         private Label tourNameLabel;
         private TextBox textbox;
+        private int stepCount;
 
         //private List<Step>;
 
         public AsistimeStepsPanel()
         {
-            tourNameLabel = new Label()
+            this.title.Text = "ALTA DE PASOS";
+
+            /*tourNameLabel = new Label()
             {
                 Font = Constants.H2LabelFont,
                 Width = 400
             };
-            this.Controls.Add(tourNameLabel);
+            this.Controls.Add(tourNameLabel);*/
 
             textbox = new TextBox();
             textbox.Multiline = true;
-            textbox.Width = 380; //20 menos que el ancho del searchbox
-            textbox.Height = 280; //20 menos que la altura del searchbox
+            textbox.Width = 450;
+            textbox.Height = 300;
             this.Controls.Add(textbox);
             textbox.BorderStyle = BorderStyle.None;
-            textbox.Font = new Font("Segoe UI", 12, FontStyle.Regular);
+            textbox.Font = Constants.H2LabelFont;
             textbox.BringToFront();
-
-            textbox.Location = new Point(this.Width / 2 - tourNameLabel.Width / 2, 90);
-            tourNameLabel.Location = new Point(textbox.Location.X, textbox.Location.Y - 30);
-
+            textbox.Text = "¡Agregá pasos al tour! En cada paso, indicale al adulto mayor qué es lo que debe hacer, ayudándolo con dibujos en pantalla y un audio opcional. Recordá que cuanta menos información incluyas en cada paso, el adulto mayor podrá realizar el tour con mas facilidad.";
+            textbox.TextAlign = HorizontalAlignment.Center;
+            textbox.Location = new Point(this.Width / 2 - textbox.Width / 2, 120);
+            //tourNameLabel.Location = new Point(textbox.Location.X, textbox.Location.Y - 30);
 
             Label stepsLabel = new Label()
             {
-                Text = "CANTIDAD DE PASOS:",
+                Text = "CANTIDAD DE PASOS: " + stepCount,
                 Font = Constants.H2LabelFont,
                 Width = 400
             };
-            stepsLabel.Location = new Point(textbox.Location.X, textbox.Location.Y + textbox.Width);
+            stepsLabel.Location = new Point(textbox.Location.X, textbox.Location.Y + textbox.Height);
             this.Controls.Add(stepsLabel);
 
-
-
-
-
-
-            AsistimeRoundButton RectangleButton = new AsistimeRoundButton(84, 84, Constants.RectImage, Constants.RectHoverImage, Constants.RectClickImage) { Parent = this.Parent };
-            Label rectLabel = new Label() { Text = "Rectángulo", ForeColor = Color.Blue, Font = Constants.H1LabelFont, Height = 40 };
-            RectangleButton.Location = new Point(stepsLabel.Location.X, stepsLabel.Location.Y + 50);
-            Center_With(rectLabel, RectangleButton);
-            this.Controls.Add(RectangleButton);
-            this.Controls.Add(rectLabel);
-
-            AsistimeRoundButton DivButton = new AsistimeRoundButton(84, 84, Constants.DivImage, Constants.DivHoverImage, Constants.DivClickImage) { Parent = this.Parent };
-            Label divLabel = new Label() { Text = "Div", ForeColor = Color.Blue, Font = Constants.H1LabelFont, Height = 40 };
-            DivButton.Location = new Point(RectangleButton.Location.X + 100, RectangleButton.Location.Y);
-            Center_With(divLabel, DivButton);
-            this.Controls.Add(DivButton);
-            this.Controls.Add(divLabel);
-
-            AsistimeRoundButton DialogButton = new AsistimeRoundButton(84, 84, Constants.DialogImage, Constants.DialogHoverImage, Constants.DialogClickImage) { Parent = this.Parent };
-            Label dialogLabel = new Label() { Text = "Diálogo", ForeColor = Color.Blue, Font = Constants.H1LabelFont, Height = 40 };
-            DialogButton.Location = new Point(RectangleButton.Location.X + 200, RectangleButton.Location.Y);
-            Center_With(dialogLabel, DialogButton);
-            this.Controls.Add(DialogButton);
-            this.Controls.Add(dialogLabel);
-
-            AsistimeRoundButton TextButton = new AsistimeRoundButton(84, 84, Constants.TextImage, Constants.TextHoverImage, Constants.TextClickImage) { Parent = this.Parent };
-            Label textLabel = new Label() { Text = "Texto", ForeColor = Color.Blue, Font = Constants.H1LabelFont, Height = 40 };
-            TextButton.Location = new Point(RectangleButton.Location.X + 300, RectangleButton.Location.Y);
-            Center_With(textLabel, TextButton);
-            this.Controls.Add(TextButton);
-            this.Controls.Add(textLabel);
-
-            AsistimeRoundButton CircleButton = new AsistimeRoundButton(84, 84, Constants.CircleImage, Constants.CircleHoverImage, Constants.CircleClickImage) { Parent = this.Parent };
-            Label circleLabel = new Label() { Text = "Círculo", ForeColor = Color.Blue, Font = Constants.H1LabelFont, Height = 40 };
-            CircleButton.Location = new Point(RectangleButton.Location.X + 400, RectangleButton.Location.Y);
-            Center_With(circleLabel, CircleButton);
-            this.Controls.Add(CircleButton);
-            this.Controls.Add(circleLabel);
-
-
-
-
-
+            AsistimeRoundButton AddStepButton = new AsistimeRoundButton(84, 84, Constants.AddStepImage, Constants.AddStepHoverImage, Constants.AddStepClickImage) { Parent = this.Parent };
+            Label addLabel = new Label() { Text = "Agregar paso", ForeColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour), Font = Constants.H1LabelFont, Height = 40 };
+            AddStepButton.Location = new Point(450, textbox.Location.Y + textbox.Height - 30);
+            Center_With(addLabel, AddStepButton);
+            AddStepButton.Click += new EventHandler(AddStep);
+            this.Controls.Add(AddStepButton);
+            AddStepButton.BringToFront();
+            this.Controls.Add(addLabel);
 
             nextButton = new AsistimeActionButton();
             nextButton.Click += new EventHandler(Next);
@@ -234,7 +223,7 @@ namespace NavegadorWeb.UI
 
             cancelButton = new AsistimeActionButton();
             cancelButton.Click += new EventHandler(Cancel);
-            cancelButton.ButtonText = "Cancelar";
+            cancelButton.ButtonText = "Anterior";
             this.Controls.Add(cancelButton);
             cancelButton.BringToFront();
 
@@ -257,16 +246,29 @@ namespace NavegadorWeb.UI
             cancelButton.Location = new Point(this.Width / 2 - cancelButtonWidth / 2, nextButton.Location.Y + 80);
         }
 
-        public void SetTour(String name, String desc)
+        public void SetTour(String name, String desc, int stepCount)
         {
-            tourNameLabel.Text = name;
-            textbox.Text = desc;
+            /*tourNameLabel.Text = name;
+            textbox.Text = desc;*/
+            this.stepCount = stepCount;
+        }
+
+        protected void AddStep(object sender, EventArgs e)
+        {
+            AsistimeTourCreation form = this.Parent as AsistimeTourCreation;
+            form.AdvanceToForms();
         }
 
         protected void Next(object sender, EventArgs e)
         {
-            AsistimeTourCreation form = this.Parent as AsistimeTourCreation;
-            //form.AdvanceToForms();
+            if (stepCount != 0)
+            {
+                AsistimeTourCreation form = this.Parent as AsistimeTourCreation;
+                form.ConfirmTour();
+            }
+            else
+                MessageBox.Show("¡Agregá pasos al tour! Por ahora no tiene niguno.", "Tour vacío", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            
         }
 
         protected void Cancel(object sender, EventArgs e)
@@ -278,5 +280,262 @@ namespace NavegadorWeb.UI
 
     }
 
+    class AsistimeFormsPanel : AsistimeBasePopup
+    {
+        private AsistimeActionButton nextButton;
+        private AsistimeActionButton cancelButton;
+        private TextBox textbox;
 
-}
+        public AsistimeFormsPanel()
+        {
+            this.title.Text = "CREACIÓN DE FORMAS";
+
+            textbox = new TextBox();
+            textbox.Multiline = true;
+            textbox.Width = 450;
+            textbox.Height = 250;
+            this.Controls.Add(textbox);
+            textbox.BorderStyle = BorderStyle.None;
+            textbox.Font = Constants.H2LabelFont;
+            textbox.BringToFront();
+            textbox.Text = "¡Dale forma al tour! Cada una de las siguientes formas está pensada para resaltar sectores del sitio web. Con ellas podés indicarle al adulto mayor en qué sector de la página debe realizar una acción, qué componentes debe observar, o restringir el 'click' en algún sector.";
+            textbox.TextAlign = HorizontalAlignment.Center;
+            textbox.Location = new Point(this.Width / 2 - textbox.Width / 2, 120);
+
+            AsistimeRoundButton RectangleButton = new AsistimeRoundButton(84, 84, Constants.RectImage, Constants.RectHoverImage, Constants.RectClickImage) { Parent = this.Parent };
+            Label rectLabel = new Label() { Text = "Rectángulo", ForeColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour), Font = Constants.H1LabelFont, Height = 40 };
+            RectangleButton.Location = new Point(87, 400);
+            Center_With(rectLabel, RectangleButton);
+            this.Controls.Add(RectangleButton);
+            this.Controls.Add(rectLabel);
+
+            AsistimeRoundButton DivButton = new AsistimeRoundButton(84, 84, Constants.DivImage, Constants.DivHoverImage, Constants.DivClickImage) { Parent = this.Parent };
+            Label divLabel = new Label() { Text = "Div", ForeColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour), Font = Constants.H1LabelFont, Height = 40 };
+            DivButton.Location = new Point(RectangleButton.Location.X + 110, RectangleButton.Location.Y);
+            Center_With(divLabel, DivButton);
+            this.Controls.Add(DivButton);
+            this.Controls.Add(divLabel);
+
+            AsistimeRoundButton DialogButton = new AsistimeRoundButton(84, 84, Constants.DialogImage, Constants.DialogHoverImage, Constants.DialogClickImage) { Parent = this.Parent };
+            Label dialogLabel = new Label() { Text = "Diálogo", ForeColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour), Font = Constants.H1LabelFont, Height = 40 };
+            DialogButton.Location = new Point(RectangleButton.Location.X + 220, RectangleButton.Location.Y);
+            Center_With(dialogLabel, DialogButton);
+            this.Controls.Add(DialogButton);
+            this.Controls.Add(dialogLabel);
+
+            AsistimeRoundButton TextButton = new AsistimeRoundButton(84, 84, Constants.TextImage, Constants.TextHoverImage, Constants.TextClickImage) { Parent = this.Parent };
+            Label textLabel = new Label() { Text = "Texto", ForeColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour), Font = Constants.H1LabelFont, Height = 40 };
+            TextButton.Location = new Point(RectangleButton.Location.X + 330, RectangleButton.Location.Y);
+            Center_With(textLabel, TextButton);
+            this.Controls.Add(TextButton);
+            this.Controls.Add(textLabel);
+
+            AsistimeRoundButton CircleButton = new AsistimeRoundButton(84, 84, Constants.CircleImage, Constants.CircleHoverImage, Constants.CircleClickImage) { Parent = this.Parent };
+            Label circleLabel = new Label() { Text = "Círculo", ForeColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour), Font = Constants.H1LabelFont, Height = 40 };
+            CircleButton.Location = new Point(RectangleButton.Location.X + 440, RectangleButton.Location.Y);
+            Center_With(circleLabel, CircleButton);
+            this.Controls.Add(CircleButton);
+            this.Controls.Add(circleLabel);
+
+            nextButton = new AsistimeActionButton();
+            nextButton.Click += new EventHandler(Next);
+            nextButton.ButtonText = "Siguiente";
+            this.Controls.Add(nextButton);
+            nextButton.BringToFront();
+
+            cancelButton = new AsistimeActionButton();
+            cancelButton.Click += new EventHandler(Cancel);
+            cancelButton.ButtonText = "Anterior";
+            this.Controls.Add(cancelButton);
+            cancelButton.BringToFront();
+
+            int nextButtonWidth;
+            using (Graphics cg = this.CreateGraphics())
+            {
+                SizeF size = cg.MeasureString(nextButton.ButtonText, nextButton.Font);
+                size.Width += 40;
+                nextButtonWidth = (int)size.Width;
+            }
+            nextButton.Location = new Point(this.Width / 2 - nextButtonWidth / 2, 600);
+
+            int cancelButtonWidth;
+            using (Graphics cg = this.CreateGraphics())
+            {
+                SizeF size = cg.MeasureString(cancelButton.ButtonText, cancelButton.Font);
+                size.Width += 40;
+                cancelButtonWidth = (int)size.Width;
+            }
+            cancelButton.Location = new Point(this.Width / 2 - cancelButtonWidth / 2, nextButton.Location.Y + 80);
+        }
+
+        protected void Next(object sender, EventArgs e)
+        {
+            AsistimeTourCreation form = this.Parent as AsistimeTourCreation;
+            form.AdvanceToAudio();
+        }
+
+        protected void Cancel(object sender, EventArgs e)
+        {
+            AsistimeTourCreation form = this.Parent as AsistimeTourCreation;
+            form.BackToSteps();
+        }
+    }
+
+    class AsistimeAudioPanel : AsistimeBasePopup
+    {
+        public static HtmlDocument doc;
+        String UrlReproductor = null;
+        SoundPlayer ReproductorWav;
+        [DllImport("winmm.dll", EntryPoint = "mciSendStringA", ExactSpelling = true, CharSet = CharSet.Ansi, SetLastError = true)]
+        private static extern int record(string lpstrCommand, string lpstrReturnString, int uReturnLength, int hwndCallback);
+
+        private AsistimeActionButton nextButton;
+        private AsistimeActionButton cancelButton;
+        AsistimeRoundButton RecordButton;
+        AsistimeRoundButton StopButton;
+        AsistimeRoundButton PlayButton;
+        private TextBox textbox;
+
+        public String tourName;
+        public int countStep;
+
+        public AsistimeAudioPanel()
+        {
+            this.title.Text = "GRABACIÓN DE AUDIO";
+
+            textbox = new TextBox();
+            textbox.Multiline = true;
+            textbox.Width = 450;
+            textbox.Height = 250;
+            this.Controls.Add(textbox);
+            textbox.BorderStyle = BorderStyle.None;
+            textbox.Font = Constants.H2LabelFont;
+            textbox.BringToFront();
+            textbox.Text = "¡Con audio se entiende mejor! Podés grabar una ayuda auditiva que explique la acción que se debe realizar. Recordá hablar despacio y claro, para que alguien mayor te pueda entender. Si querés, podés saltear este paso.";
+            textbox.TextAlign = HorizontalAlignment.Center;
+            textbox.Location = new Point(this.Width / 2 - textbox.Width / 2, 120);
+
+            ReproductorWav = new SoundPlayer();
+
+            RecordButton = new AsistimeRoundButton(84, 84, Constants.RecordImage, Constants.RecordHoverImage, Constants.RecordClickImage) { Parent = this.Parent };
+            Label recordLabel = new Label() { Text = "Grabar", ForeColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour), Font = Constants.H1LabelFont, Height = 40 };
+            RecordButton.Location = new Point(103, 400);
+            Center_With(recordLabel, RecordButton);
+            RecordButton.Click += new EventHandler(RecordAudio);
+            this.Controls.Add(RecordButton);
+            this.Controls.Add(recordLabel);
+
+            StopButton = new AsistimeRoundButton(84, 84, Constants.StopImage, Constants.StopHoverImage, Constants.StopClickImage) { Parent = this.Parent };
+            Label divLabel = new Label() { Text = "Parar", ForeColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour), Font = Constants.H1LabelFont, Height = 40 };
+            StopButton.Location = new Point(RecordButton.Location.X + 205, RecordButton.Location.Y);
+            Center_With(divLabel, StopButton);
+            StopButton.Click += new EventHandler(StopRecording);
+            this.Controls.Add(StopButton);
+            StopButton.Enabled = false;
+            this.Controls.Add(divLabel);
+
+            PlayButton = new AsistimeRoundButton(84, 84, Constants.ListenImage, Constants.ListenHoverImage, Constants.ListenClickImage) { Parent = this.Parent };
+            Label dialogLabel = new Label() { Text = "Reproducir", ForeColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour), Font = Constants.H1LabelFont, Height = 40 };
+            PlayButton.Location = new Point(RecordButton.Location.X + 410, RecordButton.Location.Y);
+            Center_With(dialogLabel, PlayButton);
+            PlayButton.Click += new EventHandler(PlayAudio);
+            this.Controls.Add(PlayButton);
+            PlayButton.Enabled = false;
+            this.Controls.Add(dialogLabel);
+
+
+            nextButton = new AsistimeActionButton();
+            nextButton.Click += new EventHandler(Next);
+            nextButton.ButtonText = "Guardar paso";
+            this.Controls.Add(nextButton);
+            nextButton.BringToFront();
+
+            cancelButton = new AsistimeActionButton();
+            cancelButton.Click += new EventHandler(Cancel);
+            cancelButton.ButtonText = "Anterior";
+            this.Controls.Add(cancelButton);
+            cancelButton.BringToFront();
+
+            int nextButtonWidth;
+            using (Graphics cg = this.CreateGraphics())
+            {
+                SizeF size = cg.MeasureString(nextButton.ButtonText, nextButton.Font);
+                size.Width += 40;
+                nextButtonWidth = (int)size.Width;
+            }
+            nextButton.Location = new Point(this.Width / 2 - nextButtonWidth / 2, 600);
+
+            int cancelButtonWidth;
+            using (Graphics cg = this.CreateGraphics())
+            {
+                SizeF size = cg.MeasureString(cancelButton.ButtonText, cancelButton.Font);
+                size.Width += 40;
+                cancelButtonWidth = (int)size.Width;
+            }
+            cancelButton.Location = new Point(this.Width / 2 - cancelButtonWidth / 2, nextButton.Location.Y + 80);
+        }
+
+        protected void Next(object sender, EventArgs e)
+        {
+            AsistimeTourCreation form = this.Parent as AsistimeTourCreation;
+            form.ConfirmStep();
+        }
+
+        protected void Cancel(object sender, EventArgs e)
+        {
+            AsistimeTourCreation form = this.Parent as AsistimeTourCreation;
+            form.BackToForms();
+        }
+
+        private void RecordAudio(object sender, EventArgs e)
+        {
+            record("open new Type waveaudio Alias recsound", "", 0, 0);
+            record("record recsound", "", 0, 0);
+            PlayButton.Enabled = false;
+            StopButton.Enabled = true;
+        }
+
+        private void StopRecording(object sender, EventArgs e)
+        {
+            createDirectory();
+
+            var nameTourWithoutSpace = this.tourName.Replace(" ", "");
+            var audioName = "/Audio" + nameTourWithoutSpace + this.countStep + ".wav";
+            UrlReproductor = Constants.audioPath + audioName;
+
+            record("save recsound " + UrlReproductor, "", 0, 0);
+            record("close recsound", "", 0, 0);
+
+            MessageBox.Show("Archivo de audio guardado en: " + UrlReproductor);
+
+            PlayButton.Enabled = true;
+            StopButton.Enabled = false;
+        }
+
+        private void PlayAudio(object sender, EventArgs e)
+        {
+            ReproductorWav.SoundLocation = UrlReproductor;
+            ReproductorWav.Play();
+        }
+
+        private void createDirectory()
+        {
+            var path = Constants.audioPath;
+            try
+            {
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+            }
+            catch
+            {
+                MessageBox.Show("Error al crear el directorio para los audios", "Error");
+            }
+        }
+
+        public void SetTour(String name, int count)
+        {
+            this.tourName = name;
+            this.countStep = count;
+        }
+    }
+ }
