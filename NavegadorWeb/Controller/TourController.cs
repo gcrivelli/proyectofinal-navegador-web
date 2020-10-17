@@ -36,7 +36,7 @@ namespace NavegadorWeb.Controller
         /// </summary>
         /// <param name="id"> id of the user to be search </param>
         /// <returns></returns>
-        public async Task<List<Tour>> GetAllToursAsync(string id)
+        public async Task<List<Tour>> GetAllToursAsync()
         {
             using (var client = new HttpClient())
             {

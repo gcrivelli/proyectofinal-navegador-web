@@ -38,18 +38,5 @@ namespace NavegadorWeb.Controller
                 return response.IsSuccessStatusCode;
             }
         }
-        //var notificationController = new NotificationController();
-        //var notificacion = new Notification();
-        //notificacion.evento = "sarasa";
-        //notificacion.message = "sarasa";
-        //var a = notificationController.postNotification(notificacion).Result;
-
-        //var notificationController = new NotificationController();
-        //var a = notificationController.getNotification().Result;
-
-        ////Active notifications
-        //Thread threadNotification = new Thread(NotificationThread.DoWork);
-        //threadNotification.IsBackground = true;
-        //threadNotification.Start();
     }
 }

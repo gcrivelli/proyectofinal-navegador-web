@@ -5,6 +5,7 @@ using NavegadorWeb.Models;
 using System.Collections.Generic;
 using NavegadorWeb.Controller;
 using NavegadorWeb.UI;
+using NavegadorWeb.Extra;
 
 namespace NavegadorWeb.Responsable
 {
@@ -77,11 +78,11 @@ namespace NavegadorWeb.Responsable
                     addStepBtn.Visible = true;
                     countTxt.Visible = true;
 
-                    MessageBox.Show("Comenza la grabación del tutorial", "Comienza el Tutorial", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    new PopupNotification("Nuevo tutorial", "Comenza la grabación del tutorial");
                 }
             }
             else
-                MessageBox.Show("Cargando, espere.");
+                new PopupNotification("Espere", "Cargando contenido.");
         }
 
         private void endTutorialBtn_Click(object sender, EventArgs e)
@@ -112,9 +113,9 @@ namespace NavegadorWeb.Responsable
             webBrowser.Refresh();
 
             if (tourResponse._id != null && allAudioResponse)
-                MessageBox.Show("Tutorial Terminado! Se guardaron " + countStep.ToString() + " pasos", "Fin del Tutorial", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                new PopupNotification("Fin del tutorial", "Tutorial Terminado! Se guardaron " + countStep.ToString() + " pasos");
             else
-                MessageBox.Show("Un error ha ocurrido tratando de conectar al servidor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new PopupNotification("Error", "Un error ha ocurrido tratando de conectar al servidor.");
         }
 
         private void addStepBtn_Click(object sender, EventArgs e)

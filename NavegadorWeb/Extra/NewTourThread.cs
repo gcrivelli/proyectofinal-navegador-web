@@ -1,10 +1,10 @@
 ﻿using NavegadorWeb.Controller;
+using NavegadorWeb.UI;
 using System.Threading;
-using System.Windows.Forms;
 
 namespace NavegadorWeb.Extra
 {
-    public class NotificationThread
+    public class NewTourThread
     {
 
         public static void DoWork()
@@ -15,11 +15,11 @@ namespace NavegadorWeb.Extra
                 var notificacion = notificationController.GetNotification().Result;
                 if (notificacion.Count > 0)
                 {
-                    notificacion.ForEach(n =>
-                    {
-                        new PopupNotification(n.message, n.evento);
-                        MessageBox.Show(n.evento, n.message, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    });
+                    var userController = new UserController();
+                    var tourController = new TourController();
+
+                    Constants.user = userController.GetUser().Result;
+                    Constants.tours = tourController.GetAllToursAsync().Result;
                 }
 
                 Thread.Sleep(60000);

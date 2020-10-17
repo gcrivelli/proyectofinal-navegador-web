@@ -3,9 +3,9 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Media;
 using NavegadorWeb.Models;
-using MessageBox = System.Windows.MessageBox;
 using System.IO;
 using NavegadorWeb.UI;
+using NavegadorWeb.Extra;
 
 namespace NavegadorWeb.Responsable
 {
@@ -192,7 +192,7 @@ namespace NavegadorWeb.Responsable
             record("save recsound " + UrlReproductor, "", 0, 0);
             record("close recsound", "", 0, 0);
 
-            MessageBox.Show("Archivo de audio guardado en: " + UrlReproductor);
+            new PopupNotification("Grabado exitoso", "Archivo de audio guardado en: " + UrlReproductor);
 
             btnPlay.Enabled = true;
             btnStop.Enabled = false;
@@ -248,7 +248,7 @@ namespace NavegadorWeb.Responsable
             }
             catch
             {
-                MessageBox.Show("Error al crear el directorio para los audios", "Error");
+                new PopupNotification("Error", "Error al crear el directorio para los audios");
             } 
         }
 

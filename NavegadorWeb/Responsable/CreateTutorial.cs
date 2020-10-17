@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NavegadorWeb.Extra;
+using System;
 using System.Windows.Forms;
 
 namespace NavegadorWeb.Responsable
@@ -20,10 +21,10 @@ namespace NavegadorWeb.Responsable
             if (nameTxt.Text != string.Empty && descTxt.Text != string.Empty)
             {
                 DialogResult = DialogResult.OK;
-                Close();  
+                Close();
             }
             else
-                MessageBox.Show("Elija un nombre y descripción para el tutorial.", "Nombre Invalido", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new PopupNotification("Error", "Complete todos los campos.");
         }
     }
 }

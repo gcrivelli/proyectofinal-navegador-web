@@ -7,6 +7,7 @@ using MessageBox = System.Windows.MessageBox;
 using System.Windows;
 using System.IO;
 using System.Linq;
+using NavegadorWeb.Extra;
 
 namespace NavegadorWeb.Adult
 {
@@ -320,10 +321,7 @@ namespace NavegadorWeb.Adult
 
         public override void ShowMenu()
         {
-            // esta instanciacion deberia ir después del login
-            var userController = new TourController();
-            var tours = userController.GetAllToursAsync(Constants.user._id).Result;
-            MenuAdult menu = new MenuAdult(tours, this);
+            MenuAdult menu = new MenuAdult(Constants.tours, this);
 
             this.Hide();
             menu.Show();
@@ -346,7 +344,7 @@ namespace NavegadorWeb.Adult
             }
             catch
             {
-                MessageBox.Show("Error al crear el directorio para los audios", "Error");
+                new PopupNotification("Error", "Error al crear el directorio para los audios.");
             }
         }
         public void playAudio(string audioPath)
@@ -385,7 +383,20 @@ namespace NavegadorWeb.Adult
 
         }
 
-        public void Asistime() { }
+        //Envio de notificacion de ayuda
+        public void Asistime() 
+        {
+            var notificationController = new NotificationController();
+            var notificacion = new Notification();
+            notificacion.evento = "Ayuda con una pagina web";
+            notificacion.message = Constants.user.name + " necesita ayuda para acceder a la pagina " + webBrowser.Url.ToString() +
+                                    ". Ponete en contacto lo antes posible.";
+            var result = notificationController.PostNotification(notificacion).Result;
+
+            if (result)
+                new PopupNotification("Pedido de ayuda!", "Enviamos una alerta para que te puedan ayudar con esta página");
+            
+        }
     }
     
 }
