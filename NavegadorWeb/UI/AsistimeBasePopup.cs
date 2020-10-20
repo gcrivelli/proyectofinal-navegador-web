@@ -176,6 +176,7 @@ namespace NavegadorWeb.UI
         public AsistimeStepsPanel()
         {
             this.title.Text = "ALTA DE PASOS";
+            stepCount = 0;
 
             /*tourNameLabel = new Label()
             {
@@ -250,11 +251,12 @@ namespace NavegadorWeb.UI
         {
             /*tourNameLabel.Text = name;
             textbox.Text = desc;*/
-            this.stepCount = stepCount;
+            stepCount = stepCount;
         }
 
         protected void AddStep(object sender, EventArgs e)
         {
+            stepCount++;
             AsistimeTourCreation form = this.Parent as AsistimeTourCreation;
             form.AdvanceToForms();
         }
@@ -275,6 +277,11 @@ namespace NavegadorWeb.UI
         {
             AsistimeTourCreation form = this.Parent as AsistimeTourCreation;
             form.BackToTour();
+        }
+
+        public void cancelLastStep()
+        {
+            stepCount--;
         }
 
 
@@ -306,13 +313,15 @@ namespace NavegadorWeb.UI
             Label rectLabel = new Label() { Text = "Rectángulo", ForeColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour), Font = Constants.H1LabelFont, Height = 40 };
             RectangleButton.Location = new Point(87, 400);
             Center_With(rectLabel, RectangleButton);
+            RectangleButton.Click += new EventHandler(DrawRectangle);
             this.Controls.Add(RectangleButton);
             this.Controls.Add(rectLabel);
 
             AsistimeRoundButton DivButton = new AsistimeRoundButton(84, 84, Constants.DivImage, Constants.DivHoverImage, Constants.DivClickImage) { Parent = this.Parent };
-            Label divLabel = new Label() { Text = "Div", ForeColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour), Font = Constants.H1LabelFont, Height = 40 };
+            Label divLabel = new Label() { Text = "Recuadrar", ForeColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour), Font = Constants.H1LabelFont, Height = 40 };
             DivButton.Location = new Point(RectangleButton.Location.X + 110, RectangleButton.Location.Y);
             Center_With(divLabel, DivButton);
+            DivButton.Click += new EventHandler(DrawDiv);
             this.Controls.Add(DivButton);
             this.Controls.Add(divLabel);
 
@@ -320,6 +329,7 @@ namespace NavegadorWeb.UI
             Label dialogLabel = new Label() { Text = "Diálogo", ForeColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour), Font = Constants.H1LabelFont, Height = 40 };
             DialogButton.Location = new Point(RectangleButton.Location.X + 220, RectangleButton.Location.Y);
             Center_With(dialogLabel, DialogButton);
+            DialogButton.Click += new EventHandler(DrawDialog);
             this.Controls.Add(DialogButton);
             this.Controls.Add(dialogLabel);
 
@@ -327,6 +337,7 @@ namespace NavegadorWeb.UI
             Label textLabel = new Label() { Text = "Texto", ForeColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour), Font = Constants.H1LabelFont, Height = 40 };
             TextButton.Location = new Point(RectangleButton.Location.X + 330, RectangleButton.Location.Y);
             Center_With(textLabel, TextButton);
+            TextButton.Click += new EventHandler(DrawText);
             this.Controls.Add(TextButton);
             this.Controls.Add(textLabel);
 
@@ -334,6 +345,7 @@ namespace NavegadorWeb.UI
             Label circleLabel = new Label() { Text = "Círculo", ForeColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour), Font = Constants.H1LabelFont, Height = 40 };
             CircleButton.Location = new Point(RectangleButton.Location.X + 440, RectangleButton.Location.Y);
             Center_With(circleLabel, CircleButton);
+            CircleButton.Click += new EventHandler(DrawCircle);
             this.Controls.Add(CircleButton);
             this.Controls.Add(circleLabel);
 
@@ -378,6 +390,36 @@ namespace NavegadorWeb.UI
         {
             AsistimeTourCreation form = this.Parent as AsistimeTourCreation;
             form.BackToSteps();
+        }
+
+        protected void DrawCircle(object sender, EventArgs e)
+        {
+            AsistimeTourCreation form = this.Parent as AsistimeTourCreation;
+            form.drawForm("circulo");
+        }
+
+        protected void DrawText(object sender, EventArgs e)
+        {
+            AsistimeTourCreation form = this.Parent as AsistimeTourCreation;
+            form.drawForm("texto");
+        }
+
+        protected void DrawDialog(object sender, EventArgs e)
+        {
+            AsistimeTourCreation form = this.Parent as AsistimeTourCreation;
+            form.drawForm("dialogo");
+        }
+
+        protected void DrawDiv(object sender, EventArgs e)
+        {
+            AsistimeTourCreation form = this.Parent as AsistimeTourCreation;
+            form.drawForm("div");
+        }
+
+        protected void DrawRectangle(object sender, EventArgs e)
+        {
+            AsistimeTourCreation form = this.Parent as AsistimeTourCreation;
+            form.drawForm("rectangulo");
         }
     }
 

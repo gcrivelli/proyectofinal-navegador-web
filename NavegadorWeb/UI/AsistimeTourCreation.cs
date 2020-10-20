@@ -13,11 +13,6 @@ namespace NavegadorWeb.UI
 {
     class AsistimeTourCreation : AsistimeBaseForm
     {
-        //private AsistimeBasePopup tourCreation = null;
-        private AsistimeBasePopup stepCreation = null;
-        //private AsistimeBasePopup formsCreation = null;
-        private AsistimeBasePopup messageCreation = null;
-
         AsistimeCreatePanel tourCreation;
         AsistimeStepsPanel steps;
         AsistimeFormsPanel formsCreation;
@@ -96,29 +91,30 @@ namespace NavegadorWeb.UI
         public void ConfirmStep()
         {
             audioCreation.Hide();
-            NavigatorAssistant form = previousForm as NavigatorAssistant;
-            //form.addStep();
             steps.Show();
         }
 
         public void AdvanceToForms()
         {
+            //NavigatorAssistant form = previousForm as NavigatorAssistant;
+            previousForm.addStepToTour();
             steps.Hide();
             formsCreation.Show();
         }
 
         public void AdvanceToSteps(String name, String desc)
         {
-            this.tour.name = name;
-            this.tour.description = desc;
-            steps.SetTour(tour.name, tour.description, 1);// tour.steps.Count);
+            previousForm.setTourName(name, desc);
+            //steps.SetTour(tour.name, tour.description, 1);// tour.steps.Count);
             tourCreation.Hide();
             steps.Show();
         }
 
         public void BackToSteps()
         {
+            previousForm.cancelLastStep();
             formsCreation.Hide();
+            steps.cancelLastStep();
             steps.Show();
         }
 
@@ -131,8 +127,14 @@ namespace NavegadorWeb.UI
         public void BackToNavigation()
         {
             this.Hide();
-            NavigatorAssistant form = previousForm as NavigatorAssistant;
-            form.BackToNavigation();
+            //previousForm.cancelLastTour();
+            previousForm.BackToNavigation();
+        }
+
+        public void drawForm(String form)
+        {
+            formsCreation.Hide();
+            previousForm.drawForm(form);
         }
     }
 }

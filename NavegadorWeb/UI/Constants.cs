@@ -96,6 +96,24 @@ namespace NavegadorWeb.UI
         public static string CircleImage = path + "CircleImage.jpg";
         public static string CircleHoverImage = path + "CircleHoverImage.jpg";
         public static string CircleClickImage = path + "CircleClickImage.jpg";
+        public static string RectImage2 = path + "RectImage2.jpg";
+        public static string RectHoverImage2 = path + "RectHoverImage2.jpg";
+        public static string RectClickImage2 = path + "RectClickImage2.jpg";
+        public static string DivImage2 = path + "DivImage2.jpg";
+        public static string DivHoverImage2 = path + "DivHoverImage2.jpg";
+        public static string DivClickImage2 = path + "DivClickImage2.jpg";
+        public static string DialogImage2 = path + "DialogImage2.jpg";
+        public static string DialogHoverImage2 = path + "DialogHoverImage2.jpg";
+        public static string DialogClickImage2 = path + "DialogClickImage2.jpg";
+        public static string TextImage2 = path + "TextImage2.jpg";
+        public static string TextHoverImage2 = path + "TextHoverImage2.jpg";
+        public static string TextClickImage2 = path + "TextClickImage2.jpg";
+        public static string CircleImage2 = path + "CircleImage2.jpg";
+        public static string CircleHoverImage2 = path + "CircleHoverImage2.jpg";
+        public static string CircleClickImage2 = path + "CircleClickImage2.jpg";
+        public static string ConfirmImage = path + "ConfirmImage.jpg";
+        public static string ConfirmHoverImage = path + "ConfirmHoverImage.jpg";
+        public static string ConfirmClickImage = path + "ConfirmClickImage.jpg";
 
         public static string RecordImage = path + "RecordImage.jpg";
         public static string RecordHoverImage = path + "RecordHoverImage.jpg";

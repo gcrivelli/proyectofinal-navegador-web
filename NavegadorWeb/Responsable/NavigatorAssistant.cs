@@ -1,16 +1,11 @@
 ﻿using NavegadorWeb.Adult;
 using NavegadorWeb.Controller;
+using NavegadorWeb.Extra;
 using NavegadorWeb.Models;
 using NavegadorWeb.UI;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NavegadorWeb.Responsable
@@ -18,12 +13,16 @@ namespace NavegadorWeb.Responsable
     public partial class NavigatorAssistant : NavigatorForm
     {
         AsistimeFormBar formBar;
+        AsistimeStepsBar stepsBar;
+        private static HtmlDocument doc;
 
         private AsistimeTourCreation createTourView;
 
         private CreateStep createStepView;
         public int countStep;
         public Tour tour;
+
+        private System.Windows.Forms.ColorDialog colorDialog1;
 
         //TODO: pasar esto a la barra de creacion de tour
         private System.Windows.Forms.Button addStepBntt;
@@ -35,21 +34,27 @@ namespace NavegadorWeb.Responsable
         {
             InitializeComponent();
             asistimeAppBar = new AssistantAppBar() { Parent = this };
+            formBar = new AsistimeFormBar() { Parent = this };
+            stepsBar = new AsistimeStepsBar() { Parent = this };
+            this.Controls.Add(formBar);
+            this.Controls.Add(stepsBar);
+            formBar.Hide();
+            stepsBar.Hide();
             asistimeAppBar.Width = this.Width;
             this.Controls.Add(asistimeAppBar);
         }
 
         public void AddTour() {
-            //var doc = initJsFile();
+            doc = initJsFile();
+            initTourCreation();
             createTourView = new AsistimeTourCreation(this);
             createTourView.TopMost = true;
             createTourView.Show();
         }
 
         public override void ShowMenu() {
-            var userController = new TourController();
-            //var tours = userController.GetAllToursAsync(Constants.user._id).Result;
-            MenuAssistant menu = new MenuAssistant(null, null);
+
+            MenuAssistant menu = new MenuAssistant(Constants.tours, this);
 
             this.Hide();
             menu.Show();
@@ -80,15 +85,40 @@ namespace NavegadorWeb.Responsable
             }
         }
 
-        private void initStep()
+        /*private void initStep()
         {
             var doc = initJsFile();
             createStepView = new CreateStep(doc, this);
             createStepView.TopMost = true;
             createStepView.Show();
+        }*/
+
+        private void initTourCreation()
+        {
+            tour = new Tour()
+            {
+                steps = new List<Step>(),
+                active = true
+            };
+
+            countStep = 0;
+            //countTxt.Text = countStep.ToString();
+
+            /*initStep();
+
+            addStepBntt.Visible = false;
+            endTutorialBtn.Visible = true;
+            addStepBtn.Visible = true;
+            countTxt.Visible = true;*/
         }
 
-        private void addStep(object sender, EventArgs e)
+        public void setTourName(String name, String desc)
+        {
+            this.tour.name = name;
+            this.tour.description = desc;
+        }
+
+        /*private void addStep(object sender, EventArgs e)
         {
             if (webBrowser.ReadyState == WebBrowserReadyState.Complete)
             {
@@ -120,7 +150,7 @@ namespace NavegadorWeb.Responsable
             }
             else
                 MessageBox.Show("Cargando, espere.");
-        }
+        }*/
 
         private void endTutorial(object sender, EventArgs e)
         {
@@ -157,13 +187,14 @@ namespace NavegadorWeb.Responsable
 
         private void addStepBtn_Click(object sender, EventArgs e)
         {
-            initStep();
+            //initStep();
             addStepBtn.Enabled = false;
         }
 
         public void addStepToTour()
         {
             //cargar audio --> URL 
+            incrementStepCount();
 
             var step = new Step()
             {
@@ -178,7 +209,265 @@ namespace NavegadorWeb.Responsable
         public void incrementStepCount()
         {
             countStep++;
-            countTxt.Text = countStep.ToString();
+            //countTxt.Text = countStep.ToString();
         }
+
+        public void cancelLastStep()
+        {
+            tour.steps.RemoveAt(countStep);
+            countStep--;
+        }
+
+        public void BackToTourCreation()
+        {
+            createTourView.BackToForms();
+        }
+
+
+
+
+
+
+
+
+
+        public void drawForm(String form){
+            formBar.Hide();
+            asistimeAppBar.Hide();
+            stepsBar.Show();
+
+            switch (form)
+            {
+                case "circulo":
+                    circle();
+                    break;
+                case "rectangulo":
+                    rectangle();
+                    break;
+                case "div":
+                    div();
+                    break;
+                case "dialogo":
+                    dialog();
+                    break;
+                case "texto":
+                    text();
+                    break;
+            }
+        }
+
+        private void cancel()
+        {
+            doc.InvokeScript("finishStep");
+            webBrowser.Refresh();
+            //navWebResponsable.addStepBtn.Enabled = true;
+            this.Close();
+        }
+
+        private void circle()
+        {
+            doc.InvokeScript("initCanvas");
+            doc.InvokeScript("initCirculo");
+        }
+
+        private void rectangle()
+        {
+            doc.InvokeScript("initCanvas");
+            doc.InvokeScript("initCuadrado");
+        }
+
+        private void dialog()
+        {
+            doc.InvokeScript("initCanvas");
+            doc.InvokeScript("initEmoji");
+        }
+
+        private void text()
+        {
+            doc.InvokeScript("initCanvas");
+            doc.InvokeScript("initTexto");
+        }
+
+        private void color(object sender, EventArgs e)
+        {
+            colorDialog1.ShowDialog();
+            String color = (colorDialog1.Color.ToArgb() & 0x00FFFFFF).ToString("X6");
+            //colorBtn.BackColor = colorDialog1.Color;
+            HtmlElement head = doc.GetElementsByTagName("head")[0];
+
+            HtmlElement script = doc.CreateElement("script");
+            script.SetAttribute("type", "text/javascript");
+            script.InnerText = "function setColor" + color + "() { setColor('" + color + "'); }";
+            head.AppendChild(script);
+
+            doc.InvokeScript("setColor" + color);
+        }
+
+        private void moreLine()
+        {
+            doc.InvokeScript("agrandarLine");
+            doc.InvokeScript("agrandarOpacity");
+        }
+
+        private void lessLine()
+        {
+            doc.InvokeScript("achicarLine");
+            doc.InvokeScript("achicarOpacity");
+        }
+
+        private void lessCanvas()
+        {
+            doc.InvokeScript("achicarCanvas");
+        }
+
+        private void moreCanvas()
+        {
+            doc.InvokeScript("agrandarCanvas");
+        }
+
+        private void save()
+        {
+
+            //Aca va el comportamiento para guardar el paso
+            incrementStepCount();
+            addStepToTour();
+
+            for (int i = 1; i < 10; i++)
+            {
+                HtmlElement canvas = doc.GetElementById("canvas" + i);
+                if (canvas != null)
+                {
+                    Int16 x = 0;
+                    Int16 y = 0;
+                    Int16 width = 0;
+                    Int16 height = 0;
+                    String color = "";
+                    Int16 type = 0;
+                    Int16 weight = 1;
+                    String inclination;
+                    String text;
+
+                    color = canvas.GetAttribute("data-color");
+                    if (color == null)
+                    {
+                        color = "000000";
+                    }
+                    width = Int16.Parse(canvas.OffsetRectangle.Width.ToString());
+                    height = Int16.Parse(canvas.OffsetRectangle.Height.ToString());
+                    x = Int16.Parse(canvas.OffsetRectangle.X.ToString());
+                    y = Int16.Parse(canvas.OffsetRectangle.Y.ToString());
+                    type = Int16.Parse(canvas.GetAttribute("data-tipo"));
+                    weight = Int16.Parse(canvas.GetAttribute("data-weight"));
+                    inclination = canvas.GetAttribute("data-inclinacion");
+                    text = canvas.GetAttribute("data-text");
+
+                    addElementToStep(x, y, height, width, color, type, weight, inclination, text);
+                }
+            }
+
+            HtmlElement div = doc.GetElementById("asistime-div");
+            if (div != null)
+            {
+                Int16 x = 0;
+                Int16 y = 0;
+                Int16 width = 0;
+                Int16 height = 0;
+                String opacity = "";
+                String color = "";
+                Int16 type = 9;
+
+                opacity = div.GetAttribute("data-opacity");
+                if (opacity == null)
+                {
+                    opacity = "0.5";
+                }
+
+                color = div.GetAttribute("data-color");
+                if (color == null)
+                {
+                    color = "000000";
+                }
+
+                x = Int16.Parse(div.GetAttribute("data-x1"));
+                y = Int16.Parse(div.GetAttribute("data-y1"));
+                width = Int16.Parse(div.GetAttribute("data-x2"));
+                height = Int16.Parse(div.GetAttribute("data-y2"));
+                addElementToStep(x, y, height, width, color, type, 0, opacity, "");
+            }
+
+            webBrowser.Refresh();
+            //navWebResponsable.addStepBtn.Enabled = true;
+            doc.InvokeScript("finishStep");
+            this.Close();
+        }
+
+        private void addElementToStep(int x, int y, int height, int width, string color, int type, int weight, string inclination, string text)
+        {
+            var element = new Element()
+            {
+                x = x,
+                y = y,
+                height = height,
+                width = width,
+                color = color,
+                weight = weight,
+                type = type,
+                inclination = inclination,
+                text = text
+            };
+
+            tour.steps.Find(
+                step => step.order == countStep).elements.Add(element);
+        }
+
+        private void div()
+        {
+            doc.InvokeScript("initDiv");
+        }
+
+        private void moreAngle()
+        {
+            doc.InvokeScript("agrandarAngulo");
+        }
+
+        private void lessAngle()
+        {
+            doc.InvokeScript("achicarAngulo");
+        }
+
+        private void createDirectory()
+        {
+            var path = Constants.audioPath;
+            try
+            {
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+            }
+            catch
+            {
+                new PopupNotification("Error", "Error al crear el directorio para los audios");
+            }
+        }
+
+        private void lessFontSize()
+        {
+            doc.InvokeScript("achicarLetra");
+        }
+
+        private void moreFontSize()
+        {
+            doc.InvokeScript("agrandarLetra");
+        }
+
+        private void lessOpacity()
+        {
+            doc.InvokeScript("achicarOpacity");
+        }
+
+        private void moreOpacity()
+        {
+            doc.InvokeScript("agrandarOpacity");
+        }
+
     }
 }
