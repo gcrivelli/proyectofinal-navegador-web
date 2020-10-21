@@ -114,6 +114,22 @@ namespace NavegadorWeb.UI
         public static string ConfirmImage = path + "ConfirmImage.jpg";
         public static string ConfirmHoverImage = path + "ConfirmHoverImage.jpg";
         public static string ConfirmClickImage = path + "ConfirmClickImage.jpg";
+        public static string AudioImage = path + "AudioImage.jpg";
+        public static string AudioHoverImage = path + "AudioHoverImage.jpg";
+        public static string AudioClickImage = path + "AudioClickImage.jpg";
+
+        public static string NextImage = path + "NextImage.jpg";
+        public static string NextHoverImage = path + "NextHoverImage.jpg";
+        public static string NextClickImage = path + "NextClickImage.jpg";
+        public static string PreviousImage = path + "PreviousImage.jpg";
+        public static string PreviousHoverImage = path + "PreviousHoverImage.jpg";
+        public static string PreviousClickImage = path + "PreviousClickImage.jpg";
+        public static string OkImage = path + "OkImage.jpg";
+        public static string OkHoverImage = path + "OkHoverImage.jpg";
+        public static string OkClickImage = path + "OkClickImage.jpg";
+        public static string CancelImage = path + "CancelImage.jpg";
+        public static string CancelHoverImage = path + "CancelHoverImage.jpg";
+        public static string CancelClickImage = path + "CancelClickImage.jpg";
 
         public static string RecordImage = path + "RecordImage.jpg";
         public static string RecordHoverImage = path + "RecordHoverImage.jpg";

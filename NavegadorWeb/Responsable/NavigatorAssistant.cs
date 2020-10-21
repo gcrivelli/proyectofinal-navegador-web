@@ -12,8 +12,9 @@ namespace NavegadorWeb.Responsable
 {
     public partial class NavigatorAssistant : NavigatorForm
     {
-        AsistimeFormBar formBar;
-        AsistimeStepsBar stepsBar;
+        private AsistimeFormBar formBar;
+        private AsistimeStepsBar stepsBar;
+        private AsistimeTourCreationBar tourBar;
         private static HtmlDocument doc;
 
         private AsistimeTourCreation createTourView;
@@ -25,10 +26,10 @@ namespace NavegadorWeb.Responsable
         private System.Windows.Forms.ColorDialog colorDialog1;
 
         //TODO: pasar esto a la barra de creacion de tour
-        private System.Windows.Forms.Button addStepBntt;
+        /*private System.Windows.Forms.Button addStepBntt;
         private System.Windows.Forms.Button endTutorialBtn;
         public System.Windows.Forms.Button addStepBtn;
-        public System.Windows.Forms.TextBox countTxt;
+        public System.Windows.Forms.TextBox countTxt;*/
 
         public NavigatorAssistant()
         {
@@ -36,16 +37,19 @@ namespace NavegadorWeb.Responsable
             asistimeAppBar = new AssistantAppBar() { Parent = this };
             formBar = new AsistimeFormBar() { Parent = this };
             stepsBar = new AsistimeStepsBar() { Parent = this };
+            tourBar = new AsistimeTourCreationBar() { Parent = this };
             this.Controls.Add(formBar);
             this.Controls.Add(stepsBar);
+            this.Controls.Add(tourBar);
             formBar.Hide();
             stepsBar.Hide();
+            tourBar.Hide();
             asistimeAppBar.Width = this.Width;
             this.Controls.Add(asistimeAppBar);
         }
 
         public void AddTour() {
-            doc = initJsFile();
+            //doc = initJsFile();
             initTourCreation();
             createTourView = new AsistimeTourCreation(this);
             createTourView.TopMost = true;
@@ -58,6 +62,23 @@ namespace NavegadorWeb.Responsable
 
             this.Hide();
             menu.Show();
+        }
+
+        public void showTourBar()
+        {
+            asistimeAppBar.Hide();
+            tourBar.Show();
+        }
+
+        public void showForms()
+        {
+            tourBar.Hide();
+            stepsBar.Show();
+        }
+
+        public void RecordAudio()
+        {
+            createTourView.AdvanceToAudio(tour.name, countStep);
         }
 
         public void BackToNavigation() { }
@@ -85,13 +106,17 @@ namespace NavegadorWeb.Responsable
             }
         }
 
-        /*private void initStep()
+        public void initStep()
         {
-            var doc = initJsFile();
-            createStepView = new CreateStep(doc, this);
-            createStepView.TopMost = true;
-            createStepView.Show();
-        }*/
+            doc = initJsFile();
+            showForms();
+        }
+
+        public void cancelTour()
+        {
+            tourBar.Hide();
+            asistimeAppBar.Show();
+        }
 
         private void initTourCreation()
         {
@@ -152,7 +177,7 @@ namespace NavegadorWeb.Responsable
                 MessageBox.Show("Cargando, espere.");
         }*/
 
-        private void endTutorial(object sender, EventArgs e)
+        public void endTutorial()//object sender, EventArgs e)
         {
             // post del tour
             var tourController = new TourController();
@@ -172,11 +197,11 @@ namespace NavegadorWeb.Responsable
                 }
             }
 
-            addStepBntt.Visible = true;
+            /*addStepBntt.Visible = true;
             endTutorialBtn.Visible = false;
-            addStepBtn.Visible = false;
-            countTxt.Visible = false;
-            createStepView.Close();
+            addStepBtn.Visible = false;*/
+            //countTxt.Visible = false;
+            //createStepView.Close();
             webBrowser.Refresh();
 
             if (tourResponse._id != null && allAudioResponse)
@@ -185,16 +210,16 @@ namespace NavegadorWeb.Responsable
                 MessageBox.Show("Un error ha ocurrido tratando de conectar al servidor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void addStepBtn_Click(object sender, EventArgs e)
+        /*private void addStepBtn_Click(object sender, EventArgs e)
         {
             //initStep();
-            addStepBtn.Enabled = false;
-        }
+            //addStepBtn.Enabled = false;
+        }*/
 
         public void addStepToTour()
         {
             //cargar audio --> URL 
-            incrementStepCount();
+            //incrementStepCount();
 
             var step = new Step()
             {
@@ -232,9 +257,11 @@ namespace NavegadorWeb.Responsable
 
 
         public void drawForm(String form){
-            formBar.Hide();
+            formBar.Location = new System.Drawing.Point(asistimeAppBar.Location.X + 30, asistimeAppBar.Location.Y + asistimeAppBar.Height + 30);
+            formBar.Show();
+            formBar.BringToFront();
             asistimeAppBar.Hide();
-            stepsBar.Show();
+            //stepsBar.Show();
 
             switch (form)
             {
@@ -325,7 +352,7 @@ namespace NavegadorWeb.Responsable
             doc.InvokeScript("agrandarCanvas");
         }
 
-        private void save()
+        public void save()
         {
 
             //Aca va el comportamiento para guardar el paso
@@ -398,7 +425,11 @@ namespace NavegadorWeb.Responsable
             webBrowser.Refresh();
             //navWebResponsable.addStepBtn.Enabled = true;
             doc.InvokeScript("finishStep");
-            this.Close();
+            //this.Close();
+
+            formBar.Hide();
+            stepsBar.Hide();
+            tourBar.Show();
         }
 
         private void addElementToStep(int x, int y, int height, int width, string color, int type, int weight, string inclination, string text)
@@ -435,7 +466,7 @@ namespace NavegadorWeb.Responsable
             doc.InvokeScript("achicarAngulo");
         }
 
-        private void createDirectory()
+        /*private void createDirectory()
         {
             var path = Constants.audioPath;
             try
@@ -447,7 +478,7 @@ namespace NavegadorWeb.Responsable
             {
                 new PopupNotification("Error", "Error al crear el directorio para los audios");
             }
-        }
+        }*/
 
         private void lessFontSize()
         {
@@ -467,6 +498,15 @@ namespace NavegadorWeb.Responsable
         private void moreOpacity()
         {
             doc.InvokeScript("agrandarOpacity");
+        }
+
+        public void cancelStep()
+        {
+            doc.InvokeScript("finishStep");
+            webBrowser.Refresh();
+            formBar.Hide();
+            stepsBar.Hide();
+            tourBar.Show();
         }
 
     }

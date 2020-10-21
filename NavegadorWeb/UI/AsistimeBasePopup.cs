@@ -383,7 +383,7 @@ namespace NavegadorWeb.UI
         protected void Next(object sender, EventArgs e)
         {
             AsistimeTourCreation form = this.Parent as AsistimeTourCreation;
-            form.AdvanceToAudio();
+            //form.AdvanceToAudio();
         }
 
         protected void Cancel(object sender, EventArgs e)
@@ -445,7 +445,7 @@ namespace NavegadorWeb.UI
         {
             this.title.Text = "GRABACIÓN DE AUDIO";
 
-            textbox = new TextBox();
+            /*textbox = new TextBox();
             textbox.Multiline = true;
             textbox.Width = 450;
             textbox.Height = 250;
@@ -455,7 +455,7 @@ namespace NavegadorWeb.UI
             textbox.BringToFront();
             textbox.Text = "¡Con audio se entiende mejor! Podés grabar una ayuda auditiva que explique la acción que se debe realizar. Recordá hablar despacio y claro, para que alguien mayor te pueda entender. Si querés, podés saltear este paso.";
             textbox.TextAlign = HorizontalAlignment.Center;
-            textbox.Location = new Point(this.Width / 2 - textbox.Width / 2, 120);
+            textbox.Location = new Point(this.Width / 2 - textbox.Width / 2, 120);*/
 
             ReproductorWav = new SoundPlayer();
 
@@ -488,7 +488,7 @@ namespace NavegadorWeb.UI
 
             nextButton = new AsistimeActionButton();
             nextButton.Click += new EventHandler(Next);
-            nextButton.ButtonText = "Guardar paso";
+            nextButton.ButtonText = "¡Listo!";
             this.Controls.Add(nextButton);
             nextButton.BringToFront();
 
@@ -580,4 +580,184 @@ namespace NavegadorWeb.UI
             this.countStep = count;
         }
     }
- }
+
+
+
+
+
+
+
+
+
+
+
+    class TutorialStep : Panel
+    {
+        protected Label title;
+        protected TextBox subTitle;
+        public TutorialStep previous;
+        public TutorialStep next;
+        protected AsistimeRoundButton BackButton;
+        protected AsistimeRoundButton ForwardButton;
+
+        public TutorialStep()
+        {
+            Panel frontPanel = new Panel();
+            frontPanel.Width = 690;
+            frontPanel.Height = 490;
+            frontPanel.BackColor = Color.White;
+            frontPanel.Location = new Point(this.Location.X + 5, this.Location.Y + 5);
+            Controls.Add(frontPanel);
+            frontPanel.SendToBack();
+            frontPanel.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, frontPanel.Width, frontPanel.Height, 18, 18));
+
+            Panel backPanel = new Panel();
+            backPanel.Width = 700;
+            backPanel.Height = 500;
+            backPanel.BackColor = ColorTranslator.FromHtml(Constants.AppSecondaryColour);
+            backPanel.Location = new Point(this.Location.X, this.Location.Y);
+            Controls.Add(backPanel);
+            backPanel.SendToBack();
+
+            this.Width = 700;
+            this.Height = 500;
+            this.BackColor = Color.White;
+
+            title = new Label()
+            {
+                Text = " ",
+                Font = Constants.HLabelFont,
+                Width = 400,
+                Height = 40,
+                TextAlign = ContentAlignment.MiddleCenter,
+            };
+            title.Location = new Point(this.Width / 2 - title.Width / 2, 50);
+            this.Controls.Add(title);
+            title.BringToFront();
+
+            subTitle = new TextBox();
+            subTitle.Multiline = true;
+            subTitle.Width = 450;
+            subTitle.Height = 250;
+            this.Controls.Add(subTitle);
+            subTitle.BorderStyle = BorderStyle.None;
+            subTitle.Font = Constants.H2LabelFont;
+            subTitle.BringToFront();
+            subTitle.Text = " ";
+            subTitle.TextAlign = HorizontalAlignment.Center;
+            subTitle.Location = new Point(this.Width / 2 - subTitle.Width / 2, 120);
+            subTitle.BringToFront();
+
+            BackButton = new AsistimeRoundButton(98, 98, Constants.PreviousImage, Constants.PreviousHoverImage, Constants.PreviousClickImage) { Parent = this.Parent };
+            BackButton.Location = new Point(30, 372);
+            BackButton.Click += new EventHandler(this.Back);
+            this.Controls.Add(BackButton);
+            BackButton.BringToFront();
+
+            ForwardButton = new AsistimeRoundButton(98, 98, Constants.NextImage, Constants.NextHoverImage, Constants.NextClickImage) { Parent = this.Parent };
+            ForwardButton.Location = new Point(572, 372);
+            ForwardButton.Click += new EventHandler(this.Forward);
+            this.Controls.Add(ForwardButton);
+            ForwardButton.BringToFront();
+
+            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+        }
+
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        protected static extern IntPtr CreateRoundRectRgn
+        (
+            int nLeftRect,     // x-coordinate of upper-left corner
+            int nTopRect,      // y-coordinate of upper-left corner
+            int nRightRect,    // x-coordinate of lower-right corner
+            int nBottomRect,   // y-coordinate of lower-right corner
+            int nWidthEllipse, // width of ellipse
+            int nHeightEllipse // height of ellipse
+        );
+
+        protected void Center_With(Label label, AsistimeRoundButton button)
+        {
+            int labelWidth;
+            using (Graphics cg = this.CreateGraphics())
+            {
+                SizeF size = cg.MeasureString(label.Text, label.Font);
+                labelWidth = (int)size.Width + 7;
+            }
+            label.Width = labelWidth;
+            label.Location = new Point(button.Location.X + button.Width / 2 - labelWidth / 2, button.Location.Y + button.Width);
+        }
+
+        protected void Back(object sender, EventArgs e)
+        {
+            this.Hide();
+            previous.Show();
+        }
+
+        protected void Forward(object sender, EventArgs e)
+        {
+            this.Hide();
+            next.Show();
+        }
+    }
+
+    class HowToTour : TutorialStep
+    {
+        public HowToTour()
+        {
+            this.BackButton.Hide();
+            AsistimeRoundButton CancelButton = new AsistimeRoundButton(98, 98, Constants.CancelImage, Constants.CancelHoverImage, Constants.CancelClickImage) { Parent = this.Parent };
+            CancelButton.Location = new Point(BackButton.Location.X, BackButton.Location.Y);
+            CancelButton.Click += new EventHandler(this.Cancel);
+            this.Controls.Add(CancelButton);
+            CancelButton.BringToFront();
+
+            title.Text = "CREACIÓN DE TOUR";
+            subTitle.Text = "Creá un tour para un adulto mayor. Dale un nombre que represente para qué sirve, y una descripción para que la persona que lo realice entienda de qué se trata.";
+        }
+
+        protected void Cancel(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+    }
+
+    class HowToSteps : TutorialStep
+    {
+        public HowToSteps()
+        {
+            title.Text = "ALTA DE PASOS";
+            subTitle.Text = "¡Agregá pasos al tour! En cada paso, indicale al adulto mayor qué es lo que debe hacer, ayudándolo con dibujos en pantalla y un audio opcional. Recordá que cuanta menos información incluyas en cada paso, el adulto mayor podrá realizar el tour con mas facilidad.";
+        }
+    }
+
+    class HowToForms : TutorialStep
+    {
+        public HowToForms()
+        {
+            title.Text = "CREACIÓN DE FORMAS";
+            subTitle.Text = "¡Dale forma a los pasos! Cada una de las formas que podés agregar a los pasos está pensada para resaltar sectores del sitio web. Con ellas podés indicarle al adulto mayor en qué sector de la página debe realizar una acción, qué componentes debe observar, o restringir el 'click' en algún sector.";
+        }
+    }
+
+    class HowToAudio : TutorialStep
+    {
+        public HowToAudio()
+        {
+            this.ForwardButton.Hide();
+            AsistimeRoundButton ConfirmButton = new AsistimeRoundButton(98, 98, Constants.OkImage, Constants.OkHoverImage, Constants.OkClickImage) { Parent = this.Parent };
+            ConfirmButton.Location = new Point(ForwardButton.Location.X, ForwardButton.Location.Y);
+            ConfirmButton.Click += new EventHandler(this.Confirm);
+            this.Controls.Add(ConfirmButton);
+            ConfirmButton.BringToFront();
+
+            title.Text = "GRABACIÓN DE AUDIO";
+            subTitle.Text = "¡Con audio se entiende mejor! Podés grabar una ayuda auditiva que explique la acción que se debe realizar. Recordá hablar despacio y claro, para que alguien mayor te pueda entender. Si querés, podés saltear este paso.";
+        }
+
+        protected void Confirm(object sender, EventArgs e)
+        {
+            this.Hide();
+            AsistimeTourCreation form = Parent as AsistimeTourCreation;
+            form.GoToTour();
+        }
+    }
+}
