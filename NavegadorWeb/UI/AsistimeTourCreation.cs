@@ -89,8 +89,6 @@ namespace NavegadorWeb.UI
             howToTour.Show();
 
             tourCreation = new AsistimeCreatePanel() { Parent = this };
-            tourCreation.Width = 700;
-            tourCreation.Height = 800;
             this.Controls.Add(tourCreation);
             tourCreation.BackColor = Color.White;
             tourCreation.Location = new Point(this.Width / 2 - tourCreation.Width / 2, this.Height / 2 - tourCreation.Height / 2);
@@ -128,7 +126,7 @@ namespace NavegadorWeb.UI
         public void ConfirmStep()
         {
             audioCreation.Hide();
-            steps.Show();
+            //steps.Show();
         }
 
         public void AdvanceToForms()

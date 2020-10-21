@@ -19,8 +19,25 @@ namespace NavegadorWeb.UI
         public AsistimeBasePopup()
         {
             this.Width = 700;
-            this.Height = 700;
+            this.Height = 800;
             this.BackColor = Color.White;
+
+            Panel frontPanel = new Panel();
+            frontPanel.Width = this.Width - 10;
+            frontPanel.Height = this.Height - 10;
+            frontPanel.BackColor = Color.White;
+            frontPanel.Location = new Point(this.Location.X + 5, this.Location.Y + 5);
+            Controls.Add(frontPanel);
+            frontPanel.SendToBack();
+            frontPanel.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, frontPanel.Width, frontPanel.Height, 18, 18));
+
+            Panel backPanel = new Panel();
+            backPanel.Width = this.Width;
+            backPanel.Height = this.Height;
+            backPanel.BackColor = ColorTranslator.FromHtml(Constants.AppSecondaryColour);
+            backPanel.Location = new Point(this.Location.X, this.Location.Y);
+            Controls.Add(backPanel);
+            backPanel.SendToBack();
 
             title = new Label()
             {
@@ -32,6 +49,9 @@ namespace NavegadorWeb.UI
             };
             title.Location = new Point(this.Width / 2 - title.Width / 2, 50);
             this.Controls.Add(title);
+            title.BringToFront();
+
+            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
         }
 
         protected void Center_With(Label label, AsistimeRoundButton button)
@@ -45,6 +65,17 @@ namespace NavegadorWeb.UI
             label.Width = labelWidth;
             label.Location = new Point(button.Location.X + button.Width / 2 - labelWidth / 2, button.Location.Y + button.Width);
         }
+
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        protected static extern IntPtr CreateRoundRectRgn
+        (
+            int nLeftRect,     // x-coordinate of upper-left corner
+            int nTopRect,      // y-coordinate of upper-left corner
+            int nRightRect,    // x-coordinate of lower-right corner
+            int nBottomRect,   // y-coordinate of lower-right corner
+            int nWidthEllipse, // width of ellipse
+            int nHeightEllipse // height of ellipse
+        );
     }
 
     class AsistimeCreatePanel : AsistimeBasePopup
@@ -69,8 +100,9 @@ namespace NavegadorWeb.UI
                 Font = Constants.H2LabelFont,
                 Width = 400
             };
-
+            tourNameLabel.BringToFront();
             this.Controls.Add(tourNameLabel);
+
             tourNameTextBox = new AsistimeSearchBox()
             {
                 Font = Constants.TextBoxFont,
@@ -79,6 +111,7 @@ namespace NavegadorWeb.UI
                 TextName = null
             };
             this.Controls.Add(tourNameTextBox);
+            tourNameTextBox.BringToFront();
 
             Label tourDescTextBox = new Label()
             {
@@ -87,6 +120,7 @@ namespace NavegadorWeb.UI
                 Width = 400
             };
             this.Controls.Add(tourDescTextBox);
+            tourDescTextBox.BringToFront();
 
             box = new AsistimeSearchBox();
             box.Width = 400;
@@ -270,7 +304,7 @@ namespace NavegadorWeb.UI
             }
             else
                 MessageBox.Show("¡Agregá pasos al tour! Por ahora no tiene niguno.", "Tour vacío", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            
+
         }
 
         protected void Cancel(object sender, EventArgs e)
@@ -445,7 +479,7 @@ namespace NavegadorWeb.UI
         {
             this.title.Text = "GRABACIÓN DE AUDIO";
 
-            /*textbox = new TextBox();
+            textbox = new TextBox();
             textbox.Multiline = true;
             textbox.Width = 450;
             textbox.Height = 250;
@@ -453,9 +487,9 @@ namespace NavegadorWeb.UI
             textbox.BorderStyle = BorderStyle.None;
             textbox.Font = Constants.H2LabelFont;
             textbox.BringToFront();
-            textbox.Text = "¡Con audio se entiende mejor! Podés grabar una ayuda auditiva que explique la acción que se debe realizar. Recordá hablar despacio y claro, para que alguien mayor te pueda entender. Si querés, podés saltear este paso.";
+            textbox.Text = "Recordá hablar despacio y claro, para que alguien mayor te pueda entender.";
             textbox.TextAlign = HorizontalAlignment.Center;
-            textbox.Location = new Point(this.Width / 2 - textbox.Width / 2, 120);*/
+            textbox.Location = new Point(this.Width / 2 - textbox.Width / 2, 120);
 
             ReproductorWav = new SoundPlayer();
 
@@ -466,24 +500,30 @@ namespace NavegadorWeb.UI
             RecordButton.Click += new EventHandler(RecordAudio);
             this.Controls.Add(RecordButton);
             this.Controls.Add(recordLabel);
+            recordLabel.BringToFront();
+            RecordButton.BringToFront();
 
             StopButton = new AsistimeRoundButton(84, 84, Constants.StopImage, Constants.StopHoverImage, Constants.StopClickImage) { Parent = this.Parent };
-            Label divLabel = new Label() { Text = "Parar", ForeColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour), Font = Constants.H1LabelFont, Height = 40 };
+            Label stopLabel = new Label() { Text = "Parar", ForeColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour), Font = Constants.H1LabelFont, Height = 40 };
             StopButton.Location = new Point(RecordButton.Location.X + 205, RecordButton.Location.Y);
-            Center_With(divLabel, StopButton);
+            Center_With(stopLabel, StopButton);
             StopButton.Click += new EventHandler(StopRecording);
             this.Controls.Add(StopButton);
             StopButton.Enabled = false;
-            this.Controls.Add(divLabel);
+            this.Controls.Add(stopLabel);
+            stopLabel.BringToFront();
+            StopButton.BringToFront();
 
             PlayButton = new AsistimeRoundButton(84, 84, Constants.ListenImage, Constants.ListenHoverImage, Constants.ListenClickImage) { Parent = this.Parent };
-            Label dialogLabel = new Label() { Text = "Reproducir", ForeColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour), Font = Constants.H1LabelFont, Height = 40 };
+            Label playLabel = new Label() { Text = "Reproducir", ForeColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour), Font = Constants.H1LabelFont, Height = 40 };
             PlayButton.Location = new Point(RecordButton.Location.X + 410, RecordButton.Location.Y);
-            Center_With(dialogLabel, PlayButton);
+            Center_With(playLabel, PlayButton);
             PlayButton.Click += new EventHandler(PlayAudio);
             this.Controls.Add(PlayButton);
             PlayButton.Enabled = false;
-            this.Controls.Add(dialogLabel);
+            this.Controls.Add(playLabel);
+            playLabel.BringToFront();
+            PlayButton.BringToFront();
 
 
             nextButton = new AsistimeActionButton();
@@ -492,11 +532,11 @@ namespace NavegadorWeb.UI
             this.Controls.Add(nextButton);
             nextButton.BringToFront();
 
-            cancelButton = new AsistimeActionButton();
+            /*cancelButton = new AsistimeActionButton();
             cancelButton.Click += new EventHandler(Cancel);
             cancelButton.ButtonText = "Anterior";
             this.Controls.Add(cancelButton);
-            cancelButton.BringToFront();
+            cancelButton.BringToFront();*/
 
             int nextButtonWidth;
             using (Graphics cg = this.CreateGraphics())
@@ -507,14 +547,14 @@ namespace NavegadorWeb.UI
             }
             nextButton.Location = new Point(this.Width / 2 - nextButtonWidth / 2, 600);
 
-            int cancelButtonWidth;
+            /*int cancelButtonWidth;
             using (Graphics cg = this.CreateGraphics())
             {
                 SizeF size = cg.MeasureString(cancelButton.ButtonText, cancelButton.Font);
                 size.Width += 40;
                 cancelButtonWidth = (int)size.Width;
             }
-            cancelButton.Location = new Point(this.Width / 2 - cancelButtonWidth / 2, nextButton.Location.Y + 80);
+            cancelButton.Location = new Point(this.Width / 2 - cancelButtonWidth / 2, nextButton.Location.Y + 80);*/
         }
 
         protected void Next(object sender, EventArgs e)
@@ -602,9 +642,13 @@ namespace NavegadorWeb.UI
 
         public TutorialStep()
         {
+            this.Width = 700;
+            this.Height = 500;
+            this.BackColor = Color.White;
+
             Panel frontPanel = new Panel();
-            frontPanel.Width = 690;
-            frontPanel.Height = 490;
+            frontPanel.Width = this.Width-10;
+            frontPanel.Height = this.Height-10;
             frontPanel.BackColor = Color.White;
             frontPanel.Location = new Point(this.Location.X + 5, this.Location.Y + 5);
             Controls.Add(frontPanel);
@@ -612,16 +656,12 @@ namespace NavegadorWeb.UI
             frontPanel.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, frontPanel.Width, frontPanel.Height, 18, 18));
 
             Panel backPanel = new Panel();
-            backPanel.Width = 700;
-            backPanel.Height = 500;
+            backPanel.Width = this.Width;
+            backPanel.Height = this.Height;
             backPanel.BackColor = ColorTranslator.FromHtml(Constants.AppSecondaryColour);
             backPanel.Location = new Point(this.Location.X, this.Location.Y);
             Controls.Add(backPanel);
             backPanel.SendToBack();
-
-            this.Width = 700;
-            this.Height = 500;
-            this.BackColor = Color.White;
 
             title = new Label()
             {
@@ -760,4 +800,5 @@ namespace NavegadorWeb.UI
             form.GoToTour();
         }
     }
+
 }
