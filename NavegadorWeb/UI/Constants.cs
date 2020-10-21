@@ -144,6 +144,23 @@ namespace NavegadorWeb.UI
         public static string AddStepHoverImage = path + "AddStepHoverImage.jpg";
         public static string AddStepClickImage = path + "AddStepClickImage.jpg";
 
+        public static string UpImage = path + "Up.jpg";
+        public static string UpHoverImage = path + "UpHover.jpg";
+        public static string DownImage = path + "Down.jpg";
+        public static string DownHoverImage = path + "DownHover.jpg";
+        public static string PlusImage = path + "Plus.jpg";
+        public static string PlusHoverImage = path + "PlusHover.jpg";
+        public static string MinusImage = path + "Minus.jpg";
+        public static string MinusHoverImage = path + "MinusHover.jpg";
+        public static string TurnRightImage = path + "TurnRight.jpg";
+        public static string TurnRightHoverImage = path + "TurnRightHover.jpg";
+        public static string TurnLeftImage = path + "TurnLeft.jpg";
+        public static string TurnLeftHoverImage = path + "TurnLeftHover.jpg";
+        public static string FontUpImage = path + "FontUp.jpg";
+        public static string FontUpHoverImage = path + "FontUpHover.jpg";
+        public static string FontDownImage = path + "FontDown.jpg";
+        public static string FontDownHoverImage = path + "FontDownHover.jpg";
+
         public static string AsistimeLogo = path + "logo.png";
         public static string AsistimeIcon = path + "logo.iso";
 

@@ -330,6 +330,31 @@ namespace NavegadorWeb.Responsable
             doc.InvokeScript("setColor" + color);
         }
 
+        public void ModifyForm(String param)
+        {
+            switch (param)
+            {
+                case "agrandarLine":
+                    moreLine();
+                    break;
+                case "achicarLine":
+                    lessLine();
+                    break;
+                case "achicarCanvas":
+                    lessCanvas();
+                    break;
+                case "agrandarCanvas":
+                    moreCanvas();
+                    break;
+                case "agrandarAngulo":
+                    moreAngle();
+                    break;
+                case "achicarAngulo":
+                    lessAngle();
+                    break;
+            }
+        }
+
         private void moreLine()
         {
             doc.InvokeScript("agrandarLine");

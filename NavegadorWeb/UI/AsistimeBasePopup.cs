@@ -487,7 +487,7 @@ namespace NavegadorWeb.UI
             textbox.BorderStyle = BorderStyle.None;
             textbox.Font = Constants.H2LabelFont;
             textbox.BringToFront();
-            textbox.Text = "Recordá hablar despacio y claro, para que alguien mayor te pueda entender.";
+            textbox.Text = "Recordá hablar despacio y claro, para que alguien mayor te pueda entender. ¡Ojo! Sólo puede haber un audio por paso, si ya existe un audio y grabás uno nuevo vas a borrar el anterior.";
             textbox.TextAlign = HorizontalAlignment.Center;
             textbox.Location = new Point(this.Width / 2 - textbox.Width / 2, 120);
 
@@ -546,6 +546,18 @@ namespace NavegadorWeb.UI
                 nextButtonWidth = (int)size.Width;
             }
             nextButton.Location = new Point(this.Width / 2 - nextButtonWidth / 2, 600);
+
+            try
+            {
+                if (File.Exists(UrlReproductor))
+                {
+                    PlayButton.Enabled = false;
+                };
+            }
+            catch
+            {
+                MessageBox.Show("Error al crear el directorio para los audios", "Error");
+            }
 
             /*int cancelButtonWidth;
             using (Graphics cg = this.CreateGraphics())

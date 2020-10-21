@@ -56,10 +56,56 @@ namespace NavegadorWeb.Responsable
             BackColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour);
             ForeColor = ColorTranslator.FromHtml(Constants.AppSecondaryColour);
             Height = 700;
-            Width = Constants.AppBarHeight;
+            Width = 200;
 
             this.MouseMove += new MouseEventHandler(panel_MouseMove);
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+
+            AsistimeRoundButton LessThicknessButton = new AsistimeRoundButton(37, 37, Constants.MinusImage, Constants.MinusHoverImage, Constants.MinusHoverImage) { Parent = this.Parent };
+            LessThicknessButton.Location = new Point(40, 30);
+            LessThicknessButton.Click += new EventHandler(this.LessThickness);
+            this.Controls.Add(LessThicknessButton);
+
+            AsistimeRoundButton MoreThicknessButton = new AsistimeRoundButton(37, 37, Constants.PlusImage, Constants.PlusHoverImage, Constants.PlusHoverImage) { Parent = this.Parent };
+            MoreThicknessButton.Location = new Point(107, 30);
+            MoreThicknessButton.Click += new EventHandler(this.MoreThickness);
+            this.Controls.Add(MoreThicknessButton);
+
+            Label thickness = new Label() { Text = "Grosor", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
+            thickness.Location = new Point(10, 80);
+            Center(thickness,this);
+            this.Controls.Add(thickness);
+
+            AsistimeRoundButton LessSizeButton = new AsistimeRoundButton(37, 37, Constants.MinusImage, Constants.MinusHoverImage, Constants.MinusHoverImage) { Parent = this.Parent };
+            LessSizeButton.Location = new Point(40, 147);
+            LessSizeButton.Click += new EventHandler(this.LessSize);
+            this.Controls.Add(LessSizeButton);
+
+            AsistimeRoundButton MoreSizeButton = new AsistimeRoundButton(37, 37, Constants.PlusImage, Constants.PlusHoverImage, Constants.PlusHoverImage) { Parent = this.Parent };
+            MoreSizeButton.Location = new Point(107, 147);
+            MoreSizeButton.Click += new EventHandler(this.MoreSize);
+            this.Controls.Add(MoreSizeButton);
+
+            Label size = new Label() { Text = "Tamaño", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
+            size.Location = new Point(10, 187);
+            Center(size, this);
+            this.Controls.Add(size);
+
+            AsistimeRoundButton TurnRightButton = new AsistimeRoundButton(37, 37, Constants.TurnRightImage, Constants.TurnRightHoverImage, Constants.TurnRightHoverImage) { Parent = this.Parent };
+            TurnRightButton.Location = new Point(40, 214);
+            TurnRightButton.Click += new EventHandler(this.TurnRightSize);
+            this.Controls.Add(TurnRightButton);
+
+            AsistimeRoundButton TurnLeftButton = new AsistimeRoundButton(37, 37, Constants.TurnLeftImage, Constants.TurnLeftHoverImage, Constants.TurnLeftHoverImage) { Parent = this.Parent };
+            TurnLeftButton.Location = new Point(107, 214);
+            TurnLeftButton.Click += new EventHandler(this.TurnLeftSize);
+            this.Controls.Add(TurnLeftButton);
+
+            Label rotate = new Label() { Text = "Girar", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
+            rotate.Location = new Point(10, 254);
+            Center(rotate, this);
+            this.Controls.Add(rotate);
+
         }
 
         private void panel_MouseMove(object sender, MouseEventArgs e)
@@ -81,6 +127,54 @@ namespace NavegadorWeb.Responsable
             int nWidthEllipse, // width of ellipse
             int nHeightEllipse // height of ellipse
         );
+
+        protected void Center(Label label, Panel panel)
+        {
+            int labelWidth;
+            using (Graphics cg = this.CreateGraphics())
+            {
+                SizeF size = cg.MeasureString(label.Text, label.Font);
+                labelWidth = (int)size.Width + 7;
+            }
+            label.Width = labelWidth;
+            label.Location = new Point(panel.Location.X + panel.Width / 2 - labelWidth / 2, label.Location.Y);
+        }
+
+        protected void LessThickness(object sender, EventArgs e)
+        {
+            NavigatorAssistant control = this.Parent as NavigatorAssistant;
+            control.ModifyForm("achicarLine");
+        }
+
+        protected void MoreThickness(object sender, EventArgs e)
+        {
+            NavigatorAssistant control = this.Parent as NavigatorAssistant;
+            control.ModifyForm("agrandarLine");
+        }
+
+        protected void LessSize(object sender, EventArgs e)
+        {
+            NavigatorAssistant control = this.Parent as NavigatorAssistant;
+            control.ModifyForm("achicarCanvas");
+        }
+
+        protected void MoreSize(object sender, EventArgs e)
+        {
+            NavigatorAssistant control = this.Parent as NavigatorAssistant;
+            control.ModifyForm("agrandarCanvas");
+        }
+
+        protected void TurnRightSize(object sender, EventArgs e)
+        {
+            NavigatorAssistant control = this.Parent as NavigatorAssistant;
+            control.ModifyForm("agrandarAngulo");
+        }
+
+        protected void TurnLeftSize(object sender, EventArgs e)
+        {
+            NavigatorAssistant control = this.Parent as NavigatorAssistant;
+            control.ModifyForm("achicarAngulo");
+        }
     }
 
     class AsistimeTourCreationBar : Panel
