@@ -1,10 +1,11 @@
 ﻿var desplazandoCanvas=false;
+var desplazandoBorrar=false;
 var modificarTexto=false;
 var dibujandoDiv=false;
 var dibujandoDiv2=false;
 var width=200;
 var size=20;
-var line=1;
+var line=8;
 var inclinacion=0;
 var color="000000";
 var x=null;
@@ -17,9 +18,7 @@ var opacity=0.5;
 var i=0;
 var text="|";
 
-window.onclick=dibujar;
-
-setInterval("desplazarCanvas()",50);
+setInterval("desplazar()",50);
 
 document.addEventListener("mousemove",onMouseUpdate, false);
 document.addEventListener("mouseenter",onMouseUpdate, false);
@@ -43,7 +42,31 @@ function onKeyPress(e) {
   }
 }
 
-function onClick(e) {   
+function onClick(e) {
+  if (desplazandoCanvas==true) {
+    desplazandoCanvas=false;
+    modificarTexto=false;
+    var canvas=document.getElementById("canvas"+i);
+    canvas.style.display="block";
+    text="|";    
+    width=200;
+    size=20;
+    line=8;
+    inclinacion=0;
+    color="000000";
+  }  
+  if (desplazandoBorrar==true) {
+    Array.from(document.getElementsByClassName("canvas")).forEach(
+        function(element, index, array) {
+          var top = element.getBoundingClientRect().top;
+          var left = element.getBoundingClientRect().left;
+          var width = element.width;
+            if (e.pageX>left && (left+width)>e.pageX && e.pageY>top && (top+width)>e.pageY) {
+              element.parentNode.removeChild(element);
+            }
+        }
+    );
+  }
   if (dibujandoDiv2) {
     divX2=e.pageX;
     divY2=e.pageY;
@@ -87,39 +110,65 @@ function onClick(e) {
   }
 }
 
-function dibujar() {
-  desplazandoCanvas=false;
-  modificarTexto=false;
-  var canvas=document.getElementById("canvas"+i);
-  canvas.style.display="block";
-  text="|";
-}
-
-function desplazarCanvas() { 
+function desplazar() { 
   if (desplazandoCanvas) {
     var canvas=document.getElementById("canvas"+i);
     canvas.style.left=(x-(width/2))+"px";
     canvas.style.top=(y-(width/2))+"px";    
   }
-  if (modificarTexto) {
-    if (canvas.style.display==="none") {
-      canvas.style.display="block";
-    } else {
-      canvas.style.display="none";
-    }    
+  if (desplazandoBorrar) {
+    var canvas=document.getElementById("borrar");
+    canvas.style.left=(x-20)+"px";
+    canvas.style.top=(y-20)+"px";    
   }
 }
 
 function init() {
   document.body.style["pointer-events"]="none";
-  /*var elementos = document.body.querySelectorAll('[id^="google_ads_iframe"]');
-  elementos.forEach(function (div, i) {
-      alert(div);
-  })*/
 }
 
 function finishStep() {
     document.body.style["pointer-events"]="auto";
+}
+
+function initBorrar() { 
+  if (desplazandoCanvas==true) { 
+    var canvas=document.getElementById("canvas"+i);
+    canvas.parentNode.removeChild(canvas);
+    desplazandoCanvas=false; 
+    i--;
+  } 
+  var canvas=document.createElement("canvas");    
+  desplazandoBorrar=true;
+  canvas.id="borrar";
+  canvas.style.cssText="position: absolute; z-index: 9999;";  
+  canvas.width=40;
+  canvas.height=40;    
+  document.body.appendChild(canvas);    
+
+  var context=canvas.getContext("2d");
+  context.font='30px FontAwesome';
+  context.fillText('\uf12d',0,25);
+}
+
+function initFlecha() { 
+  var canvas=document.getElementById("canvas"+i);
+  var context=canvas.getContext("2d");
+  canvas.dataset.tipo=4;
+  context.font=width+'px FontAwesome';
+  context.fillText('\uf062',0,width-(width/5));
+  context.strokeStyle="#"+color;
+  context.stroke();
+}
+
+function initBan() { 
+  var canvas=document.getElementById("canvas"+i);
+  var context=canvas.getContext("2d");
+  canvas.dataset.tipo=5;
+  context.font=width+'px FontAwesome';
+  context.fillText('\uf05e',0,width-(width/5));
+  context.strokeStyle="#"+color;
+  context.stroke();
 }
 
 function initCuadrado() { 
@@ -130,14 +179,13 @@ function initCuadrado() {
   context.strokeStyle="#"+color;
   context.lineWidth=line;
   context.stroke();
-  
 }
 
 function initCirculo() { 
   var canvas=document.getElementById("canvas"+i);
   var context=canvas.getContext("2d");
   canvas.dataset.tipo=2;
-  context.arc((width-2)/2,(width-2)/2,(width-2)/2,0,2*Math.PI);
+  context.arc(width/2,width/2,(width-line)/2,0,2*Math.PI);
   context.strokeStyle="#"+color;
   context.lineWidth=line;
   context.stroke();
@@ -156,24 +204,6 @@ function initTexto() {
   context.lineWidth = line;
   context.stroke();
   document.body.focus();
-}
-
-function initEmoji() { 
-  var canvas=document.getElementById("canvas"+i);
-  var context=canvas.getContext("2d");
-  canvas.dataset.tipo=4;
-  
-  context.beginPath();
-  context.moveTo(75/200*width,25/200*width);
-  context.quadraticCurveTo(25/200*width,25/200*width,25/200*width,62.5/200*width);
-  context.quadraticCurveTo(25/200*width,100/200*width,50/200*width,100/200*width);
-  context.quadraticCurveTo(50/200*width,120/200*width,30/200*width,125/200*width);
-  context.quadraticCurveTo(60/200*width,120/200*width,65/200*width,100/200*width);
-  context.quadraticCurveTo(125/200*width,100/200*width,125/200*width,62.5/200*width);
-  context.quadraticCurveTo(125/200*width,25/200*width,75/200*width,25/200*width);
-  context.strokeStyle = "#"+color;
-  context.lineWidth = line;
-  context.stroke();
 }
 
 function initDiv() {
@@ -195,6 +225,12 @@ function initCanvas() {
     var canvas=document.createElement("canvas");  
     i++;  
   }
+  if (desplazandoBorrar==true) {
+    desplazandoBorrar=false; 
+    var borrar=document.getElementById("borrar");
+    borrar.parentNode.removeChild(borrar);
+    desplazandoCanvas=false; 
+  }
   desplazandoCanvas=true;
   canvas.id="canvas"+i;
   canvas.className="canvas";
@@ -206,7 +242,7 @@ function initCanvas() {
   canvas.dataset.weight=line;
   canvas.dataset.inclinacion=inclinacion;
   document.body.appendChild(canvas);    
-  desplazarCanvas();
+  desplazar();
   
 }
 
@@ -296,7 +332,10 @@ function redibujarCanvas() {
     initTexto();
   }  
   if (tipo==4) {
-    initEmoji();
+    initFlecha();
+  }
+  if (tipo==5) {
+    initBan();
   }
 }
 
