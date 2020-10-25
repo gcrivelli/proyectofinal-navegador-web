@@ -133,6 +133,16 @@ namespace NavegadorWeb.Controller
                 return JsonConvert.DeserializeObject<User>(responseBody);
             }
         }
-
+        public async Task<List<User>> GetAdults()
+        {
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + Constants.token);
+                var response = await client.GetAsync(APIurl + "user/adults").ConfigureAwait(false);
+                response.EnsureSuccessStatusCode();
+                string responseBody = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<List<User>>(responseBody);
+            }
+        }
     }
 }
