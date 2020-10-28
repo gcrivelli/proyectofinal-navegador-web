@@ -151,8 +151,13 @@ namespace NavegadorWeb.Responsable
             VioletButton.Click += new EventHandler(this.Violet);
             this.Controls.Add(VioletButton);
 
+            AsistimeRoundButton BackButton = new AsistimeRoundButton(37, 37, Constants.BlackImage, Constants.BlackImage, Constants.BlackImage) { Parent = this.Parent };
+            BackButton.Location = new Point(80, 582);
+            BackButton.Click += new EventHandler(this.Black);
+            this.Controls.Add(BackButton);
+
             Label color = new Label() { Text = "Color", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
-            color.Location = new Point(10, 580);
+            color.Location = new Point(10, 622);
             Center(color, this);
             this.Controls.Add(color);
 
@@ -272,6 +277,27 @@ namespace NavegadorWeb.Responsable
             NavigatorAssistant control = this.Parent as NavigatorAssistant;
             control.ModifyColor("#DE00E6");
         }
+
+        protected void Black(object sender, EventArgs e)
+        {
+            NavigatorAssistant control = this.Parent as NavigatorAssistant;
+            control.ModifyColor("#000000");
+        }
+
+        public void ShowControlsRect()
+        {
+            this.Show();
+        }
+
+        public void ShowControlsCircle()
+        {
+            this.Show();
+        }
+
+        public void ShowControlsText()
+        {
+            this.Show();
+        }
     }
 
     class AsistimeTourCreationBar : Panel
@@ -279,6 +305,7 @@ namespace NavegadorWeb.Responsable
         public static AsistimeRoundButton AddStepButton = null;
         public static AsistimeRoundButton NavBackButton = null;
         public static AsistimeRoundButton ConfirmButton = null;
+        public Label stepsLabel;
 
         public AsistimeTourCreationBar()
         {
@@ -289,10 +316,22 @@ namespace NavegadorWeb.Responsable
 
             
 
-            this.Controls.Add(this.GetNavBackButton(20, 15));
+            this.Controls.Add(this.GetNavBackButton(50, 15));
             Label backLabel = new Label() { Text = "Cancelar tour", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
             Center_With(backLabel, NavBackButton);
             this.Controls.Add(backLabel);
+
+            stepsLabel = new Label()
+            {
+                Text = "CANTIDAD DE PASOS: " + 0,
+                Font = Constants.HLabelFont,
+                ForeColor = Color.White,
+                Width = 350,
+                Height = 40
+            };
+            stepsLabel.Location = new Point(this.ClientSize.Width / 2 - 420, 55);
+            this.Controls.Add(stepsLabel);
+            stepsLabel.BringToFront();
 
             this.Controls.Add(this.GetAddStepsButton(this.ClientSize.Width/2 - 49, 15));
             Label addTourLabel = new Label() { Text = "Agregar paso", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
@@ -338,7 +377,7 @@ namespace NavegadorWeb.Responsable
         {
             if (NavBackButton == null)
             {
-                NavBackButton = new AsistimeRoundButton(98, 98, Constants.NavBackImage, Constants.NavBackHoverImage, Constants.NavBackClickedImage) { Parent = this.Parent };
+                NavBackButton = new AsistimeRoundButton(98, 98, Constants.CancelRedImage, Constants.CancelRedHoverImage, Constants.CancelRedClickImage) { Parent = this.Parent };
                 NavBackButton.Location = new Point(x, y);
             }
             NavBackButton.Click += new EventHandler(this.NavigateBack);
@@ -355,7 +394,7 @@ namespace NavegadorWeb.Responsable
         {
             if (ConfirmButton == null)
             {
-                ConfirmButton = new AsistimeRoundButton(98, 98, Constants.ConfirmImage, Constants.ConfirmHoverImage, Constants.ConfirmClickImage) { Parent = this.Parent };
+                ConfirmButton = new AsistimeRoundButton(98, 98, Constants.ConfirmGreenImage, Constants.ConfirmGreenHoverImage, Constants.ConfirmGreenClickImage) { Parent = this.Parent };
                 ConfirmButton.Location = new Point(x, y);
             }
             ConfirmButton.Click += new EventHandler(this.SaveTour);
@@ -381,14 +420,16 @@ namespace NavegadorWeb.Responsable
             Height = Constants.AppBarHeight;
             Width = Constants.AppBarWidth;
 
-            this.Controls.Add(this.GetNavBackButton(20, 15));
+            this.Controls.Add(this.GetNavBackButton(50, 15));
             Label backLabel = new Label() { Text = "Atrás", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
             Center_With(backLabel, NavBackButton);
             this.Controls.Add(backLabel);
 
+            var firstElement = (this.Width / 2 - 44 - 260);
+
             AsistimeRoundButton RectangleButton = new AsistimeRoundButton(84, 84, Constants.RectImage2, Constants.RectHoverImage2, Constants.RectClickImage2) { Parent = this.Parent };
             Label rectLabel = new Label() { Text = "Cuadrado", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
-            RectangleButton.Location = new Point(this.Width / 2 - 44 - 220, 28);
+            RectangleButton.Location = new Point(firstElement, 28);
             Center_With(rectLabel, RectangleButton);
             RectangleButton.Click += new EventHandler(DrawRectangle);
             RectangleButton.BackColor = Color.Black;
@@ -403,17 +444,9 @@ namespace NavegadorWeb.Responsable
             this.Controls.Add(DivButton);
             this.Controls.Add(divLabel);
 
-            AsistimeRoundButton DialogButton = new AsistimeRoundButton(84, 84, Constants.DialogImage2, Constants.DialogHoverImage2, Constants.DialogClickImage2) { Parent = this.Parent };
-            Label dialogLabel = new Label() { Text = "Diálogo", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
-            DialogButton.Location = new Point(RectangleButton.Location.X + 220, RectangleButton.Location.Y);
-            Center_With(dialogLabel, DialogButton);
-            DialogButton.Click += new EventHandler(DrawDialog);
-            this.Controls.Add(DialogButton);
-            this.Controls.Add(dialogLabel);
-
             AsistimeRoundButton TextButton = new AsistimeRoundButton(84, 84, Constants.TextImage2, Constants.TextHoverImage2, Constants.TextClickImage2) { Parent = this.Parent };
             Label textLabel = new Label() { Text = "Texto", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
-            TextButton.Location = new Point(RectangleButton.Location.X + 330, RectangleButton.Location.Y);
+            TextButton.Location = new Point(RectangleButton.Location.X + 220, RectangleButton.Location.Y);
             Center_With(textLabel, TextButton);
             TextButton.Click += new EventHandler(DrawText);
             this.Controls.Add(TextButton);
@@ -421,7 +454,7 @@ namespace NavegadorWeb.Responsable
 
             AsistimeRoundButton CircleButton = new AsistimeRoundButton(84, 84, Constants.CircleImage2, Constants.CircleHoverImage2, Constants.CircleClickImage2) { Parent = this.Parent };
             Label circleLabel = new Label() { Text = "Círculo", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
-            CircleButton.Location = new Point(RectangleButton.Location.X + 440, RectangleButton.Location.Y);
+            CircleButton.Location = new Point(RectangleButton.Location.X + 330, RectangleButton.Location.Y);
             Center_With(circleLabel, CircleButton);
             CircleButton.Click += new EventHandler(DrawCircle);
             this.Controls.Add(CircleButton);
@@ -429,11 +462,19 @@ namespace NavegadorWeb.Responsable
 
             AsistimeRoundButton AudioButton = new AsistimeRoundButton(84, 84, Constants.AudioImage, Constants.AudioHoverImage, Constants.AudioClickImage) { Parent = this.Parent };
             Label audioLabel = new Label() { Text = "Audio", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
-            AudioButton.Location = new Point(RectangleButton.Location.X + 550, RectangleButton.Location.Y);
+            AudioButton.Location = new Point(RectangleButton.Location.X + 440, RectangleButton.Location.Y);
             Center_With(audioLabel, AudioButton);
             AudioButton.Click += new EventHandler(RecordAudio);
             this.Controls.Add(AudioButton);
             this.Controls.Add(audioLabel);
+
+            AsistimeRoundButton EraseButton = new AsistimeRoundButton(84, 84, Constants.DialogImage2, Constants.DialogHoverImage2, Constants.DialogClickImage2) { Parent = this.Parent };
+            Label eraseLabel = new Label() { Text = "Borrar", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
+            EraseButton.Location = new Point(RectangleButton.Location.X + 550, RectangleButton.Location.Y);
+            Center_With(eraseLabel, EraseButton);
+            EraseButton.Click += new EventHandler(EraseForm);
+            this.Controls.Add(EraseButton);
+            this.Controls.Add(eraseLabel);
 
             this.Controls.Add(this.GetNavConfirmButton(this.ClientSize.Width - 150, 15));
             Label profileLabel = new Label() { Text = "Confirmar", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
@@ -465,10 +506,10 @@ namespace NavegadorWeb.Responsable
             form.drawForm("texto");
         }
 
-        protected void DrawDialog(object sender, EventArgs e)
+        protected void EraseForm(object sender, EventArgs e)
         {
             NavigatorAssistant form = this.Parent as NavigatorAssistant;
-            form.drawForm("dialogo");
+            form.drawForm("borrador");
         }
 
         protected void DrawDiv(object sender, EventArgs e)

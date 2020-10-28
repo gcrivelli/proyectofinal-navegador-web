@@ -118,6 +118,14 @@ namespace NavegadorWeb.UI
         public static string AudioHoverImage = path + "AudioHoverImage.jpg";
         public static string AudioClickImage = path + "AudioClickImage.jpg";
 
+        //Imagenes de flow sobre fondo azul
+        public static string ConfirmGreenImage = path + "/FlowBlueBack/ConfirmImage.jpg";
+        public static string ConfirmGreenHoverImage = path + "/FlowBlueBack/ConfirmHoverImage.jpg";
+        public static string ConfirmGreenClickImage = path + "/FlowBlueBack/ConfirmClickImage.jpg";
+        public static string CancelRedImage = path + "/FlowBlueBack/CloseImage.jpg";
+        public static string CancelRedHoverImage = path + "/FlowBlueBack/CloseHoverImage.jpg";
+        public static string CancelRedClickImage = path + "/FlowBlueBack/CloseClickImage.jpg";
+
         public static string NextImage = path + "NextImage.jpg";
         public static string NextHoverImage = path + "NextHoverImage.jpg";
         public static string NextClickImage = path + "NextClickImage.jpg";
@@ -166,6 +174,7 @@ namespace NavegadorWeb.UI
         public static string GreenImage = path + "GreenImage.jpg";
         public static string OrangeImage = path + "OrangeImage.jpg";
         public static string VioletImage = path + "VioletImage.jpg";
+        public static string BlackImage = path + "BlackImage.jpg";
 
         public static string AsistimeLogo = path + "logo.png";
         public static string AsistimeIcon = path + "logo.iso";

@@ -263,14 +263,6 @@ namespace NavegadorWeb.Responsable
             createTourView.BackToForms();
         }
 
-
-
-
-
-
-
-
-
         public void drawForm(String form){
             formBar.Location = new System.Drawing.Point(asistimeAppBar.Location.X + 30, asistimeAppBar.Location.Y + asistimeAppBar.Height + 30);
             formBar.Show();
@@ -289,8 +281,9 @@ namespace NavegadorWeb.Responsable
                 case "div":
                     div();
                     break;
-                case "dialogo":
-                    dialog();
+                case "borrador":
+                    formBar.Hide();
+                    erase();
                     break;
                 case "texto":
                     text();
@@ -318,7 +311,7 @@ namespace NavegadorWeb.Responsable
             doc.InvokeScript("initCuadrado");
         }
 
-        private void dialog()
+        private void erase()
         {
             /*
              * doc.InvokeScript("initCanvas");
@@ -411,6 +404,7 @@ namespace NavegadorWeb.Responsable
             //Aca va el comportamiento para guardar el paso
             incrementStepCount();
             addStepToTour();
+            tourBar.stepsLabel.Text = "CANTIDAD DE PASOS: " + countStep;
 
             for (int i = 1; i < 10; i++)
             {

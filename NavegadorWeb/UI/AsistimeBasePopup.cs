@@ -100,8 +100,8 @@ namespace NavegadorWeb.UI
                 Font = Constants.H2LabelFont,
                 Width = 400
             };
-            tourNameLabel.BringToFront();
             this.Controls.Add(tourNameLabel);
+            tourNameLabel.BringToFront();
 
             tourNameTextBox = new AsistimeSearchBox()
             {
