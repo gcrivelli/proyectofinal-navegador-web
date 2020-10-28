@@ -374,6 +374,12 @@ namespace NavegadorWeb.Responsable
                 case "achicarAngulo":
                     lessAngle();
                     break;
+                case "achicarLetra":
+                    lessFontSize();
+                    break;
+                case "agrandarLetra":
+                    moreFontSize();
+                    break;
             }
         }
 
@@ -554,6 +560,11 @@ namespace NavegadorWeb.Responsable
             formBar.Hide();
             stepsBar.Hide();
             tourBar.Show();
+        }
+
+        public void ModifyColor(String colorHTML)
+        {
+            //TODO
         }
 
     }

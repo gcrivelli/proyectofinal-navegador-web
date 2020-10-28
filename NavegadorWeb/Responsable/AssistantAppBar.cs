@@ -92,19 +92,69 @@ namespace NavegadorWeb.Responsable
             this.Controls.Add(size);
 
             AsistimeRoundButton TurnRightButton = new AsistimeRoundButton(37, 37, Constants.TurnRightImage, Constants.TurnRightHoverImage, Constants.TurnRightHoverImage) { Parent = this.Parent };
-            TurnRightButton.Location = new Point(40, 214);
+            TurnRightButton.Location = new Point(40, 264);
             TurnRightButton.Click += new EventHandler(this.TurnRightSize);
             this.Controls.Add(TurnRightButton);
 
             AsistimeRoundButton TurnLeftButton = new AsistimeRoundButton(37, 37, Constants.TurnLeftImage, Constants.TurnLeftHoverImage, Constants.TurnLeftHoverImage) { Parent = this.Parent };
-            TurnLeftButton.Location = new Point(107, 214);
+            TurnLeftButton.Location = new Point(107, 264);
             TurnLeftButton.Click += new EventHandler(this.TurnLeftSize);
             this.Controls.Add(TurnLeftButton);
 
             Label rotate = new Label() { Text = "Girar", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
-            rotate.Location = new Point(10, 254);
+            rotate.Location = new Point(10, 304);
             Center(rotate, this);
             this.Controls.Add(rotate);
+
+            AsistimeRoundButton FontDownButton = new AsistimeRoundButton(37, 37, Constants.FontDownImage, Constants.FontDownHoverImage, Constants.FontDownHoverImage) { Parent = this.Parent };
+            FontDownButton.Location = new Point(40, 381);
+            FontDownButton.Click += new EventHandler(this.FontDown);
+            this.Controls.Add(FontDownButton);
+
+            AsistimeRoundButton FontUpButton = new AsistimeRoundButton(37, 37, Constants.FontUpImage, Constants.FontUpHoverImage, Constants.FontUpHoverImage) { Parent = this.Parent };
+            FontUpButton.Location = new Point(107, 381);
+            FontUpButton.Click += new EventHandler(this.FontUp);
+            this.Controls.Add(FontUpButton);
+
+            Label font = new Label() { Text = "Fuente", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
+            font.Location = new Point(10, 421);
+            Center(font, this);
+            this.Controls.Add(font);
+
+            AsistimeRoundButton BlueButton = new AsistimeRoundButton(37, 37, Constants.BlueImage, Constants.BlueImage, Constants.BlueImage) { Parent = this.Parent };
+            BlueButton.Location = new Point(30, 498);
+            BlueButton.Click += new EventHandler(this.Blue);
+            this.Controls.Add(BlueButton);
+
+            AsistimeRoundButton YellowButton = new AsistimeRoundButton(37, 37, Constants.YellowImage, Constants.YellowImage, Constants.YellowImage) { Parent = this.Parent };
+            YellowButton.Location = new Point(80, 498);
+            YellowButton.Click += new EventHandler(this.Yellow);
+            this.Controls.Add(YellowButton);
+
+            AsistimeRoundButton RedButton = new AsistimeRoundButton(37, 37, Constants.RedImage, Constants.RedImage, Constants.RedImage) { Parent = this.Parent };
+            RedButton.Location = new Point(130, 498);
+            RedButton.Click += new EventHandler(this.Red);
+            this.Controls.Add(RedButton);
+
+            AsistimeRoundButton GreenButton = new AsistimeRoundButton(37, 37, Constants.GreenImage, Constants.GreenImage, Constants.GreenImage) { Parent = this.Parent };
+            GreenButton.Location = new Point(30, 540);
+            GreenButton.Click += new EventHandler(this.Green);
+            this.Controls.Add(GreenButton);
+
+            AsistimeRoundButton OrangeButton = new AsistimeRoundButton(37, 37, Constants.OrangeImage, Constants.OrangeImage, Constants.OrangeImage) { Parent = this.Parent };
+            OrangeButton.Location = new Point(80, 540);
+            OrangeButton.Click += new EventHandler(this.Orange);
+            this.Controls.Add(OrangeButton);
+
+            AsistimeRoundButton VioletButton = new AsistimeRoundButton(37, 37, Constants.VioletImage, Constants.VioletImage, Constants.VioletImage) { Parent = this.Parent };
+            VioletButton.Location = new Point(130, 540);
+            VioletButton.Click += new EventHandler(this.Violet);
+            this.Controls.Add(VioletButton);
+
+            Label color = new Label() { Text = "Color", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
+            color.Location = new Point(10, 580);
+            Center(color, this);
+            this.Controls.Add(color);
 
         }
 
@@ -174,6 +224,53 @@ namespace NavegadorWeb.Responsable
         {
             NavigatorAssistant control = this.Parent as NavigatorAssistant;
             control.ModifyForm("achicarAngulo");
+        }
+
+        protected void FontDown(object sender, EventArgs e)
+        {
+            NavigatorAssistant control = this.Parent as NavigatorAssistant;
+            control.ModifyForm("achicarLetra");
+        }
+
+        protected void FontUp(object sender, EventArgs e)
+        {
+            NavigatorAssistant control = this.Parent as NavigatorAssistant;
+            control.ModifyForm("agrandarLetra");
+        }
+        protected void Blue(object sender, EventArgs e)
+        {
+            NavigatorAssistant control = this.Parent as NavigatorAssistant;
+            control.ModifyColor("#1C3671");
+        }
+
+        protected void Yellow(object sender, EventArgs e)
+        {
+            NavigatorAssistant control = this.Parent as NavigatorAssistant;
+            control.ModifyColor("#D7D700");
+        }
+
+        protected void Red(object sender, EventArgs e)
+        {
+            NavigatorAssistant control = this.Parent as NavigatorAssistant;
+            control.ModifyColor("#C90202");
+        }
+
+        protected void Green(object sender, EventArgs e)
+        {
+            NavigatorAssistant control = this.Parent as NavigatorAssistant;
+            control.ModifyColor("#00BD0D");
+        }
+
+        protected void Orange(object sender, EventArgs e)
+        {
+            NavigatorAssistant control = this.Parent as NavigatorAssistant;
+            control.ModifyColor("#FF9100");
+        }
+
+        protected void Violet(object sender, EventArgs e)
+        {
+            NavigatorAssistant control = this.Parent as NavigatorAssistant;
+            control.ModifyColor("#DE00E6");
         }
     }
 

@@ -160,6 +160,12 @@ namespace NavegadorWeb.UI
         public static string FontUpHoverImage = path + "FontUpHover.jpg";
         public static string FontDownImage = path + "FontDown.jpg";
         public static string FontDownHoverImage = path + "FontDownHover.jpg";
+        public static string BlueImage = path + "BlueImage.jpg";
+        public static string YellowImage = path + "YellowImage.jpg";
+        public static string RedImage = path + "RedImage.jpg";
+        public static string GreenImage = path + "GreenImage.jpg";
+        public static string OrangeImage = path + "OrangeImage.jpg";
+        public static string VioletImage = path + "VioletImage.jpg";
 
         public static string AsistimeLogo = path + "logo.png";
         public static string AsistimeIcon = path + "logo.iso";
