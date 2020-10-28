@@ -157,7 +157,7 @@ function initFlecha() {
   canvas.dataset.tipo=4;
   context.font=width+'px FontAwesome';
   context.fillText('\uf062',0,width-(width/5));
-  context.strokeStyle="#"+color;
+  context.strokeStyle=color;
   context.stroke();
 }
 
@@ -167,7 +167,7 @@ function initBan() {
   canvas.dataset.tipo=5;
   context.font=width+'px FontAwesome';
   context.fillText('\uf05e',0,width-(width/5));
-  context.strokeStyle="#"+color;
+  context.strokeStyle=color;
   context.stroke();
 }
 
@@ -176,7 +176,7 @@ function initCuadrado() {
   var context=canvas.getContext("2d");
   canvas.dataset.tipo=1;
   context.rect(0,0,width,width);
-  context.strokeStyle="#"+color;
+  context.strokeStyle=color;
   context.lineWidth=line;
   context.stroke();
 }
@@ -186,7 +186,7 @@ function initCirculo() {
   var context=canvas.getContext("2d");
   canvas.dataset.tipo=2;
   context.arc(width/2,width/2,(width-line)/2,0,2*Math.PI);
-  context.strokeStyle="#"+color;
+  context.strokeStyle=color;
   context.lineWidth=line;
   context.stroke();
 }
@@ -199,7 +199,7 @@ function initTexto() {
   canvas.dataset.tipo=3;
   canvas.dataset.text=text;
   context.font = size+"px Arial";
-  context.fillStyle = "#"+color;
+  context.fillStyle = color;
   context.fillText(text, width/2, width/2);
   context.lineWidth = line;
   context.stroke();

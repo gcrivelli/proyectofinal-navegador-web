@@ -563,7 +563,14 @@ namespace NavegadorWeb.Responsable
 
         public void ModifyColor(String colorHTML)
         {
-            //TODO
+            HtmlElement head = doc.GetElementsByTagName("head")[0];
+
+            HtmlElement script = doc.CreateElement("script");
+            script.SetAttribute("type", "text/javascript");
+            script.InnerText = "function modifyColor() { setColor('" + colorHTML + "'); }";
+            head.AppendChild(script);
+
+            doc.InvokeScript("modifyColor");
         }
 
     }
