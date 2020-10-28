@@ -132,6 +132,8 @@ namespace NavegadorWeb.Responsable
             };
 
             countStep = 0;
+            tourBar.stepsLabel.Text = "CANTIDAD DE PASOS: " + countStep;
+
             //countTxt.Text = countStep.ToString();
 
             /*initStep();
