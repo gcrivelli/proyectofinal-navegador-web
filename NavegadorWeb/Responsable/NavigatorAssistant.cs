@@ -132,6 +132,8 @@ namespace NavegadorWeb.Responsable
             };
 
             countStep = 0;
+            tourBar.stepsLabel.Text = "CANTIDAD DE PASOS: " + countStep;
+
             //countTxt.Text = countStep.ToString();
 
             /*initStep();
@@ -224,6 +226,11 @@ namespace NavegadorWeb.Responsable
                 MessageBox.Show("Tutorial Terminado! Se guardaron " + countStep.ToString() + " pasos", "Fin del Tutorial", MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
                 MessageBox.Show("Un error ha ocurrido tratando de conectar al servidor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            formBar.Hide();
+            stepsBar.Hide();
+            tourBar.Hide();
+            asistimeAppBar.Show();
         }
 
         /*private void addStepBtn_Click(object sender, EventArgs e)
