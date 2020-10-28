@@ -78,6 +78,7 @@ namespace NavegadorWeb.Responsable
 
         public void RecordAudio()
         {
+            formBar.Hide();
             createTourView.AdvanceToAudio(tour.name, countStep);
         }
 
@@ -273,12 +274,15 @@ namespace NavegadorWeb.Responsable
             switch (form)
             {
                 case "circulo":
+                    formBar.ShowControlsCircle();
                     circle();
                     break;
                 case "rectangulo":
+                    formBar.ShowControlsRect();
                     rectangle();
                     break;
                 case "div":
+                    formBar.ShowControlsDiv();
                     div();
                     break;
                 case "borrador":
@@ -286,6 +290,7 @@ namespace NavegadorWeb.Responsable
                     erase();
                     break;
                 case "texto":
+                    formBar.ShowControlsText();
                     text();
                     break;
             }

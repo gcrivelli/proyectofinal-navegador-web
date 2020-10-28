@@ -51,6 +51,22 @@ namespace NavegadorWeb.Responsable
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
+        private AsistimeRoundButton LessThicknessButton;
+        private AsistimeRoundButton MoreThicknessButton;
+        private AsistimeRoundButton LessSizeButton;
+        private AsistimeRoundButton MoreSizeButton;
+        private AsistimeRoundButton TurnRightButton;
+        private AsistimeRoundButton TurnLeftButton;
+        private AsistimeRoundButton FontDownButton;
+        private AsistimeRoundButton FontUpButton;
+        private AsistimeRoundButton BlueButton;
+        private AsistimeRoundButton YellowButton;
+        private AsistimeRoundButton RedButton;
+        private AsistimeRoundButton GreenButton;
+        private AsistimeRoundButton OrangeButton;
+        private AsistimeRoundButton VioletButton;
+        private AsistimeRoundButton BackButton;
+
         public AsistimeFormBar()
         {
             BackColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour);
@@ -61,12 +77,12 @@ namespace NavegadorWeb.Responsable
             this.MouseMove += new MouseEventHandler(panel_MouseMove);
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
 
-            AsistimeRoundButton LessThicknessButton = new AsistimeRoundButton(37, 37, Constants.MinusImage, Constants.MinusHoverImage, Constants.MinusHoverImage) { Parent = this.Parent };
+            LessThicknessButton = new AsistimeRoundButton(37, 37, Constants.MinusImage, Constants.MinusHoverImage, Constants.MinusHoverImage) { Parent = this.Parent };
             LessThicknessButton.Location = new Point(40, 30);
             LessThicknessButton.Click += new EventHandler(this.LessThickness);
             this.Controls.Add(LessThicknessButton);
 
-            AsistimeRoundButton MoreThicknessButton = new AsistimeRoundButton(37, 37, Constants.PlusImage, Constants.PlusHoverImage, Constants.PlusHoverImage) { Parent = this.Parent };
+            MoreThicknessButton = new AsistimeRoundButton(37, 37, Constants.PlusImage, Constants.PlusHoverImage, Constants.PlusHoverImage) { Parent = this.Parent };
             MoreThicknessButton.Location = new Point(107, 30);
             MoreThicknessButton.Click += new EventHandler(this.MoreThickness);
             this.Controls.Add(MoreThicknessButton);
@@ -76,12 +92,12 @@ namespace NavegadorWeb.Responsable
             Center(thickness,this);
             this.Controls.Add(thickness);
 
-            AsistimeRoundButton LessSizeButton = new AsistimeRoundButton(37, 37, Constants.MinusImage, Constants.MinusHoverImage, Constants.MinusHoverImage) { Parent = this.Parent };
+            LessSizeButton = new AsistimeRoundButton(37, 37, Constants.MinusImage, Constants.MinusHoverImage, Constants.MinusHoverImage) { Parent = this.Parent };
             LessSizeButton.Location = new Point(40, 147);
             LessSizeButton.Click += new EventHandler(this.LessSize);
             this.Controls.Add(LessSizeButton);
 
-            AsistimeRoundButton MoreSizeButton = new AsistimeRoundButton(37, 37, Constants.PlusImage, Constants.PlusHoverImage, Constants.PlusHoverImage) { Parent = this.Parent };
+            MoreSizeButton = new AsistimeRoundButton(37, 37, Constants.PlusImage, Constants.PlusHoverImage, Constants.PlusHoverImage) { Parent = this.Parent };
             MoreSizeButton.Location = new Point(107, 147);
             MoreSizeButton.Click += new EventHandler(this.MoreSize);
             this.Controls.Add(MoreSizeButton);
@@ -91,12 +107,12 @@ namespace NavegadorWeb.Responsable
             Center(size, this);
             this.Controls.Add(size);
 
-            AsistimeRoundButton TurnRightButton = new AsistimeRoundButton(37, 37, Constants.TurnRightImage, Constants.TurnRightHoverImage, Constants.TurnRightHoverImage) { Parent = this.Parent };
+            TurnRightButton = new AsistimeRoundButton(37, 37, Constants.TurnRightImage, Constants.TurnRightHoverImage, Constants.TurnRightHoverImage) { Parent = this.Parent };
             TurnRightButton.Location = new Point(40, 264);
             TurnRightButton.Click += new EventHandler(this.TurnRightSize);
             this.Controls.Add(TurnRightButton);
 
-            AsistimeRoundButton TurnLeftButton = new AsistimeRoundButton(37, 37, Constants.TurnLeftImage, Constants.TurnLeftHoverImage, Constants.TurnLeftHoverImage) { Parent = this.Parent };
+            TurnLeftButton = new AsistimeRoundButton(37, 37, Constants.TurnLeftImage, Constants.TurnLeftHoverImage, Constants.TurnLeftHoverImage) { Parent = this.Parent };
             TurnLeftButton.Location = new Point(107, 264);
             TurnLeftButton.Click += new EventHandler(this.TurnLeftSize);
             this.Controls.Add(TurnLeftButton);
@@ -106,12 +122,12 @@ namespace NavegadorWeb.Responsable
             Center(rotate, this);
             this.Controls.Add(rotate);
 
-            AsistimeRoundButton FontDownButton = new AsistimeRoundButton(37, 37, Constants.FontDownImage, Constants.FontDownHoverImage, Constants.FontDownHoverImage) { Parent = this.Parent };
+            FontDownButton = new AsistimeRoundButton(37, 37, Constants.FontDownImage, Constants.FontDownHoverImage, Constants.FontDownHoverImage) { Parent = this.Parent };
             FontDownButton.Location = new Point(40, 381);
             FontDownButton.Click += new EventHandler(this.FontDown);
             this.Controls.Add(FontDownButton);
 
-            AsistimeRoundButton FontUpButton = new AsistimeRoundButton(37, 37, Constants.FontUpImage, Constants.FontUpHoverImage, Constants.FontUpHoverImage) { Parent = this.Parent };
+            FontUpButton = new AsistimeRoundButton(37, 37, Constants.FontUpImage, Constants.FontUpHoverImage, Constants.FontUpHoverImage) { Parent = this.Parent };
             FontUpButton.Location = new Point(107, 381);
             FontUpButton.Click += new EventHandler(this.FontUp);
             this.Controls.Add(FontUpButton);
@@ -121,37 +137,37 @@ namespace NavegadorWeb.Responsable
             Center(font, this);
             this.Controls.Add(font);
 
-            AsistimeRoundButton BlueButton = new AsistimeRoundButton(37, 37, Constants.BlueImage, Constants.BlueImage, Constants.BlueImage) { Parent = this.Parent };
+            BlueButton = new AsistimeRoundButton(37, 37, Constants.BlueImage, Constants.BlueImage, Constants.BlueImage) { Parent = this.Parent };
             BlueButton.Location = new Point(30, 498);
             BlueButton.Click += new EventHandler(this.Blue);
             this.Controls.Add(BlueButton);
 
-            AsistimeRoundButton YellowButton = new AsistimeRoundButton(37, 37, Constants.YellowImage, Constants.YellowImage, Constants.YellowImage) { Parent = this.Parent };
+            YellowButton = new AsistimeRoundButton(37, 37, Constants.YellowImage, Constants.YellowImage, Constants.YellowImage) { Parent = this.Parent };
             YellowButton.Location = new Point(80, 498);
             YellowButton.Click += new EventHandler(this.Yellow);
             this.Controls.Add(YellowButton);
 
-            AsistimeRoundButton RedButton = new AsistimeRoundButton(37, 37, Constants.RedImage, Constants.RedImage, Constants.RedImage) { Parent = this.Parent };
+            RedButton = new AsistimeRoundButton(37, 37, Constants.RedImage, Constants.RedImage, Constants.RedImage) { Parent = this.Parent };
             RedButton.Location = new Point(130, 498);
             RedButton.Click += new EventHandler(this.Red);
             this.Controls.Add(RedButton);
 
-            AsistimeRoundButton GreenButton = new AsistimeRoundButton(37, 37, Constants.GreenImage, Constants.GreenImage, Constants.GreenImage) { Parent = this.Parent };
+            GreenButton = new AsistimeRoundButton(37, 37, Constants.GreenImage, Constants.GreenImage, Constants.GreenImage) { Parent = this.Parent };
             GreenButton.Location = new Point(30, 540);
             GreenButton.Click += new EventHandler(this.Green);
             this.Controls.Add(GreenButton);
 
-            AsistimeRoundButton OrangeButton = new AsistimeRoundButton(37, 37, Constants.OrangeImage, Constants.OrangeImage, Constants.OrangeImage) { Parent = this.Parent };
+            OrangeButton = new AsistimeRoundButton(37, 37, Constants.OrangeImage, Constants.OrangeImage, Constants.OrangeImage) { Parent = this.Parent };
             OrangeButton.Location = new Point(80, 540);
             OrangeButton.Click += new EventHandler(this.Orange);
             this.Controls.Add(OrangeButton);
 
-            AsistimeRoundButton VioletButton = new AsistimeRoundButton(37, 37, Constants.VioletImage, Constants.VioletImage, Constants.VioletImage) { Parent = this.Parent };
+            VioletButton = new AsistimeRoundButton(37, 37, Constants.VioletImage, Constants.VioletImage, Constants.VioletImage) { Parent = this.Parent };
             VioletButton.Location = new Point(130, 540);
             VioletButton.Click += new EventHandler(this.Violet);
             this.Controls.Add(VioletButton);
 
-            AsistimeRoundButton BackButton = new AsistimeRoundButton(37, 37, Constants.BlackImage, Constants.BlackImage, Constants.BlackImage) { Parent = this.Parent };
+            BackButton = new AsistimeRoundButton(37, 37, Constants.BlackImage, Constants.BlackImage, Constants.BlackImage) { Parent = this.Parent };
             BackButton.Location = new Point(80, 582);
             BackButton.Click += new EventHandler(this.Black);
             this.Controls.Add(BackButton);
@@ -287,16 +303,81 @@ namespace NavegadorWeb.Responsable
         public void ShowControlsRect()
         {
             this.Show();
+            LessThicknessButton.Enabled = true;
+            MoreThicknessButton.Enabled = true;
+            LessSizeButton.Enabled = true;
+            MoreSizeButton.Enabled = true;
+            TurnRightButton.Enabled = true;
+            TurnLeftButton.Enabled = true;
+            FontDownButton.Enabled = false;
+            FontUpButton.Enabled = false;
+            BlueButton.Enabled = true;
+            YellowButton.Enabled = true;
+            RedButton.Enabled = true;
+            GreenButton.Enabled = true;
+            OrangeButton.Enabled = true;
+            VioletButton.Enabled = true;
+            BackButton.Enabled = true;
         }
 
         public void ShowControlsCircle()
         {
             this.Show();
+            LessThicknessButton.Enabled = true;
+            MoreThicknessButton.Enabled = true;
+            LessSizeButton.Enabled = true;
+            MoreSizeButton.Enabled = true;
+            TurnRightButton.Enabled = false;
+            TurnLeftButton.Enabled = false;
+            FontDownButton.Enabled = false;
+            FontUpButton.Enabled = false;
+            BlueButton.Enabled = true;
+            YellowButton.Enabled = true;
+            RedButton.Enabled = true;
+            GreenButton.Enabled = true;
+            OrangeButton.Enabled = true;
+            VioletButton.Enabled = true;
+            BackButton.Enabled = true;
         }
 
         public void ShowControlsText()
         {
             this.Show();
+            LessThicknessButton.Enabled = false;
+            MoreThicknessButton.Enabled = false;
+            LessSizeButton.Enabled = true;
+            MoreSizeButton.Enabled = true;
+            TurnRightButton.Enabled = true;
+            TurnLeftButton.Enabled = true;
+            FontDownButton.Enabled = true;
+            FontUpButton.Enabled = true;
+            BlueButton.Enabled = true;
+            YellowButton.Enabled = true;
+            RedButton.Enabled = true;
+            GreenButton.Enabled = true;
+            OrangeButton.Enabled = true;
+            VioletButton.Enabled = true;
+            BackButton.Enabled = true;
+        }
+
+        public void ShowControlsDiv()
+        {
+            this.Show();
+            LessThicknessButton.Enabled = true;
+            MoreThicknessButton.Enabled = true;
+            LessSizeButton.Enabled = true;
+            MoreSizeButton.Enabled = true;
+            TurnRightButton.Enabled = true;
+            TurnLeftButton.Enabled = true;
+            FontDownButton.Enabled = true;
+            FontUpButton.Enabled = true;
+            BlueButton.Enabled = true;
+            YellowButton.Enabled = true;
+            RedButton.Enabled = true;
+            GreenButton.Enabled = true;
+            OrangeButton.Enabled = true;
+            VioletButton.Enabled = true;
+            BackButton.Enabled = true;
         }
     }
 
