@@ -101,15 +101,16 @@ namespace NavegadorWeb.GeneralDisplay
                         Constants.token = token.access_token;
                         Constants.user = new User();
                         Constants.user = token.user;
+
+                        // Obtengo los tours 
+
+                        var tourController = new TourController();
+                        Constants.tours = tourController.GetAllToursAsync().Result;
+
                         new PopupNotification("App Asistime!", "Bienvenido " + token.user.name);
 
                         if (token.user.rol == "Adulto")
                         {
-                            // Obtengo los tours 
-
-                            var tourController = new TourController();
-                            Constants.tours = tourController.GetAllToursAsync().Result;
-
                             ////Active notifications of new tours
                             Thread threadNewTour = new Thread(NewTourThread.DoWork);
                             threadNewTour.IsBackground = true;
