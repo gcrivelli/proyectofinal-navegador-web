@@ -7,7 +7,7 @@ var width=200;
 var size=20;
 var line=8;
 var inclinacion=0;
-var color="000000";
+var color="#000000";
 var x=null;
 var y=null;
 var divX1=null;
@@ -78,16 +78,20 @@ function onClick(e) {
       divY2=divY1;
       divY1=e.pageY;
     }
+    var elements = document.getElementsByClassName("div");
+    while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+    }
     var div=document.createElement("div");
-    div.style.cssText="position:absolute;z-index:9999;background-color:#"+color+";width:100%;height:"+divY1+"px;top:0px;left:0px;opacity:"+opacity+";"; 
+    div.style.cssText="position:absolute;z-index:9999;background-color:"+color+";width:100%;height:"+divY1+"px;top:0px;left:0px;opacity:"+opacity+";"; 
     div.className="div";  
     document.body.appendChild(div);
     div=document.createElement("div");
-    div.style.cssText="position:absolute;z-index:9999;background-color:#"+color+";width:100%;height:100%;top:"+divY2+"px;left:0px;opacity:"+opacity+";";   
+    div.style.cssText="position:absolute;z-index:9999;background-color:"+color+";width:100%;height:100%;top:"+divY2+"px;left:0px;opacity:"+opacity+";";   
     div.className="div";  
     document.body.appendChild(div);
     div=document.createElement("div");
-    div.style.cssText="position:absolute;z-index:9999;background-color:#"+color+";width:"+divX1+"px;height:"+(divY2-divY1)+"px;top:"+divY1+"px;left:0px;opacity:"+opacity+";";   
+    div.style.cssText="position:absolute;z-index:9999;background-color:"+color+";width:"+divX1+"px;height:"+(divY2-divY1)+"px;top:"+divY1+"px;left:0px;opacity:"+opacity+";";   
     div.className="div";  
     div.id="asistime-div";
     div.dataset.opacity=opacity;
@@ -98,7 +102,7 @@ function onClick(e) {
     div.dataset.color=color;
     document.body.appendChild(div);
     div=document.createElement("div");
-    div.style.cssText="position:absolute;z-index:9999;background-color:#"+color+";width:100%;height:"+(divY2-divY1)+"px;top:"+divY1+"px;left:"+divX2+"px;opacity:"+opacity+";";   
+    div.style.cssText="position:absolute;z-index:9999;background-color:"+color+";width:100%;height:"+(divY2-divY1)+"px;top:"+divY1+"px;left:"+divX2+"px;opacity:"+opacity+";";   
     div.className="div";  
     document.body.appendChild(div);
     dibujandoDiv=false;
@@ -106,6 +110,14 @@ function onClick(e) {
   } else if (dibujandoDiv) {
     divX1=e.pageX;
     divY1=e.pageY;
+    var div=document.createElement("div");
+    div.style.cssText="position:absolute;z-index:9999;background-color:"+color+";width:100%;height:"+divY1+"px;top:0px;left:0px;opacity:"+opacity+";"; 
+    div.className="div";  
+    document.body.appendChild(div);
+    div=document.createElement("div");
+    div.style.cssText="position:absolute;z-index:9999;background-color:"+color+";width:"+divX1+"px;height:100%;top:"+divY1+"px;left:0px;opacity:"+opacity+";";   
+    div.className="div";     
+    document.body.appendChild(div);
     dibujandoDiv2=true;  
   }
 }
@@ -157,7 +169,7 @@ function initFlecha() {
   canvas.dataset.tipo=4;
   context.font=width+'px FontAwesome';
   context.fillText('\uf062',0,width-(width/5));
-  context.strokeStyle="#"+color;
+  context.strokeStyle=color;
   context.stroke();
 }
 
@@ -167,7 +179,7 @@ function initBan() {
   canvas.dataset.tipo=5;
   context.font=width+'px FontAwesome';
   context.fillText('\uf05e',0,width-(width/5));
-  context.strokeStyle="#"+color;
+  context.strokeStyle=color;
   context.stroke();
 }
 
@@ -176,7 +188,7 @@ function initCuadrado() {
   var context=canvas.getContext("2d");
   canvas.dataset.tipo=1;
   context.rect(0,0,width,width);
-  context.strokeStyle="#"+color;
+  context.strokeStyle=color;
   context.lineWidth=line;
   context.stroke();
 }
@@ -186,7 +198,7 @@ function initCirculo() {
   var context=canvas.getContext("2d");
   canvas.dataset.tipo=2;
   context.arc(width/2,width/2,(width-line)/2,0,2*Math.PI);
-  context.strokeStyle="#"+color;
+  context.strokeStyle=color;
   context.lineWidth=line;
   context.stroke();
 }
@@ -199,7 +211,7 @@ function initTexto() {
   canvas.dataset.tipo=3;
   canvas.dataset.text=text;
   context.font = size+"px Arial";
-  context.fillStyle = "#"+color;
+  context.fillStyle = color;
   context.fillText(text, width/2, width/2);
   context.lineWidth = line;
   context.stroke();

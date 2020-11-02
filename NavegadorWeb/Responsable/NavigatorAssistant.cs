@@ -132,6 +132,8 @@ namespace NavegadorWeb.Responsable
             };
 
             countStep = 0;
+            tourBar.stepsLabel.Text = "CANTIDAD DE PASOS: " + countStep;
+
             //countTxt.Text = countStep.ToString();
 
             /*initStep();
@@ -224,6 +226,11 @@ namespace NavegadorWeb.Responsable
                 MessageBox.Show("Tutorial Terminado! Se guardaron " + countStep.ToString() + " pasos", "Fin del Tutorial", MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
                 MessageBox.Show("Un error ha ocurrido tratando de conectar al servidor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            formBar.Hide();
+            stepsBar.Hide();
+            tourBar.Hide();
+            asistimeAppBar.Show();
         }
 
         /*private void addStepBtn_Click(object sender, EventArgs e)
@@ -563,7 +570,14 @@ namespace NavegadorWeb.Responsable
 
         public void ModifyColor(String colorHTML)
         {
-            //TODO
+            HtmlElement head = doc.GetElementsByTagName("head")[0];
+
+            HtmlElement script = doc.CreateElement("script");
+            script.SetAttribute("type", "text/javascript");
+            script.InnerText = "function modifyColor() { setColor('" + colorHTML + "'); }";
+            head.AppendChild(script);
+
+            doc.InvokeScript("modifyColor");
         }
 
     }
