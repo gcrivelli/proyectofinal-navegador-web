@@ -23,7 +23,7 @@ namespace NavegadorWeb.Extra
             popup.TitleColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour); 
             popup.BodyColor = ColorTranslator.FromHtml(Constants.MenuButtonSelected);
             popup.ContentColor = ColorTranslator.FromHtml(Constants.AppSecondaryColour);
-            popup.BorderColor = ColorTranslator.FromHtml(Constants.MenuButtonSelected);
+            popup.BorderColor = Color.Black;
             popup.ButtonBorderColor = ColorTranslator.FromHtml(Constants.MenuButtonSelected);
 
             popup.ShowCloseButton = true;

@@ -35,6 +35,7 @@ namespace NavegadorWeb.Adult
             this.Show();
             tourBar = new AsistimeTourBar() { Parent = this };
             tourBar.Location = new System.Drawing.Point(0, 0);
+            tourBar.StepCount = 0;
             this.Controls.Add(tourBar);
             tourBar.Show();
             this.asistimeAppBar.Hide();
@@ -59,13 +60,10 @@ namespace NavegadorWeb.Adult
             //Reproducir el paso 0 
             var firstStep = tour.steps[0];
             webBrowser.Navigate(firstStep.url);
-            actualURL = firstStep.url;
-            lastCorrectURL = firstStep.url;
+            actualURL = "";
 
             //Mostrar mensaje de confirmación
-            ConfirmationMessage m = new ConfirmationMessage("Iniciaste el tour!");
-            m.Location = new System.Drawing.Point(Constants.AppBarWidth - 410, Constants.AppBarHeight + 50);
-            m.Show();
+            new PopupNotification("Inicio Tour", "Comienza el tour");
 
             //Reproducir audio
             if (firstStep.audio != null)
@@ -86,6 +84,7 @@ namespace NavegadorWeb.Adult
 
             if (actualStep != null)
             {
+                actualURL = actualStep.url;
                 if (actualStep.audio != null)
                     audioPath = Constants.audioPath + "/Audio " + tour._id + actualStep._id + ".wav";
 
@@ -94,13 +93,10 @@ namespace NavegadorWeb.Adult
                     volverAPasoCorrecto = false;
                     lastCorrectURL = actualStep.url;
                     tourBar.SetStep(actualStep.order);
-                    /*if (positionStep != 0)
+                    if (positionStep != 0)
                     {
-                        ConfirmationMessage m = new ConfirmationMessage("Completaste el paso " + (step.order) + "!");
-                        m.Location = new System.Drawing.Point(Constants.AppBarWidth - 410, Constants.AppBarHeight + 50);
-                        m.BringToFront();
-                        m.Show();
-                    }*/
+                        new PopupNotification("Excelente!", "Realizaste el paso " + positionStep + " con éxito!");
+                    }
 
                     var doc = initDocument(actualStep, actualStep.order);
                     doc.InvokeScript("init" + actualStep.order);
@@ -130,9 +126,7 @@ namespace NavegadorWeb.Adult
             }
             else
             {
-                ConfirmationMessage m = new ConfirmationMessage("Completaste el tour!");
-                m.Location = new System.Drawing.Point(Constants.AppBarWidth - 410, Constants.AppBarHeight + 50);
-                m.Show(); 
+                new PopupNotification("Fin del Tour!", "Completaste el tour con éxito!");
             }
         }
 
@@ -365,15 +359,10 @@ namespace NavegadorWeb.Adult
                 if (tourLoad != null)
                 {
                     actualURL = webBrowser.Url.ToString();
+                    playStep(tourLoad, countLoad, true);
                     countLoad++;
-                    playStep(tourLoad, countLoad);
                 }
-
             } 
-            else
-            {
-                playStep(tourLoad, countLoad, true);
-            }
         }
 
         private Step nextDiferentUrlStep (Step step)

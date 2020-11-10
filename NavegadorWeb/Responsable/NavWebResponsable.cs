@@ -89,8 +89,19 @@ namespace NavegadorWeb.Responsable
         {
             // post del tour
             var tourController = new TourController();
+            var userController = new UserController();
+
+            //Busco lista de usuarios
+            var adults = userController.GetAdults().Result;
+
             tour.user_id = Constants.user._id;
             var tourResponse = tourController.PostAsync(tour).Result;
+
+            // Asigno a todos los adultos el tour
+            adults.ForEach(adult =>
+            {
+                var a = userController.AsignTourAdult(tourResponse._id, adult._id).Result;
+            });
 
             // post de los audios
             var allAudioResponse = true;

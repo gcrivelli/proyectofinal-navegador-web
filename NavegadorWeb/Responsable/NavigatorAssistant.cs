@@ -223,9 +223,9 @@ namespace NavegadorWeb.Responsable
             webBrowser.Refresh();
 
             if (tourResponse._id != null && allAudioResponse)
-                MessageBox.Show("Tutorial Terminado! Se guardaron " + countStep.ToString() + " pasos", "Fin del Tutorial", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                new PopupNotification("Fin del tutorial", "Tutorial Terminado! Se guardaron " + countStep.ToString() + " pasos");
             else
-                MessageBox.Show("Un error ha ocurrido tratando de conectar al servidor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new PopupNotification("Error", "Un error ha ocurrido tratando de conectar al servidor.");
 
             formBar.Hide();
             stepsBar.Hide();

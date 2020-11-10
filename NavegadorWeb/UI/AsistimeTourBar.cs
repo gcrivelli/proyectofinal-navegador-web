@@ -14,7 +14,7 @@ namespace NavegadorWeb.UI
         public static AsistimeRoundButton CloseTourButton = null;
         public static AsistimeTourProgressBar progressBar;
         private Tour tour;
-        private int StepCount;
+        public int StepCount;
         public bool isLastStepInUrl;
 
         public AsistimeTourBar()
@@ -140,9 +140,6 @@ namespace NavegadorWeb.UI
             StepCount = 0;
             this.tour = tour;
             this.SetStep(StepCount);
-            ConfirmationMessage m = new ConfirmationMessage("Iniciaste el tour!");
-            m.Location = new System.Drawing.Point(Constants.AppBarWidth - 410, Constants.AppBarHeight + 50);
-            m.Show();
         }
 
         private bool ValidateForwardButton()
@@ -191,7 +188,7 @@ namespace NavegadorWeb.UI
             doc.InvokeScript("init" + step.order);
 
             form.playAudio(audioPath);
-            form.countLoad = positionStep;
+            form.countLoad = positionStep + 1;
         }
 
         private void Center_With(Label label, AsistimeRoundButton button)
