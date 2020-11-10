@@ -414,7 +414,7 @@ namespace NavegadorWeb.Responsable
             this.Controls.Add(stepsLabel);
             stepsLabel.BringToFront();
 
-            this.Controls.Add(this.GetAddStepsButton(this.ClientSize.Width/2 - 49, 15));
+            this.Controls.Add(this.GetAddStepsButton(this.ClientSize.Width - 300, 15)); //this.ClientSize.Width/2 - 49, 15));
             Label addTourLabel = new Label() { Text = "Agregar paso", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
             Center_With(addTourLabel, AddStepButton);
             this.Controls.Add(addTourLabel);

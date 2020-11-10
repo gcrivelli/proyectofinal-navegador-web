@@ -24,7 +24,7 @@ namespace NavegadorWeb.Adult
             NewTours = new AsistimeCardContainer(null, this) { Parent = this };
             contentPanel.Controls.Add(NewTours);
 
-            ShowProfile();
+            ShowMyTours();
         }
 
         public void ShowNewTours()
