@@ -131,8 +131,11 @@ namespace NavegadorWeb.GeneralDisplay
                         }
                     }
                     else
+                    {
                         new PopupNotification("Error Login", "Usuario o contraseña incorrecta.");
-
+                        userTextBox.TextName = "";
+                        passwrdTextBox.TextName = "";
+                    }
                 }
             }
             else

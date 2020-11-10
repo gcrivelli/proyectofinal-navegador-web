@@ -7,9 +7,9 @@ namespace NavegadorWeb.UI
 {
     public class AsistimeMenuPanel : Panel
     {
-        AsistimeMenuButton profileMenuButton;
+        //AsistimeMenuButton profileMenuButton;
         AsistimeMenuButton myToursMenuButton;
-        AsistimeMenuButton newToursMenuButton;
+        //AsistimeMenuButton newToursMenuButton;
         AsistimeMenuButton backMenuButton;
 
         public AsistimeMenuPanel(Form parent)
@@ -21,34 +21,33 @@ namespace NavegadorWeb.UI
             Height = 1024;
             //Height = Parent.Height;
 
-            profileMenuButton = new AsistimeMenuButton(this, Constants.profileMenuButton);
-            profileMenuButton.Click += new EventHandler(this.ShowProfile);
-            newToursMenuButton = new AsistimeMenuButton(this, Constants.newToursMenuButton);
-            newToursMenuButton.Click += new EventHandler(this.ShowNewTours);
+            //profileMenuButton = new AsistimeMenuButton(this, Constants.profileMenuButton);
+            //profileMenuButton.Click += new EventHandler(this.ShowProfile);
+            //newToursMenuButton = new AsistimeMenuButton(this, Constants.newToursMenuButton);
+            //newToursMenuButton.Click += new EventHandler(this.ShowNewTours);
             myToursMenuButton = new AsistimeMenuButton(this, Constants.myToursMenuButton);
             myToursMenuButton.Click += new EventHandler(this.ShowMyTours);
             backMenuButton = new AsistimeMenuButton(this, Constants.backMenuButton);
             backMenuButton.Click += new EventHandler(this.ReturnToNavigation);
 
-            profileMenuButton.Location = new System.Drawing.Point(0, 0);
-            newToursMenuButton.Location = new System.Drawing.Point(0, Constants.MenuButtonHeight);
-            myToursMenuButton.Location = new System.Drawing.Point(0, Constants.MenuButtonHeight * 2);
-            backMenuButton.Location = new System.Drawing.Point(0, Constants.MenuButtonHeight * 3);
+            //profileMenuButton.Location = new System.Drawing.Point(0, 0);
+            //newToursMenuButton.Location = new System.Drawing.Point(0, 0);
+            myToursMenuButton.Location = new System.Drawing.Point(0, 0);
+            backMenuButton.Location = new System.Drawing.Point(0, Constants.MenuButtonHeight );
 
-            this.Controls.Add(profileMenuButton);
-            this.Controls.Add(newToursMenuButton);
+            //this.Controls.Add(profileMenuButton);
+            //this.Controls.Add(newToursMenuButton);
             this.Controls.Add(myToursMenuButton);
             this.Controls.Add(backMenuButton);
 
-            this.profileMenuButton.Activate();
-
+            this.myToursMenuButton.Activate();
         }
 
         
         private void ShowProfile(object sender, EventArgs e)
         {
-            this.profileMenuButton.Activate();
-            this.newToursMenuButton.DeActivate();
+            //this.profileMenuButton.Activate();
+            //this.newToursMenuButton.DeActivate();
             this.myToursMenuButton.DeActivate();
             MenuAdult parent = this.Parent as MenuAdult;
             parent.ShowProfile();
@@ -56,8 +55,8 @@ namespace NavegadorWeb.UI
 
         private void ShowNewTours(object sender, EventArgs e)
         {
-            this.profileMenuButton.DeActivate();
-            this.newToursMenuButton.Activate();
+            //this.profileMenuButton.DeActivate();
+            //this.newToursMenuButton.Activate();
             this.myToursMenuButton.DeActivate();
             MenuAdult parent = this.Parent as MenuAdult;
             parent.ShowNewTours();
@@ -65,8 +64,8 @@ namespace NavegadorWeb.UI
 
         private void ReturnToNavigation(object sender, EventArgs e)
         {
-            this.profileMenuButton.DeActivate();
-            this.newToursMenuButton.DeActivate();
+            //this.profileMenuButton.DeActivate();
+            //this.newToursMenuButton.DeActivate();
             this.myToursMenuButton.DeActivate();
             this.backMenuButton.Activate();
             MenuAdult parent = this.Parent as MenuAdult;
@@ -75,8 +74,8 @@ namespace NavegadorWeb.UI
 
         private void ShowMyTours(object sender, EventArgs e)
         {
-            this.profileMenuButton.DeActivate();
-            this.newToursMenuButton.DeActivate();
+            //this.profileMenuButton.DeActivate();
+            //this.newToursMenuButton.DeActivate();
             this.myToursMenuButton.Activate();
             MenuAdult parent = this.Parent as MenuAdult;
             parent.ShowMyTours();

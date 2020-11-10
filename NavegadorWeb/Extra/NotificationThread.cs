@@ -11,6 +11,8 @@ namespace NavegadorWeb.Extra
         {
             while (true)
             {
+                Thread.Sleep(60000);
+
                 var notificationController = new NotificationController();
                 var notificacion = notificationController.GetNotification().Result;
                 if (notificacion.Count > 0)
@@ -21,8 +23,6 @@ namespace NavegadorWeb.Extra
                         MessageBox.Show( n.message, n.evento, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     });
                 }
-
-                Thread.Sleep(60000);
             }
         }
     }
