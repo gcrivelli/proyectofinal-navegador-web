@@ -54,6 +54,8 @@ namespace NavegadorWeb.GeneralDisplay
             Application.Exit();
         }
 
+        public virtual void ShowMyTours() {}
+
         protected void Minimize()
         {
             if (this.WindowState == FormWindowState.Normal)

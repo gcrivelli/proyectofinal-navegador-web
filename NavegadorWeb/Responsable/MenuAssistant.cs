@@ -8,8 +8,8 @@ namespace NavegadorWeb.Adult
 {
     public partial class MenuAssistant : MenuForm
     {
-        private AsistimeCardContainer MyTours;
-        private AsistimeCardContainer NewTours;
+        private AssistantCardContainer MyTours;
+        private AssistantCardContainer NewTours;
 
         public MenuAssistant(List<Tour> tours, NavigatorAssistant form) : base(tours, form)
         {
@@ -19,13 +19,13 @@ namespace NavegadorWeb.Adult
             menuPanel.Location = new System.Drawing.Point(0, 0);
             this.Controls.Add(menuPanel);
 
-            MyTours = new AsistimeCardContainer(tours, this) { Parent = this };
+            MyTours = new AssistantCardContainer(tours, this) { Parent = this };
             contentPanel.Controls.Add(MyTours);
 
-            NewTours = new AsistimeCardContainer(null, this) { Parent = this };
+            NewTours = new AssistantCardContainer(null, this) { Parent = this };
             contentPanel.Controls.Add(NewTours);
 
-            ShowProfile();
+            ShowMyTours();
         }
 
         public void ShowNewTours()
@@ -33,7 +33,7 @@ namespace NavegadorWeb.Adult
             contentPanel.ShowControl(NewTours);
         }
 
-        public void ShowMyTours()
+        public override void ShowMyTours()
         {
             contentPanel.ShowControl(MyTours);
         }

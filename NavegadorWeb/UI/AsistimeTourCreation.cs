@@ -179,4 +179,9 @@ namespace NavegadorWeb.UI
             tourCreation.Show();
         }
     }
-}
+
+    class AsistimeAssignForm : AsistimeBaseForm
+    {
+    }
+
+ }

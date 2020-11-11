@@ -1,4 +1,5 @@
 ﻿using NavegadorWeb.Adult;
+using NavegadorWeb.GeneralDisplay;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -14,6 +15,7 @@ namespace NavegadorWeb.UI
 
         public AsistimeMenuPanel(Form parent)
         {
+            InitializeComponent();
             BackColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour);
             ForeColor = ColorTranslator.FromHtml(Constants.AppSecondaryColour);
             Width = Constants.MenuWidth;
@@ -41,6 +43,7 @@ namespace NavegadorWeb.UI
             this.Controls.Add(backMenuButton);
 
             this.myToursMenuButton.Activate();
+            
         }
 
         
@@ -68,7 +71,7 @@ namespace NavegadorWeb.UI
             //this.newToursMenuButton.DeActivate();
             this.myToursMenuButton.DeActivate();
             this.backMenuButton.Activate();
-            MenuAdult parent = this.Parent as MenuAdult;
+            MenuForm parent = this.Parent as MenuForm;
             parent.ReturnToNavigation();
         }
 
@@ -77,7 +80,7 @@ namespace NavegadorWeb.UI
             //this.profileMenuButton.DeActivate();
             //this.newToursMenuButton.DeActivate();
             this.myToursMenuButton.Activate();
-            MenuAdult parent = this.Parent as MenuAdult;
+            MenuForm parent = this.Parent as MenuForm;
             parent.ShowMyTours();
         }
 
