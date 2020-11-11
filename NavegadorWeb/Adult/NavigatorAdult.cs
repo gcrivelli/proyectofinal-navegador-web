@@ -380,6 +380,8 @@ namespace NavegadorWeb.Adult
             notificacion.evento = "Ayuda con una pagina web";
             notificacion.message = Constants.user.name + " necesita ayuda para acceder a la pagina " + webBrowser.Url.ToString() +
                                     ". Ponete en contacto lo antes posible.";
+            notificacion.data = webBrowser.Url.ToString();
+
             var result = notificationController.PostNotification(notificacion).Result;
 
             if (result)
