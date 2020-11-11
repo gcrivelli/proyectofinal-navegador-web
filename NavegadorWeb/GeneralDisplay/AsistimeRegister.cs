@@ -148,7 +148,8 @@ namespace NavegadorWeb.UI
                 {
                     var token = userController.RegisterAsync(user).Result;
                     Constants.token = token.access_token;
-                    NavWebResponsable mod = new NavWebResponsable();
+
+                    NavigatorAssistant mod = new NavigatorAssistant();
                     mod.Show();
                 }
             }
