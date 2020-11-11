@@ -32,6 +32,7 @@
             this.endTutorialBtn = new System.Windows.Forms.Button();
             this.addStepBtn = new System.Windows.Forms.Button();
             this.countTxt = new System.Windows.Forms.TextBox();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.SuspendLayout();
             // 
             // addStepBntt
@@ -82,11 +83,22 @@
             this.countTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.countTxt.Visible = false;
             // 
+            // checkedListBox1
+            // 
+            this.checkedListBox1.CheckOnClick = true;
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Location = new System.Drawing.Point(342, 132);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(229, 139);
+            this.checkedListBox1.TabIndex = 13;
+            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
+            // 
             // NavWebResponsable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1242, 681);
+            this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.countTxt);
             this.Controls.Add(this.addStepBtn);
             this.Controls.Add(this.endTutorialBtn);
@@ -98,6 +110,7 @@
             this.Controls.SetChildIndex(this.endTutorialBtn, 0);
             this.Controls.SetChildIndex(this.addStepBtn, 0);
             this.Controls.SetChildIndex(this.countTxt, 0);
+            this.Controls.SetChildIndex(this.checkedListBox1, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -109,5 +122,6 @@
         private System.Windows.Forms.Button endTutorialBtn;
         public System.Windows.Forms.Button addStepBtn;
         public System.Windows.Forms.TextBox countTxt;
+        private System.Windows.Forms.CheckedListBox checkedListBox1;
     }
 }

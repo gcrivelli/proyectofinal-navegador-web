@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using NavegadorWeb.Controller;
 using NavegadorWeb.UI;
 using NavegadorWeb.Extra;
+using System.Linq;
 
 namespace NavegadorWeb.Responsable
 {
@@ -14,10 +15,20 @@ namespace NavegadorWeb.Responsable
         private CreateStep createStepView;
         public int countStep;
         public Tour tour;
+        public List<User> adults;
+        public List<int> adultsChecked;
 
         public NavWebResponsable()
         {
             InitializeComponent();
+
+            var userController = new UserController();
+            adultsChecked = new List<int>();
+
+            //Busco lista de usuarios
+            adults = userController.GetAdults().Result;
+            var ad = adults.Select(a => a.name).ToArray();
+            checkedListBox1.Items.AddRange(ad);
         }
 
         private HtmlDocument initJsFile()
@@ -153,6 +164,17 @@ namespace NavegadorWeb.Responsable
         {
             countStep++;
             countTxt.Text = countStep.ToString();
+        }
+
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            adultsChecked.Clear();
+            for (int i = 0; i < checkedListBox1.CheckedIndices.Count; i++)
+                adultsChecked.Add(checkedListBox1.CheckedIndices[i]);
+
+            adultsChecked.ForEach(ac => {
+                MessageBox.Show(adults[ac].name);
+                });
         }
     }
 }
