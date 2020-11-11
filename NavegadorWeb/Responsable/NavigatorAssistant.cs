@@ -230,6 +230,8 @@ namespace NavegadorWeb.Responsable
             formBar.Hide();
             stepsBar.Hide();
             tourBar.Hide();
+
+            Constants.tours = tourController.GetAllToursAsync().Result;
             asistimeAppBar.Show();
         }
 
