@@ -32,7 +32,7 @@ namespace NavegadorWeb.Adult
             contentPanel.ShowControl(NewTours);
         }
 
-        public void ShowMyTours()
+        public override void ShowMyTours()
         {
             contentPanel.ShowControl(MyTours);
         }
