@@ -7,14 +7,14 @@ namespace NavegadorWeb.UI
 {
     public class AsistimeRoundButton : Button
     {
-        private string normalImage;
-        private string hoverImage;
-        private string clickImage;
-        public AsistimeRoundButton(int width, int height, string image, string hoverImage, string clickImage)
+        private Image normalImage;
+        private Image hoverImage;
+        private Image clickImage;
+        public AsistimeRoundButton(int width, int height, Image image, Image hoverImage, Image clickImage)
         {
             this.Width = width;
             this.Height = height;
-            this.Image = Image.FromFile(image);
+            this.Image = image;
             this.FlatAppearance.BorderColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour);
             this.BackColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour);
             this.ForeColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour);
@@ -39,19 +39,19 @@ namespace NavegadorWeb.UI
 
         protected override void OnMouseEnter(EventArgs e)
         {
-            this.Image = Image.FromFile(this.hoverImage);
+            this.Image = this.hoverImage;
             base.OnMouseEnter(e);
         }
 
         protected override void OnMouseLeave(EventArgs e)
         {
-            this.Image = Image.FromFile(this.normalImage);
+            this.Image = normalImage;
             base.OnMouseLeave(e);
         }
 
         protected override void OnClick(EventArgs e)
         {
-            this.Image = Image.FromFile(this.clickImage);
+            this.Image = this.clickImage;
             base.OnClick(e);
         }
 

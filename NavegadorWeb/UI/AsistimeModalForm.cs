@@ -40,7 +40,7 @@ namespace NavegadorWeb.UI
             this.Controls.Add(exitButton);
 
             PictureBox logo = new PictureBox();
-            logo.ImageLocation = Constants.AsistimeLogo; ;
+            logo.Image = Constants.AsistimeLogo; ;
             this.Controls.Add(logo);
             logo.Width = 500;
             logo.Height = 200;
