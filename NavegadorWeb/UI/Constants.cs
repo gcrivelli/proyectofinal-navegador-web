@@ -44,7 +44,7 @@ namespace NavegadorWeb.UI
 
         public static string audioPath = @"c:\Asistime";
         public static string ApiUrl = "https://proyecto-final-navegador-web.herokuapp.com/api/";
-        private static string path = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "/Images/";
+        //private static string path = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "/Images/";
         public static Image NavBackImage = NavegadorWeb.Properties.Resources.NavBackImage;
         public static Image NavRefreshImage = NavegadorWeb.Properties.Resources.NavRefreshImage;
         public static Image NavForwardImage = NavegadorWeb.Properties.Resources.NavForwardImage;
