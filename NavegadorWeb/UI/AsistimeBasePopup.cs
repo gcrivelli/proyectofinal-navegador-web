@@ -757,7 +757,7 @@ namespace NavegadorWeb.UI
         public HowToTour()
         {
             this.BackButton.Hide();
-            AsistimeRoundButton CancelButton = new AsistimeRoundButton(98, 98, Constants.CancelImage, Constants.CancelHoverImage, Constants.CancelClickImage) { Parent = this.Parent };
+            AsistimeRoundButton CancelButton = new AsistimeRoundButton(98, 98, Constants.CancelRedImageW, Constants.CancelRedHoverImageW, Constants.CancelRedClickImageW) { Parent = this.Parent };
             CancelButton.Location = new Point(BackButton.Location.X, BackButton.Location.Y);
             CancelButton.Click += new EventHandler(this.Cancel);
             this.Controls.Add(CancelButton);
@@ -796,7 +796,7 @@ namespace NavegadorWeb.UI
         public HowToAudio()
         {
             this.ForwardButton.Hide();
-            AsistimeRoundButton ConfirmButton = new AsistimeRoundButton(98, 98, Constants.OkImage, Constants.OkHoverImage, Constants.OkClickImage) { Parent = this.Parent };
+            AsistimeRoundButton ConfirmButton = new AsistimeRoundButton(98, 98, Constants.ConfirmGreenImageW, Constants.ConfirmGreenHoverImageW, Constants.ConfirmGreenClickImageW) { Parent = this.Parent };
             ConfirmButton.Location = new Point(ForwardButton.Location.X, ForwardButton.Location.Y);
             ConfirmButton.Click += new EventHandler(this.Confirm);
             this.Controls.Add(ConfirmButton);
@@ -878,13 +878,13 @@ namespace NavegadorWeb.UI
             subTitle.Location = new Point(this.Width / 2 - subTitle.Width / 2, 120);
             subTitle.BringToFront();*/
 
-            BackButton = new AsistimeRoundButton(98, 98, Constants.CancelImage, Constants.CancelHoverImage, Constants.CancelClickImage) { Parent = this.Parent };
+            BackButton = new AsistimeRoundButton(98, 98, Constants.CancelRedImageW, Constants.CancelRedHoverImageW, Constants.CancelRedClickImageW) { Parent = this.Parent };
             BackButton.Location = new Point(30, 372);
             BackButton.Click += new EventHandler(this.Back);
             this.Controls.Add(BackButton);
             BackButton.BringToFront();
 
-            ForwardButton = new AsistimeRoundButton(98, 98, Constants.OkImage, Constants.OkHoverImage, Constants.OkClickImage) { Parent = this.Parent };
+            ForwardButton = new AsistimeRoundButton(98, 98, Constants.ConfirmGreenImageW, Constants.ConfirmGreenHoverImageW, Constants.ConfirmGreenClickImageW) { Parent = this.Parent };
             ForwardButton.Location = new Point(572, 372);
             ForwardButton.Click += new EventHandler(this.Forward);
             this.Controls.Add(ForwardButton);

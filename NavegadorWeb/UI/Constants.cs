@@ -81,24 +81,7 @@ namespace NavegadorWeb.UI
         public static Image CloseHoverImage = NavegadorWeb.Properties.Resources.CloseHoverImage;
         public static Image CloseClickedImage = NavegadorWeb.Properties.Resources.CloseClickedImage;
 
-        public static Image RectImage = NavegadorWeb.Properties.Resources.RectImage;
-        public static Image RectHoverImage = NavegadorWeb.Properties.Resources.RectHoverImage;
-        public static Image RectClickImage = NavegadorWeb.Properties.Resources.RectClickImage;
-        public static Image DivImage = NavegadorWeb.Properties.Resources.DivImage;
-        public static Image DivHoverImage = NavegadorWeb.Properties.Resources.DivHoverImage;
-        public static Image DivClickImage = NavegadorWeb.Properties.Resources.DivClickImage;
-        public static Image DialogImage = NavegadorWeb.Properties.Resources.DialogImage;
-        public static Image DialogHoverImage = NavegadorWeb.Properties.Resources.DialogHoverImage;
-        public static Image DialogClickImage = NavegadorWeb.Properties.Resources.DialogClickImage;
-        public static Image TextImage = NavegadorWeb.Properties.Resources.TextImage;
-        public static Image TextHoverImage = NavegadorWeb.Properties.Resources.TextHoverImage;
-        public static Image TextClickImage = NavegadorWeb.Properties.Resources.TextClickImage;
-        public static Image CircleImage = NavegadorWeb.Properties.Resources.CircleImage;
-        public static Image CircleHoverImage = NavegadorWeb.Properties.Resources.CircleHoverImage;
-        public static Image CircleClickImage = NavegadorWeb.Properties.Resources.CircleClickImage;
-        public static Image RectImage2 = NavegadorWeb.Properties.Resources.RectImage2;
-        public static Image RectHoverImage2 = NavegadorWeb.Properties.Resources.RectHoverImage2;
-        public static Image RectClickImage2 = NavegadorWeb.Properties.Resources.RectClickImage2;
+        //Imágenes de formas sobre fondo azul
         public static Image DivImage2 = NavegadorWeb.Properties.Resources.DivImage2;
         public static Image DivHoverImage2 = NavegadorWeb.Properties.Resources.DivHoverImage2;
         public static Image DivClickImage2 = NavegadorWeb.Properties.Resources.DivClickImage2;
@@ -117,14 +100,46 @@ namespace NavegadorWeb.UI
         public static Image AudioImage = NavegadorWeb.Properties.Resources.AudioImage;
         public static Image AudioHoverImage = NavegadorWeb.Properties.Resources.AudioHoverImage;
         public static Image AudioClickImage = NavegadorWeb.Properties.Resources.AudioClickImage;
+        public static Image EraseImage = NavegadorWeb.Properties.Resources.EraseImage;
+        public static Image EraseHoverImage = NavegadorWeb.Properties.Resources.EraseHoverImage;
+        public static Image EraseClickImage = NavegadorWeb.Properties.Resources.EraseClickImage;
+        public static Image RectImage2 = NavegadorWeb.Properties.Resources.RectImage2;
+        public static Image RectHoverImage2 = NavegadorWeb.Properties.Resources.RectHoverImage2;
+        public static Image RectClickImage2 = NavegadorWeb.Properties.Resources.RectClickImage2;
+
+        //Imágenes de formas sobre fondo blanco
+        public static Image RectImage = NavegadorWeb.Properties.Resources.RectImage;
+        public static Image RectHoverImage = NavegadorWeb.Properties.Resources.RectHoverImage;
+        public static Image RectClickImage = NavegadorWeb.Properties.Resources.RectClickImage;
+        public static Image DivImage = NavegadorWeb.Properties.Resources.DivImage;
+        public static Image DivHoverImage = NavegadorWeb.Properties.Resources.DivHoverImage;
+        public static Image DivClickImage = NavegadorWeb.Properties.Resources.DivClickImage;
+        public static Image DialogImage = NavegadorWeb.Properties.Resources.DialogImage;
+        public static Image DialogHoverImage = NavegadorWeb.Properties.Resources.DialogHoverImage;
+        public static Image DialogClickImage = NavegadorWeb.Properties.Resources.DialogClickImage;
+        public static Image TextImage = NavegadorWeb.Properties.Resources.TextImage;
+        public static Image TextHoverImage = NavegadorWeb.Properties.Resources.TextHoverImage;
+        public static Image TextClickImage = NavegadorWeb.Properties.Resources.TextClickImage;
+        public static Image CircleImage = NavegadorWeb.Properties.Resources.CircleImage;
+        public static Image CircleHoverImage = NavegadorWeb.Properties.Resources.CircleHoverImage;
+        public static Image CircleClickImage = NavegadorWeb.Properties.Resources.CircleClickImage;
+        
 
         //Imagenes de flow sobre fondo azul
-        public static Image ConfirmGreenImage = NavegadorWeb.Properties.Resources.ConfirmImage;
-        public static Image ConfirmGreenHoverImage = NavegadorWeb.Properties.Resources.ConfirmHoverImage;
-        public static Image ConfirmGreenClickImage = NavegadorWeb.Properties.Resources.ConfirmClickImage;
-        public static Image CancelRedImage = NavegadorWeb.Properties.Resources.CloseImage;
-        public static Image CancelRedHoverImage = NavegadorWeb.Properties.Resources.CloseHoverImage;
-        public static Image CancelRedClickImage = NavegadorWeb.Properties.Resources.CloseClickedImage;
+        public static Image ConfirmGreenImageB = NavegadorWeb.Properties.Resources.ConfirmGreenImageB;
+        public static Image ConfirmGreenHoverImageB = NavegadorWeb.Properties.Resources.ConfirmGreenHoverImageB;
+        public static Image ConfirmGreenClickImageB = NavegadorWeb.Properties.Resources.ConfirmGreenClickImageB;
+        public static Image CancelRedImageB = NavegadorWeb.Properties.Resources.CancelRedImageB;
+        public static Image CancelRedHoverImageB = NavegadorWeb.Properties.Resources.CancelRedHoverImageB;
+        public static Image CancelRedClickImageB = NavegadorWeb.Properties.Resources.CancelRedClickImageB;
+
+        //Imagenes de flow sobre fondo blanco
+        public static Image ConfirmGreenImageW = NavegadorWeb.Properties.Resources.ConfirmGreenImageW;
+        public static Image ConfirmGreenHoverImageW = NavegadorWeb.Properties.Resources.ConfirmGreenHoverImageW;
+        public static Image ConfirmGreenClickImageW = NavegadorWeb.Properties.Resources.ConfirmGreenClickImageW;
+        public static Image CancelRedImageW = NavegadorWeb.Properties.Resources.CancelRedImageW;
+        public static Image CancelRedHoverImageW = NavegadorWeb.Properties.Resources.CancelRedHoverImageW;
+        public static Image CancelRedClickImageW = NavegadorWeb.Properties.Resources.CancelRedClickImageW;
 
         public static Image NextImage = NavegadorWeb.Properties.Resources.NextImage;
         public static Image NextHoverImage = NavegadorWeb.Properties.Resources.NextHoverImage;
@@ -132,12 +147,7 @@ namespace NavegadorWeb.UI
         public static Image PreviousImage = NavegadorWeb.Properties.Resources.PreviousImage;
         public static Image PreviousHoverImage = NavegadorWeb.Properties.Resources.PreviousHoverImage;
         public static Image PreviousClickImage = NavegadorWeb.Properties.Resources.PreviousClickImage;
-        public static Image OkImage = NavegadorWeb.Properties.Resources.OkImage;
-        public static Image OkHoverImage = NavegadorWeb.Properties.Resources.OkHoverImage;
-        public static Image OkClickImage = NavegadorWeb.Properties.Resources.OkClickImage;
-        public static Image CancelImage = NavegadorWeb.Properties.Resources.CancelImage;
-        public static Image CancelHoverImage = NavegadorWeb.Properties.Resources.CancelHoverImage;
-        public static Image CancelClickImage = NavegadorWeb.Properties.Resources.CancelClickImage;
+        
 
         public static Image RecordImage = NavegadorWeb.Properties.Resources.RecordImage;
         public static Image RecordHoverImage = NavegadorWeb.Properties.Resources.RecordHoverImage;

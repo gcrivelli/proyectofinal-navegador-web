@@ -458,7 +458,7 @@ namespace NavegadorWeb.Responsable
         {
             if (NavBackButton == null)
             {
-                NavBackButton = new AsistimeRoundButton(98, 98, Constants.CancelRedImage, Constants.CancelRedHoverImage, Constants.CancelRedClickImage) { Parent = this.Parent };
+                NavBackButton = new AsistimeRoundButton(98, 98, Constants.CancelRedImageB, Constants.CancelRedHoverImageB, Constants.CancelRedClickImageB) { Parent = this.Parent };
                 NavBackButton.Location = new Point(x, y);
             }
             NavBackButton.Click += new EventHandler(this.NavigateBack);
@@ -475,7 +475,7 @@ namespace NavegadorWeb.Responsable
         {
             if (ConfirmButton == null)
             {
-                ConfirmButton = new AsistimeRoundButton(98, 98, Constants.ConfirmGreenImage, Constants.ConfirmGreenHoverImage, Constants.ConfirmGreenClickImage) { Parent = this.Parent };
+                ConfirmButton = new AsistimeRoundButton(98, 98, Constants.ConfirmGreenImageB, Constants.ConfirmGreenHoverImageB, Constants.ConfirmGreenClickImageB) { Parent = this.Parent };
                 ConfirmButton.Location = new Point(x, y);
             }
             ConfirmButton.Click += new EventHandler(this.SaveTour);
@@ -549,7 +549,7 @@ namespace NavegadorWeb.Responsable
             this.Controls.Add(AudioButton);
             this.Controls.Add(audioLabel);
 
-            AsistimeRoundButton EraseButton = new AsistimeRoundButton(84, 84, Constants.DialogImage2, Constants.DialogHoverImage2, Constants.DialogClickImage2) { Parent = this.Parent };
+            AsistimeRoundButton EraseButton = new AsistimeRoundButton(84, 84, Constants.EraseImage, Constants.EraseHoverImage, Constants.EraseClickImage) { Parent = this.Parent };
             Label eraseLabel = new Label() { Text = "Borrar", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
             EraseButton.Location = new Point(RectangleButton.Location.X + 550, RectangleButton.Location.Y);
             Center_With(eraseLabel, EraseButton);

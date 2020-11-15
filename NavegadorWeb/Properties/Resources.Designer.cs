@@ -203,9 +203,9 @@ namespace NavegadorWeb.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap CancelClickImage {
+        internal static System.Drawing.Bitmap CancelRedClickImageB {
             get {
-                object obj = ResourceManager.GetObject("CancelClickImage", resourceCulture);
+                object obj = ResourceManager.GetObject("CancelRedClickImageB", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -213,9 +213,9 @@ namespace NavegadorWeb.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap CancelHoverImage {
+        internal static System.Drawing.Bitmap CancelRedClickImageW {
             get {
-                object obj = ResourceManager.GetObject("CancelHoverImage", resourceCulture);
+                object obj = ResourceManager.GetObject("CancelRedClickImageW", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -223,9 +223,39 @@ namespace NavegadorWeb.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap CancelImage {
+        internal static System.Drawing.Bitmap CancelRedHoverImageB {
             get {
-                object obj = ResourceManager.GetObject("CancelImage", resourceCulture);
+                object obj = ResourceManager.GetObject("CancelRedHoverImageB", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CancelRedHoverImageW {
+            get {
+                object obj = ResourceManager.GetObject("CancelRedHoverImageW", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CancelRedImageB {
+            get {
+                object obj = ResourceManager.GetObject("CancelRedImageB", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CancelRedImageW {
+            get {
+                object obj = ResourceManager.GetObject("CancelRedImageW", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -356,6 +386,66 @@ namespace NavegadorWeb.Properties {
         internal static System.Drawing.Bitmap ConfirmClickImage {
             get {
                 object obj = ResourceManager.GetObject("ConfirmClickImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ConfirmGreenClickImageB {
+            get {
+                object obj = ResourceManager.GetObject("ConfirmGreenClickImageB", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ConfirmGreenClickImageW {
+            get {
+                object obj = ResourceManager.GetObject("ConfirmGreenClickImageW", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ConfirmGreenHoverImageB {
+            get {
+                object obj = ResourceManager.GetObject("ConfirmGreenHoverImageB", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ConfirmGreenHoverImageW {
+            get {
+                object obj = ResourceManager.GetObject("ConfirmGreenHoverImageW", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ConfirmGreenImageB {
+            get {
+                object obj = ResourceManager.GetObject("ConfirmGreenImageB", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ConfirmGreenImageW {
+            get {
+                object obj = ResourceManager.GetObject("ConfirmGreenImageW", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -516,6 +606,36 @@ namespace NavegadorWeb.Properties {
         internal static System.Drawing.Bitmap DownHover {
             get {
                 object obj = ResourceManager.GetObject("DownHover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EraseClickImage {
+            get {
+                object obj = ResourceManager.GetObject("EraseClickImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EraseHoverImage {
+            get {
+                object obj = ResourceManager.GetObject("EraseHoverImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EraseImage {
+            get {
+                object obj = ResourceManager.GetObject("EraseImage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -786,36 +906,6 @@ namespace NavegadorWeb.Properties {
         internal static System.Drawing.Bitmap NextImage {
             get {
                 object obj = ResourceManager.GetObject("NextImage", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap OkClickImage {
-            get {
-                object obj = ResourceManager.GetObject("OkClickImage", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap OkHoverImage {
-            get {
-                object obj = ResourceManager.GetObject("OkHoverImage", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap OkImage {
-            get {
-                object obj = ResourceManager.GetObject("OkImage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

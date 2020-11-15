@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -182,6 +182,11 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Extra\WebBrowserHelper.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Responsable\AssistantAppBar.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -302,14 +307,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="Responsable\CreateStep.resx">
       <DependentUpon>CreateStep.cs</DependentUpon>
     </EmbeddedResource>
@@ -497,6 +497,140 @@
     <None Include="Images\UpHover.jpg" />
     <None Include="Images\VioletImage.jpg" />
     <None Include="Images\YellowImage.jpg" />
+    <None Include="Images\FormsModifiers\BlackImage.jpg" />
+    <None Include="Images\FormsModifiers\BlueImage.jpg" />
+    <None Include="Images\FormsModifiers\Down.jpg" />
+    <None Include="Images\FormsModifiers\DownHover.jpg" />
+    <None Include="Images\FormsModifiers\FontDown.jpg" />
+    <None Include="Images\FormsModifiers\FontDownHover.jpg" />
+    <None Include="Images\FormsModifiers\FontUp.jpg" />
+    <None Include="Images\FormsModifiers\FontUpHover.jpg" />
+    <None Include="Images\FormsModifiers\GreenImage.jpg" />
+    <None Include="Images\FormsModifiers\Minus.jpg" />
+    <None Include="Images\FormsModifiers\MinusHover.jpg" />
+    <None Include="Images\FormsModifiers\OrangeImage.jpg" />
+    <None Include="Images\FormsModifiers\Plus.jpg" />
+    <None Include="Images\FormsModifiers\PlusHover.jpg" />
+    <None Include="Images\FormsModifiers\RedImage.jpg" />
+    <None Include="Images\FormsModifiers\TurnLeft.jpg" />
+    <None Include="Images\FormsModifiers\TurnLeftHover.jpg" />
+    <None Include="Images\FormsModifiers\TurnRight.jpg" />
+    <None Include="Images\FormsModifiers\TurnRightHover.jpg" />
+    <None Include="Images\FormsModifiers\Up.jpg" />
+    <None Include="Images\FormsModifiers\UpHover.jpg" />
+    <None Include="Images\FormsModifiers\VioletImage.jpg" />
+    <None Include="Images\FormsModifiers\YellowImage.jpg" />
+    <None Include="Images\FlowBlueBack\CloseClickImageRB.jpg" />
+    <None Include="Images\FlowBlueBack\CloseHoverImageRB.jpg" />
+    <None Include="Images\FlowBlueBack\CloseImageRB.jpg" />
+    <None Include="Images\FlowBlueBack\ConfirmClickImageGB.jpg" />
+    <None Include="Images\FlowBlueBack\ConfirmHoverImageGB.jpg" />
+    <None Include="Images\FlowBlueBack\ConfirmImageGB.jpg" />
+    <None Include="Images\FlowBlueBack\CancelRedClickImage.jpg" />
+    <None Include="Images\FlowBlueBack\CancelRedHoverImage.jpg" />
+    <None Include="Images\FlowBlueBack\CancelRedImage.jpg" />
+    <None Include="Images\FlowBlueBack\ConfirmGreenClickImage.jpg" />
+    <None Include="Images\FlowBlueBack\ConfirmGreenHoverImage.jpg" />
+    <None Include="Images\FlowBlueBack\ConfirmGreenImage.jpg" />
+    <None Include="Images\FlowWhiteBack\CancelRedClickImageW.jpg" />
+    <None Include="Images\FlowWhiteBack\CancelRedHoverImageW.jpg" />
+    <None Include="Images\FlowWhiteBack\CancelRedImageW.jpg" />
+    <None Include="Images\FlowWhiteBack\ConfirmGreenClickImageW.jpg" />
+    <None Include="Images\FlowWhiteBack\ConfirmGreenHoverImageW.jpg" />
+    <None Include="Images\FlowWhiteBack\ConfirmGreenImageW.jpg" />
+    <None Include="Images\FlowBlueBack\CancelRedClickImageB.jpg" />
+    <None Include="Images\FlowBlueBack\CancelRedHoverImageB.jpg" />
+    <None Include="Images\FlowBlueBack\CancelRedImageB.jpg" />
+    <None Include="Images\FlowBlueBack\ConfirmGreenClickImageB.jpg" />
+    <None Include="Images\FlowBlueBack\ConfirmGreenHoverImageB.jpg" />
+    <None Include="Images\FlowBlueBack\ConfirmGreenImageB.jpg" />
+    <None Include="Images\FlowWhiteBack\NextClickImage.jpg" />
+    <None Include="Images\FlowWhiteBack\NextHoverImage.jpg" />
+    <None Include="Images\FlowWhiteBack\NextImage.jpg" />
+    <None Include="Images\FlowWhiteBack\PreviousClickImage.jpg" />
+    <None Include="Images\FlowWhiteBack\PreviousHoverImage.jpg" />
+    <None Include="Images\FlowWhiteBack\PreviousImage.jpg" />
+    <None Include="Images\Appbar\AddTourClickImage.jpg" />
+    <None Include="Images\Appbar\AddTourHoverImage.jpg" />
+    <None Include="Images\Appbar\AddTourImage.jpg" />
+    <None Include="Images\Appbar\AsistimeClickImage.jpg" />
+    <None Include="Images\Appbar\AsistimeHoverImage.jpg" />
+    <None Include="Images\Appbar\AsistimeImage.jpg" />
+    <None Include="Images\Appbar\CloseTourClickImage.jpg" />
+    <None Include="Images\Appbar\CloseTourHoverImage.jpg" />
+    <None Include="Images\Appbar\CloseTourImage.jpg" />
+    <None Include="Images\Appbar\ConfirmClickImage.jpg" />
+    <None Include="Images\Appbar\ConfirmHoverImage.jpg" />
+    <None Include="Images\Appbar\ConfirmImage.jpg" />
+    <None Include="Images\Appbar\NavBackClickedImage.jpg" />
+    <None Include="Images\Appbar\NavBackHoverImage.jpg" />
+    <None Include="Images\Appbar\NavBackImage.jpg" />
+    <None Include="Images\Appbar\NavForwardClickedImage.jpg" />
+    <None Include="Images\Appbar\NavForwardHoverImage.jpg" />
+    <None Include="Images\Appbar\NavForwardImage.jpg" />
+    <None Include="Images\Appbar\NavProfileClickedImage.jpg" />
+    <None Include="Images\Appbar\NavProfileHoverImage.jpg" />
+    <None Include="Images\Appbar\NavProfileImage.jpg" />
+    <None Include="Images\Appbar\NavRefreshClickedImage.jpg" />
+    <None Include="Images\Appbar\NavRefreshHoverImage.jpg" />
+    <None Include="Images\Appbar\NavRefreshImage.jpg" />
+    <None Include="Images\FormsBar\AudioClickImage.jpg" />
+    <None Include="Images\FormsBar\AudioHoverImage.jpg" />
+    <None Include="Images\FormsBar\AudioImage.jpg" />
+    <None Include="Images\FormsBar\CircleClickImage2.jpg" />
+    <None Include="Images\FormsBar\CircleHoverImage2.jpg" />
+    <None Include="Images\FormsBar\CircleImage2.jpg" />
+    <None Include="Images\FormsBar\DialogClickImage2.jpg" />
+    <None Include="Images\FormsBar\DialogHoverImage2.jpg" />
+    <None Include="Images\FormsBar\DialogImage2.jpg" />
+    <None Include="Images\FormsBar\DivClickImage2.jpg" />
+    <None Include="Images\FormsBar\DivHoverImage2.jpg" />
+    <None Include="Images\FormsBar\DivImage2.jpg" />
+    <None Include="Images\FormsBar\EraseClickImage.jpg" />
+    <None Include="Images\FormsBar\EraseHoverImage.jpg" />
+    <None Include="Images\FormsBar\EraseImage.jpg" />
+    <None Include="Images\FormsBar\RectHoverImage2.jpg" />
+    <None Include="Images\FormsBar\RectImage.jpg" />
+    <None Include="Images\FormsBar\RectImage2.jpg" />
+    <None Include="Images\FormsBar\TextHoverImage2.jpg" />
+    <None Include="Images\FormsBar\TextImage.jpg" />
+    <None Include="Images\FormsBar\TextImage2.jpg" />
+    <None Include="Images\Tourbar\StepBackClickImage.jpg" />
+    <None Include="Images\Tourbar\StepBackHoverImage.jpg" />
+    <None Include="Images\Tourbar\StepBackImage.jpg" />
+    <None Include="Images\Tourbar\StepForwardClickImage.jpg" />
+    <None Include="Images\Tourbar\StepForwardHoverImage.jpg" />
+    <None Include="Images\Tourbar\StepForwardImage.jpg" />
+    <None Include="Images\Tourbar\StepPlayClickimage.jpg" />
+    <None Include="Images\Tourbar\StepPlayHoverImage.jpg" />
+    <None Include="Images\Tourbar\StepPlayImage.jpg" />
+    <None Include="Images\FormsBar\RecordClickImage.jpg" />
+    <None Include="Images\FormsBar\RecordHoverImage.jpg" />
+    <None Include="Images\FormsBar\RecordImage.jpg" />
+    <None Include="Images\FormsBar\AddStepClickImage.jpg" />
+    <None Include="Images\FormsBar\AddStepHoverImage.jpg" />
+    <None Include="Images\FormsBar\AddStepImage.jpg" />
+    <None Include="Images\FormsBar\CircleClickImage.jpg" />
+    <None Include="Images\FormsBar\CircleHoverImage.jpg" />
+    <None Include="Images\FormsBar\CircleImage.jpg" />
+    <None Include="Images\FormsBar\DialogClickImage.jpg" />
+    <None Include="Images\FormsBar\DialogHoverImage.jpg" />
+    <None Include="Images\FormsBar\DialogImage.jpg" />
+    <None Include="Images\FormsBar\DivClickImage.jpg" />
+    <None Include="Images\FormsBar\DivHoverImage.jpg" />
+    <None Include="Images\FormsBar\DivImage.jpg" />
+    <None Include="Images\FormsBar\ListenClickImage.jpg" />
+    <None Include="Images\FormsBar\ListenHoverImage.jpg" />
+    <None Include="Images\FormsBar\Listenimage.jpg" />
+    <None Include="Images\FormsBar\RectClickImage.jpg" />
+    <None Include="Images\FormsBar\RectClickImage2.jpg" />
+    <None Include="Images\FormsBar\RectHoverImage.jpg" />
+    <None Include="Images\FormsBar\StopClickImage.jpg" />
+    <None Include="Images\FormsBar\StopHoverImage.jpg" />
+    <None Include="Images\FormsBar\StopImage.jpg" />
+    <None Include="Images\FormsBar\TextClickImage.jpg" />
+    <None Include="Images\FormsBar\TextClickImage2.jpg" />
+    <None Include="Images\FormsBar\TextHoverImage.jpg" />
     <Content Include="Responsable\CreateCanvas.js" />
   </ItemGroup>
   <ItemGroup />
