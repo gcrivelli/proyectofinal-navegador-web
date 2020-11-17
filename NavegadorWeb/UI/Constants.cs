@@ -106,6 +106,9 @@ namespace NavegadorWeb.UI
         public static Image RectImage2 = NavegadorWeb.Properties.Resources.RectImage2;
         public static Image RectHoverImage2 = NavegadorWeb.Properties.Resources.RectHoverImage2;
         public static Image RectClickImage2 = NavegadorWeb.Properties.Resources.RectClickImage2;
+        public static Image IconImage = NavegadorWeb.Properties.Resources.IconImage;
+        public static Image IconHoverImage = NavegadorWeb.Properties.Resources.IconHoverImage;
+        public static Image IconClickImage = NavegadorWeb.Properties.Resources.IconClickImage;
 
         //Imágenes de formas sobre fondo blanco
         public static Image RectImage = NavegadorWeb.Properties.Resources.RectImage;

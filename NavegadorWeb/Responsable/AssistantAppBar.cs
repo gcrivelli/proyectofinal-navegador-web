@@ -360,9 +360,9 @@ namespace NavegadorWeb.Responsable
             BackButton.Enabled = true;
         }
 
-        public void ShowControlsDiv()
+        /*public void ShowControlsDiv()
         {
-            this.Show();
+            this.Hide();
             LessThicknessButton.Enabled = true;
             MoreThicknessButton.Enabled = true;
             LessSizeButton.Enabled = true;
@@ -378,7 +378,7 @@ namespace NavegadorWeb.Responsable
             OrangeButton.Enabled = true;
             VioletButton.Enabled = true;
             BackButton.Enabled = true;
-        }
+        }*/
     }
 
     class AsistimeTourCreationBar : Panel
@@ -557,6 +557,14 @@ namespace NavegadorWeb.Responsable
             this.Controls.Add(EraseButton);
             this.Controls.Add(eraseLabel);
 
+            AsistimeRoundButton IconButton = new AsistimeRoundButton(84, 84, Constants.IconImage, Constants.IconHoverImage, Constants.IconClickImage) { Parent = this.Parent };
+            Label iconLabel = new Label() { Text = "Íconos", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
+            IconButton.Location = new Point(RectangleButton.Location.X + 660, RectangleButton.Location.Y);
+            Center_With(iconLabel, IconButton);
+            IconButton.Click += new EventHandler(ShowIconPanel);
+            this.Controls.Add(IconButton);
+            this.Controls.Add(iconLabel);
+
             this.Controls.Add(this.GetNavConfirmButton(this.ClientSize.Width - 150, 15));
             Label profileLabel = new Label() { Text = "Confirmar", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
             Center_With(profileLabel, ConfirmButton);
@@ -645,6 +653,11 @@ namespace NavegadorWeb.Responsable
             control.save();
         }
 
+        private void ShowIconPanel(object sender, EventArgs e)
+        {
+            NavigatorAssistant form = this.Parent as NavigatorAssistant;
+            form.drawForm("icono");
+        }
     }
 
     class AsistimeIconBar : Panel

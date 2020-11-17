@@ -13,7 +13,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\dev\WebSite\</PublishUrl>
+    <PublishUrl>C:\Users\rcontr23\Desktop\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -55,7 +55,7 @@
     <ManifestKeyFile>NavegadorWeb_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>false</GenerateManifests>
+    <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>false</SignManifests>
@@ -369,7 +369,7 @@
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 y x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -631,6 +631,32 @@
     <None Include="Images\FormsBar\TextClickImage.jpg" />
     <None Include="Images\FormsBar\TextClickImage2.jpg" />
     <None Include="Images\FormsBar\TextHoverImage.jpg" />
+    <None Include="Images\Icons\Ban.jpg" />
+    <None Include="Images\Icons\BanHover.jpg" />
+    <None Include="Images\Icons\Bell.jpg" />
+    <None Include="Images\Icons\BellHover.jpg" />
+    <None Include="Images\Icons\Check.jpg" />
+    <None Include="Images\Icons\CheckHover.jpg" />
+    <None Include="Images\Icons\Comment.jpg" />
+    <None Include="Images\Icons\CommentHover.jpg" />
+    <None Include="Images\Icons\Frown.jpg" />
+    <None Include="Images\Icons\FrownHover.jpg" />
+    <None Include="Images\Icons\GrinAlt.jpg" />
+    <None Include="Images\Icons\GrinAltHover.jpg" />
+    <None Include="Images\Icons\HandPaper.jpg" />
+    <None Include="Images\Icons\HandPaperHover.jpg" />
+    <None Include="Images\Icons\HandPointUp.jpg" />
+    <None Include="Images\Icons\HandPointUpHover.jpg" />
+    <None Include="Images\Icons\ShoePrints.jpg" />
+    <None Include="Images\Icons\ShoePrintsHover.jpg" />
+    <None Include="Images\Icons\ShoppingCart.jpg" />
+    <None Include="Images\Icons\ShoppingCartHover.jpg" />
+    <None Include="Images\Icons\ThumbsUp.jpg" />
+    <None Include="Images\Icons\ThumbsUpHover.jpg" />
+    <None Include="Images\FormsBar\IconClickImage.jpg" />
+    <None Include="Images\FormsBar\IconHoverImage.jpg" />
+    <None Include="Images\FormsBar\InconImage.jpg" />
+    <None Include="Images\FormsBar\IconImage.jpg" />
     <Content Include="Responsable\CreateCanvas.js" />
   </ItemGroup>
   <ItemGroup />

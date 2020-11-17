@@ -279,32 +279,42 @@ namespace NavegadorWeb.Responsable
 
         public void drawForm(String form){
             formBar.Location = new System.Drawing.Point(asistimeAppBar.Location.X + 30, asistimeAppBar.Location.Y + asistimeAppBar.Height + 30);
-            formBar.Show();
+            //formBar.Show();
             formBar.BringToFront();
+            iconBar.BringToFront();
             asistimeAppBar.Hide();
             //stepsBar.Show();
 
             switch (form)
             {
                 case "circulo":
+                    iconBar.Hide();
                     formBar.ShowControlsCircle();
                     circle();
                     break;
                 case "rectangulo":
+                    iconBar.Hide();
                     formBar.ShowControlsRect();
                     rectangle();
                     break;
                 case "div":
-                    formBar.ShowControlsDiv();
+                    iconBar.Hide();
+                    formBar.Hide();
                     div();
                     break;
                 case "borrador":
+                    iconBar.Hide();
                     formBar.Hide();
                     erase();
                     break;
                 case "texto":
+                    iconBar.Hide();
                     formBar.ShowControlsText();
                     text();
+                    break;
+                case "icono":
+                    formBar.Hide();
+                    iconBar.Show();
                     break;
             }
         }
