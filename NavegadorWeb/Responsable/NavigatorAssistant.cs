@@ -13,6 +13,7 @@ namespace NavegadorWeb.Responsable
     public partial class NavigatorAssistant : NavigatorForm
     {
         private AsistimeFormBar formBar;
+        private AsistimeIconBar iconBar;
         private AsistimeStepsBar stepsBar;
         private AsistimeTourCreationBar tourBar;
         private static HtmlDocument doc;
@@ -35,12 +36,15 @@ namespace NavegadorWeb.Responsable
         {
             InitializeComponent();
             asistimeAppBar = new AssistantAppBar() { Parent = this };
+            iconBar = new AsistimeIconBar() { Parent = this };
             formBar = new AsistimeFormBar() { Parent = this };
             stepsBar = new AsistimeStepsBar() { Parent = this };
             tourBar = new AsistimeTourCreationBar() { Parent = this };
+            this.Controls.Add(iconBar);
             this.Controls.Add(formBar);
             this.Controls.Add(stepsBar);
             this.Controls.Add(tourBar);
+            iconBar.Hide();
             formBar.Hide();
             stepsBar.Hide();
             tourBar.Hide();
@@ -197,10 +201,10 @@ namespace NavegadorWeb.Responsable
             var tourResponse = tourController.PostAsync(tour).Result;
 
             // Asigno a todos los adultos el tour
-            adults.ForEach(adult =>
+            /*adults.ForEach(adult =>
             {
                 var a = userController.AsignTourAdult(tourResponse._id, adult._id).Result;
-            });
+            });*/
 
             // post de los audios
             var allAudioResponse = true;

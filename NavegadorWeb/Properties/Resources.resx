@@ -154,6 +154,18 @@
   <data name="AudioImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\FormsBar\AudioImage.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Ban" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\Icons\Ban.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BanHover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\Icons\BanHover.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bell" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\Icons\Bell.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BellHover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\Icons\BellHover.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="BlackImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\FormsModifiers\BlackImage.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -177,6 +189,12 @@
   </data>
   <data name="CancelRedImageW" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\FlowWhiteBack\CancelRedImageW.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Check" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\Icons\Check.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CheckHover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\Icons\CheckHover.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="CircleClickImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\FormsBar\CircleClickImage.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -213,6 +231,12 @@
   </data>
   <data name="CloseTourImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\Appbar\CloseTourImage.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Comment" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\Icons\Comment.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CommentHover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\Icons\CommentHover.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ConfirmClickImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\Appbar\ConfirmClickImage.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -304,8 +328,32 @@
   <data name="FontUpHover" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\FormsModifiers\FontUpHover.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Frown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\Icons\Frown.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FrownHover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\Icons\FrownHover.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="GreenImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\FormsModifiers\GreenImage.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GrinAlt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\Icons\GrinAlt.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GrinAltHover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\Icons\GrinAltHover.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HandPaper" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\Icons\HandPaper.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HandPaperHover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\Icons\HandPaperHover.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HandPointUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\Icons\HandPointUp.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HandPointUpHover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\Icons\HandPointUpHover.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="isologo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\isologo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -421,6 +469,18 @@
   <data name="RedImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\FormsModifiers\RedImage.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ShoePrints" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\Icons\ShoePrints.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ShoePrintsHover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\Icons\ShoePrintsHover.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ShoppingCart" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\Icons\ShoppingCart.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ShoppingCartHover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\Icons\ShoppingCartHover.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="StepBackClickImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\Tourbar\StepBackClickImage.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -474,6 +534,12 @@
   </data>
   <data name="TextImage2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\FormsBar\TextImage2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ThumbsUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\Icons\ThumbsUp.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ThumbsUpHover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\Icons\ThumbsUpHover.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TurnLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\FormsModifiers\TurnLeft.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

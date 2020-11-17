@@ -829,6 +829,7 @@ namespace NavegadorWeb.UI
         public List<User> adults;
         public List<int> adultsChecked;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private UserController userController;
 
         public TutorialAssign()
         {
@@ -890,7 +891,7 @@ namespace NavegadorWeb.UI
             this.Controls.Add(ForwardButton);
             ForwardButton.BringToFront();
 
-            var userController = new UserController();
+            userController = new UserController();
             adultsChecked = new List<int>();
 
             //Busco lista de usuarios
@@ -924,8 +925,12 @@ namespace NavegadorWeb.UI
 
         protected void Forward(object sender, EventArgs e)
         {
+            AsistimeTourAssign form = Parent as AsistimeTourAssign;
+            adultsChecked.ForEach(adult =>
+            {
+                var a = userController.AsignTourAdult(form.tour._id, adults[adult]._id).Result;
+            });
             this.Hide();
-            //next.Show();
         }
 
         protected void Sarasa(object sender, EventArgs e)

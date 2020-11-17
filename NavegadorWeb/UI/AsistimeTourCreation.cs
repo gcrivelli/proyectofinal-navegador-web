@@ -182,7 +182,7 @@ namespace NavegadorWeb.UI
 
     class AsistimeTourAssign : AsistimeBaseForm
     {
-        private Tour tour;
+        public Tour tour;
         AssistantTourCard previousForm;
 
         public AsistimeTourAssign(AssistantTourCard form, Tour tour)
@@ -200,7 +200,7 @@ namespace NavegadorWeb.UI
 
         private void AsistimeTourAssign_Load(object sender, EventArgs e)
         {
-            TutorialAssign asignTourPanel = new TutorialAssign();
+            TutorialAssign asignTourPanel = new TutorialAssign() { Parent = this};
             asignTourPanel.Location = new Point(this.Width / 2 - asignTourPanel.Width / 2, this.Height / 2 - asignTourPanel.Height / 2);
             this.Controls.Add(asignTourPanel);
             asignTourPanel.Show();
@@ -238,6 +238,12 @@ namespace NavegadorWeb.UI
             audioCreation.Location = new Point(this.Width / 2 - audioCreation.Width / 2, this.Height / 2 - audioCreation.Height / 2);
             audioCreation.Hide();*/
         }
+
+        public void AssignTourToUser(User user)
+        {
+
+        }
+
     }
 
  }

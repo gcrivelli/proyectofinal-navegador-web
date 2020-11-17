@@ -162,6 +162,7 @@ namespace NavegadorWeb.UI
         public static Image AddStepHoverImage = NavegadorWeb.Properties.Resources.AddStepHoverImage;
         public static Image AddStepClickImage = NavegadorWeb.Properties.Resources.AddStepClickImage;
 
+        //Imágenes de modificación de formas
         public static Image UpImage = NavegadorWeb.Properties.Resources.Up;
         public static Image UpHoverImage = NavegadorWeb.Properties.Resources.UpHover;
         public static Image DownImage = NavegadorWeb.Properties.Resources.Down;
@@ -185,6 +186,30 @@ namespace NavegadorWeb.UI
         public static Image OrangeImage = NavegadorWeb.Properties.Resources.OrangeImage;
         public static Image VioletImage = NavegadorWeb.Properties.Resources.VioletImage;
         public static Image BlackImage = NavegadorWeb.Properties.Resources.BlackImage;
+
+        //Imágenes de font awesome
+        public static Image Ban = NavegadorWeb.Properties.Resources.Ban;
+        public static Image Bell = NavegadorWeb.Properties.Resources.Bell;
+        public static Image Check = NavegadorWeb.Properties.Resources.Check;
+        public static Image Comment = NavegadorWeb.Properties.Resources.Comment;
+        public static Image Frown = NavegadorWeb.Properties.Resources.Frown;
+        public static Image GrinAlt = NavegadorWeb.Properties.Resources.GrinAlt;
+        public static Image HandPaper = NavegadorWeb.Properties.Resources.HandPaper;
+        public static Image HandPointUp = NavegadorWeb.Properties.Resources.HandPointUp;
+        public static Image ShoePrints = NavegadorWeb.Properties.Resources.ShoePrints;
+        public static Image ShoppingCart = NavegadorWeb.Properties.Resources.ShoppingCart;
+        public static Image ThumbsUp = NavegadorWeb.Properties.Resources.ThumbsUp;
+        public static Image BanHover = NavegadorWeb.Properties.Resources.BanHover;
+        public static Image BellHover = NavegadorWeb.Properties.Resources.BellHover;
+        public static Image CheckHover = NavegadorWeb.Properties.Resources.CheckHover;
+        public static Image CommentHover = NavegadorWeb.Properties.Resources.CommentHover;
+        public static Image FrownHover = NavegadorWeb.Properties.Resources.FrownHover;
+        public static Image GrinAltHover = NavegadorWeb.Properties.Resources.GrinAltHover;
+        public static Image HandPaperHover = NavegadorWeb.Properties.Resources.HandPaperHover;
+        public static Image HandPointUpHover = NavegadorWeb.Properties.Resources.HandPointUpHover;
+        public static Image ShoePrintsHover = NavegadorWeb.Properties.Resources.ShoePrintsHover;
+        public static Image ShoppingCartHover = NavegadorWeb.Properties.Resources.ShoppingCartHover;
+        public static Image ThumbsUpHover = NavegadorWeb.Properties.Resources.ThumbsUpHover;
 
         public static Image AsistimeLogo = NavegadorWeb.Properties.Resources.logo;
         public static Image AsistimeIcon = NavegadorWeb.Properties.Resources.logo;

@@ -69,7 +69,7 @@ namespace NavegadorWeb.UI
 
     class AssistantTourCard : BunifuCards
     {
-        Tour tourAsociado;
+        public Tour tourAsociado;
         public AssistantTourCard(Tour tour, int x, int y)
         {
             color = Color.Transparent;
