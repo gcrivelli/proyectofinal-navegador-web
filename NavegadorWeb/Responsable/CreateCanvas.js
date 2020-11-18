@@ -163,12 +163,12 @@ function initBorrar() {
   context.fillText('\uf12d',0,25);
 }
 
-function initFlecha() { 
+function initBell() { 
   var canvas=document.getElementById("canvas"+i);
   var context=canvas.getContext("2d");
   canvas.dataset.tipo=4;
-  context.font=width+'px FontAwesome';
-  context.fillText('\uf062',0,width-(width/5));
+  context.font='100px FontAwesome';
+  context.fillText('\uf0f3',60,140);
   context.strokeStyle=color;
   context.stroke();
 }
@@ -177,8 +177,88 @@ function initBan() {
   var canvas=document.getElementById("canvas"+i);
   var context=canvas.getContext("2d");
   canvas.dataset.tipo=5;
-  context.font=width+'px FontAwesome';
-  context.fillText('\uf05e',0,width-(width/5));
+  context.font='100px FontAwesome';
+  context.fillText('\uf05e',60,140);
+  context.strokeStyle=color;
+  context.stroke();
+}
+
+function initCheck() { 
+  var canvas=document.getElementById("canvas"+i);
+  var context=canvas.getContext("2d");
+  canvas.dataset.tipo=6;
+  context.font='100px FontAwesome';
+  context.fillText('\uf00c',60,140);
+  context.strokeStyle=color;
+  context.stroke();
+}
+
+function initComment() { 
+  var canvas=document.getElementById("canvas"+i);
+  var context=canvas.getContext("2d");
+  canvas.dataset.tipo=7;
+  context.font='100px FontAwesome';
+  context.fillText('\uf075',60,140);
+  context.strokeStyle=color;
+  context.stroke();
+}
+
+function initFrown() { 
+  var canvas=document.getElementById("canvas"+i);
+  var context=canvas.getContext("2d");
+  canvas.dataset.tipo=8;
+  context.font='100px FontAwesome';
+  context.fillText('\uf119',60,140);
+  context.strokeStyle=color;
+  context.stroke();
+}
+
+function initGrin() { 
+  var canvas=document.getElementById("canvas"+i);
+  var context=canvas.getContext("2d");
+  canvas.dataset.tipo=9;
+  context.font='100px FontAwesome';
+  context.fillText('\uf118',60,140);
+  context.strokeStyle=color;
+  context.stroke();
+}
+
+function initHandpaper() { 
+  var canvas=document.getElementById("canvas"+i);
+  var context=canvas.getContext("2d");
+  canvas.dataset.tipo=10;
+  context.font='100px FontAwesome';
+  context.fillText('\uf256',60,140);
+  context.strokeStyle=color;
+  context.stroke();
+}
+
+function initHandpoint() { 
+  var canvas=document.getElementById("canvas"+i);
+  var context=canvas.getContext("2d");
+  canvas.dataset.tipo=11;
+  context.font='100px FontAwesome';
+  context.fillText('\uf0a6',60,140);
+  context.strokeStyle=color;
+  context.stroke();
+}
+
+function initShopping() { 
+  var canvas=document.getElementById("canvas"+i);
+  var context=canvas.getContext("2d");
+  canvas.dataset.tipo=13;
+  context.font='100px FontAwesome';
+  context.fillText('\uf07a',60,140);
+  context.strokeStyle=color;
+  context.stroke();
+}
+
+function initThumbs() { 
+  var canvas=document.getElementById("canvas"+i);
+  var context=canvas.getContext("2d");
+  canvas.dataset.tipo=14;
+  context.font='100px FontAwesome';
+  context.fillText('\uf164',60,140);
   context.strokeStyle=color;
   context.stroke();
 }
@@ -344,10 +424,34 @@ function redibujarCanvas() {
     initTexto();
   }  
   if (tipo==4) {
-    initFlecha();
+    initBell();
   }
   if (tipo==5) {
     initBan();
+  }
+  if (tipo==6) {
+    initCheck();
+  }
+  if (tipo==7) {
+    initComment();
+  }
+  if (tipo==8) {
+    initFrown();
+  }
+  if (tipo==9) {
+    initGrin();
+  }
+  if (tipo==10) {
+    initHandpaper();
+  }
+  if (tipo==11) {
+    initHandpoint();
+  }
+  if (tipo==13) {
+    initShopping();
+  }
+  if (tipo==14) {
+    initThumbs();
   }
 }
 

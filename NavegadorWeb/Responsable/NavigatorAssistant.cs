@@ -598,8 +598,40 @@ namespace NavegadorWeb.Responsable
 
         public void drawIcon(String icon)
         {
-            //TODO: poner el switch para los diferentes iconos 
-            //ver AssistantAppBar lineas 695-748
+            doc.InvokeScript("initCanvas");
+            switch (icon)
+            {
+                case "ban":
+                    doc.InvokeScript("initBan");
+                    break;
+                case "bell":
+                    doc.InvokeScript("initBell");
+                    break;
+                case "check":
+                    doc.InvokeScript("initCheck");
+                    break;
+                case "comment":
+                    doc.InvokeScript("initComment");
+                    break;
+                case "frown":
+                    doc.InvokeScript("initFrown");
+                    break;
+                case "grin-alt":
+                    doc.InvokeScript("initGrin");
+                    break;
+                case "hand-paper":
+                    doc.InvokeScript("initHandpaper");
+                    break;
+                case "hand-point-up":
+                    doc.InvokeScript("initHandpoint");
+                    break;
+                case "shopping-cart":
+                    doc.InvokeScript("initShopping");
+                    break;
+                case "thumbs-up":
+                    doc.InvokeScript("initThumbs");
+                    break;
+            }
         }
 
     }

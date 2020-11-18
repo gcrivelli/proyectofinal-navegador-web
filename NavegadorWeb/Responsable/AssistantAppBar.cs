@@ -732,18 +732,13 @@ namespace NavegadorWeb.Responsable
             HandPointUp.Click += new EventHandler((sender, e) => DrawIcon("hand-point-up"));
             this.Controls.Add(HandPointUp);
 
-            ShoePrints = new AsistimeRoundButton(37, 37, Constants.ShoePrints, Constants.ShoePrintsHover, Constants.ShoePrintsHover) { Parent = this.Parent };
-            ShoePrints.Location = new Point(30, 498);
-            ShoePrints.Click += new EventHandler((sender, e) => DrawIcon("shoe-prints"));
-            this.Controls.Add(ShoePrints);
-
             ShoppingCart = new AsistimeRoundButton(37, 37, Constants.ShoppingCart, Constants.ShoppingCartHover, Constants.ShoppingCartHover) { Parent = this.Parent };
-            ShoppingCart.Location = new Point(80, 498);
+            ShoppingCart.Location = new Point(40, 498);
             ShoppingCart.Click += new EventHandler((sender, e) => DrawIcon("shopping-cart"));
             this.Controls.Add(ShoppingCart);
 
             ThumbsUp = new AsistimeRoundButton(37, 37, Constants.ThumbsUp, Constants.ThumbsUpHover, Constants.ThumbsUpHover) { Parent = this.Parent };
-            ThumbsUp.Location = new Point(130, 498);
+            ThumbsUp.Location = new Point(107, 498);
             ThumbsUp.Click += new EventHandler((sender, e) => DrawIcon("thumbs-up"));
             this.Controls.Add(ThumbsUp);
         }
