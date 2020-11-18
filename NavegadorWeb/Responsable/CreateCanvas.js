@@ -24,10 +24,17 @@ document.addEventListener("mousemove",onMouseUpdate, false);
 document.addEventListener("mouseenter",onMouseUpdate, false);
 document.addEventListener("keypress",onKeyPress, false);
 document.addEventListener("click",onClick, false);
+document.addEventListener("scroll",onScroll, false);
 
 function onMouseUpdate(e) {                                 
   x=e.pageX;
   y=e.pageY;
+}
+
+function onScroll() {
+  if (dibujandoDiv||dibujandoDiv2) {
+    window.scrollTo(0, 0);
+  }
 }
 
 function onKeyPress(e) {                          
@@ -299,7 +306,8 @@ function initTexto() {
 }
 
 function initDiv() {
-  if (dibujandoDiv==false) {    
+  if (dibujandoDiv==false) {   
+    window.scrollTo(0, 0);
     var elements = document.getElementsByClassName("div");
     while(elements.length > 0){
         elements[0].parentNode.removeChild(elements[0]);
