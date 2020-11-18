@@ -686,7 +686,7 @@ namespace NavegadorWeb.Responsable
         {
             BackColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour);
             ForeColor = ColorTranslator.FromHtml(Constants.AppSecondaryColour);
-            Height = 700;
+            Height = 300;
             Width = 200;
 
             this.MouseMove += new MouseEventHandler(panel_MouseMove);
@@ -703,42 +703,42 @@ namespace NavegadorWeb.Responsable
             this.Controls.Add(Bell);
 
             Check = new AsistimeRoundButton(37, 37, Constants.Check, Constants.CheckHover, Constants.CheckHover) { Parent = this.Parent };
-            Check.Location = new Point(40, 147);
+            Check.Location = new Point(40, 78);
             Check.Click += new EventHandler((sender, e) => DrawIcon("check"));
             this.Controls.Add(Check);
 
             Comment = new AsistimeRoundButton(37, 37, Constants.Comment, Constants.CommentHover, Constants.CommentHover) { Parent = this.Parent };
-            Comment.Location = new Point(107, 147);
+            Comment.Location = new Point(107, 78);
             Comment.Click += new EventHandler((sender, e) => DrawIcon("comment"));
             this.Controls.Add(Comment);
 
             Frown = new AsistimeRoundButton(37, 37, Constants.Frown, Constants.FrownHover, Constants.FrownHover) { Parent = this.Parent };
-            Frown.Location = new Point(40, 264);
+            Frown.Location = new Point(40, 126);
             Frown.Click += new EventHandler((sender, e) => DrawIcon("frown"));
             this.Controls.Add(Frown);
 
             GrinAlt = new AsistimeRoundButton(37, 37, Constants.GrinAlt, Constants.GrinAltHover, Constants.GrinAltHover) { Parent = this.Parent };
-            GrinAlt.Location = new Point(107, 264);
+            GrinAlt.Location = new Point(107, 126);
             GrinAlt.Click += new EventHandler((sender, e) => DrawIcon("grin-alt"));
             this.Controls.Add(GrinAlt);
 
             HandPaper = new AsistimeRoundButton(37, 37, Constants.HandPaper, Constants.HandPaperHover, Constants.HandPaperHover) { Parent = this.Parent };
-            HandPaper.Location = new Point(40, 381);
+            HandPaper.Location = new Point(40, 174);
             HandPaper.Click += new EventHandler((sender, e) => DrawIcon("hand-paper"));
             this.Controls.Add(HandPaper);
 
             HandPointUp = new AsistimeRoundButton(37, 37, Constants.HandPointUp, Constants.HandPointUpHover, Constants.HandPointUpHover) { Parent = this.Parent };
-            HandPointUp.Location = new Point(107, 381);
+            HandPointUp.Location = new Point(107, 174);
             HandPointUp.Click += new EventHandler((sender, e) => DrawIcon("hand-point-up"));
             this.Controls.Add(HandPointUp);
 
             ShoppingCart = new AsistimeRoundButton(37, 37, Constants.ShoppingCart, Constants.ShoppingCartHover, Constants.ShoppingCartHover) { Parent = this.Parent };
-            ShoppingCart.Location = new Point(40, 498);
+            ShoppingCart.Location = new Point(40, 222);
             ShoppingCart.Click += new EventHandler((sender, e) => DrawIcon("shopping-cart"));
             this.Controls.Add(ShoppingCart);
 
             ThumbsUp = new AsistimeRoundButton(37, 37, Constants.ThumbsUp, Constants.ThumbsUpHover, Constants.ThumbsUpHover) { Parent = this.Parent };
-            ThumbsUp.Location = new Point(107, 498);
+            ThumbsUp.Location = new Point(107, 222);
             ThumbsUp.Click += new EventHandler((sender, e) => DrawIcon("thumbs-up"));
             this.Controls.Add(ThumbsUp);
         }

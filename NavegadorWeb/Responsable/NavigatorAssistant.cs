@@ -279,6 +279,7 @@ namespace NavegadorWeb.Responsable
 
         public void drawForm(String form){
             formBar.Location = new System.Drawing.Point(asistimeAppBar.Location.X + 30, asistimeAppBar.Location.Y + asistimeAppBar.Height + 30);
+            iconBar.Location = new System.Drawing.Point(asistimeAppBar.Location.X + 30, asistimeAppBar.Location.Y + asistimeAppBar.Height + 30);
             //formBar.Show();
             formBar.BringToFront();
             iconBar.BringToFront();
