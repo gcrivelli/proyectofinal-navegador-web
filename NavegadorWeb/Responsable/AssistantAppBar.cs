@@ -770,7 +770,8 @@ namespace NavegadorWeb.Responsable
 
         private void DrawIcon(String icon)
         {
-            //recibe como parámetro el ícono que tiene que dibujar
+            NavigatorAssistant form = this.Parent as NavigatorAssistant;
+            form.drawIcon(icon);
         }
     }
 

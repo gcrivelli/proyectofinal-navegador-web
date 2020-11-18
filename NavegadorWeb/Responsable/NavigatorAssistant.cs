@@ -596,5 +596,11 @@ namespace NavegadorWeb.Responsable
             doc.InvokeScript("modifyColor");
         }
 
+        public void drawIcon(String icon)
+        {
+            //TODO: poner el switch para los diferentes iconos 
+            //ver AssistantAppBar lineas 695-748
+        }
+
     }
 }
