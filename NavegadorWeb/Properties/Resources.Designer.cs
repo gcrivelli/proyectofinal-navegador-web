@@ -551,6 +551,38 @@ namespace NavegadorWeb.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to var desplazandoCanvas=false;
+        ///var desplazandoBorrar=false;
+        ///var modificarTexto=false;
+        ///var dibujandoDiv=false;
+        ///var dibujandoDiv2=false;
+        ///var width=200;
+        ///var size=20;
+        ///var line=8;
+        ///var inclinacion=0;
+        ///var color=&quot;#000000&quot;;
+        ///var x=null;
+        ///var y=null;
+        ///var divX1=null;
+        ///var divY1=null;
+        ///var divX2=null;
+        ///var divY2=null;
+        ///var opacity=0.5;
+        ///var i=0;
+        ///var text=&quot;|&quot;;
+        ///
+        ///setInterval(&quot;desplazar()&quot;,50);
+        ///
+        ///document.addEventListener(&quot;mousemove&quot;,onMouseUpdate, false);
+        ///document.addEventListener(&quot;mouseenter&quot;,onMouseUpdate,  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string CreateCanvas {
+            get {
+                return ResourceManager.GetString("CreateCanvas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap DialogClickImage {

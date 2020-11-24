@@ -99,8 +99,9 @@ namespace NavegadorWeb.Responsable
                 style.SetAttribute("rel", "stylesheet");
                 style.SetAttribute("href", "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
 
-                var path = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "/Responsable/CreateCanvas.js";
-                var js = File.ReadAllText(path);
+                //var path = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "/Responsable/CreateCanvas.js";
+                //var js = File.ReadAllText(path);
+                var js = NavegadorWeb.Properties.Resources.CreateCanvas;
                 script.SetAttribute("type", "text/javascript");
                 script.InnerText = js;
                 head.AppendChild(style);
