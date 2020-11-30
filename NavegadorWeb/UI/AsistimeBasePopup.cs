@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using NavegadorWeb.Models;
 using NavegadorWeb.Controller;
+using NavegadorWeb.Extra;
 
 namespace NavegadorWeb.UI
 {
@@ -601,7 +602,8 @@ namespace NavegadorWeb.UI
             record("save recsound " + UrlReproductor, "", 0, 0);
             record("close recsound", "", 0, 0);
 
-            MessageBox.Show("Archivo de audio guardado en: " + UrlReproductor);
+            new PopupNotification("Grabado exitoso", "Archivo de audio guardado en: " + UrlReproductor);
+
 
             PlayButton.Enabled = true;
             StopButton.Enabled = false;
