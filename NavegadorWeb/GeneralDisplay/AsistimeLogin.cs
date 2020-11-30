@@ -118,6 +118,8 @@ namespace NavegadorWeb.GeneralDisplay
 
                             NavigatorAdult mod = new NavigatorAdult();
                             mod.Show();
+                            this.WindowState = FormWindowState.Minimized;
+                            this.ShowInTaskbar = false;
                         }
                         else if (token.user.rol == "Responsable")
                         {
@@ -128,6 +130,8 @@ namespace NavegadorWeb.GeneralDisplay
 
                             NavigatorAssistant mod = new NavigatorAssistant();
                             mod.Show();
+                            this.WindowState = FormWindowState.Minimized;
+                            this.ShowInTaskbar = false;
                         }
                     }
                     else

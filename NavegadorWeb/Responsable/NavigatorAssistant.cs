@@ -192,52 +192,59 @@ namespace NavegadorWeb.Responsable
         public void endTutorial()//object sender, EventArgs e)
         {
             // post del tour
-            var tourController = new TourController();
-            var userController = new UserController();
-
-            //Busco lista de usuarios
-            var adults = userController.GetAdults().Result;
-
-            tour.user_id = Constants.user._id;
-            var tourResponse = tourController.PostAsync(tour).Result;
-
-            // Asigno a todos los adultos el tour
-            /*adults.ForEach(adult =>
+            if (countStep == 0)
             {
-                var a = userController.AsignTourAdult(tourResponse._id, adult._id).Result;
-            });*/
-
-            // post de los audios
-            var allAudioResponse = true;
-            for (int i = 0; i < countStep; i++)
-            {
-                var nameTourWithoutSpace = tour.name.Replace(" ", "");
-                var audioName = "/Audio" + nameTourWithoutSpace + i + ".wav";
-                var filename = Constants.audioPath + audioName;
-                if (File.Exists(filename))
-                {
-                    allAudioResponse = allAudioResponse && tourController.PostAudio(filename, tourResponse._id, tourResponse.steps[i]._id).Result;
-                }
+                new PopupNotification("Error", "Debe agregar al menos un paso.");
             }
-
-            /*addStepBntt.Visible = true;
-            endTutorialBtn.Visible = false;
-            addStepBtn.Visible = false;*/
-            //countTxt.Visible = false;
-            //createStepView.Close();
-            webBrowser.Refresh();
-
-            if (tourResponse._id != null && allAudioResponse)
-                new PopupNotification("Fin del tutorial", "Tutorial Terminado! Se guardaron " + countStep.ToString() + " pasos");
             else
-                new PopupNotification("Error", "Un error ha ocurrido tratando de conectar al servidor.");
+            {
+                var tourController = new TourController();
+                var userController = new UserController();
 
-            formBar.Hide();
-            stepsBar.Hide();
-            tourBar.Hide();
+                //Busco lista de usuarios
+                var adults = userController.GetAdults().Result;
 
-            Constants.tours = tourController.GetAllToursAsync().Result;
-            asistimeAppBar.Show();
+                tour.user_id = Constants.user._id;
+                var tourResponse = tourController.PostAsync(tour).Result;
+
+                // Asigno a todos los adultos el tour
+                /*adults.ForEach(adult =>
+                {
+                    var a = userController.AsignTourAdult(tourResponse._id, adult._id).Result;
+                });*/
+
+                // post de los audios
+                var allAudioResponse = true;
+                for (int i = 0; i < countStep; i++)
+                {
+                    var nameTourWithoutSpace = tour.name.Replace(" ", "");
+                    var audioName = "/Audio" + nameTourWithoutSpace + i + ".wav";
+                    var filename = Constants.audioPath + audioName;
+                    if (File.Exists(filename))
+                    {
+                        allAudioResponse = allAudioResponse && tourController.PostAudio(filename, tourResponse._id, tourResponse.steps[i]._id).Result;
+                    }
+                }
+
+                /*addStepBntt.Visible = true;
+                endTutorialBtn.Visible = false;
+                addStepBtn.Visible = false;*/
+                //countTxt.Visible = false;
+                //createStepView.Close();
+                webBrowser.Refresh();
+
+                if (tourResponse._id != null && allAudioResponse)
+                    new PopupNotification("Fin del tutorial", "Tutorial Terminado! Se guardaron " + countStep.ToString() + " pasos");
+                else
+                    new PopupNotification("Error", "Un error ha ocurrido tratando de conectar al servidor.");
+
+                formBar.Hide();
+                stepsBar.Hide();
+                tourBar.Hide();
+
+                Constants.tours = tourController.GetAllToursAsync().Result;
+                asistimeAppBar.Show();
+            }
         }
 
         /*private void addStepBtn_Click(object sender, EventArgs e)
