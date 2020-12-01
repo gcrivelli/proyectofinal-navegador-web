@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using NavegadorWeb.Models;
 using NavegadorWeb.Controller;
+using NavegadorWeb.Extra;
 
 namespace NavegadorWeb.UI
 {
@@ -601,7 +602,8 @@ namespace NavegadorWeb.UI
             record("save recsound " + UrlReproductor, "", 0, 0);
             record("close recsound", "", 0, 0);
 
-            MessageBox.Show("Archivo de audio guardado en: " + UrlReproductor);
+            new PopupNotification("Grabado exitoso", "Archivo de audio guardado en: " + UrlReproductor);
+
 
             PlayButton.Enabled = true;
             StopButton.Enabled = false;
@@ -854,9 +856,9 @@ namespace NavegadorWeb.UI
             Controls.Add(backPanel);
             backPanel.SendToBack();
 
-            /*title = new Label()
+            title = new Label()
             {
-                Text = " ",
+                Text = "ASIGNAR TOUR A ADULTO",
                 Font = Constants.HLabelFont,
                 Width = 400,
                 Height = 40,
@@ -866,7 +868,7 @@ namespace NavegadorWeb.UI
             this.Controls.Add(title);
             title.BringToFront();
 
-            subTitle = new TextBox();
+            /*subTitle = new TextBox();
             subTitle.Multiline = true;
             subTitle.Width = 450;
             subTitle.Height = 250;
@@ -899,9 +901,15 @@ namespace NavegadorWeb.UI
             var ad = adults.Select(a => a.name).ToArray();
             checkedListBox1 = new CheckedListBox();
             checkedListBox1.Items.AddRange(ad);
-            checkedListBox1.SelectedIndexChanged += new EventHandler(Sarasa);
+            checkedListBox1.SelectedIndexChanged += new EventHandler(OnSelect);
             this.Controls.Add(checkedListBox1);
             checkedListBox1.BringToFront();
+            checkedListBox1.CheckOnClick = true;
+            checkedListBox1.Font = Constants.H2LabelFont;
+            checkedListBox1.BorderStyle = BorderStyle.None;
+            checkedListBox1.Width = this.Width / 2;
+            checkedListBox1.Height = this.Height / 2;
+            checkedListBox1.Location = new Point((this.Width / 2) - (checkedListBox1.Width / 2), (this.Height / 2) - (checkedListBox1.Height / 2));
 
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
         }
@@ -933,15 +941,15 @@ namespace NavegadorWeb.UI
             this.Hide();
         }
 
-        protected void Sarasa(object sender, EventArgs e)
+        protected void OnSelect(object sender, EventArgs e)
         {
             adultsChecked.Clear();
             for (int i = 0; i < checkedListBox1.CheckedIndices.Count; i++)
                 adultsChecked.Add(checkedListBox1.CheckedIndices[i]);
-
+            /*
             adultsChecked.ForEach(ac => {
                 MessageBox.Show(adults[ac].name);
-            });
+            });*/
         }
     }
 

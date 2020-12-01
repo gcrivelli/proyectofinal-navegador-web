@@ -28,6 +28,7 @@ namespace NavegadorWeb.UI
         public const string profileMenuButton = "MI PERFIL";
         public const string newToursMenuButton = "TOURS NUEVOS";
         public const string myToursMenuButton = "MIS TOURS";
+        public const string myAdultsButton = "MIS ADULTOS";
         public const string backMenuButton = "VOLVER A LA NAVECACIÓN";
 
         
