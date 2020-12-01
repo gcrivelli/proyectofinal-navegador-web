@@ -156,8 +156,10 @@ function initBorrar() {
     canvas.parentNode.removeChild(canvas);
     desplazandoCanvas=false; 
     i--;
-  } 
-  var canvas=document.createElement("canvas");    
+  } else {
+    var canvas=document.createElement("canvas");  
+    i++;  
+  }   
   desplazandoBorrar=true;
   canvas.id="borrar";
   canvas.style.cssText="position: absolute; z-index: 9999;";  
@@ -175,6 +177,7 @@ function initBell() {
   var context=canvas.getContext("2d");
   canvas.dataset.tipo=4;
   context.font='100px FontAwesome';
+  context.fillStyle = color;
   context.fillText('\uf0f3',60,140);
   context.strokeStyle=color;
   context.stroke();
@@ -185,6 +188,7 @@ function initBan() {
   var context=canvas.getContext("2d");
   canvas.dataset.tipo=5;
   context.font='100px FontAwesome';
+  context.fillStyle = color;
   context.fillText('\uf05e',60,140);
   context.strokeStyle=color;
   context.stroke();
@@ -195,6 +199,7 @@ function initCheck() {
   var context=canvas.getContext("2d");
   canvas.dataset.tipo=6;
   context.font='100px FontAwesome';
+  context.fillStyle = color;
   context.fillText('\uf00c',60,140);
   context.strokeStyle=color;
   context.stroke();
@@ -205,6 +210,7 @@ function initComment() {
   var context=canvas.getContext("2d");
   canvas.dataset.tipo=7;
   context.font='100px FontAwesome';
+  context.fillStyle = color;
   context.fillText('\uf075',60,140);
   context.strokeStyle=color;
   context.stroke();
@@ -215,6 +221,7 @@ function initFrown() {
   var context=canvas.getContext("2d");
   canvas.dataset.tipo=8;
   context.font='100px FontAwesome';
+  context.fillStyle = color;
   context.fillText('\uf119',60,140);
   context.strokeStyle=color;
   context.stroke();
@@ -225,6 +232,7 @@ function initGrin() {
   var context=canvas.getContext("2d");
   canvas.dataset.tipo=9;
   context.font='100px FontAwesome';
+  context.fillStyle = color;
   context.fillText('\uf118',60,140);
   context.strokeStyle=color;
   context.stroke();
@@ -235,6 +243,7 @@ function initHandpaper() {
   var context=canvas.getContext("2d");
   canvas.dataset.tipo=10;
   context.font='100px FontAwesome';
+  context.fillStyle = color;
   context.fillText('\uf256',60,140);
   context.strokeStyle=color;
   context.stroke();
@@ -245,6 +254,7 @@ function initHandpoint() {
   var context=canvas.getContext("2d");
   canvas.dataset.tipo=11;
   context.font='100px FontAwesome';
+  context.fillStyle = color;
   context.fillText('\uf0a6',60,140);
   context.strokeStyle=color;
   context.stroke();
@@ -255,6 +265,7 @@ function initShopping() {
   var context=canvas.getContext("2d");
   canvas.dataset.tipo=13;
   context.font='100px FontAwesome';
+  context.fillStyle = color;
   context.fillText('\uf07a',60,140);
   context.strokeStyle=color;
   context.stroke();
@@ -265,6 +276,7 @@ function initThumbs() {
   var context=canvas.getContext("2d");
   canvas.dataset.tipo=14;
   context.font='100px FontAwesome';
+  context.fillStyle = color;
   context.fillText('\uf164',60,140);
   context.strokeStyle=color;
   context.stroke();
