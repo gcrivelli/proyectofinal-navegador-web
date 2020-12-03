@@ -271,7 +271,7 @@ namespace NavegadorWeb.Adult
                     js += "context.quadraticCurveTo(125/200*" + element.width + ",100/200*" + element.width + ",125/200*" + element.width + ",62.5/200*" + element.width + ");";
                     js += "context.quadraticCurveTo(125/200*" + element.width + ",25/200*" + element.width + ",75/200*" + element.width + ",25/200*" + element.width + ");";
                 }
-                js += "context.strokeStyle = '#" + element.color + "'" + ";";
+                js += "context.strokeStyle = '" + element.color + "'" + ";";
                 js += "context.lineWidth =" + element.weight + ";";
                 js += "context.stroke();";
 
@@ -289,19 +289,19 @@ namespace NavegadorWeb.Adult
             {
                 var js = "";
                 js += "var div = document.createElement('div');";
-                js += "div.style.cssText = 'position:absolute;z-index:9999;background-color:#" + element.color + ";width:100%;height:" + element.y + "px;top:0px;left:0px;opacity:" + element.inclination + ";';";
+                js += "div.style.cssText = 'position:absolute;z-index:9999;background-color:" + element.color + ";width:100%;height:" + element.y + "px;top:0px;left:0px;opacity:" + element.inclination + ";';";
                 js += "div.className = 'asistime';";
                 js += "document.body.appendChild(div);";
                 js += "var div = document.createElement('div');";
-                js += "div.style.cssText = 'position:absolute;z-index:9999;background-color:#" + element.color + ";width:100%;height:100%;top:" + element.height + "px;left:0px;opacity:" + element.inclination + ";';";
+                js += "div.style.cssText = 'position:absolute;z-index:9999;background-color:" + element.color + ";width:100%;height:100%;top:" + element.height + "px;left:0px;opacity:" + element.inclination + ";';";
                 js += "div.className = 'asistime';";
                 js += "document.body.appendChild(div);";
                 js += "var div = document.createElement('div');";
-                js += "div.style.cssText = 'position:absolute;z-index:9999;background-color:#" + element.color + ";width:" + element.x + "px;height:" + (element.height - element.y) + "px;top:" + element.y + "px;left:0px;opacity:" + element.inclination + ";';";
+                js += "div.style.cssText = 'position:absolute;z-index:9999;background-color:" + element.color + ";width:" + element.x + "px;height:" + (element.height - element.y) + "px;top:" + element.y + "px;left:0px;opacity:" + element.inclination + ";';";
                 js += "div.className = 'asistime';";
                 js += "document.body.appendChild(div);";
                 js += "var div = document.createElement('div');";
-                js += "div.style.cssText = 'position:absolute;z-index:9999;background-color:#" + element.color + ";width:100%;height:" + (element.height - element.y) + "px;top:" + element.y + "px;left:" + element.width + "px;opacity:" + element.inclination + ";';";
+                js += "div.style.cssText = 'position:absolute;z-index:9999;background-color:" + element.color + ";width:100%;height:" + (element.height - element.y) + "px;top:" + element.y + "px;left:" + element.width + "px;opacity:" + element.inclination + ";';";
                 js += "div.className = 'asistime';";
                 js += "document.body.appendChild(div);";
 
