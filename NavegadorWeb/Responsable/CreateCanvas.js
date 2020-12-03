@@ -16,7 +16,7 @@ var divX2=null;
 var divY2=null;
 var opacity=0.5;
 var i=0;
-var text="|";
+var text="";
 
 setInterval("desplazar()",50);
 
@@ -40,9 +40,6 @@ function onScroll() {
 function onKeyPress(e) {                          
   if (modificarTexto) {
     if (String.fromCharCode(e.keyCode).match(/(\w|\s)/g)) {
-      if (text=="|") {
-        text="";
-      }
       text+=String.fromCharCode(e.keyCode).match(/(\w|\s)/g);
     }
     redibujarCanvas();
@@ -55,12 +52,12 @@ function onClick(e) {
     modificarTexto=false;
     var canvas=document.getElementById("canvas"+i);
     canvas.style.display="block";
-    text="|";    
+    text="";    
     width=200;
     size=20;
     line=8;
     inclinacion=0;
-    color="000000";
+    color="#000000";
   }  
   if (desplazandoBorrar==true) {
     Array.from(document.getElementsByClassName("canvas")).forEach(
@@ -114,7 +111,10 @@ function onClick(e) {
     document.body.appendChild(div);
     dibujandoDiv=false;
     dibujandoDiv2=false;
-  } else if (dibujandoDiv) {
+    var recuadrar=document.getElementById("recuadrar");
+    recuadrar.parentNode.removeChild(recuadrar);
+  } else if (dibujandoDiv) { 
+    color="#000000";
     divX1=e.pageX;
     divY1=e.pageY;
     var div=document.createElement("div");
@@ -137,6 +137,11 @@ function desplazar() {
   }
   if (desplazandoBorrar) {
     var canvas=document.getElementById("borrar");
+    canvas.style.left=(x-20)+"px";
+    canvas.style.top=(y-20)+"px";    
+  }
+  if (dibujandoDiv) {
+    var canvas=document.getElementById("recuadrar");
     canvas.style.left=(x-20)+"px";
     canvas.style.top=(y-20)+"px";    
   }
@@ -223,7 +228,7 @@ function initFrown() {
 function initGrin() { 
   var canvas=document.getElementById("canvas"+i);
   var context=canvas.getContext("2d");
-  canvas.dataset.tipo=9;
+  canvas.dataset.tipo=15;
   context.font='100px FontAwesome';
   context.fillText('\uf118',60,140);
   context.strokeStyle=color;
@@ -294,18 +299,50 @@ function initTexto() {
   modificarTexto=true;  
   var canvas=document.getElementById("canvas"+i);
   var context=canvas.getContext("2d");
-  width=500;
+  if (text.length>0) {
+    width=20+(10*text.length);
+  } else {
+    width=20;
+  }
   canvas.dataset.tipo=3;
   canvas.dataset.text=text;
+  canvas.width=width;
+  canvas.height=80;  
   context.font = size+"px Arial";
   context.fillStyle = color;
-  context.fillText(text, width/2, width/2);
-  context.lineWidth = line;
+  context.fillText(text, 10, 40);
+  context.rect(0,0,width,70);
   context.stroke();
   document.body.focus();
 }
 
 function initDiv() {
+
+  if (desplazandoCanvas==true) { 
+    var canvas=document.getElementById("canvas"+i);
+    canvas.parentNode.removeChild(canvas);
+    desplazandoCanvas=false; 
+    i--;
+  } else {
+    var canvas=document.createElement("canvas");  
+    i++;  
+  }   
+  if (desplazandoBorrar==true) {
+    desplazandoBorrar=false; 
+    var borrar=document.getElementById("borrar");
+    borrar.parentNode.removeChild(borrar);
+    desplazandoCanvas=false; 
+  }
+  canvas.id="recuadrar";
+  canvas.style.cssText="position: absolute; z-index: 9999;";  
+  canvas.width=40;
+  canvas.height=40;    
+  document.body.appendChild(canvas);    
+
+  var context=canvas.getContext("2d");
+  context.font='30px FontAwesome';
+  context.fillText('\uf065',0,25);
+
   if (dibujandoDiv==false) {   
     window.scrollTo(0, 0);
     var elements = document.getElementsByClassName("div");
@@ -446,7 +483,7 @@ function redibujarCanvas() {
   if (tipo==8) {
     initFrown();
   }
-  if (tipo==9) {
+  if (tipo==15) {
     initGrin();
   }
   if (tipo==10) {
