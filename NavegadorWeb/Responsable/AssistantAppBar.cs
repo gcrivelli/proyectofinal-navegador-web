@@ -506,7 +506,7 @@ namespace NavegadorWeb.Responsable
             Center_With(backLabel, NavBackButton);
             this.Controls.Add(backLabel);
 
-            var firstElement = (this.Width / 2 - 44 - 260);
+            var firstElement = (this.Width / 2 - 42 - (330));
 
             AsistimeRoundButton RectangleButton = new AsistimeRoundButton(84, 84, Constants.RectImage2, Constants.RectHoverImage2, Constants.RectClickImage2) { Parent = this.Parent };
             Label rectLabel = new Label() { Text = "Cuadrado", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
@@ -541,9 +541,17 @@ namespace NavegadorWeb.Responsable
             this.Controls.Add(CircleButton);
             this.Controls.Add(circleLabel);
 
+            AsistimeRoundButton IconButton = new AsistimeRoundButton(84, 84, Constants.IconImage, Constants.IconHoverImage, Constants.IconClickImage) { Parent = this.Parent };
+            Label iconLabel = new Label() { Text = "Íconos", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
+            IconButton.Location = new Point(RectangleButton.Location.X + 440, RectangleButton.Location.Y);
+            Center_With(iconLabel, IconButton);
+            IconButton.Click += new EventHandler(ShowIconPanel);
+            this.Controls.Add(IconButton);
+            this.Controls.Add(iconLabel);
+
             AsistimeRoundButton AudioButton = new AsistimeRoundButton(84, 84, Constants.AudioImage, Constants.AudioHoverImage, Constants.AudioClickImage) { Parent = this.Parent };
             Label audioLabel = new Label() { Text = "Audio", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
-            AudioButton.Location = new Point(RectangleButton.Location.X + 440, RectangleButton.Location.Y);
+            AudioButton.Location = new Point(RectangleButton.Location.X + 550, RectangleButton.Location.Y);
             Center_With(audioLabel, AudioButton);
             AudioButton.Click += new EventHandler(RecordAudio);
             this.Controls.Add(AudioButton);
@@ -551,19 +559,13 @@ namespace NavegadorWeb.Responsable
 
             AsistimeRoundButton EraseButton = new AsistimeRoundButton(84, 84, Constants.EraseImage, Constants.EraseHoverImage, Constants.EraseClickImage) { Parent = this.Parent };
             Label eraseLabel = new Label() { Text = "Borrar", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
-            EraseButton.Location = new Point(RectangleButton.Location.X + 550, RectangleButton.Location.Y);
+            EraseButton.Location = new Point(RectangleButton.Location.X + 660, RectangleButton.Location.Y);
             Center_With(eraseLabel, EraseButton);
             EraseButton.Click += new EventHandler(EraseForm);
             this.Controls.Add(EraseButton);
             this.Controls.Add(eraseLabel);
 
-            AsistimeRoundButton IconButton = new AsistimeRoundButton(84, 84, Constants.IconImage, Constants.IconHoverImage, Constants.IconClickImage) { Parent = this.Parent };
-            Label iconLabel = new Label() { Text = "Íconos", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
-            IconButton.Location = new Point(RectangleButton.Location.X + 660, RectangleButton.Location.Y);
-            Center_With(iconLabel, IconButton);
-            IconButton.Click += new EventHandler(ShowIconPanel);
-            this.Controls.Add(IconButton);
-            this.Controls.Add(iconLabel);
+            
 
             this.Controls.Add(this.GetNavConfirmButton(this.ClientSize.Width - 150, 15));
             Label profileLabel = new Label() { Text = "Confirmar", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
