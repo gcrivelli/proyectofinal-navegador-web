@@ -137,6 +137,12 @@ namespace NavegadorWeb.Adult
 
             HtmlDocument doc = webBrowser.Document;
             HtmlElement head = doc.GetElementsByTagName("head")[0];
+
+            HtmlElement style = doc.CreateElement("link");
+            style.SetAttribute("rel", "stylesheet");
+            style.SetAttribute("href", "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
+            head.AppendChild(style);
+
             HtmlElement script = doc.CreateElement("script");
 
             script.SetAttribute("type", "text/javascript");
@@ -258,18 +264,75 @@ namespace NavegadorWeb.Adult
                     js += "context.font = '20px Arial';";
                     js += "context.fillText('" + element.text + "', 250, 250);";
                 }
-                if (element.type == 4) // dialogo
+                if (element.type == 4) // icono
                 {
                     js += "var element=document.getElementById('canvas" + positionStep + positionElement + "');";
                     js += "var context = element.getContext('2d');";
-                    js += "context.beginPath();";
-                    js += "context.moveTo(75/200*" + element.width + ",25/200*" + element.width + ");";
-                    js += "context.quadraticCurveTo(25/200*" + element.width + ",25/200*" + element.width + ",25/200*" + element.width + ",62.5/200*" + element.width + ");";
-                    js += "context.quadraticCurveTo(25/200*" + element.width + ",100/200*" + element.width + ",50/200*" + element.width + ",100/200*" + element.width + ");";
-                    js += "context.quadraticCurveTo(50/200*" + element.width + ",120/200*" + element.width + ",30/200*" + element.width + ",125/200*" + element.width + ");";
-                    js += "context.quadraticCurveTo(60/200*" + element.width + ",120/200*" + element.width + ",65/200*" + element.width + ",100/200*" + element.width + ");";
-                    js += "context.quadraticCurveTo(125/200*" + element.width + ",100/200*" + element.width + ",125/200*" + element.width + ",62.5/200*" + element.width + ");";
-                    js += "context.quadraticCurveTo(125/200*" + element.width + ",25/200*" + element.width + ",75/200*" + element.width + ",25/200*" + element.width + ");";
+                    js += "context.font = '100px FontAwesome';";
+                    js += "context.fillText('\uf0f3',60,140);";
+                }
+                if (element.type == 5) // icono
+                {
+                    js += "var element=document.getElementById('canvas" + positionStep + positionElement + "');";
+                    js += "var context = element.getContext('2d');";
+                    js += "context.font = '100px FontAwesome';";
+                    js += "context.fillText('\uf05e',60,140);";
+                }
+                if (element.type == 6) // icono
+                {
+                    js += "var element=document.getElementById('canvas" + positionStep + positionElement + "');";
+                    js += "var context = element.getContext('2d');";
+                    js += "context.font = '100px FontAwesome';";
+                    js += "context.fillText('\uf00c',60,140);";
+                }
+                if (element.type == 7) // icono
+                {
+                    js += "var element=document.getElementById('canvas" + positionStep + positionElement + "');";
+                    js += "var context = element.getContext('2d');";
+                    js += "context.font = '100px FontAwesome';";
+                    js += "context.fillText('\uf075',60,140);";
+                }
+                if (element.type == 8) // icono
+                {
+                    js += "var element=document.getElementById('canvas" + positionStep + positionElement + "');";
+                    js += "var context = element.getContext('2d');";
+                    js += "context.font = '100px FontAwesome';";
+                    js += "context.fillText('\uf119',60,140);";
+                }
+                if (element.type == 15) // icono
+                {
+                    js += "var element=document.getElementById('canvas" + positionStep + positionElement + "');";
+                    js += "var context = element.getContext('2d');";
+                    js += "context.font = '100px FontAwesome';";
+                    js += "context.fillText('\uf118',60,140);";
+                }
+                if (element.type == 10) // icono
+                {
+                    js += "var element=document.getElementById('canvas" + positionStep + positionElement + "');";
+                    js += "var context = element.getContext('2d');";
+                    js += "context.font = '100px FontAwesome';";
+                    js += "context.fillText('\uf256',60,140);";
+                }
+                if (element.type == 11) // icono
+                {
+                    js += "var element=document.getElementById('canvas" + positionStep + positionElement + "');";
+                    js += "var context = element.getContext('2d');";
+                    js += "context.font = '100px FontAwesome';";
+                    js += "context.fillText('\uf0a6',60,140);";
+                }
+                if (element.type == 13) // icono
+                {
+                    js += "var element=document.getElementById('canvas" + positionStep + positionElement + "');";
+                    js += "var context = element.getContext('2d');";
+                    js += "context.font = '100px FontAwesome';";
+                    js += "context.fillText('\uf07a',60,140);";
+                }
+                if (element.type == 14) // icono
+                {
+                    js += "var element=document.getElementById('canvas" + positionStep + positionElement + "');";
+                    js += "var context = element.getContext('2d');";
+                    js += "context.font = '100px FontAwesome';";
+                    js += "context.fillText('\uf164',60,140);";
                 }
                 js += "context.strokeStyle = '" + element.color + "'" + ";";
                 js += "context.lineWidth =" + element.weight + ";";

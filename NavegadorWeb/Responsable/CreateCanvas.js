@@ -228,7 +228,7 @@ function initFrown() {
 function initGrin() { 
   var canvas=document.getElementById("canvas"+i);
   var context=canvas.getContext("2d");
-  canvas.dataset.tipo=9;
+  canvas.dataset.tipo=15;
   context.font='100px FontAwesome';
   context.fillText('\uf118',60,140);
   context.strokeStyle=color;
@@ -483,7 +483,7 @@ function redibujarCanvas() {
   if (tipo==8) {
     initFrown();
   }
-  if (tipo==9) {
+  if (tipo==15) {
     initGrin();
   }
   if (tipo==10) {

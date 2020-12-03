@@ -443,7 +443,7 @@ namespace NavegadorWeb.Responsable
             addStepToTour();
             tourBar.stepsLabel.Text = "CANTIDAD DE PASOS: " + countStep;
 
-            for (int i = 1; i < 10; i++)
+            for (int i = 1; i < 20; i++)
             {
                 HtmlElement canvas = doc.GetElementById("canvas" + i);
                 if (canvas != null)
