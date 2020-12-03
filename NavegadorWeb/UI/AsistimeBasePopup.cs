@@ -184,7 +184,7 @@ namespace NavegadorWeb.UI
                 form.AdvanceToSteps(tourNameTextBox.TextName, textbox.Text);
             }
             else
-                MessageBox.Show("Elija un nombre y descripción para el tutorial.", "Nombre Inválido", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new PopupNotification("Nombre Inválido ", "Elija un nombre y descripción para el tutorial.");
         }
 
         protected void Cancel(object sender, EventArgs e)
@@ -533,12 +533,13 @@ namespace NavegadorWeb.UI
             nextButton.ButtonText = "¡Listo!";
             this.Controls.Add(nextButton);
             nextButton.BringToFront();
+            nextButton.Enabled = false;
 
-            /*cancelButton = new AsistimeActionButton();
+            cancelButton = new AsistimeActionButton();
             cancelButton.Click += new EventHandler(Cancel);
             cancelButton.ButtonText = "Anterior";
             this.Controls.Add(cancelButton);
-            cancelButton.BringToFront();*/
+            cancelButton.BringToFront();
 
             int nextButtonWidth;
             using (Graphics cg = this.CreateGraphics())
@@ -558,17 +559,17 @@ namespace NavegadorWeb.UI
             }
             catch
             {
-                MessageBox.Show("Error al crear el directorio para los audios", "Error");
+                new PopupNotification("Error", "Error al crear el directorio para los audios");
             }
 
-            /*int cancelButtonWidth;
+            int cancelButtonWidth;
             using (Graphics cg = this.CreateGraphics())
             {
                 SizeF size = cg.MeasureString(cancelButton.ButtonText, cancelButton.Font);
                 size.Width += 40;
                 cancelButtonWidth = (int)size.Width;
             }
-            cancelButton.Location = new Point(this.Width / 2 - cancelButtonWidth / 2, nextButton.Location.Y + 80);*/
+            cancelButton.Location = new Point(this.Width / 2 - cancelButtonWidth / 2, nextButton.Location.Y + 80);
         }
 
         protected void Next(object sender, EventArgs e)
@@ -580,7 +581,7 @@ namespace NavegadorWeb.UI
         protected void Cancel(object sender, EventArgs e)
         {
             AsistimeTourCreation form = this.Parent as AsistimeTourCreation;
-            form.BackToForms();
+            form.ConfirmStep();
         }
 
         private void RecordAudio(object sender, EventArgs e)
@@ -589,6 +590,7 @@ namespace NavegadorWeb.UI
             record("record recsound", "", 0, 0);
             PlayButton.Enabled = false;
             StopButton.Enabled = true;
+            nextButton.Enabled = false;
         }
 
         private void StopRecording(object sender, EventArgs e)
@@ -607,6 +609,7 @@ namespace NavegadorWeb.UI
 
             PlayButton.Enabled = true;
             StopButton.Enabled = false;
+            nextButton.Enabled = true;
         }
 
         private void PlayAudio(object sender, EventArgs e)
@@ -635,15 +638,6 @@ namespace NavegadorWeb.UI
             this.countStep = count;
         }
     }
-
-
-
-
-
-
-
-
-
 
 
     class TutorialStep : Panel

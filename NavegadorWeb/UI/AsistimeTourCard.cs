@@ -55,15 +55,8 @@ namespace NavegadorWeb.UI
 
         private void PlayTour(object sender, EventArgs e)
         {
-            DialogResult result1 = MessageBox.Show(Constants.InitiateTourConfirmation1
-                + tourAsociado.name + Constants.InitiateTourConfirmation2,
-                Constants.InitiateTourTitle,
-                MessageBoxButtons.YesNo);
-            if(result1 == DialogResult.Yes)
-            {
-                AsistimeCardContainer parent = this.Parent as AsistimeCardContainer;
-                parent.PlayTour(this.tourAsociado);
-            }
+            AsistimeCardContainer parent = this.Parent as AsistimeCardContainer;
+            parent.PlayTour(this.tourAsociado);
         }
     }
 
