@@ -103,28 +103,8 @@ namespace NavegadorWeb.Adult
 
                     playAudio(audioPath);
                 }
-                else
-                { 
-                    var result = MessageBox.Show("Paso erroneo, ¿quiere volver al último paso correcto?", "Paso equivocado", MessageBoxButton.YesNo, MessageBoxImage.Information);
-                    if (result.ToString() == "Yes")
-                    {
-                        tourBar.isLastStepInUrl = true;
-                        countLoad--;
-                        actualURL = lastCorrectURL;
-                        webBrowser.Navigate(lastCorrectURL);
-                        volverAPasoCorrecto = true;
-                        playStep(tourLoad, countLoad);
-                    }
-                    else
-                    {
-                        this.tourBar.Hide();
-                        this.asistimeAppBar.Show();
-                        tourLoad = null;
-                    }
-                }
-                
             }
-            else
+            if(actualStep == tour.steps.Last())
             {
                 new PopupNotification("Fin del Tour!", "Completaste el tour con éxito!");
             }
