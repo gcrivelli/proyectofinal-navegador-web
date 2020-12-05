@@ -83,6 +83,7 @@ namespace NavegadorWeb.Responsable
         public void RecordAudio()
         {
             formBar.Hide();
+            iconBar.Hide();
             createTourView.AdvanceToAudio(tour.name, countStep);
         }
 
@@ -437,6 +438,8 @@ namespace NavegadorWeb.Responsable
 
         public void save()
         {
+            iconBar.Hide();
+            formBar.Hide();
 
             //Aca va el comportamiento para guardar el paso
             incrementStepCount();
@@ -511,7 +514,6 @@ namespace NavegadorWeb.Responsable
             doc.InvokeScript("finishStep");
             //this.Close();
 
-            formBar.Hide();
             stepsBar.Hide();
             tourBar.Show();
         }
@@ -588,6 +590,7 @@ namespace NavegadorWeb.Responsable
         {
             doc.InvokeScript("finishStep");
             webBrowser.Refresh();
+            iconBar.Hide();
             formBar.Hide();
             stepsBar.Hide();
             tourBar.Show();
