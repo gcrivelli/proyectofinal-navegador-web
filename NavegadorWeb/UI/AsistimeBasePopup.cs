@@ -932,6 +932,7 @@ namespace NavegadorWeb.UI
             {
                 var a = userController.AsignTourAdult(form.tour._id, adults[adult]._id).Result;
             });
+            new PopupNotification("Asignación exitosa", "El tour " + form.tour.name + " se asignó correctamente");// "Asignaste el tour correctamente");
             this.Hide();
         }
 

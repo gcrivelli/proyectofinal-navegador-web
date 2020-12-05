@@ -18,7 +18,7 @@ namespace NavegadorWeb.UI
             //Título
             Label title = new Label();
             title.AutoSize = true;
-            title.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             title.Location = new System.Drawing.Point(12, 16);
             title.Width = Constants.TourCardWidth - 20;
             title.TabIndex = 1;
@@ -44,7 +44,7 @@ namespace NavegadorWeb.UI
             Controls.Add(description);
             Controls.Add(title);
             Controls.Add(button);
-            Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             ForeColor = ColorTranslator.FromHtml(Constants.TourCardFontColour);
             Size = new System.Drawing.Size(Constants.TourCardWidth, Constants.TourCardHeigth);
             TabIndex = 0;
@@ -72,7 +72,7 @@ namespace NavegadorWeb.UI
             //Título
             Label title = new Label();
             title.AutoSize = true;
-            title.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             title.Location = new System.Drawing.Point(12, 16);
             title.Width = Constants.TourCardWidth - 20;
             title.TabIndex = 1;
@@ -106,7 +106,7 @@ namespace NavegadorWeb.UI
             Controls.Add(title);
             Controls.Add(assignButton);
             Controls.Add(button);
-            Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             ForeColor = ColorTranslator.FromHtml(Constants.TourCardFontColour);
             Size = new System.Drawing.Size(Constants.TourCardWidth, Constants.TourCardHeigth);
             TabIndex = 0;

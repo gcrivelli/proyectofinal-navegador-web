@@ -14,8 +14,8 @@ namespace NavegadorWeb.Extra
             popup.TitleText = title;
             popup.ContentText = body;
             
-            popup.TitleFont = new Font("Gadugi", 20, FontStyle.Bold);
-            popup.ContentFont = new Font("Gadugi", 13, FontStyle.Bold);
+            popup.TitleFont = new Font("Segoe UI", 20, FontStyle.Bold);
+            popup.ContentFont = new Font("Segoe UI", 13, FontStyle.Bold);
             
             popup.ContentPadding = new Padding(20, 0, 20, 20);
             popup.TitlePadding = new Padding(20, 20, 20, 20);
@@ -28,7 +28,7 @@ namespace NavegadorWeb.Extra
 
             popup.ShowCloseButton = true;
             popup.Delay = 5000;
-            popup.Size = new Size(300, 180);
+            popup.Size = new Size(450, 200);
             popup.Popup();
         }
     }
