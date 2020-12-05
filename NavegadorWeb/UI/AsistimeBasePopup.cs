@@ -765,7 +765,8 @@ namespace NavegadorWeb.UI
 
         protected void Cancel(object sender, EventArgs e)
         {
-            this.Hide();
+            AsistimeTourCreation form = Parent as AsistimeTourCreation;
+            form.CloseForm();
         }
     }
 
@@ -921,8 +922,8 @@ namespace NavegadorWeb.UI
 
         protected void Back(object sender, EventArgs e)
         {
-            this.Hide();
-            //previous.Show();
+            AsistimeTourAssign form = Parent as AsistimeTourAssign;
+            form.CloseForm();
         }
 
         protected void Forward(object sender, EventArgs e)

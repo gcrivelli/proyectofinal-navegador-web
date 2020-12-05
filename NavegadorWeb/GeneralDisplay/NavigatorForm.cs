@@ -78,5 +78,10 @@ namespace NavegadorWeb.UI
         {
             asistimeAppBar.Navigated(webBrowser.Url.ToString());
         }
+
+        private void NavigatorForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

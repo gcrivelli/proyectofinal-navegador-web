@@ -18,6 +18,7 @@ namespace NavegadorWeb.GeneralDisplay
             WindowState = FormWindowState.Maximized;
             this.Width = Screen.PrimaryScreen.WorkingArea.Size.Width;
             this.Height = Screen.PrimaryScreen.WorkingArea.Size.Height;
+            this.Text = "Asistime";
 
             InitializeComponent();
         }
@@ -27,9 +28,9 @@ namespace NavegadorWeb.GeneralDisplay
             
         }
 
-        private void AsistimeBaseForm_FormClosing(object sender, FormClosingEventArgs e)
+        /*private void AsistimeBaseForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
-        }
+        }*/
     }
 }

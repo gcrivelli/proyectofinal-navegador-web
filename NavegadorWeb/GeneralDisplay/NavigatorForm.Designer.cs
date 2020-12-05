@@ -37,9 +37,10 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "NavigatorForm";
-            this.Text = "NavigatorForm";
+            this.Name = "Asistime";
+            this.Text = "Asistime";
             this.Load += new System.EventHandler(this.NavigatorForm_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NavigatorForm_FormClosing);
             this.ResumeLayout(false);
 
         }

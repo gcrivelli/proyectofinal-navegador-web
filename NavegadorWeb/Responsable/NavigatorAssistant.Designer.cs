@@ -36,8 +36,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1939, 1061);
             this.Location = new System.Drawing.Point(0, 0);
-            this.Name = "NavigatorAssistant";
-            this.Text = "NavigatorAssistant";
             this.ResumeLayout(false);
 
         }

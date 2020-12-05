@@ -25,7 +25,7 @@ namespace NavegadorWeb.UI
         {
             this.previousForm = form;
             this.Load += new System.EventHandler(this.AsistimeTourCreation_Load);
-            this.FormBorderStyle = FormBorderStyle.None;
+            //this.FormBorderStyle = FormBorderStyle.None;
             this.StartPosition = FormStartPosition.CenterScreen;
 
             this.TransparencyKey = Color.Green;
@@ -68,7 +68,7 @@ namespace NavegadorWeb.UI
             audioCreation.Hide();*/
 
 
-            HowToTour howToTour = new HowToTour();
+            HowToTour howToTour = new HowToTour() { Parent = this };
             HowToSteps howToSteps = new HowToSteps();
             HowToForms howToForms = new HowToForms();
             HowToAudio howToAudio = new HowToAudio();
@@ -101,6 +101,11 @@ namespace NavegadorWeb.UI
             audioCreation.BackColor = Color.White;
             audioCreation.Location = new Point(this.Width / 2 - audioCreation.Width / 2, this.Height / 2 - audioCreation.Height / 2);
             audioCreation.Hide();
+        }
+
+        public void CloseForm()
+        {
+            this.Close();
         }
 
         public void ConfirmTour()
@@ -189,7 +194,7 @@ namespace NavegadorWeb.UI
         {
             this.previousForm = form;
             this.Load += new System.EventHandler(this.AsistimeTourAssign_Load);
-            this.FormBorderStyle = FormBorderStyle.None;
+            //this.FormBorderStyle = FormBorderStyle.None;
             this.StartPosition = FormStartPosition.CenterScreen;
 
             this.TransparencyKey = Color.Green;
@@ -204,45 +209,14 @@ namespace NavegadorWeb.UI
             asignTourPanel.Location = new Point(this.Width / 2 - asignTourPanel.Width / 2, this.Height / 2 - asignTourPanel.Height / 2);
             this.Controls.Add(asignTourPanel);
             asignTourPanel.Show();
-            /*HowToTour howToTour = new HowToTour();
-            HowToSteps howToSteps = new HowToSteps();
-            HowToForms howToForms = new HowToForms();
-            HowToAudio howToAudio = new HowToAudio();
-            howToTour.Location = new Point(this.Width / 2 - howToTour.Width / 2, this.Height / 2 - howToTour.Height / 2);
-            howToSteps.Location = new Point(this.Width / 2 - howToSteps.Width / 2, this.Height / 2 - howToSteps.Height / 2);
-            howToForms.Location = new Point(this.Width / 2 - howToForms.Width / 2, this.Height / 2 - howToForms.Height / 2);
-            howToAudio.Location = new Point(this.Width / 2 - howToAudio.Width / 2, this.Height / 2 - howToAudio.Height / 2);
-            this.Controls.Add(howToTour);
-            this.Controls.Add(howToSteps);
-            this.Controls.Add(howToForms);
-            this.Controls.Add(howToAudio);
-            howToTour.next = howToSteps;
-            howToSteps.previous = howToTour;
-            howToSteps.next = howToForms;
-            howToForms.previous = howToSteps;
-            howToForms.next = howToAudio;
-            howToAudio.previous = howToForms;
-            howToTour.Show();
 
-            tourCreation = new AsistimeCreatePanel() { Parent = this };
-            this.Controls.Add(tourCreation);
-            tourCreation.BackColor = Color.White;
-            tourCreation.Location = new Point(this.Width / 2 - tourCreation.Width / 2, this.Height / 2 - tourCreation.Height / 2);
-            tourCreation.Hide();
-
-            audioCreation = new AsistimeAudioPanel() { Parent = this };
-            audioCreation.Width = 700;
-            audioCreation.Height = 800;
-            this.Controls.Add(audioCreation);
-            audioCreation.BackColor = Color.White;
-            audioCreation.Location = new Point(this.Width / 2 - audioCreation.Width / 2, this.Height / 2 - audioCreation.Height / 2);
-            audioCreation.Hide();*/
         }
 
-        public void AssignTourToUser(User user)
+        public void CloseForm()
         {
-
+            this.Close();
         }
+
 
     }
 
