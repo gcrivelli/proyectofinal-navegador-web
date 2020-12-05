@@ -604,7 +604,7 @@ namespace NavegadorWeb.UI
             record("save recsound " + UrlReproductor, "", 0, 0);
             record("close recsound", "", 0, 0);
 
-            new PopupNotification("Grabado exitoso", "Archivo de audio guardado en: " + UrlReproductor);
+            new PopupNotification("Grabado exitoso", "Archivo de audio guardado");
 
 
             PlayButton.Enabled = true;
