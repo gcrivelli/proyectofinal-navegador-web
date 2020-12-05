@@ -569,12 +569,12 @@ namespace NavegadorWeb.Properties {
         ///var divY2=null;
         ///var opacity=0.5;
         ///var i=0;
-        ///var text=&quot;|&quot;;
+        ///var text=&quot;&quot;;
         ///
         ///setInterval(&quot;desplazar()&quot;,50);
         ///
         ///document.addEventListener(&quot;mousemove&quot;,onMouseUpdate, false);
-        ///document.addEventListener(&quot;mouseenter&quot;,onMouseUpdate,  [rest of string was truncated]&quot;;.
+        ///document.addEventListener(&quot;mouseenter&quot;,onMouseUpdate, f [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string CreateCanvas {
             get {

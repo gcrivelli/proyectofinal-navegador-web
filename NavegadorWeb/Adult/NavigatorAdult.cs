@@ -429,7 +429,7 @@ namespace NavegadorWeb.Adult
             var result = notificationController.PostNotification(notificacion).Result;
 
             if (result)
-                new PopupNotification("Pedido de ayuda!", "Enviamos una alerta para que te puedan ayudar con esta página");
+                new PopupNotification("Pedido de ayuda!", "La ayuda viene en camino.");
             
         }
     }

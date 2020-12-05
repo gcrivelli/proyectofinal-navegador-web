@@ -49,7 +49,7 @@ namespace NavegadorWeb.GeneralDisplay
             contentPanel.ShowControl(profile);
         }
 
-        protected void Exit()
+        private void MenuForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
         }
