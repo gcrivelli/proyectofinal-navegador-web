@@ -533,7 +533,6 @@ namespace NavegadorWeb.UI
             nextButton.ButtonText = "¡Listo!";
             this.Controls.Add(nextButton);
             nextButton.BringToFront();
-            nextButton.Enabled = false;
 
             cancelButton = new AsistimeActionButton();
             cancelButton.Click += new EventHandler(Cancel);
@@ -574,6 +573,7 @@ namespace NavegadorWeb.UI
 
         protected void Next(object sender, EventArgs e)
         {
+            StopRecording(sender, e);
             AsistimeTourCreation form = this.Parent as AsistimeTourCreation;
             form.ConfirmStep();
         }
@@ -590,7 +590,6 @@ namespace NavegadorWeb.UI
             record("record recsound", "", 0, 0);
             PlayButton.Enabled = false;
             StopButton.Enabled = true;
-            nextButton.Enabled = false;
         }
 
         private void StopRecording(object sender, EventArgs e)
@@ -609,7 +608,6 @@ namespace NavegadorWeb.UI
 
             PlayButton.Enabled = true;
             StopButton.Enabled = false;
-            nextButton.Enabled = true;
         }
 
         private void PlayAudio(object sender, EventArgs e)
