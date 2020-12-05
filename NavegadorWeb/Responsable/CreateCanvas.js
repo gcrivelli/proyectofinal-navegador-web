@@ -162,6 +162,16 @@ function initBorrar() {
     desplazandoCanvas=false; 
     i--;
   } 
+  if (dibujandoDiv==true || dibujandoDiv2==true) { 
+    dibujandoDiv=false;
+    dibujandoDiv2=false;
+    var elements = document.getElementsByClassName("div");
+    while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+    }
+    var recuadrar=document.getElementById("recuadrar");
+    recuadrar.parentNode.removeChild(recuadrar);
+  }
   var canvas=document.createElement("canvas");    
   desplazandoBorrar=true;
   canvas.id="borrar";
@@ -367,6 +377,16 @@ function initCanvas() {
     var borrar=document.getElementById("borrar");
     borrar.parentNode.removeChild(borrar);
     desplazandoCanvas=false; 
+  }
+  if (dibujandoDiv==true || dibujandoDiv2==true) { 
+    dibujandoDiv=false;
+    dibujandoDiv2=false;
+    var elements = document.getElementsByClassName("div");
+    while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+    }
+    var recuadrar=document.getElementById("recuadrar");
+    recuadrar.parentNode.removeChild(recuadrar);
   }
   desplazandoCanvas=true;
   canvas.id="canvas"+i;
