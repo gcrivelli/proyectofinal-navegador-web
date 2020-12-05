@@ -242,7 +242,7 @@ namespace NavegadorWeb.Adult
                     js += "var element=document.getElementById('canvas" + positionStep + positionElement + "');";
                     js += "var context = element.getContext('2d');";
                     js += "context.font = '20px Arial';";
-                    js += "context.fillText('" + element.text + "', 250, 250);";
+                    js += "context.fillText('" + element.text + "', 10, 40);";
                 }
                 if (element.type == 4) // icono
                 {
