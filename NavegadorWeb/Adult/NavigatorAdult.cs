@@ -157,6 +157,7 @@ namespace NavegadorWeb.Adult
             script.InnerText += "var element = document.getElementById(id);";
             script.InnerText += "element.style.display = 'block';";
             script.InnerText += "}";
+
             script.InnerText += "function init" + step.order + "() {";
             script.InnerText += "var elements = document.getElementsByClassName('asistime');";
             script.InnerText += "while(elements.length > 0) {";
@@ -223,11 +224,8 @@ namespace NavegadorWeb.Adult
                 js += "canvas" + positionStep + positionElement + ".width=" + element.width + ";";
                 js += "canvas" + positionStep + positionElement + ".height=" + element.width + ";";
                 js += "canvas" + positionStep + positionElement + ".className = 'asistime';"; 
-                if (element.type == 1 || element.type == 2)
-                {
-                    js += "canvas" + positionStep + positionElement + ".onmouseover = function() {ocultar('canvas" + positionStep +
-                        positionElement + "','" + element.x + "','" + element.width + "','" + element.y + "','" + element.width + "')};";
-                }
+                js += "canvas" + positionStep + positionElement + ".onmouseover = function() {ocultar('canvas" + positionStep +
+                    positionElement + "','" + element.x + "','" + element.width + "','" + element.y + "','" + element.width + "')};";                
                 js += "document.body.appendChild(canvas" + positionStep + positionElement + ");";
                 if (element.type == 1) // cuadrado
                 {
