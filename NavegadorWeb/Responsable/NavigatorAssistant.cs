@@ -1,6 +1,7 @@
 ﻿using NavegadorWeb.Adult;
 using NavegadorWeb.Controller;
 using NavegadorWeb.Extra;
+using NavegadorWeb.GeneralDisplay;
 using NavegadorWeb.Models;
 using NavegadorWeb.UI;
 using System;
@@ -19,6 +20,7 @@ namespace NavegadorWeb.Responsable
         private static HtmlDocument doc;
 
         private AsistimeTourCreation createTourView;
+        private LoadingForm loadingForm;
 
         private CreateStep createStepView;
         public int countStep;
@@ -156,41 +158,7 @@ namespace NavegadorWeb.Responsable
             this.tour.description = desc;
         }
 
-        /*private void addStep(object sender, EventArgs e)
-        {
-            if (webBrowser.ReadyState == WebBrowserReadyState.Complete)
-            {
-                var model = new CreateTutorial();
-                model.ShowDialog();
-                if (model.DialogResult == DialogResult.OK)
-                {
-                    //Init all the tour components
-                    tour = new Tour()
-                    {
-                        steps = new List<Step>(),
-                        name = model.nameTxt.Text,
-                        description = model.descTxt.Text,
-                        active = true
-                    };
-
-                    countStep = 0;
-                    countTxt.Text = countStep.ToString();
-
-                    initStep();
-
-                    addStepBntt.Visible = false;
-                    endTutorialBtn.Visible = true;
-                    addStepBtn.Visible = true;
-                    countTxt.Visible = true;
-
-                    MessageBox.Show("Comenza la grabación del tutorial", "Comienza el Tutorial", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            else
-                MessageBox.Show("Cargando, espere.");
-        }*/
-
-        public void endTutorial()//object sender, EventArgs e)
+        public void endTutorial()
         {
             // post del tour
             if (countStep == 0)
@@ -199,20 +167,13 @@ namespace NavegadorWeb.Responsable
             }
             else
             {
-                var tourController = new TourController();
-                var userController = new UserController();
+                loadingForm = new LoadingForm();
+                loadingForm.Show();
 
-                //Busco lista de usuarios
-                var adults = userController.GetAdults().Result;
+                var tourController = new TourController();
 
                 tour.user_id = Constants.user._id;
                 var tourResponse = tourController.PostAsync(tour).Result;
-
-                // Asigno a todos los adultos el tour
-                /*adults.ForEach(adult =>
-                {
-                    var a = userController.AsignTourAdult(tourResponse._id, adult._id).Result;
-                });*/
 
                 // post de los audios
                 var allAudioResponse = true;
@@ -227,11 +188,8 @@ namespace NavegadorWeb.Responsable
                     }
                 }
 
-                /*addStepBntt.Visible = true;
-                endTutorialBtn.Visible = false;
-                addStepBtn.Visible = false;*/
-                //countTxt.Visible = false;
-                //createStepView.Close();
+                loadingForm.Close();
+
                 webBrowser.Refresh();
 
                 if (tourResponse._id != null && allAudioResponse)
@@ -248,17 +206,8 @@ namespace NavegadorWeb.Responsable
             }
         }
 
-        /*private void addStepBtn_Click(object sender, EventArgs e)
-        {
-            //initStep();
-            //addStepBtn.Enabled = false;
-        }*/
-
         public void addStepToTour()
         {
-            //cargar audio --> URL 
-            //incrementStepCount();
-
             var step = new Step()
             {
                 order = countStep,

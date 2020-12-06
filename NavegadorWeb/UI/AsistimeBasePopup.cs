@@ -461,6 +461,7 @@ namespace NavegadorWeb.UI
 
     class AsistimeAudioPanel : AsistimeBasePopup
     {
+        public bool stopRecording = false;
         public static HtmlDocument doc;
         String UrlReproductor = null;
         SoundPlayer ReproductorWav;
@@ -573,9 +574,11 @@ namespace NavegadorWeb.UI
 
         protected void Next(object sender, EventArgs e)
         {
-            StopRecording(sender, e);
+            if (!stopRecording)
+                StopRecording(sender, e);
             AsistimeTourCreation form = this.Parent as AsistimeTourCreation;
             form.ConfirmStep();
+            stopRecording = false;
         }
 
         protected void Cancel(object sender, EventArgs e)
@@ -595,6 +598,7 @@ namespace NavegadorWeb.UI
         private void StopRecording(object sender, EventArgs e)
         {
             createDirectory();
+            stopRecording = true;
 
             var nameTourWithoutSpace = this.tourName.Replace(" ", "");
             var audioName = "/Audio" + nameTourWithoutSpace + this.countStep + ".wav";
