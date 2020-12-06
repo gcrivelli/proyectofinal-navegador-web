@@ -170,7 +170,7 @@ namespace NavegadorWeb.UI
             }
             else
             {
-                isLastStepInUrl = true; //el próximo paso cambia de url
+                isLastStepInUrl = false; //el próximo paso cambia de url
             }
             return isLastStepInUrl;
         }
