@@ -558,7 +558,7 @@ namespace NavegadorWeb.Responsable
             this.Controls.Add(audioLabel);
 
             AsistimeRoundButton EraseButton = new AsistimeRoundButton(84, 84, Constants.EraseImage, Constants.EraseHoverImage, Constants.EraseClickImage) { Parent = this.Parent };
-            Label eraseLabel = new Label() { Text = "Borrar", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
+            Label eraseLabel = new Label() { Text = "Deshacer", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
             EraseButton.Location = new Point(RectangleButton.Location.X + 660, RectangleButton.Location.Y);
             Center_With(eraseLabel, EraseButton);
             EraseButton.Click += new EventHandler(EraseForm);

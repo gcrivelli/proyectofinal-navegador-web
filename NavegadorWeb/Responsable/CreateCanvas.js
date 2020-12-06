@@ -1,5 +1,4 @@
 ﻿var desplazandoCanvas=false;
-var desplazandoBorrar=false;
 var modificarTexto=false;
 var dibujandoDiv=false;
 var dibujandoDiv2=false;
@@ -49,18 +48,6 @@ function onClick(e) {
     inclinacion=0;
     color="#000000";
   }  
-  if (desplazandoBorrar==true) {
-    Array.from(document.getElementsByClassName("canvas")).forEach(
-        function(element, index, array) {
-          var top = element.getBoundingClientRect().top;
-          var left = element.getBoundingClientRect().left;
-          var width = element.width;
-            if (e.pageX>left && (left+width)>e.pageX && e.pageY>top && (top+width)>e.pageY) {
-              element.parentNode.removeChild(element);
-            }
-        }
-    );
-  }
   if (dibujandoDiv2) {
     divX2=e.pageX;
     divY2=e.pageY;
@@ -125,11 +112,6 @@ function desplazar() {
     canvas.style.left=(x-(width/2))+"px";
     canvas.style.top=(y-(width/2))+"px";    
   }
-  if (desplazandoBorrar) {
-    var canvas=document.getElementById("borrar");
-    canvas.style.left=(x-20)+"px";
-    canvas.style.top=(y-20)+"px";    
-  }
   if (dibujandoDiv) {
     var canvas=document.getElementById("recuadrar");
     canvas.style.left=(x-20)+"px";
@@ -151,8 +133,7 @@ function initBorrar() {
     canvas.parentNode.removeChild(canvas);
     desplazandoCanvas=false; 
     i--;
-  } 
-  if (dibujandoDiv==true || dibujandoDiv2==true) { 
+  } else if (dibujandoDiv==true || dibujandoDiv2==true) { 
     dibujandoDiv=false;
     dibujandoDiv2=false;
     var elements = document.getElementsByClassName("div");
@@ -161,18 +142,14 @@ function initBorrar() {
     }
     var recuadrar=document.getElementById("recuadrar");
     recuadrar.parentNode.removeChild(recuadrar);
+  } else {
+    var canvas=document.getElementById("canvas"+i);
+    canvas.parentNode.removeChild(canvas);
+    i--;  
+    if (i<0) {
+      i = 0;
+    }  
   }
-  var canvas=document.createElement("canvas");    
-  desplazandoBorrar=true;
-  canvas.id="borrar";
-  canvas.style.cssText="position: absolute; z-index: 9999;";  
-  canvas.width=40;
-  canvas.height=40;    
-  document.body.appendChild(canvas);    
-
-  var context=canvas.getContext("2d");
-  context.font='30px FontAwesome';
-  context.fillText('\uf12d',0,25);
 }
 
 function initBell() { 
@@ -325,14 +302,7 @@ function initDiv() {
     i--;
   } else {
     var canvas=document.createElement("canvas");  
-    i++;  
   }   
-  if (desplazandoBorrar==true) {
-    desplazandoBorrar=false; 
-    var borrar=document.getElementById("borrar");
-    borrar.parentNode.removeChild(borrar);
-    desplazandoCanvas=false; 
-  }
   canvas.id="recuadrar";
   canvas.style.cssText="position: absolute; z-index: 9999;";  
   canvas.width=40;
@@ -361,12 +331,6 @@ function initCanvas() {
   } else {
     var canvas=document.createElement("canvas");  
     i++;  
-  }
-  if (desplazandoBorrar==true) {
-    desplazandoBorrar=false; 
-    var borrar=document.getElementById("borrar");
-    borrar.parentNode.removeChild(borrar);
-    desplazandoCanvas=false; 
   }
   if (dibujandoDiv==true || dibujandoDiv2==true) { 
     dibujandoDiv=false;
