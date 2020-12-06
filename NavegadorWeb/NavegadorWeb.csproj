@@ -170,6 +170,12 @@
     <Compile Include="GeneralDisplay\MenuForm.Designer.cs">
       <DependentUpon>MenuForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GeneralDisplay\MenuForm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GeneralDisplay\MenuForm2.Designer.cs">
+      <DependentUpon>MenuForm2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Element.model.cs" />
     <Compile Include="Models\Notification.model.cs" />
     <Compile Include="Models\Step.model.cs" />

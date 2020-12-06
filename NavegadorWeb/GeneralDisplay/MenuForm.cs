@@ -19,10 +19,6 @@ namespace NavegadorWeb.GeneralDisplay
             this.tours = tours;
             this.previousForm = form;
 
-            WindowState = FormWindowState.Maximized;
-            this.Width = Screen.PrimaryScreen.WorkingArea.Size.Width;
-            this.Height = Screen.PrimaryScreen.WorkingArea.Size.Height;
-
             contentPanel = new AsistimeContentPanel();
             contentPanel.Location = new System.Drawing.Point(Constants.MenuWidth, 0);
             this.Controls.Add(contentPanel);

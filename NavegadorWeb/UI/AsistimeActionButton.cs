@@ -29,6 +29,7 @@ namespace NavegadorWeb.UI
             this.IdleFillColor = ColorTranslator.FromHtml(Constants.ActionButtonFillColor);
             this.IdleLineColor = ColorTranslator.FromHtml(Constants.ActionButtonFillColor);
             this.ActiveLineColor = ColorTranslator.FromHtml(Constants.ActionButtonHoverFillColor);
+            this.ReSize();
 
         }
 
@@ -41,6 +42,16 @@ namespace NavegadorWeb.UI
                 Width = (int)size.Width;
             }
             base.OnPaint(e);
+        }
+
+        public void ReSize()
+        {
+            using (Graphics cg = this.CreateGraphics())
+            {
+                SizeF size = cg.MeasureString(this.ButtonText, this.Font);
+                size.Width += 40;
+                Width = (int)size.Width;
+            }
         }
 
         protected override void OnMouseLeave(EventArgs e)

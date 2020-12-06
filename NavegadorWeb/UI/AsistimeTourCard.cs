@@ -14,6 +14,7 @@ namespace NavegadorWeb.UI
             color = Color.Transparent;
             BorderRadius = 10;
             BackColor = ColorTranslator.FromHtml(Constants.TourCardBackground);
+            this.Width = Constants.TourCardWidth;
 
             //Título
             Label title = new Label();
@@ -33,17 +34,26 @@ namespace NavegadorWeb.UI
             description.Text = tour.description;
 
             //Botón de realizar tour
-            AsistimeActionButton button = new AsistimeActionButton();
-            button.TabIndex = 0;
-            button.ButtonText = "Realizar Tour";
-            button.Location = new Point(Constants.TourCardWidth - button.Width - 30, 
-                Constants.TourCardHeigth - button.Height - 10);
-            button.Click += new EventHandler(this.PlayTour);
+            AsistimeActionButton playButton = new AsistimeActionButton();
+            playButton.TabIndex = 0;
+            playButton.ButtonText = "Realizar Tour";
+            //playButton.ReSize();
+            //playButton.Location = new Point(Constants.TourCardWidth - playButton.Width - 30, 
+            //Constants.TourCardHeigth - playButton.Height - 10);
+            int playButtonWidth;
+            using (Graphics cg = this.CreateGraphics())
+            {
+                SizeF size = cg.MeasureString(playButton.ButtonText, playButton.Font);
+                size.Width += 40;
+                playButtonWidth = (int)size.Width;
+            }
+            playButton.Location = new Point(Constants.TourCardWidth - playButtonWidth - 10, Constants.TourCardHeigth - playButton.Height - 10);
+            playButton.Click += new EventHandler(this.PlayTour);
 
             //Formato de la tarjeta
             Controls.Add(description);
             Controls.Add(title);
-            Controls.Add(button);
+            Controls.Add(playButton);
             Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             ForeColor = ColorTranslator.FromHtml(Constants.TourCardFontColour);
             Size = new System.Drawing.Size(Constants.TourCardWidth, Constants.TourCardHeigth);
@@ -90,22 +100,40 @@ namespace NavegadorWeb.UI
             AsistimeActionButton assignButton = new AsistimeActionButton();
             assignButton.TabIndex = 0;
             assignButton.ButtonText = "Asignar";
-            assignButton.Location = new Point(30, Constants.TourCardHeigth - assignButton.Height - 10);
+            //assignButton.ReSize();
+            //assignButton.Location = new Point(30, Constants.TourCardHeigth - assignButton.Height - 10);
+            int assignyButtonWidth;
+            using (Graphics cg = this.CreateGraphics())
+            {
+                SizeF size = cg.MeasureString(assignButton.ButtonText, assignButton.Font);
+                size.Width += 40;
+                assignyButtonWidth = (int)size.Width;
+            }
+            assignButton.Location = new Point(10, Constants.TourCardHeigth - assignButton.Height - 10);
             assignButton.Click += new EventHandler(this.AssignTour);
 
             //Botón de realizar tour
-            AsistimeActionButton button = new AsistimeActionButton();
-            button.TabIndex = 0;
-            button.ButtonText = "Realizar";
-            button.Location = new Point(Constants.TourCardWidth - button.Width - 30,
-                Constants.TourCardHeigth - button.Height - 10);
-            button.Click += new EventHandler(this.PlayTour);
+            AsistimeActionButton playButton = new AsistimeActionButton();
+            playButton.TabIndex = 0;
+            playButton.ButtonText = "Realizar";
+            //playButton.ReSize();
+            //playButton.Location = new Point(Constants.TourCardWidth - playButton.Width - 30, 
+            //Constants.TourCardHeigth - playButton.Height - 10);
+            int playButtonWidth;
+            using (Graphics cg = this.CreateGraphics())
+            {
+                SizeF size = cg.MeasureString(playButton.ButtonText, playButton.Font);
+                size.Width += 40;
+                playButtonWidth = (int)size.Width;
+            }
+            playButton.Location = new Point(Constants.TourCardWidth - playButtonWidth - 10, Constants.TourCardHeigth - playButton.Height - 10);
+            playButton.Click += new EventHandler(this.PlayTour);
 
             //Formato de la tarjeta
             Controls.Add(description);
             Controls.Add(title);
             Controls.Add(assignButton);
-            Controls.Add(button);
+            Controls.Add(playButton);
             Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             ForeColor = ColorTranslator.FromHtml(Constants.TourCardFontColour);
             Size = new System.Drawing.Size(Constants.TourCardWidth, Constants.TourCardHeigth);
@@ -113,6 +141,8 @@ namespace NavegadorWeb.UI
             TabStop = false;
             Location = new System.Drawing.Point(x, y);
             tourAsociado = tour;
+
+            
         }
 
         private void PlayTour(object sender, EventArgs e)

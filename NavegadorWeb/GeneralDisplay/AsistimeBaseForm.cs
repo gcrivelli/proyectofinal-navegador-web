@@ -16,8 +16,8 @@ namespace NavegadorWeb.GeneralDisplay
         {
             MaximizeBox = false;
             WindowState = FormWindowState.Maximized;
-            this.Width = Screen.PrimaryScreen.WorkingArea.Size.Width;
-            this.Height = Screen.PrimaryScreen.WorkingArea.Size.Height;
+            //this.Width = Screen.PrimaryScreen.WorkingArea.Size.Width;
+            //this.Height = Screen.PrimaryScreen.WorkingArea.Size.Height;
             this.Text = "Asistime";
 
             InitializeComponent();
