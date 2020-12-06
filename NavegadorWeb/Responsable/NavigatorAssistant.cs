@@ -18,6 +18,7 @@ namespace NavegadorWeb.Responsable
         private AsistimeStepsBar stepsBar;
         private AsistimeTourCreationBar tourBar;
         private TextElement textPopup;
+        private AsistimeAudioPanel audioPopup;
         private static HtmlDocument doc;
 
         private AsistimeTourCreation createTourView;
@@ -202,6 +203,10 @@ namespace NavegadorWeb.Responsable
                 formBar.Hide();
                 stepsBar.Hide();
                 tourBar.Hide();
+                if (!(textPopup == null))
+                {
+                    textPopup.Hide();
+                }
 
                 Constants.tours = tourController.GetAllToursAsync().Result;
                 asistimeAppBar.Show();
@@ -249,21 +254,37 @@ namespace NavegadorWeb.Responsable
             switch (form)
             {
                 case "circulo":
+                    if (!(textPopup == null))
+                    {
+                        textPopup.Hide();
+                    }
                     iconBar.Hide();
                     formBar.ShowControlsCircle();
                     circle();
                     break;
                 case "rectangulo":
+                    if (!(textPopup == null))
+                    {
+                        textPopup.Hide();
+                    }
                     iconBar.Hide();
                     formBar.ShowControlsRect();
                     rectangle();
                     break;
                 case "div":
+                    if (!(textPopup == null))
+                    {
+                        textPopup.Hide();
+                    }
                     iconBar.Hide();
                     formBar.Hide();
                     div();
                     break;
                 case "borrador":
+                    if (!(textPopup == null))
+                    {
+                        textPopup.Hide();
+                    }
                     iconBar.Hide();
                     formBar.Hide();
                     erase();
@@ -278,6 +299,10 @@ namespace NavegadorWeb.Responsable
                     textPopup.Show();
                     break;
                 case "icono":
+                    if (!(textPopup == null))
+                    {
+                        textPopup.Hide();
+                    }
                     formBar.Hide();
                     iconBar.Show();
                     break;
@@ -414,6 +439,10 @@ namespace NavegadorWeb.Responsable
         {
             iconBar.Hide();
             formBar.Hide();
+            if (!(textPopup == null))
+            {
+                textPopup.Hide();
+            }
 
             //Aca va el comportamiento para guardar el paso
             incrementStepCount();
@@ -567,6 +596,10 @@ namespace NavegadorWeb.Responsable
             iconBar.Hide();
             formBar.Hide();
             stepsBar.Hide();
+            if(!(textPopup == null))
+            {
+                textPopup.Hide();
+            }
             tourBar.Show();
         }
 

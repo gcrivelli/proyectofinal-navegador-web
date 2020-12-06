@@ -398,7 +398,7 @@ namespace NavegadorWeb.Responsable
             
 
             this.Controls.Add(this.GetNavBackButton(50, 15));
-            Label backLabel = new Label() { Text = "Cancelar tour", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
+            Label backLabel = new Label() { Text = "Cancelar", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
             Center_With(backLabel, NavBackButton);
             this.Controls.Add(backLabel);
 
@@ -410,17 +410,17 @@ namespace NavegadorWeb.Responsable
                 Width = 350,
                 Height = 40
             };
-            stepsLabel.Location = new Point(this.ClientSize.Width / 2 - 420, 55);
+            stepsLabel.Location = new Point(this.ClientSize.Width / 2 - stepsLabel.Width / 2, 55);
             this.Controls.Add(stepsLabel);
             stepsLabel.BringToFront();
 
             this.Controls.Add(this.GetAddStepsButton(this.ClientSize.Width - 300, 15)); //this.ClientSize.Width/2 - 49, 15));
-            Label addTourLabel = new Label() { Text = "Agregar paso", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
+            Label addTourLabel = new Label() { Text = "Agregar Paso", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
             Center_With(addTourLabel, AddStepButton);
             this.Controls.Add(addTourLabel);
 
             this.Controls.Add(this.GetNavConfirmButton(this.ClientSize.Width - 150, 15));
-            Label profileLabel = new Label() { Text = "Guardar tour", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
+            Label profileLabel = new Label() { Text = "Guardar", ForeColor = Color.White, Font = Constants.H1LabelFont, Height = 40 };
             Center_With(profileLabel, ConfirmButton);
             this.Controls.Add(profileLabel);
         }
