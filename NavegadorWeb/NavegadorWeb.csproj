@@ -164,6 +164,12 @@
     <Compile Include="GeneralDisplay\AsistimePassReset.Designer.cs">
       <DependentUpon>AsistimePassReset.cs</DependentUpon>
     </Compile>
+    <Compile Include="GeneralDisplay\LoadingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GeneralDisplay\LoadingForm.Designer.cs">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GeneralDisplay\MenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -307,6 +313,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GeneralDisplay\AsistimeLogin.resx">
       <DependentUpon>AsistimeLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GeneralDisplay\LoadingForm.resx">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GeneralDisplay\MenuForm.resx">
       <DependentUpon>MenuForm.cs</DependentUpon>
@@ -666,6 +675,11 @@
     <None Include="Images\FormsBar\IconHoverImage.jpg" />
     <None Include="Images\FormsBar\InconImage.jpg" />
     <None Include="Images\FormsBar\IconImage.jpg" />
+    <Content Include="Images\loadingGif.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Images\loadingGif2.gif" />
+    <None Include="Images\loadingGif3.gif" />
     <Content Include="logo.ico" />
     <Content Include="logo2.ico" />
     <Content Include="Responsable\CreateCanvas.js" />

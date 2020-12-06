@@ -297,7 +297,6 @@ function initCirculo() {
 
 function initTexto() { 
   modificarTexto=true;  
-  text = "Texto";
   var canvas=document.getElementById("canvas"+i);
   var context=canvas.getContext("2d");
   if (text.length>0) {

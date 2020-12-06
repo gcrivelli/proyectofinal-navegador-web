@@ -8,6 +8,7 @@ using System.Windows;
 using System.IO;
 using System.Linq;
 using NavegadorWeb.Extra;
+using NavegadorWeb.GeneralDisplay;
 
 namespace NavegadorWeb.Adult
 {
@@ -19,6 +20,7 @@ namespace NavegadorWeb.Adult
         private string actualURL, lastCorrectURL;
         private int posActual;
         private bool volverAPasoCorrecto;
+        private LoadingForm loadingForm;
 
         public NavigatorAdult()
         {
@@ -40,6 +42,9 @@ namespace NavegadorWeb.Adult
             tourBar.Show();
             this.asistimeAppBar.Hide();
 
+            loadingForm = new LoadingForm();
+            loadingForm.Show();
+
             //Instanciar el controller para el tour
             var tourController = new TourController();
             tour = tourController.GetTourAsync(tour._id).Result;
@@ -57,20 +62,16 @@ namespace NavegadorWeb.Adult
             countLoad = 0;
             tourBar.TourInititated(tour);
 
+            loadingForm.Close();
+
             //Reproducir el paso 0 
             var firstStep = tour.steps[0];
             webBrowser.Navigate(firstStep.url);
             actualURL = "";
 
+
             //Mostrar mensaje de confirmación
             new PopupNotification("Inicio Tour", "Comienza el tour");
-
-            //Reproducir audio
-            if (firstStep.audio != null)
-            {
-                var audioPath = Constants.audioPath + "/Audio " + tour._id + firstStep._id + ".wav";
-                playAudio(audioPath);
-            }
         }
 
         public void playStep(Tour tour, int positionStep, bool flag = false)

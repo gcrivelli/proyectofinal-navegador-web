@@ -20,6 +20,7 @@ namespace NavegadorWeb.GeneralDisplay
         protected AsistimeActionButton loginButton;
         protected AsistimeActionButton registerButton;
         protected AsistimeActionButton forgotPasswordButton;
+        protected LoadingForm loadingForm;
 
         public AsistimeLogin() : base()
         {
@@ -94,6 +95,9 @@ namespace NavegadorWeb.GeneralDisplay
                     user.email = userTextBox.TextName;
                     user.password = passwrdTextBox.TextName;
 
+                    loadingForm = new LoadingForm();
+                    loadingForm.Show();
+
                     var token = userController.LoginAsync(user).Result;
 
                     if (token != null)
@@ -106,6 +110,8 @@ namespace NavegadorWeb.GeneralDisplay
 
                         var tourController = new TourController();
                         Constants.tours = tourController.GetAllToursAsync().Result;
+
+                        loadingForm.Close();
 
                         new PopupNotification("App Asistime!", "Bienvenido " + token.user.name);
 
@@ -136,6 +142,7 @@ namespace NavegadorWeb.GeneralDisplay
                     }
                     else
                     {
+                        loadingForm.Close();
                         new PopupNotification("Error Login", "Usuario o contraseña incorrecta.");
                         userTextBox.TextName = "";
                         passwrdTextBox.TextName = "";
