@@ -319,6 +319,8 @@ namespace NavegadorWeb.Responsable
                     erase();
                     break;
                 case "texto":
+                    iconBar.Hide();
+                    formBar.Hide();
                     textPopup = new TextElement() { Parent = this};
                     this.Controls.Add(textPopup);
                     textPopup.Location = new System.Drawing.Point(this.Width/2 - textPopup.Width/2, this.Height / 2 - textPopup.Height / 2);
@@ -338,6 +340,11 @@ namespace NavegadorWeb.Responsable
             iconBar.Hide();
             formBar.ShowControlsText();
             //text(); aca hay que dibujar el canvas texto con la variable text
+        }
+
+        public void CloseTextPopup()
+        {
+            textPopup.Hide();
         }
 
         private void cancel()

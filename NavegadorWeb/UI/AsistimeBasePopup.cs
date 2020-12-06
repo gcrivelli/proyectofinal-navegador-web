@@ -954,11 +954,12 @@ namespace NavegadorWeb.UI
         protected TextBox subTitle;
         protected AsistimeRoundButton BackButton;
         protected AsistimeRoundButton ForwardButton;
+        protected AsistimeSearchBox textbox;
 
         public TextElement()
         {
             this.Width = 700;
-            this.Height = 300;
+            this.Height = 350;
             this.BackColor = Color.White;
 
             Panel frontPanel = new Panel();
@@ -990,6 +991,18 @@ namespace NavegadorWeb.UI
             this.Controls.Add(title);
             title.BringToFront();
 
+            textbox = new AsistimeSearchBox()
+            {
+                Font = Constants.TextBoxFont,
+                Parent = this,
+                Width = 400,
+                TextName = null
+            };
+            textbox.Location = new Point(this.Width / 2 - title.Width / 2, title.Location.Y + 80);
+            this.Controls.Add(textbox);
+            textbox.BringToFront();
+
+
             BackButton = new AsistimeRoundButton(98, 98, Constants.CancelRedImageW, Constants.CancelRedHoverImageW, Constants.CancelRedClickImageW) { Parent = this.Parent };
             BackButton.Location = new Point(30, this.Height - 128);
             BackButton.Click += new EventHandler(this.Back);
@@ -1018,13 +1031,14 @@ namespace NavegadorWeb.UI
 
         protected void Back(object sender, EventArgs e)
         {
-            
+            NavigatorAssistant form = Parent as NavigatorAssistant;
+            form.CloseTextPopup();
         }
 
         protected void Forward(object sender, EventArgs e)
         {
             NavigatorAssistant form = Parent as NavigatorAssistant;
-            form.DrawTextForm("sarasa");
+            form.DrawTextForm(textbox.TextName);
         }
     }
 
