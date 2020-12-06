@@ -1,4 +1,5 @@
 ﻿using Bunifu.Framework.UI;
+using NavegadorWeb.GeneralDisplay;
 using NavegadorWeb.Models;
 using System;
 using System.Drawing;
@@ -65,7 +66,7 @@ namespace NavegadorWeb.UI
 
         private void PlayTour(object sender, EventArgs e)
         {
-            AsistimeCardContainer parent = this.Parent as AsistimeCardContainer;
+            MenuForm2 parent = this.Parent as MenuForm2;
             parent.PlayTour(this.tourAsociado);
         }
     }
@@ -153,7 +154,7 @@ namespace NavegadorWeb.UI
                 MessageBoxButtons.YesNo);
             if (result1 == DialogResult.Yes)
             {
-                AsistimeCardContainer parent = this.Parent as AsistimeCardContainer;
+                MenuForm2 parent = this.Parent as MenuForm2;
                 parent.PlayTour(this.tourAsociado);
             }
         }

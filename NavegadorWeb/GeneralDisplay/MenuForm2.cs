@@ -1,4 +1,5 @@
-﻿using NavegadorWeb.Models;
+﻿using NavegadorWeb.Adult;
+using NavegadorWeb.Models;
 using NavegadorWeb.UI;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace NavegadorWeb.GeneralDisplay
     {
         protected List<Tour> tours;
         protected NavigatorForm previousForm;
-        protected AsistimeRoundButton backButton = null;
+        protected AsistimeRoundButton backButton;
         protected AsistimeRoundButton assistButton;
         protected AsistimeRoundButton addAdultButton;
 
@@ -29,29 +30,52 @@ namespace NavegadorWeb.GeneralDisplay
             this.BackColor = ColorTranslator.FromHtml(Constants.AppMenuBackgroundColour);
             AutoScroll = true;
 
-            AddBackButton();
-
-            if (Constants.user.rol == "Adulto")
-            {
-               
-            }
-            else if (Constants.user.rol == "Responsable")
-            {
-                
-            }
+            AddButtons();
             ArrangeCardGrid();
         }
 
-        protected void AddBackButton()
+        protected void AddButtons()
         {
-            backButton = new AsistimeRoundButton(98, 98, Constants.AddTourImage, Constants.AddTourHoverImage, Constants.AddTourClickImage) { Parent = this };
-            backButton.Location = new Point(10, 10);
+            backButton = new AsistimeRoundButton(98, 98, Constants.PreviousImageG, Constants.PreviousHoverImageG, Constants.PreviousClickImageG) { Parent = this };
+            backButton.Location = new Point(20, 15);
             backButton.Click += new EventHandler(this.ReturnToNavigation);
             this.Controls.Add(backButton);
-            Label backLabel = new Label() { Text = "Volver", ForeColor = Color.Black, Font = Constants.H1LabelFont, Height = 40 };
+            Label backLabel = new Label() { Text = "Volver", ForeColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour), Font = Constants.H1LabelFont, Height = 40 };
             Center_With(backLabel, backButton);
             backButton.BringToFront();
             this.Controls.Add(backLabel);
+
+            if (Constants.user.rol == "Adulto")
+            {
+                assistButton = new AsistimeRoundButton(98, 98, Constants.AsistimeImageG, Constants.AsistimeHoverImageG, Constants.AsistimeClickImageG) { Parent = this };
+                assistButton.Location = new Point(this.ClientSize.Width - 150, 15);
+                assistButton.Click += new EventHandler(this.ReturnToNavigation);
+                this.Controls.Add(assistButton);
+                Label assistLabel = new Label() { Text = "Asistime", ForeColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour), Font = Constants.H1LabelFont, Height = 40 };
+                Center_With(assistLabel, assistButton);
+                assistButton.BringToFront();
+                this.Controls.Add(assistLabel);
+            }
+            else if (Constants.user.rol == "Responsable")
+            {
+                /*assistButton = new AsistimeRoundButton(98, 98, Constants.AsistimeImageG, Constants.AsistimeHoverImageG, Constants.AsistimeClickImageG) { Parent = this };
+                assistButton.Location = new Point(this.ClientSize.Width - 150, 15);
+                assistButton.Click += new EventHandler(this.ReturnToNavigation);
+                this.Controls.Add(assistButton);
+                Label assistLabel = new Label() { Text = "Asistime", ForeColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour), Font = Constants.H1LabelFont, Height = 40 };
+                Center_With(assistLabel, assistButton);
+                assistButton.BringToFront();
+                this.Controls.Add(assistLabel);*/
+            }
+
+            PictureBox logo = new PictureBox();
+            logo.Image = Constants.AsistimeLogo291x99; ;
+            this.Controls.Add(logo);
+            logo.Width = 291;
+            logo.Height = 99;
+            logo.Location = new Point(this.Width/2 - logo.Width/2, 15);
+            logo.BringToFront();
+
         }
 
         protected void ReturnToNavigation(object sender, EventArgs e)
@@ -102,6 +126,7 @@ namespace NavegadorWeb.GeneralDisplay
         private void ArrangeCardGrid()
         {
             this.Controls.Clear();
+            AddButtons();
 
             if (!(this.tours == null))
             {
@@ -118,6 +143,18 @@ namespace NavegadorWeb.GeneralDisplay
                 var spaceBeforeCards = (this.Width - maxWidthCards - 20 * (maxCardsAllowed - 1)) / 2;
                 i = 1;
 
+                Label title = new Label()
+                {
+                    Text = "MIS TOURS",
+                    Font = Constants.MenuHeaderFont,
+                    Width = 400,
+                    Height = 60,
+                    TextAlign = ContentAlignment.MiddleLeft,
+                };
+                title.Location = new Point(spaceBeforeCards, 200);
+                this.Controls.Add(title);
+                title.BringToFront();
+
                 int line = 1;
                 int y;
                 int x;
@@ -126,7 +163,7 @@ namespace NavegadorWeb.GeneralDisplay
                     if (i <= CardsxLine)
                     {
                         x = spaceBeforeCards + 20 * (i-1) + Constants.TourCardWidth * (i - 1);
-                        y = 200 + 20 * (line-1) + Constants.TourCardHeigth * (line - 1);
+                        y = 270 + 20 * (line-1) + Constants.TourCardHeigth * (line - 1);
 
                         if (Constants.user.rol == "Adulto")
                         {
@@ -144,7 +181,7 @@ namespace NavegadorWeb.GeneralDisplay
                         i = 1;
                         line++;
                         x = spaceBeforeCards + 20 * (i - 1) + Constants.TourCardWidth * (i - 1);
-                        y = 200 + 20 * (line - 1) + Constants.TourCardHeigth * (line - 1);
+                        y = 270 + 20 * (line - 1) + Constants.TourCardHeigth * (line - 1);
 
                         if (Constants.user.rol == "Adulto")
                         {
@@ -160,24 +197,18 @@ namespace NavegadorWeb.GeneralDisplay
 
                 }
             }
+            else
+            {
+                //Mostrar un label si no hay tours
+            }
         }
 
-        /*protected Control GetBackButton(int x, int y)
+        public void PlayTour(Tour tour)
         {
-            if (backButton == null)
-            {
-                backButton = new AsistimeRoundButton(98, 98, Constants.AddTourImage, Constants.AddTourHoverImage, Constants.AddTourClickImage) { Parent = this.Parent };
-                backButton.Location = new Point(x, y);
-            }
-            backButton.Click += new EventHandler(this.NavigateBack);
-            return backButton;
-        }*/
-
-        /*protected void NavigateBack(object sender, EventArgs e)
-        {
-            NavigatorForm control = this.Parent as NavigatorForm;
-            control.NavigateBack();
-        }*/
+            this.Hide();
+            NavigatorAdult form = previousForm as NavigatorAdult;
+            form.PlayTour(tour);
+        }
 
         protected void Center_With(Label label, AsistimeRoundButton button)
         {

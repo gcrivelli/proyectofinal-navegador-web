@@ -65,7 +65,8 @@ namespace NavegadorWeb.Responsable
 
         public override void ShowMenu() {
 
-            MenuAssistant menu = new MenuAssistant(Constants.tours, this);
+            //MenuAssistant menu = new MenuAssistant(Constants.tours, this);
+            MenuForm2 menu = new MenuForm2(Constants.tours, this);
 
             this.Hide();
             menu.Show();

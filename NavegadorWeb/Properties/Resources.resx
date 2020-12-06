@@ -139,11 +139,20 @@
   <data name="AsistimeClickImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\Appbar\AsistimeClickImage.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="AsistimeClickImageG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\FlowGrayBack\AsistimeClickImageG.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="AsistimeHoverImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\Appbar\AsistimeHoverImage.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="AsistimeHoverImageG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\FlowGrayBack\AsistimeHoverImageG.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="AsistimeImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\Appbar\AsistimeImage.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AsistimeImageG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\FlowGrayBack\AsistimeImageG.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="AudioClickImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\FormsBar\AudioClickImage.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -391,6 +400,9 @@
   <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="logo291x99" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\logo291x99.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Minus" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\FormsModifiers\Minus.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -454,11 +466,20 @@
   <data name="PreviousClickImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\FlowWhiteBack\PreviousClickImage.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="PreviousClickImageG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\FlowGrayBack\PreviousClickImageG.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="PreviousHoverImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\FlowWhiteBack\PreviousHoverImage.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="PreviousHoverImageG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\FlowGrayBack\PreviousHoverImageG.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="PreviousImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\FlowWhiteBack\PreviousImage.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PreviousImageG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\FlowGrayBack\PreviousImageG.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="RecordClickImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\FormsBar\RecordClickImage.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

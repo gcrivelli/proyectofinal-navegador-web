@@ -127,7 +127,15 @@ namespace NavegadorWeb.UI
         public static Image CircleImage = NavegadorWeb.Properties.Resources.CircleImage;
         public static Image CircleHoverImage = NavegadorWeb.Properties.Resources.CircleHoverImage;
         public static Image CircleClickImage = NavegadorWeb.Properties.Resources.CircleClickImage;
-        
+
+        //Imágenes de flow sobre fondo gris
+        public static Image PreviousImageG = NavegadorWeb.Properties.Resources.PreviousImageG;
+        public static Image PreviousHoverImageG = NavegadorWeb.Properties.Resources.PreviousHoverImageG;
+        public static Image PreviousClickImageG = NavegadorWeb.Properties.Resources.PreviousClickImageG;
+        public static Image AsistimeImageG = NavegadorWeb.Properties.Resources.AsistimeImageG;
+        public static Image AsistimeHoverImageG = NavegadorWeb.Properties.Resources.AsistimeHoverImageG;
+        public static Image AsistimeClickImageG = NavegadorWeb.Properties.Resources.AsistimeClickImageG;
+
 
         //Imagenes de flow sobre fondo azul
         public static Image ConfirmGreenImageB = NavegadorWeb.Properties.Resources.ConfirmGreenImageB;
@@ -216,6 +224,7 @@ namespace NavegadorWeb.UI
         public static Image ThumbsUpHover = NavegadorWeb.Properties.Resources.ThumbsUpHover;
 
         public static Image AsistimeLogo = NavegadorWeb.Properties.Resources.logo;
+        public static Image AsistimeLogo291x99 = NavegadorWeb.Properties.Resources.logo291x99;
         public static Image AsistimeIcon = NavegadorWeb.Properties.Resources.logo;
 
         public static Font ActionbuttonFont = new Font("Segoe UI", 10, FontStyle.Bold);
@@ -232,6 +241,7 @@ namespace NavegadorWeb.UI
         public const string SearchBoxText = "Ingrese aquí la dirección a buscar";
 
         public static Font ProgressBarFont = new Font("Segoe UI", 15, FontStyle.Bold);
+        public static Font MenuHeaderFont = new Font("Segoe UI", 20, FontStyle.Bold);
         public static Font HLabelFont = new Font("Segoe UI", 14, FontStyle.Bold);
         public static Font H1LabelFont = new Font("Segoe UI", 12, FontStyle.Bold);
         public static Font H2LabelFont = new Font("Segoe UI", 10, FontStyle.Bold);

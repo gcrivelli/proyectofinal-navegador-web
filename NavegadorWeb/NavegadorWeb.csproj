@@ -675,11 +675,18 @@
     <None Include="Images\FormsBar\IconHoverImage.jpg" />
     <None Include="Images\FormsBar\InconImage.jpg" />
     <None Include="Images\FormsBar\IconImage.jpg" />
+    <None Include="Images\FlowGrayBack\AsistimeClickImageG.jpg" />
+    <None Include="Images\FlowGrayBack\AsistimeHoverImageG.jpg" />
+    <None Include="Images\FlowGrayBack\AsistimeImageG.jpg" />
+    <None Include="Images\FlowGrayBack\PreviousClickImageG.jpg" />
+    <None Include="Images\FlowGrayBack\PreviousHoverImageG.jpg" />
+    <None Include="Images\FlowGrayBack\PreviousImageG.jpg" />
     <Content Include="Images\loadingGif.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Images\loadingGif2.gif" />
     <None Include="Images\loadingGif3.gif" />
+    <None Include="Images\logo291x99.png" />
     <Content Include="logo.ico" />
     <Content Include="logo2.ico" />
     <Content Include="Responsable\CreateCanvas.js" />

@@ -360,7 +360,8 @@ namespace NavegadorWeb.Adult
 
         public override void ShowMenu()
         {
-            MenuAdult menu = new MenuAdult(Constants.tours, this);
+            //MenuAdult menu = new MenuAdult(Constants.tours, this);
+            MenuForm2 menu = new MenuForm2(Constants.tours, this);
 
             this.Hide();
             menu.Show();
