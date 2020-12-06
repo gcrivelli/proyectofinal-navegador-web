@@ -11,6 +11,7 @@ using System.IO;
 using NavegadorWeb.Models;
 using NavegadorWeb.Controller;
 using NavegadorWeb.Extra;
+using NavegadorWeb.Responsable;
 
 namespace NavegadorWeb.UI
 {
@@ -654,8 +655,8 @@ namespace NavegadorWeb.UI
             this.BackColor = Color.White;
 
             Panel frontPanel = new Panel();
-            frontPanel.Width = this.Width-10;
-            frontPanel.Height = this.Height-10;
+            frontPanel.Width = this.Width - 10;
+            frontPanel.Height = this.Height - 10;
             frontPanel.BackColor = Color.White;
             frontPanel.Location = new Point(this.Location.X + 5, this.Location.Y + 5);
             Controls.Add(frontPanel);
@@ -944,6 +945,86 @@ namespace NavegadorWeb.UI
             adultsChecked.ForEach(ac => {
                 MessageBox.Show(adults[ac].name);
             });*/
+        }
+    }
+
+    class TextElement : Panel
+    {
+        protected Label title;
+        protected TextBox subTitle;
+        protected AsistimeRoundButton BackButton;
+        protected AsistimeRoundButton ForwardButton;
+
+        public TextElement()
+        {
+            this.Width = 700;
+            this.Height = 300;
+            this.BackColor = Color.White;
+
+            Panel frontPanel = new Panel();
+            frontPanel.Width = this.Width - 10;
+            frontPanel.Height = this.Height - 10;
+            frontPanel.BackColor = Color.White;
+            frontPanel.Location = new Point(this.Location.X + 5, this.Location.Y + 5);
+            Controls.Add(frontPanel);
+            frontPanel.SendToBack();
+            frontPanel.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, frontPanel.Width, frontPanel.Height, 18, 18));
+
+            Panel backPanel = new Panel();
+            backPanel.Width = this.Width;
+            backPanel.Height = this.Height;
+            backPanel.BackColor = ColorTranslator.FromHtml(Constants.AppSecondaryColour);
+            backPanel.Location = new Point(this.Location.X, this.Location.Y);
+            Controls.Add(backPanel);
+            backPanel.SendToBack();
+
+            title = new Label()
+            {
+                Text = "ESCRIBÍ EL TEXTO",
+                Font = Constants.HLabelFont,
+                Width = 400,
+                Height = 40,
+                TextAlign = ContentAlignment.MiddleCenter,
+            };
+            title.Location = new Point(this.Width / 2 - title.Width / 2, 50);
+            this.Controls.Add(title);
+            title.BringToFront();
+
+            BackButton = new AsistimeRoundButton(98, 98, Constants.CancelRedImageW, Constants.CancelRedHoverImageW, Constants.CancelRedClickImageW) { Parent = this.Parent };
+            BackButton.Location = new Point(30, this.Height - 128);
+            BackButton.Click += new EventHandler(this.Back);
+            this.Controls.Add(BackButton);
+            BackButton.BringToFront();
+
+            ForwardButton = new AsistimeRoundButton(98, 98, Constants.ConfirmGreenImageW, Constants.ConfirmGreenHoverImageW, Constants.ConfirmGreenClickImageW) { Parent = this.Parent };
+            ForwardButton.Location = new Point(572, this.Height - 128);
+            ForwardButton.Click += new EventHandler(this.Forward);
+            this.Controls.Add(ForwardButton);
+            ForwardButton.BringToFront();
+
+            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+        }
+
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        protected static extern IntPtr CreateRoundRectRgn
+        (
+            int nLeftRect,     // x-coordinate of upper-left corner
+            int nTopRect,      // y-coordinate of upper-left corner
+            int nRightRect,    // x-coordinate of lower-right corner
+            int nBottomRect,   // y-coordinate of lower-right corner
+            int nWidthEllipse, // width of ellipse
+            int nHeightEllipse // height of ellipse
+        );
+
+        protected void Back(object sender, EventArgs e)
+        {
+            
+        }
+
+        protected void Forward(object sender, EventArgs e)
+        {
+            NavigatorAssistant form = Parent as NavigatorAssistant;
+            form.DrawTextForm("sarasa");
         }
     }
 
