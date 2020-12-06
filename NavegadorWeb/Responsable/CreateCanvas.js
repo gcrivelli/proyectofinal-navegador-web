@@ -22,7 +22,6 @@ setInterval("desplazar()",50);
 
 document.addEventListener("mousemove",onMouseUpdate, false);
 document.addEventListener("mouseenter",onMouseUpdate, false);
-document.addEventListener("keypress",onKeyPress, false);
 document.addEventListener("click",onClick, false);
 document.addEventListener("scroll",onScroll, false);
 
@@ -34,15 +33,6 @@ function onMouseUpdate(e) {
 function onScroll() {
   if (dibujandoDiv||dibujandoDiv2) {
     window.scrollTo(0, 0);
-  }
-}
-
-function onKeyPress(e) {                          
-  if (modificarTexto) {
-    if (String.fromCharCode(e.keyCode).match(/(\w|\s)/g)) {
-      text+=String.fromCharCode(e.keyCode).match(/(\w|\s)/g);
-    }
-    redibujarCanvas();
   }
 }
 
@@ -307,6 +297,7 @@ function initCirculo() {
 
 function initTexto() { 
   modificarTexto=true;  
+  text = "Texto";
   var canvas=document.getElementById("canvas"+i);
   var context=canvas.getContext("2d");
   if (text.length>0) {

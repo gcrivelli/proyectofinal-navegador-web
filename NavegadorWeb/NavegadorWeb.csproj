@@ -67,8 +67,7 @@
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>logo2.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bunifu_UI_v1.52">
@@ -662,6 +661,7 @@
     <None Include="Images\FormsBar\InconImage.jpg" />
     <None Include="Images\FormsBar\IconImage.jpg" />
     <Content Include="logo.ico" />
+    <Content Include="logo2.ico" />
     <Content Include="Responsable\CreateCanvas.js" />
   </ItemGroup>
   <ItemGroup />

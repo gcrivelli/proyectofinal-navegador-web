@@ -156,6 +156,7 @@ namespace NavegadorWeb.Adult
             script.InnerText += "var element = document.getElementById(id);";
             script.InnerText += "element.style.display = 'block';";
             script.InnerText += "}";
+
             script.InnerText += "function init" + step.order + "() {";
             script.InnerText += "var elements = document.getElementsByClassName('asistime');";
             script.InnerText += "while(elements.length > 0) {";
