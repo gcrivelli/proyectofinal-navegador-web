@@ -22,8 +22,6 @@ namespace NavegadorWeb.GeneralDisplay
             this.previousForm = form;
             MaximizeBox = false;
 
-            
-
         }
 
         private void MenuForm_Load(object sender, System.EventArgs e)
