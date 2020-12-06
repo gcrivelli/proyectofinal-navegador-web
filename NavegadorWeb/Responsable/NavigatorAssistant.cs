@@ -339,7 +339,13 @@ namespace NavegadorWeb.Responsable
             textPopup.Hide();
             iconBar.Hide();
             formBar.ShowControlsText();
-            //text(); aca hay que dibujar el canvas texto con la variable text
+            HtmlElement head = doc.GetElementsByTagName("head")[0];
+            HtmlElement script = doc.CreateElement("script");
+            script.SetAttribute("type", "text/javascript");
+            script.InnerText = "text = '"+text+"';";
+            head.AppendChild(script);
+            doc.InvokeScript("initCanvas");
+            doc.InvokeScript("initTexto");
         }
 
         public void CloseTextPopup()
