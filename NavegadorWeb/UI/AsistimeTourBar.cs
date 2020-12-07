@@ -70,7 +70,8 @@ namespace NavegadorWeb.UI
 
         protected void GoOneStepBack(object sender, EventArgs e)
         {
-            if (StepCount > 0)
+            NavigatorAdult form = this.Parent as NavigatorAdult;
+            if (form.actualTour._id == tour._id && StepCount > 0 &&  StepCount != 99)
             {
                 StepCount--;
                 this.SetStep(StepCount);
@@ -94,7 +95,11 @@ namespace NavegadorWeb.UI
 
         protected void PlayStep(object sender, EventArgs e)
         {
-            playStepInTheSameUrl(tour, StepCount);
+            NavigatorAdult form = this.Parent as NavigatorAdult;
+            if (form.actualTour._id == tour._id && StepCount != 99)
+            {
+                playStepInTheSameUrl(tour, StepCount);
+            }
         }
 
         protected Control GetStepForwardButton(int x, int y)
@@ -110,7 +115,8 @@ namespace NavegadorWeb.UI
 
         protected void GoOneStepForward(object sender, EventArgs e)
         {
-            if (StepCount < tour.steps.Count)
+            NavigatorAdult form = this.Parent as NavigatorAdult;
+            if (form.actualTour._id == tour._id && StepCount < tour.steps.Count && StepCount != 99)
             {
                 StepCount++;
                 this.SetStep(StepCount);
@@ -133,6 +139,7 @@ namespace NavegadorWeb.UI
         {
             NavigatorAdult form = this.Parent as NavigatorAdult;
             form.CloseTour();
+            StepCount = 99;
         }
 
         public void TourInititated(Tour tour)

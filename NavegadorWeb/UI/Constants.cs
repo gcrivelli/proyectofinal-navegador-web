@@ -250,6 +250,10 @@ namespace NavegadorWeb.UI
         public const string InitiateTourConfirmation1 = "Estás por iniciar el tour ";
         public const string InitiateTourConfirmation2 = ". Vas a ser redirigido a la página incial del tour. ¿Estás seguro?";
 
+        public const string DeleteTourTitle = "Vas a borrar el tour";
+        public const string DeleteTourConfirmation1 = "Estás por borrar el tour ";
+        public const string DeleteTourConfirmation2 = ". ¿Estás seguro?";
+
         public static Color ConfirmationMessageBackColor = Color.Green;
         public static Color WarningMessageBackColor = Color.Yellow;
         public static Color ErrorMessageBackColor = Color.Red;

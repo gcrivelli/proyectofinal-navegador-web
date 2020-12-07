@@ -295,6 +295,16 @@ function initTexto() {
 
 function initDiv() {
 
+  if (dibujandoDiv==true || dibujandoDiv2==true) { 
+    dibujandoDiv=false;
+    dibujandoDiv2=false;
+    var elements = document.getElementsByClassName("div");
+    while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+    }
+    var recuadrar=document.getElementById("recuadrar");
+    recuadrar.parentNode.removeChild(recuadrar);
+  }
   if (desplazandoCanvas==true) { 
     var canvas=document.getElementById("canvas"+i);
     canvas.parentNode.removeChild(canvas);
