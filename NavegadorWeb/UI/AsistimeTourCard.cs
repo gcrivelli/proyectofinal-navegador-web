@@ -115,7 +115,11 @@ namespace NavegadorWeb.UI
             assignButton.Click += new EventHandler(this.AssignTour);
 
             //Botón de borrar tour
-            AsistimeActionButton deleteButton = new AsistimeActionButton();
+            AsistimeRoundButton exitButton = new AsistimeRoundButton(44, 44, Constants.CloseImage, Constants.CloseHoverImage, Constants.CloseClickedImage) { Parent = this.Parent };
+            exitButton.Location = new Point(Constants.TourCardWidth - 56, 10);
+            exitButton.Click += new EventHandler(DeleteTour);
+            this.Controls.Add(exitButton);
+            /*AsistimeActionButton deleteButton = new AsistimeActionButton();
             deleteButton.TabIndex = 0;
             deleteButton.ButtonText = "Borrar";
             //assignButton.ReSize();
@@ -128,7 +132,7 @@ namespace NavegadorWeb.UI
                 deleteButtonWidth = (int)size.Width;
             }
             deleteButton.Location = new Point(145, Constants.TourCardHeigth - deleteButton.Height - 10);
-            deleteButton.Click += new EventHandler(this.DeleteTour);
+            deleteButton.Click += new EventHandler(this.DeleteTour);*/
 
             //Botón de realizar tour
             AsistimeActionButton playButton = new AsistimeActionButton();
@@ -151,7 +155,7 @@ namespace NavegadorWeb.UI
             Controls.Add(description);
             Controls.Add(title);
             Controls.Add(assignButton);
-            Controls.Add(deleteButton);
+            //Controls.Add(deleteButton);
             Controls.Add(playButton);
             Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             ForeColor = ColorTranslator.FromHtml(Constants.TourCardFontColour);

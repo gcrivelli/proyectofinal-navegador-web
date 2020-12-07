@@ -698,6 +698,7 @@ namespace NavegadorWeb.UI
             subTitle.Text = " ";
             subTitle.TextAlign = HorizontalAlignment.Center;
             subTitle.Location = new Point(this.Width / 2 - subTitle.Width / 2, 120);
+            subTitle.TabStop = false;
             subTitle.BringToFront();
 
             BackButton = new AsistimeRoundButton(98, 98, Constants.PreviousImage, Constants.PreviousHoverImage, Constants.PreviousClickImage) { Parent = this.Parent };
@@ -856,7 +857,7 @@ namespace NavegadorWeb.UI
 
             title = new Label()
             {
-                Text = "ASIGNAR TOUR A ADULTO",
+                Text = "ASIGNÁ EL TOUR A UN ADULTO",
                 Font = Constants.HLabelFont,
                 Width = 400,
                 Height = 40,
@@ -866,18 +867,19 @@ namespace NavegadorWeb.UI
             this.Controls.Add(title);
             title.BringToFront();
 
-            /*subTitle = new TextBox();
+            subTitle = new TextBox();
             subTitle.Multiline = true;
             subTitle.Width = 450;
-            subTitle.Height = 250;
+            subTitle.Height = 100;
             this.Controls.Add(subTitle);
             subTitle.BorderStyle = BorderStyle.None;
             subTitle.Font = Constants.H2LabelFont;
             subTitle.BringToFront();
-            subTitle.Text = " ";
+            subTitle.Text = "Seleccioná los adultos a los que quieras asignar el tour y después hacé click en la tilde para completar:";
             subTitle.TextAlign = HorizontalAlignment.Center;
             subTitle.Location = new Point(this.Width / 2 - subTitle.Width / 2, 120);
-            subTitle.BringToFront();*/
+            subTitle.TabStop = false;
+            subTitle.BringToFront();
 
             BackButton = new AsistimeRoundButton(98, 98, Constants.CancelRedImageW, Constants.CancelRedHoverImageW, Constants.CancelRedClickImageW) { Parent = this.Parent };
             BackButton.Location = new Point(30, 372);
@@ -907,7 +909,7 @@ namespace NavegadorWeb.UI
             checkedListBox1.BorderStyle = BorderStyle.None;
             checkedListBox1.Width = this.Width / 2;
             checkedListBox1.Height = this.Height / 2;
-            checkedListBox1.Location = new Point((this.Width / 2) - (checkedListBox1.Width / 2), (this.Height / 2) - (checkedListBox1.Height / 2));
+            checkedListBox1.Location = new Point((this.Width / 2) - (checkedListBox1.Width / 2), 220);
 
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
         }
@@ -963,7 +965,7 @@ namespace NavegadorWeb.UI
         public TextElement()
         {
             this.Width = 700;
-            this.Height = 350;
+            this.Height = 450;
             this.BackColor = Color.White;
 
             Panel frontPanel = new Panel();
@@ -995,6 +997,20 @@ namespace NavegadorWeb.UI
             this.Controls.Add(title);
             title.BringToFront();
 
+            subTitle = new TextBox();
+            subTitle.Multiline = true;
+            subTitle.Width = 450;
+            subTitle.Height = 100;
+            this.Controls.Add(subTitle);
+            subTitle.BorderStyle = BorderStyle.None;
+            subTitle.Font = Constants.H2LabelFont;
+            subTitle.BringToFront();
+            subTitle.Text = "Escribí el texto que quieras colocar en pantalla. Recordá no colocarlo donde el adulto tenga que hacer click.";
+            subTitle.TextAlign = HorizontalAlignment.Center;
+            subTitle.Location = new Point(this.Width / 2 - subTitle.Width / 2, 120);
+            subTitle.TabStop = false;
+            subTitle.BringToFront();
+
             textbox = new AsistimeSearchBox()
             {
                 Font = Constants.TextBoxFont,
@@ -1002,7 +1018,7 @@ namespace NavegadorWeb.UI
                 Width = 400,
                 TextName = null
             };
-            textbox.Location = new Point(this.Width / 2 - title.Width / 2, title.Location.Y + 80);
+            textbox.Location = new Point(this.Width / 2 - title.Width / 2, title.Location.Y + 220);
             this.Controls.Add(textbox);
             textbox.BringToFront();
 
