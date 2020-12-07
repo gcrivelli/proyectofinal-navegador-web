@@ -1,5 +1,6 @@
 ﻿using Bunifu.Framework.UI;
 using NavegadorWeb.GeneralDisplay;
+using NavegadorWeb.Controller;
 using NavegadorWeb.Models;
 using System;
 using System.Drawing;
@@ -113,6 +114,22 @@ namespace NavegadorWeb.UI
             assignButton.Location = new Point(10, Constants.TourCardHeigth - assignButton.Height - 10);
             assignButton.Click += new EventHandler(this.AssignTour);
 
+            //Botón de borrar tour
+            AsistimeActionButton deleteButton = new AsistimeActionButton();
+            deleteButton.TabIndex = 0;
+            deleteButton.ButtonText = "Borrar";
+            //assignButton.ReSize();
+            //assignButton.Location = new Point(30, Constants.TourCardHeigth - assignButton.Height - 10);
+            int deleteButtonWidth;
+            using (Graphics cg = this.CreateGraphics())
+            {
+                SizeF size = cg.MeasureString(deleteButton.ButtonText, deleteButton.Font);
+                size.Width += 40;
+                deleteButtonWidth = (int)size.Width;
+            }
+            deleteButton.Location = new Point(145, Constants.TourCardHeigth - deleteButton.Height - 10);
+            deleteButton.Click += new EventHandler(this.DeleteTour);
+
             //Botón de realizar tour
             AsistimeActionButton playButton = new AsistimeActionButton();
             playButton.TabIndex = 0;
@@ -134,6 +151,7 @@ namespace NavegadorWeb.UI
             Controls.Add(description);
             Controls.Add(title);
             Controls.Add(assignButton);
+            Controls.Add(deleteButton);
             Controls.Add(playButton);
             Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             ForeColor = ColorTranslator.FromHtml(Constants.TourCardFontColour);
@@ -164,6 +182,21 @@ namespace NavegadorWeb.UI
             AsistimeTourAssign assignTourView = new AsistimeTourAssign(this, tourAsociado);
             assignTourView.TopMost = true;
             assignTourView.Show();
+        }
+
+        async private void DeleteTour(object sender, EventArgs e)
+        {
+            DialogResult result1 = MessageBox.Show(Constants.DeleteTourConfirmation1
+                + tourAsociado.name + Constants.DeleteTourConfirmation2,
+                Constants.DeleteTourTitle,
+                MessageBoxButtons.YesNo);
+            if (result1 == DialogResult.Yes)
+            {
+                var tourController = new TourController();
+                var result = await tourController.DeleteTourAsync(this.tourAsociado._id);
+                this.Hide();
+
+            }
         }
     }
 }

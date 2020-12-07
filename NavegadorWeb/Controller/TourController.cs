@@ -30,6 +30,17 @@ namespace NavegadorWeb.Controller
                 return JsonConvert.DeserializeObject<Tour>(responseBody);
             }
         }
+        public async Task<Tour> DeleteTourAsync(string id)
+        {
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + Constants.token);
+                var response = await client.DeleteAsync(APIurl + "tour/" + id).ConfigureAwait(false);
+                response.EnsureSuccessStatusCode();
+                string responseBody = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<Tour>(responseBody);
+            }
+        }
 
         /// <summary>
         /// Get all the tours of a specific user
