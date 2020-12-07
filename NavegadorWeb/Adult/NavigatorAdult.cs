@@ -21,6 +21,7 @@ namespace NavegadorWeb.Adult
         private int posActual;
         private bool volverAPasoCorrecto;
         private LoadingForm loadingForm;
+        public Tour actualTour;
 
         public NavigatorAdult()
         {
@@ -34,6 +35,7 @@ namespace NavegadorWeb.Adult
         public void PlayTour(Tour tour)
         {
             //Mostrar la barra de tour
+            this.actualTour = tour;
             this.Show();
             tourBar = new AsistimeTourBar() { Parent = this };
             tourBar.Location = new System.Drawing.Point(0, 0);
@@ -77,37 +79,42 @@ namespace NavegadorWeb.Adult
         public void playStep(Tour tour, int positionStep, bool flag = false)
         {
             var actualStep = tour.steps.Find(s => s.order == positionStep);
-            var nextStep = nextDiferentUrlStep(actualStep);
-            var audioPath = "";
-
-            if (!tourBar.isLastStepInUrl && !flag)
-                actualStep = nextStep;
 
             if (actualStep != null)
             {
-                actualURL = actualStep.url;
-                if (actualStep.audio != null)
-                    audioPath = Constants.audioPath + "/Audio " + tour._id + actualStep._id + ".wav";
+                var nextStep = nextDiferentUrlStep(actualStep);
+                var audioPath = "";
 
-                if (webBrowser.Url.ToString() == actualStep.url || volverAPasoCorrecto)
+                if (!tourBar.isLastStepInUrl && !flag)
+                    actualStep = nextStep;
+
+                if (actualStep != null)
                 {
-                    volverAPasoCorrecto = false;
-                    lastCorrectURL = actualStep.url;
-                    tourBar.SetStep(actualStep.order);
-                    if (positionStep != 0)
+                    actualURL = actualStep.url;
+                    if (actualStep.audio != null)
+                        audioPath = Constants.audioPath + "/Audio " + tour._id + actualStep._id + ".wav";
+
+                    if (webBrowser.Url.ToString() == actualStep.url || volverAPasoCorrecto)
                     {
-                        new PopupNotification("Excelente!", "Realizaste el paso " + positionStep + " con éxito!");
+                        volverAPasoCorrecto = false;
+                        lastCorrectURL = actualStep.url;
+                        tourBar.SetStep(actualStep.order);
+                        if (positionStep != 0)
+                        {
+                            new PopupNotification("Excelente!", "Realizaste el paso " + positionStep + " con éxito!");
+                        }
+
+                        var doc = initDocument(actualStep, actualStep.order);
+                        doc.InvokeScript("init" + actualStep.order);
+
+                        playAudio(audioPath);
                     }
-
-                    var doc = initDocument(actualStep, actualStep.order);
-                    doc.InvokeScript("init" + actualStep.order);
-
-                    playAudio(audioPath);
                 }
-            }
-            if(actualStep == tour.steps.Last())
-            {
-                new PopupNotification("Fin del Tour!", "Completaste el tour con éxito!");
+                if (actualStep == tour.steps.Last())
+                {
+                    new PopupNotification("Fin del Tour!", "Completaste el tour con éxito!");
+                }
+
             }
         }
 
