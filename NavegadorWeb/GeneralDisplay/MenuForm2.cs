@@ -22,7 +22,6 @@ namespace NavegadorWeb.GeneralDisplay
             this.tours = tours;
             this.previousForm = form;
             MaximizeBox = false;
-
         }
 
         private void MenuForm_Load(object sender, System.EventArgs e)
@@ -129,10 +128,11 @@ namespace NavegadorWeb.GeneralDisplay
             }
         }
 
-        private void ArrangeCardGrid()
+        public void ArrangeCardGrid()
         {
             this.Controls.Clear();
             AddButtons();
+            this.tours = Constants.tours;
 
             if (!(this.tours.Count == 0))
             {

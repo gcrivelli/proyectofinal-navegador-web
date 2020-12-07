@@ -198,9 +198,10 @@ namespace NavegadorWeb.UI
             {
                 var tourController = new TourController();
                 var result = await tourController.DeleteTourAsync(this.tourAsociado._id);
+                Constants.tours = tourController.GetAllToursAsync().Result;
                 this.Hide();
                 MenuForm2 parent = this.Parent as MenuForm2;
-                parent.Refresh();
+                parent.ArrangeCardGrid();
             }
         }
     }

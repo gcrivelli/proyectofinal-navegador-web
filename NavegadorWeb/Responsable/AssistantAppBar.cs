@@ -388,6 +388,7 @@ namespace NavegadorWeb.Responsable
         public static AsistimeRoundButton ConfirmButton = null;
         public Label stepsLabel;
         public String tourTitle;
+        public Label titleLabel;
 
         public AsistimeTourCreationBar()
         {
@@ -403,10 +404,10 @@ namespace NavegadorWeb.Responsable
 
             Label creationLabel = new Label()
             {
-                Text = "CREACIÓN DE TOUR",
+                Text = "ESTÁS CREANDO EL TOUR:",
                 Font = Constants.HLabelFont,
                 ForeColor = Color.White,
-                Width = 350,
+                Width = 500,
                 Height = 40,
                 TextAlign = ContentAlignment.MiddleCenter
             };
@@ -414,31 +415,31 @@ namespace NavegadorWeb.Responsable
             this.Controls.Add(creationLabel);
             creationLabel.BringToFront();
 
-            stepsLabel = new Label()
-            {
-                Text = "CANTIDAD DE PASOS: " + 0,
-                Font = Constants.HLabelFont,
-                ForeColor = Color.White,
-                Width = 350,
-                Height = 40,
-                TextAlign = ContentAlignment.MiddleCenter
-            };
-            stepsLabel.Location = new Point(this.ClientSize.Width / 2 - stepsLabel.Width / 2, 55);
-            this.Controls.Add(stepsLabel);
-            stepsLabel.BringToFront();
-
-            Label titleLabel = new Label()
+            titleLabel = new Label()
             {
                 Text = tourTitle,
                 Font = Constants.HLabelFont,
                 ForeColor = Color.White,
-                Width = 350,
+                Width = 500,
                 Height = 40,
                 TextAlign = ContentAlignment.MiddleCenter
             };
-            titleLabel.Location = new Point(this.ClientSize.Width / 2 - titleLabel.Width / 2, 95);
+            titleLabel.Location = new Point(this.ClientSize.Width / 2 - titleLabel.Width / 2, 55);
             this.Controls.Add(titleLabel);
             titleLabel.BringToFront();
+
+            stepsLabel = new Label()
+            {
+                Text = "Cantidad de pasos: " + 0,
+                Font = Constants.HLabelFont,
+                ForeColor = Color.White,
+                Width = 500,
+                Height = 40,
+                TextAlign = ContentAlignment.MiddleCenter
+            };
+            stepsLabel.Location = new Point(this.ClientSize.Width / 2 - stepsLabel.Width / 2, 95);
+            this.Controls.Add(stepsLabel);
+            stepsLabel.BringToFront();
 
 
             this.Controls.Add(this.GetAddStepsButton(this.ClientSize.Width - 300, 15)); //this.ClientSize.Width/2 - 49, 15));
