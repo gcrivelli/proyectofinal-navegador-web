@@ -183,6 +183,20 @@ namespace NavegadorWeb.UI
         {
             tourCreation.Show();
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // AsistimeTourCreation
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            //this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Location = new System.Drawing.Point(0, 0);
+            //Opacity = 0.7D;
+            this.ResumeLayout(false);
+
+        }
     }
 
     class AsistimeTourAssign : AsistimeBaseForm
