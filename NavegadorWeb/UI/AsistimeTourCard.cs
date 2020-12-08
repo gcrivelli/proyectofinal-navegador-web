@@ -19,13 +19,13 @@ namespace NavegadorWeb.UI
             if (tour.viewFlag)
             {
                 BackColor = ColorTranslator.FromHtml(Constants.TourCardNew);
-                PictureBox logo = new PictureBox();
-                logo.Image = Constants.NewImage;
-                this.Controls.Add(logo);
-                logo.Width = 100;
-                logo.Height = 40;
-                logo.Location = new Point(Constants.TourCardWidth-100, 0);
-                logo.BringToFront();
+                PictureBox newImage = new PictureBox();
+                newImage.Image = Constants.NewImage;
+                this.Controls.Add(newImage);
+                newImage.Width = 100;
+                newImage.Height = 40;
+                newImage.Location = new Point(Constants.TourCardWidth-100, 0);
+                newImage.BringToFront();
             }
             else
             {
