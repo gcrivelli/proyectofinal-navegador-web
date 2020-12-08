@@ -690,6 +690,7 @@
     <None Include="Images\loadingGif2.gif" />
     <None Include="Images\loadingGif3.gif" />
     <None Include="Images\logo291x99.png" />
+    <None Include="Images\new.png" />
     <Content Include="logo.ico" />
     <Content Include="logo2.ico" />
     <Content Include="Responsable\CreateCanvas.js" />
