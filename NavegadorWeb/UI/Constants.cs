@@ -36,7 +36,7 @@ namespace NavegadorWeb.UI
         public const string TourCardBackground = "#FFFFFF";
 
         public const string TourCardHover = "#D0D3D9";
-        public const string TourCardSelected = "";
+        public const string TourCardNew = "#A3CEC6";
         public const string TourCardFontColour = "#14272E";
         public const int TourCardHeigth = 300;
         public const int TourCardWidth = 400;
@@ -229,6 +229,7 @@ namespace NavegadorWeb.UI
         public static Image AsistimeLogo = NavegadorWeb.Properties.Resources.logo;
         public static Image AsistimeLogo291x99 = NavegadorWeb.Properties.Resources.logo291x99;
         public static Image AsistimeIcon = NavegadorWeb.Properties.Resources.logo;
+        public static Image NewImage = NavegadorWeb.Properties.Resources._new;
 
         public static Font ActionbuttonFont = new Font("Segoe UI", 10, FontStyle.Bold);
         public static Font TextBoxFont = new Font("Segoe UI", 8, FontStyle.Regular);
