@@ -462,7 +462,7 @@ namespace NavegadorWeb.UI
 
     class AsistimeAudioPanel : AsistimeBasePopup
     {
-        public bool stopRecording = false;
+        public bool stopRecording = true;
         public static HtmlDocument doc;
         String UrlReproductor = null;
         SoundPlayer ReproductorWav;
@@ -577,10 +577,12 @@ namespace NavegadorWeb.UI
         {
             ReproductorWav.Stop();
             if (!stopRecording)
+            {
                 StopRecording(sender, e);
+                stopRecording = true;
+            }
             AsistimeTourCreation form = this.Parent as AsistimeTourCreation;
             form.ConfirmStep();
-            stopRecording = false;
         }
 
         protected void Cancel(object sender, EventArgs e)
@@ -596,6 +598,7 @@ namespace NavegadorWeb.UI
             record("record recsound", "", 0, 0);
             PlayButton.Enabled = false;
             StopButton.Enabled = true;
+            stopRecording = false;
         }
 
         private void StopRecording(object sender, EventArgs e)

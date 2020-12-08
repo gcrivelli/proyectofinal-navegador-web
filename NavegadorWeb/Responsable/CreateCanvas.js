@@ -13,7 +13,7 @@ var divX1=null;
 var divY1=null;
 var divX2=null;
 var divY2=null;
-var opacity=0.5;
+var opacity=0.7;
 var i=0;
 var text="";
 
@@ -22,17 +22,10 @@ setInterval("desplazar()",50);
 document.addEventListener("mousemove",onMouseUpdate, false);
 document.addEventListener("mouseenter",onMouseUpdate, false);
 document.addEventListener("click",onClick, false);
-document.addEventListener("scroll",onScroll, false);
 
 function onMouseUpdate(e) {                                 
   x=e.pageX;
   y=e.pageY;
-}
-
-function onScroll() {
-  if (dibujandoDiv||dibujandoDiv2) {
-    window.scrollTo(0, 0);
-  }
 }
 
 function onClick(e) {
@@ -49,15 +42,15 @@ function onClick(e) {
     color="#000000";
   }  
   if (dibujandoDiv2) {
-    divX2=e.pageX;
-    divY2=e.pageY;
+    divX2=Math.round(e.pageX);
+    divY2=Math.round(e.pageY);
     if (divX2<divX1) {
-      divX2=divX1;
-      divX1=e.pageX;
+      divX2=Math.round(divX1);
+      divX1=Math.round(e.pageX);
     }
     if (divY2<divY1) {
-      divY2=divY1;
-      divY1=e.pageY;
+      divY2=Math.round(divY1);
+      divY1=Math.round(e.pageY);
     }
     var elements = document.getElementsByClassName("div");
     while(elements.length > 0){
@@ -92,8 +85,8 @@ function onClick(e) {
     recuadrar.parentNode.removeChild(recuadrar);
   } else if (dibujandoDiv) { 
     color="#000000";
-    divX1=e.pageX;
-    divY1=e.pageY;
+    divX1=Math.round(e.pageX);
+    divY1=Math.round(e.pageY);
     var div=document.createElement("div");
     div.style.cssText="position:absolute;z-index:9999;background-color:"+color+";width:100%;height:"+divY1+"px;top:0px;left:0px;opacity:"+opacity+";"; 
     div.className="div";  
@@ -324,7 +317,6 @@ function initDiv() {
   context.fillText('\uf065',0,25);
 
   if (dibujandoDiv==false) {   
-    window.scrollTo(0, 0);
     var elements = document.getElementsByClassName("div");
     while(elements.length > 0){
         elements[0].parentNode.removeChild(elements[0]);
