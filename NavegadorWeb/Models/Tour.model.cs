@@ -10,5 +10,6 @@ namespace NavegadorWeb.Models
         public bool active { get; set; }
         public string user_id { get; set; }
         public List<Step> steps { get; set; }
+        public bool viewFlag { get; set; }
     }
 }
