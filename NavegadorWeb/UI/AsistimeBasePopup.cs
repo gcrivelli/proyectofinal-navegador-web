@@ -46,7 +46,7 @@ namespace NavegadorWeb.UI
             {
                 Text = "CREACIÓN DE TOUR",
                 Font = Constants.HLabelFont,
-                Width = 400,
+                Width = 500,
                 Height = 40,
                 TextAlign = ContentAlignment.MiddleCenter,
             };

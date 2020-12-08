@@ -146,6 +146,12 @@
     <Compile Include="Extra\NewTourThread.cs" />
     <Compile Include="Extra\NotificationThread.cs" />
     <Compile Include="Extra\PopupNotification.cs" />
+    <Compile Include="GeneralDisplay\AsistimeAdultSignUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GeneralDisplay\AsistimeAdultSignUp.Designer.cs">
+      <DependentUpon>AsistimeAdultSignUp.cs</DependentUpon>
+    </Compile>
     <Compile Include="GeneralDisplay\AsistimeBaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -684,6 +690,9 @@
     <None Include="Images\DestroyClickedImage.jpg" />
     <None Include="Images\DestroyHoverImage.jpg" />
     <None Include="Images\DestroyImage.jpg" />
+    <None Include="Images\FlowGrayBack\AddAdultClickImage.jpg" />
+    <None Include="Images\FlowGrayBack\AddAdultHoverImage.jpg" />
+    <None Include="Images\FlowGrayBack\AddAdultImage.jpg" />
     <Content Include="Images\loadingGif.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
