@@ -110,7 +110,7 @@ function desplazar() {
   if (desplazandoCanvas) {
     var canvas=document.getElementById("canvas"+i);
     canvas.style.left=(x-(width/2))+"px";
-    canvas.style.top=(y-(width/2))+"px";    
+    canvas.style.top=(y-(height/2))+"px";    
   }
   if (dibujandoDiv) {
     var canvas=document.getElementById("recuadrar");
