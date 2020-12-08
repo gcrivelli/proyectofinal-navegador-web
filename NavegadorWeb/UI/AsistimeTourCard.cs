@@ -14,7 +14,7 @@ namespace NavegadorWeb.UI
         public AsistimeTourCard(Tour tour, int x, int y)
         {
             color = Color.Transparent;
-            BorderRadius = 10;
+            BorderRadius = 20;
             BackColor = ColorTranslator.FromHtml(Constants.TourCardBackground);
             this.Width = Constants.TourCardWidth;
 
@@ -78,7 +78,7 @@ namespace NavegadorWeb.UI
         public AssistantTourCard(Tour tour, int x, int y)
         {
             color = Color.Transparent;
-            BorderRadius = 10;
+            BorderRadius = 20;
             BackColor = ColorTranslator.FromHtml(Constants.TourCardBackground);
 
             //Título
@@ -115,7 +115,7 @@ namespace NavegadorWeb.UI
             assignButton.Click += new EventHandler(this.AssignTour);
 
             //Botón de borrar tour
-            AsistimeRoundButton exitButton = new AsistimeRoundButton(44, 44, Constants.CloseImage, Constants.CloseHoverImage, Constants.CloseClickedImage) { Parent = this.Parent };
+            AsistimeRoundButton exitButton = new AsistimeRoundButton(44, 44, Constants.DestroyImage, Constants.DestroyHoverImage, Constants.DestroyClickedImage) { Parent = this.Parent };
             exitButton.Location = new Point(Constants.TourCardWidth - 56, 10);
             exitButton.Click += new EventHandler(DeleteTour);
             this.Controls.Add(exitButton);
@@ -198,8 +198,10 @@ namespace NavegadorWeb.UI
             {
                 var tourController = new TourController();
                 var result = await tourController.DeleteTourAsync(this.tourAsociado._id);
+                Constants.tours = tourController.GetAllToursAsync().Result;
                 this.Hide();
-
+                MenuForm2 parent = this.Parent as MenuForm2;
+                parent.ArrangeCardGrid();
             }
         }
     }

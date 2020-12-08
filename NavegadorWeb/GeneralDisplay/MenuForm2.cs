@@ -22,7 +22,6 @@ namespace NavegadorWeb.GeneralDisplay
             this.tours = tours;
             this.previousForm = form;
             MaximizeBox = false;
-
         }
 
         private void MenuForm_Load(object sender, System.EventArgs e)
@@ -49,7 +48,7 @@ namespace NavegadorWeb.GeneralDisplay
             {
                 assistButton = new AsistimeRoundButton(98, 98, Constants.AsistimeImageG, Constants.AsistimeHoverImageG, Constants.AsistimeClickImageG) { Parent = this };
                 assistButton.Location = new Point(this.ClientSize.Width - 150, 15);
-                assistButton.Click += new EventHandler(this.ReturnToNavigation);
+                assistButton.Click += new EventHandler(this.Asistime);
                 this.Controls.Add(assistButton);
                 Label assistLabel = new Label() { Text = "Asistime", ForeColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour), Font = Constants.H1LabelFont, Height = 40 };
                 Center_With(assistLabel, assistButton);
@@ -82,6 +81,12 @@ namespace NavegadorWeb.GeneralDisplay
         {
             this.Hide();
             previousForm.Show();
+        }
+
+        protected void Asistime(object sender, EventArgs e)
+        {
+            NavigatorAdult control = this.previousForm as NavigatorAdult;
+            control.Asistime();
         }
 
         private void MenuForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -123,12 +128,13 @@ namespace NavegadorWeb.GeneralDisplay
             }
         }
 
-        private void ArrangeCardGrid()
+        public void ArrangeCardGrid()
         {
             this.Controls.Clear();
             AddButtons();
+            this.tours = Constants.tours;
 
-            if (!(this.tours == null))
+            if (!(this.tours.Count == 0))
             {
 
                 int i = 1;
@@ -196,10 +202,25 @@ namespace NavegadorWeb.GeneralDisplay
                     }
 
                 }
+
+                Panel panel = new Panel();
+                panel.Width = this.Width;
+                panel.Height = 500;
+                panel.Location = new Point(0, 270 + 20 * (line - 1) + Constants.TourCardHeigth * (line - 1));
+                this.Controls.Add(panel);
             }
             else
             {
-                //Mostrar un label si no hay tours
+                Label title = new Label()
+                {
+                    Text = "Todavía no hay tours.",
+                    Font = Constants.MenuHeaderFont,
+                    Width = 500,
+                    Height = 60,
+                    TextAlign = ContentAlignment.MiddleCenter,
+                };
+                title.Location = new Point(this.Width/2-title.Width/2, this.Height / 2 - title.Height / 2);
+                this.Controls.Add(title);
             }
         }
 

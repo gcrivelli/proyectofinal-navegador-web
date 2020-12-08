@@ -81,6 +81,9 @@ namespace NavegadorWeb.UI
         public static Image CloseImage = NavegadorWeb.Properties.Resources.CloseImage;
         public static Image CloseHoverImage = NavegadorWeb.Properties.Resources.CloseHoverImage;
         public static Image CloseClickedImage = NavegadorWeb.Properties.Resources.CloseClickedImage;
+        public static Image DestroyImage = NavegadorWeb.Properties.Resources.DestroyImage;
+        public static Image DestroyHoverImage = NavegadorWeb.Properties.Resources.DestroyHoverImage;
+        public static Image DestroyClickedImage = NavegadorWeb.Properties.Resources.DestroyClickedImage;
 
         //Imágenes de formas sobre fondo azul
         public static Image DivImage2 = NavegadorWeb.Properties.Resources.DivImage2;

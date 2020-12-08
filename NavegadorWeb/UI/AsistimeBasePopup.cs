@@ -859,7 +859,7 @@ namespace NavegadorWeb.UI
             {
                 Text = "ASIGNÁ EL TOUR A UN ADULTO",
                 Font = Constants.HLabelFont,
-                Width = 400,
+                Width = 500,
                 Height = 40,
                 TextAlign = ContentAlignment.MiddleCenter,
             };

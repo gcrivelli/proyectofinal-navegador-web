@@ -681,6 +681,9 @@
     <None Include="Images\FlowGrayBack\PreviousClickImageG.jpg" />
     <None Include="Images\FlowGrayBack\PreviousHoverImageG.jpg" />
     <None Include="Images\FlowGrayBack\PreviousImageG.jpg" />
+    <None Include="Images\DestroyClickedImage.jpg" />
+    <None Include="Images\DestroyHoverImage.jpg" />
+    <None Include="Images\DestroyImage.jpg" />
     <Content Include="Images\loadingGif.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

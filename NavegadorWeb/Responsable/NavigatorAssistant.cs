@@ -77,6 +77,7 @@ namespace NavegadorWeb.Responsable
         {
             asistimeAppBar.Hide();
             tourBar.Show();
+            tourBar.titleLabel.Text = tour.name;
         }
 
         public void showForms()
@@ -143,7 +144,7 @@ namespace NavegadorWeb.Responsable
             };
 
             countStep = 0;
-            tourBar.stepsLabel.Text = "CANTIDAD DE PASOS: " + countStep;
+            tourBar.stepsLabel.Text = "Cantidad de pasos: " + countStep;
 
             //countTxt.Text = countStep.ToString();
 

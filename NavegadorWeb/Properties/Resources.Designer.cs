@@ -582,7 +582,6 @@ namespace NavegadorWeb.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to var desplazandoCanvas=false;
-        ///var desplazandoBorrar=false;
         ///var modificarTexto=false;
         ///var dibujandoDiv=false;
         ///var dibujandoDiv2=false;
@@ -604,11 +603,42 @@ namespace NavegadorWeb.Properties {
         ///setInterval(&quot;desplazar()&quot;,50);
         ///
         ///document.addEventListener(&quot;mousemove&quot;,onMouseUpdate, false);
-        ///document.addEventListener(&quot;mouseenter&quot;,onMouseUpdate, f [rest of string was truncated]&quot;;.
+        ///document.addEventListener(&quot;mouseenter&quot;,onMouseUpdate, false);
+        ///document.addEventListe [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string CreateCanvas {
             get {
                 return ResourceManager.GetString("CreateCanvas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DestroyClickedImage {
+            get {
+                object obj = ResourceManager.GetObject("DestroyClickedImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DestroyHoverImage {
+            get {
+                object obj = ResourceManager.GetObject("DestroyHoverImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DestroyImage {
+            get {
+                object obj = ResourceManager.GetObject("DestroyImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
