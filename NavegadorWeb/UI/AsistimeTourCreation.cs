@@ -36,37 +36,6 @@ namespace NavegadorWeb.UI
 
         private void AsistimeTourCreation_Load(object sender, EventArgs e)
         {
-            /*tourCreation = new AsistimeCreatePanel() { Parent = this};
-            tourCreation.Width = 700;
-            tourCreation.Height = 800;
-            this.Controls.Add(tourCreation);
-            tourCreation.BackColor = Color.White;
-            tourCreation.Location = new Point(this.Width / 2 - tourCreation.Width / 2, this.Height / 2 - tourCreation.Height / 2);
-
-            steps = new AsistimeStepsPanel() { Parent = this};
-            steps.Width = 700;
-            steps.Height = 800;
-            this.Controls.Add(steps);
-            steps.BackColor = Color.White;
-            steps.Location = new Point(this.Width / 2 - steps.Width / 2, this.Height / 2 - steps.Height / 2);
-            steps.Hide();
-
-            formsCreation = new AsistimeFormsPanel() { Parent = this};
-            formsCreation.Width = 700;
-            formsCreation.Height = 800;
-            this.Controls.Add(formsCreation);
-            formsCreation.BackColor = Color.White;
-            formsCreation.Location = new Point(this.Width / 2 - formsCreation.Width / 2, this.Height / 2 - formsCreation.Height / 2);
-            formsCreation.Hide();
-
-            audioCreation = new AsistimeAudioPanel() { Parent = this};
-            audioCreation.Width = 700;
-            audioCreation.Height = 800;
-            this.Controls.Add(audioCreation);
-            audioCreation.BackColor = Color.White;
-            audioCreation.Location = new Point(this.Width / 2 - audioCreation.Width / 2, this.Height / 2 - audioCreation.Height / 2);
-            audioCreation.Hide();*/
-
 
             HowToTour howToTour = new HowToTour() { Parent = this };
             HowToSteps howToSteps = new HowToSteps();
@@ -120,10 +89,10 @@ namespace NavegadorWeb.UI
             formsCreation.Show();
         }
 
-        public void AdvanceToAudio(String toruName, int stepCount)
+        public void AdvanceToAudio(String tourName, int stepCount)
         {
             this.Show();
-            audioCreation.SetTour(toruName, stepCount);// tour.steps.Count);
+            audioCreation.SetTour(tourName, stepCount);// tour.steps.Count);
             //formsCreation.Hide();
             audioCreation.Show();
         }

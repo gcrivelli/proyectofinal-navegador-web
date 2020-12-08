@@ -90,7 +90,8 @@ namespace NavegadorWeb.Responsable
         {
             formBar.Hide();
             iconBar.Hide();
-            createTourView.AdvanceToAudio(tour.name, countStep);
+            AsistimeAudioCreation audioCreationView = new AsistimeAudioCreation(this);
+            audioCreationView.AdvanceToAudio(tour.name, countStep);
         }
 
         public void BackToNavigation() { }

@@ -581,8 +581,8 @@ namespace NavegadorWeb.UI
                 StopRecording(sender, e);
                 stopRecording = true;
             }
-            AsistimeTourCreation form = this.Parent as AsistimeTourCreation;
-            form.ConfirmStep();
+            AsistimeAudioCreation form = this.Parent as AsistimeAudioCreation;
+            form.Close();
         }
 
         protected void Cancel(object sender, EventArgs e)

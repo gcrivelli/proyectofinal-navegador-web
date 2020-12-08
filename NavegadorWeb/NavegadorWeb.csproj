@@ -242,6 +242,12 @@
     <Compile Include="UI\AsistimeAppBar.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UI\AsistimeAudioCreation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AsistimeAudioCreation.Designer.cs">
+      <DependentUpon>AsistimeAudioCreation.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\AsistimeBasePopup.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -343,6 +349,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\AsistimeActionButton.resx">
       <DependentUpon>AsistimeActionButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AsistimeAudioCreation.resx">
+      <DependentUpon>AsistimeAudioCreation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\AsistimeDialogBox.resx">
       <DependentUpon>AsistimeDialogBox.cs</DependentUpon>

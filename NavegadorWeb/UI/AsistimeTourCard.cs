@@ -121,43 +121,27 @@ namespace NavegadorWeb.UI
             assignButton.ButtonText = "Asignar";
             //assignButton.ReSize();
             //assignButton.Location = new Point(30, Constants.TourCardHeigth - assignButton.Height - 10);
-            int assignyButtonWidth;
+            int assignButtonWidth;
             using (Graphics cg = this.CreateGraphics())
             {
                 SizeF size = cg.MeasureString(assignButton.ButtonText, assignButton.Font);
                 size.Width += 40;
-                assignyButtonWidth = (int)size.Width;
+                assignButtonWidth = (int)size.Width;
             }
-            assignButton.Location = new Point(10, Constants.TourCardHeigth - assignButton.Height - 10);
+            //assignButton.Location = new Point(10, Constants.TourCardHeigth - assignButton.Height - 10);
             assignButton.Click += new EventHandler(this.AssignTour);
+            assignButton.Location = new Point(Constants.TourCardWidth - assignButtonWidth - 10, Constants.TourCardHeigth - assignButton.Height - 10);
 
             //Botón de borrar tour
             AsistimeRoundButton exitButton = new AsistimeRoundButton(44, 44, Constants.DestroyImage, Constants.DestroyHoverImage, Constants.DestroyClickedImage) { Parent = this.Parent };
             exitButton.Location = new Point(Constants.TourCardWidth - 56, 10);
             exitButton.Click += new EventHandler(DeleteTour);
             this.Controls.Add(exitButton);
-            /*AsistimeActionButton deleteButton = new AsistimeActionButton();
-            deleteButton.TabIndex = 0;
-            deleteButton.ButtonText = "Borrar";
-            //assignButton.ReSize();
-            //assignButton.Location = new Point(30, Constants.TourCardHeigth - assignButton.Height - 10);
-            int deleteButtonWidth;
-            using (Graphics cg = this.CreateGraphics())
-            {
-                SizeF size = cg.MeasureString(deleteButton.ButtonText, deleteButton.Font);
-                size.Width += 40;
-                deleteButtonWidth = (int)size.Width;
-            }
-            deleteButton.Location = new Point(145, Constants.TourCardHeigth - deleteButton.Height - 10);
-            deleteButton.Click += new EventHandler(this.DeleteTour);*/
 
             //Botón de realizar tour
-            AsistimeActionButton playButton = new AsistimeActionButton();
+            /*AsistimeActionButton playButton = new AsistimeActionButton();
             playButton.TabIndex = 0;
             playButton.ButtonText = "Realizar";
-            //playButton.ReSize();
-            //playButton.Location = new Point(Constants.TourCardWidth - playButton.Width - 30, 
-            //Constants.TourCardHeigth - playButton.Height - 10);
             int playButtonWidth;
             using (Graphics cg = this.CreateGraphics())
             {
@@ -166,14 +150,13 @@ namespace NavegadorWeb.UI
                 playButtonWidth = (int)size.Width;
             }
             playButton.Location = new Point(Constants.TourCardWidth - playButtonWidth - 10, Constants.TourCardHeigth - playButton.Height - 10);
-            playButton.Click += new EventHandler(this.PlayTour);
+            playButton.Click += new EventHandler(this.PlayTour);*/
 
             //Formato de la tarjeta
             Controls.Add(description);
             Controls.Add(title);
             Controls.Add(assignButton);
-            //Controls.Add(deleteButton);
-            Controls.Add(playButton);
+            //Controls.Add(playButton);
             Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             ForeColor = ColorTranslator.FromHtml(Constants.TourCardFontColour);
             Size = new System.Drawing.Size(Constants.TourCardWidth, Constants.TourCardHeigth);
