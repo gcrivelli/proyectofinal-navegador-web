@@ -13,7 +13,7 @@ var divX1=null;
 var divY1=null;
 var divX2=null;
 var divY2=null;
-var opacity=0.5;
+var opacity=0.7;
 var i=0;
 var text="";
 
