@@ -15,7 +15,23 @@ namespace NavegadorWeb.UI
         {
             color = Color.Transparent;
             BorderRadius = 20;
-            BackColor = ColorTranslator.FromHtml(Constants.TourCardBackground);
+
+            if (tour.viewFlag)
+            {
+                BackColor = ColorTranslator.FromHtml(Constants.TourCardNew);
+                PictureBox newImage = new PictureBox();
+                newImage.Image = Constants.NewImage;
+                this.Controls.Add(newImage);
+                newImage.Width = 100;
+                newImage.Height = 40;
+                newImage.Location = new Point(Constants.TourCardWidth-100, 0);
+                newImage.BringToFront();
+            }
+            else
+            {
+                BackColor = ColorTranslator.FromHtml(Constants.TourCardBackground);
+            }
+
             this.Width = Constants.TourCardWidth;
 
             //Título
@@ -67,6 +83,7 @@ namespace NavegadorWeb.UI
 
         private void PlayTour(object sender, EventArgs e)
         {
+            tourAsociado.viewFlag = false;
             MenuForm2 parent = this.Parent as MenuForm2;
             parent.PlayTour(this.tourAsociado);
         }
