@@ -536,11 +536,11 @@ namespace NavegadorWeb.UI
             this.Controls.Add(nextButton);
             nextButton.BringToFront();
 
-            cancelButton = new AsistimeActionButton();
+            /*cancelButton = new AsistimeActionButton();
             cancelButton.Click += new EventHandler(Cancel);
-            cancelButton.ButtonText = "Anterior";
+            cancelButton.ButtonText = "Salir";
             this.Controls.Add(cancelButton);
-            cancelButton.BringToFront();
+            cancelButton.BringToFront();*/
 
             int nextButtonWidth;
             using (Graphics cg = this.CreateGraphics())
@@ -563,18 +563,19 @@ namespace NavegadorWeb.UI
                 new PopupNotification("Error", "Error al crear el directorio para los audios");
             }
 
-            int cancelButtonWidth;
+            /*int cancelButtonWidth;
             using (Graphics cg = this.CreateGraphics())
             {
                 SizeF size = cg.MeasureString(cancelButton.ButtonText, cancelButton.Font);
                 size.Width += 40;
                 cancelButtonWidth = (int)size.Width;
             }
-            cancelButton.Location = new Point(this.Width / 2 - cancelButtonWidth / 2, nextButton.Location.Y + 80);
+            cancelButton.Location = new Point(this.Width / 2 - cancelButtonWidth / 2, nextButton.Location.Y + 80);*/
         }
 
         protected void Next(object sender, EventArgs e)
         {
+            ReproductorWav.Stop();
             if (!stopRecording)
                 StopRecording(sender, e);
             AsistimeTourCreation form = this.Parent as AsistimeTourCreation;
@@ -584,6 +585,7 @@ namespace NavegadorWeb.UI
 
         protected void Cancel(object sender, EventArgs e)
         {
+            ReproductorWav.Stop();
             AsistimeTourCreation form = this.Parent as AsistimeTourCreation;
             form.ConfirmStep();
         }
