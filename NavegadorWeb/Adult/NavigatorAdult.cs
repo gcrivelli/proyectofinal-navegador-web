@@ -197,24 +197,29 @@ namespace NavegadorWeb.Adult
 
             int pos;
 
-            if (posActual + 100 < firstElementY)
+            if (firstElementY != 100000)
             {
-                for (pos = posActual; pos <= firstElementY - 100; pos++)
-                {
-                    webBrowser.Document.Window.ScrollTo(0, pos - 100);
-                    pos = pos + 9;
-                }
-                posActual = pos - 100;
-            }
 
-            else if (posActual + 100 > firstElementY)
-            {
-                for (pos = posActual; pos >= firstElementY - 100; pos--)
+                if (posActual + 100 < firstElementY)
                 {
-                    webBrowser.Document.Window.ScrollTo(0, pos - 100);
-                    pos = pos - 9;
+                    for (pos = posActual; pos <= firstElementY - 100; pos++)
+                    {
+                        webBrowser.Document.Window.ScrollTo(0, pos - 100);
+                        pos = pos + 9;
+                    }
+                    posActual = pos - 100;
                 }
-                posActual = pos - 100;
+
+                else if (posActual + 100 > firstElementY)
+                {
+                    for (pos = posActual; pos >= firstElementY - 100; pos--)
+                    {
+                        webBrowser.Document.Window.ScrollTo(0, pos - 100);
+                        pos = pos - 9;
+                    }
+                    posActual = pos - 100;
+                }
+
             }
 
             script.InnerText += "}";
