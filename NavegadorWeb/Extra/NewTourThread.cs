@@ -1,7 +1,7 @@
 ﻿using NavegadorWeb.Controller;
 using NavegadorWeb.UI;
 using System.Threading;
-using System.Windows;
+using System.Windows.Forms;
 
 namespace NavegadorWeb.Extra
 {
@@ -23,7 +23,11 @@ namespace NavegadorWeb.Extra
 
                     Constants.user = userController.GetUser().Result;
                     Constants.tours = tourController.GetAllToursAsync().Result;
-                    MessageBox.Show("Tenes un nuevo tour disponible.","Nuevo Tour", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    Program.asistimeLogin.Invoke((MethodInvoker)delegate ()
+                    {
+                        new PopupNotification("Nuevo tour", "Te asignaron un tour");
+                    });
                 }
             }
         }

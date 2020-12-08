@@ -1,12 +1,12 @@
 ﻿using NavegadorWeb.GeneralDisplay;
-using NavegadorWeb.Responsable;
 using System;
 using System.Windows.Forms;
 
 namespace NavegadorWeb
 {
-    static class Program
+    public static class Program
     {
+        public static AsistimeLogin asistimeLogin;
         /// <summary>
         /// Punto de entrada principal para la aplicación.
         /// </summary>
@@ -17,8 +17,9 @@ namespace NavegadorWeb
                 SetProcessDPIAware();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AsistimeLogin());
-            //Application.Run(new NavigatorAssistant());
+            asistimeLogin = new AsistimeLogin();
+
+            Application.Run(asistimeLogin);
         }
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]

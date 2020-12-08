@@ -11,7 +11,7 @@ namespace NavegadorWeb.Extra
         {
             while (true)
             {
-                Thread.Sleep(60000);
+                Thread.Sleep(30000);
 
                 var notificationController = new NotificationController();
                 var notificacion = notificationController.GetNotification().Result;
@@ -19,8 +19,11 @@ namespace NavegadorWeb.Extra
                 {
                     notificacion.ForEach(n =>
                     {
-                        new PopupNotification(n.message, n.evento);
-                        MessageBox.Show( n.message, n.evento, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Program.asistimeLogin.Invoke((MethodInvoker)delegate ()
+                        {
+                            new PopupNotification( n.evento, n.message);
+                        });
+                      
                     });
                 }
             }
