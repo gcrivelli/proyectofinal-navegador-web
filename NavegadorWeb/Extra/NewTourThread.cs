@@ -1,6 +1,7 @@
 ﻿using NavegadorWeb.Controller;
 using NavegadorWeb.UI;
 using System.Threading;
+using System.Windows;
 
 namespace NavegadorWeb.Extra
 {
@@ -11,7 +12,7 @@ namespace NavegadorWeb.Extra
         {
             while (true)
             {
-                Thread.Sleep(60000);
+                Thread.Sleep(30000);
 
                 var notificationController = new NotificationController();
                 var notificacion = notificationController.GetNotification().Result;
@@ -22,6 +23,7 @@ namespace NavegadorWeb.Extra
 
                     Constants.user = userController.GetUser().Result;
                     Constants.tours = tourController.GetAllToursAsync().Result;
+                    MessageBox.Show("Tenes un nuevo tour disponible.","Nuevo Tour", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
         }
