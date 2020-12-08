@@ -28,7 +28,7 @@ namespace NavegadorWeb.GeneralDisplay
 
             Label userLabel = new Label()
             {
-                Text = "USUARIO",
+                Text = "CUENTA DE MAIL",
                 Font = Constants.H2LabelFont,
                 Width = 400
             };
