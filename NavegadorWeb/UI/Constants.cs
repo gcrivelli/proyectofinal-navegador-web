@@ -138,6 +138,9 @@ namespace NavegadorWeb.UI
         public static Image AsistimeImageG = NavegadorWeb.Properties.Resources.AsistimeImageG;
         public static Image AsistimeHoverImageG = NavegadorWeb.Properties.Resources.AsistimeHoverImageG;
         public static Image AsistimeClickImageG = NavegadorWeb.Properties.Resources.AsistimeClickImageG;
+        public static Image AddAdultImage = NavegadorWeb.Properties.Resources.AddAdultImage;
+        public static Image AddAdultHoverImage = NavegadorWeb.Properties.Resources.AddAdultHoverImage;
+        public static Image AddAdultClickImage = NavegadorWeb.Properties.Resources.AddAdultClickImage;
 
 
         //Imagenes de flow sobre fondo azul

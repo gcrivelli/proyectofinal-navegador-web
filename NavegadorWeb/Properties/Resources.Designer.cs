@@ -73,6 +73,36 @@ namespace NavegadorWeb.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AddAdultClickImage {
+            get {
+                object obj = ResourceManager.GetObject("AddAdultClickImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap AddAdultHoverImage {
+            get {
+                object obj = ResourceManager.GetObject("AddAdultHoverImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap AddAdultImage {
+            get {
+                object obj = ResourceManager.GetObject("AddAdultImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap AddStepClickImage {
             get {
                 object obj = ResourceManager.GetObject("AddStepClickImage", resourceCulture);

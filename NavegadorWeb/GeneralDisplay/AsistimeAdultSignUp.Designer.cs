@@ -1,6 +1,6 @@
-﻿namespace NavegadorWeb.UI
+﻿namespace NavegadorWeb.GeneralDisplay
 {
-    partial class Form1
+    partial class AsistimeAdultSignUp
     {
         /// <summary>
         /// Required designer variable.
@@ -28,22 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // Form1
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.ResizeBegin += new System.EventHandler(this.Form1_ResizeBegin);
-            this.ResizeEnd += new System.EventHandler(this.Form1_ResizeEnd);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
-            this.Resize += new System.EventHandler(this.Form1_Resize);
-            this.ResumeLayout(false);
-
+            this.Text = "AsistimeAdultSignUp";
         }
 
         #endregion

@@ -57,24 +57,31 @@ namespace NavegadorWeb.GeneralDisplay
             }
             else if (Constants.user.rol == "Responsable")
             {
-                /*assistButton = new AsistimeRoundButton(98, 98, Constants.AsistimeImageG, Constants.AsistimeHoverImageG, Constants.AsistimeClickImageG) { Parent = this };
-                assistButton.Location = new Point(this.ClientSize.Width - 150, 15);
-                assistButton.Click += new EventHandler(this.ReturnToNavigation);
-                this.Controls.Add(assistButton);
-                Label assistLabel = new Label() { Text = "Asistime", ForeColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour), Font = Constants.H1LabelFont, Height = 40 };
-                Center_With(assistLabel, assistButton);
-                assistButton.BringToFront();
-                this.Controls.Add(assistLabel);*/
+                addAdultButton = new AsistimeRoundButton(98, 98, Constants.AddAdultImage, Constants.AddAdultHoverImage, Constants.AddAdultClickImage) { Parent = this };
+                addAdultButton.Location = new Point(this.ClientSize.Width - 150, 15);
+                addAdultButton.Click += new EventHandler(this.AddAdult);
+                this.Controls.Add(addAdultButton);
+                Label addLabel = new Label() { Text = "Nuevo Adulto", ForeColor = ColorTranslator.FromHtml(Constants.AppPrimaryColour), Font = Constants.H1LabelFont, Height = 40 };
+                Center_With(addLabel, addAdultButton);
+                addAdultButton.BringToFront();
+                this.Controls.Add(addLabel);
             }
 
             PictureBox logo = new PictureBox();
-            logo.Image = Constants.AsistimeLogo291x99; ;
+            logo.Image = Constants.AsistimeLogo291x99;
             this.Controls.Add(logo);
             logo.Width = 291;
             logo.Height = 99;
             logo.Location = new Point(this.Width/2 - logo.Width/2, 15);
             logo.BringToFront();
 
+        }
+
+        protected void AddAdult(object sender, EventArgs e)
+        {
+            AsistimeAdultSignUp addAdultView = new AsistimeAdultSignUp();
+            addAdultView.TopMost = true;
+            addAdultView.Show();
         }
 
         protected void ReturnToNavigation(object sender, EventArgs e)
@@ -204,23 +211,40 @@ namespace NavegadorWeb.GeneralDisplay
                 }
 
                 Panel panel = new Panel();
-                panel.Width = this.Width;
-                panel.Height = 500;
-                panel.Location = new Point(0, 270 + 20 * (line - 1) + Constants.TourCardHeigth * (line - 1));
+                panel.Width = 500;
+                panel.Height = 50;
+                panel.Location = new Point(0, 270 + 20 * (line - 1) + Constants.TourCardHeigth * (line));
                 this.Controls.Add(panel);
             }
             else
             {
-                Label title = new Label()
+                if (Constants.user.rol == "Adulto")
                 {
-                    Text = "Todavía no hay tours.",
-                    Font = Constants.MenuHeaderFont,
-                    Width = 500,
-                    Height = 60,
-                    TextAlign = ContentAlignment.MiddleCenter,
-                };
-                title.Location = new Point(this.Width/2-title.Width/2, this.Height / 2 - title.Height / 2);
-                this.Controls.Add(title);
+                    Label title = new Label()
+                    {
+                        Text = "Todavía no tenés tours asignados",
+                        Font = Constants.MenuHeaderFont,
+                        Width = 1000,
+                        Height = 60,
+                        TextAlign = ContentAlignment.MiddleCenter,
+                    };
+                    title.Location = new Point(this.Width / 2 - title.Width / 2, this.Height / 2 - title.Height / 2);
+                    this.Controls.Add(title);
+                }
+                else if (Constants.user.rol == "Responsable")
+                {
+                    Label title = new Label()
+                    {
+                        Text = "Todavía no creaste ningún tour",
+                        Font = Constants.MenuHeaderFont,
+                        Width = 1000,
+                        Height = 60,
+                        TextAlign = ContentAlignment.MiddleCenter,
+                    };
+                    title.Location = new Point(this.Width / 2 - title.Width / 2, this.Height / 2 - title.Height / 2);
+                    this.Controls.Add(title);
+                }
+                
             }
         }
 
