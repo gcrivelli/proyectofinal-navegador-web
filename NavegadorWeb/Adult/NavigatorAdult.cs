@@ -121,6 +121,7 @@ namespace NavegadorWeb.Adult
         public HtmlDocument initDocument (Step step, int positionStep)
         {
             var i = 1;
+            var enableClic = false;
             int firstElementY = 100000;
 
             HtmlDocument doc = webBrowser.Document;
@@ -141,7 +142,6 @@ namespace NavegadorWeb.Adult
             script.InnerText += "var x_max = 0;";
             script.InnerText += "var y_min = 0;";
             script.InnerText += "var y_max = 0;";
-            script.InnerText += "document.body.style['pointer-events']='none';";
             script.InnerText += "document.addEventListener('mousemove',onMouseUpdate, false);";
             script.InnerText += "document.addEventListener('mouseenter',onMouseUpdate, false);";
             script.InnerText += "function onMouseUpdate(e) {  ";
@@ -181,12 +181,18 @@ namespace NavegadorWeb.Adult
                 if (elem.type == 9)
                 {
                     script.InnerText += initDiv(elem);
+                    enableClic = true;
                 }
                 else
                 {
                     script.InnerText += initElement(positionStep, i, elem);
                     i++;
                 }
+            }
+
+            if (!enableClic)
+            {
+                script.InnerText += "document.body.style['pointer-events']='none';";
             }
 
             int pos;
