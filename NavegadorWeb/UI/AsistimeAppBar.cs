@@ -58,6 +58,16 @@ namespace NavegadorWeb.UI
             searchButton.Location = new System.Drawing.Point(searchTextBox.Location.X + searchTextBox.Width, searchTextBox.Location.Y);
             this.Controls.Add(searchButton);
 
+            AsistimeActionButton goGoogle = new AsistimeActionButton()
+            {
+                Font = Constants.ActionbuttonFont,
+                ButtonText = "Google",
+                Parent = this
+            };
+            goGoogle.Click += new EventHandler(this.NavigateToGoogle);
+            goGoogle.Location = new System.Drawing.Point(searchTextBox.Location.X + searchTextBox.Width + searchButton.Width - 75, searchTextBox.Location.Y);
+            this.Controls.Add(goGoogle);
+
             /*AsistimeActionButton seeToursButton = new AsistimeActionButton()
             {
                 Font = Constants.ActionbuttonFont,
@@ -67,7 +77,7 @@ namespace NavegadorWeb.UI
             seeToursButton.Location = new System.Drawing.Point(searchTextBox.Location.X, searchTextBox.Location.Y + 50);
             seeToursButton.Click += new EventHandler(ShowTour);
             this.Controls.Add(seeToursButton);*/
-            
+
         }
 
         protected Control GetNavBackButton(int x, int y)
@@ -143,6 +153,12 @@ namespace NavegadorWeb.UI
             control.Navigate(this.searchTextBox.TextName);
         }
 
+        public void NavigateToGoogle(object sender, EventArgs e)
+        {
+            NavigatorForm control = this.Parent as NavigatorForm;
+            control.Navigate("www.google.com.ar");
+        }
+        
         /*protected void ShowTour(Object sender, EventArgs e)
         {
             NavigatorAdult control = this.Parent as NavigatorAdult;
